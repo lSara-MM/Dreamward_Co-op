@@ -4,11 +4,19 @@ using UnityEngine;
 
 public class BossIdle : StateMachineBehaviour
 {
+    private Boss _Boss;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        //todo if enrage, 5 en random
-        animator.SetInteger("ChooseAttack", Random.Range(0, 4));
+        _Boss = animator.gameObject.GetComponent<Boss>();
+
+        int moves = 3;
+        if (_Boss.bossSP)
+        {
+            moves = 4;
+        }
+
+        animator.SetInteger("ChooseAttack", Random.Range(0, moves));
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
