@@ -17,6 +17,8 @@ public class SecondPhase : MonoBehaviour
     public GameObject AllEyes;
     public GameObject SpotLight1;
     public GameObject SpotLight2;
+    public GameObject Curtain;
+    public GameObject Curtain1;
 
 
     public bool secondPhase = false;
@@ -34,6 +36,8 @@ public class SecondPhase : MonoBehaviour
             AllEyes.SetActive(false);
             SpotLight1.SetActive(true);
             SpotLight2.SetActive(true);
+            Curtain.SetActive(true);
+            Curtain1.SetActive(true);
 
             bossEye1.intensity = 0.57f;
             bossEye2.intensity = 0.57f;
@@ -43,6 +47,7 @@ public class SecondPhase : MonoBehaviour
             plattform2.intensity = 0f;
 
             moon.intensity = 0.59f;
+            timing = 0f;
         }
         else 
         {
@@ -70,6 +75,8 @@ public class SecondPhase : MonoBehaviour
         AllEyes.SetActive(true);
         SpotLight1.SetActive(false);
         SpotLight2.SetActive(false);
+        Curtain.SetActive(false);
+        Curtain1.SetActive(false);
 
         bossEye1.intensity = 1.86f;
         bossEye2.intensity = 1.86f;
