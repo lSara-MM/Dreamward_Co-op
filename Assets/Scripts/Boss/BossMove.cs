@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Boss_move : StateMachineBehaviour
+public class BossMove : StateMachineBehaviour
 {
     private Boss _boss;
     //private Rigidbody2D _rb;
