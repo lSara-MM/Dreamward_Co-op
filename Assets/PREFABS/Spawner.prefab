@@ -48,4 +48,5 @@ MonoBehaviour:
   bulletLife: 10
   speed: 15
   spawnerType: 1
-  firingRate: 0.2
+  firingRate: 0.4
+  realFiringRate: 1

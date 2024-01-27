@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class ClownHand : StateMachineBehaviour
 {
-    [SerializeField] private GameObject bzCurve;
+    [SerializeField] private GameObject handPrefab;
+    private GameObject handInHierarchy;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        bzCurve.SetActive(true);
+        handInHierarchy = GameObject.Find(handPrefab.name).gameObject;
+        handInHierarchy.transform.Find("Curve").gameObject.SetActive(true);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -21,7 +23,8 @@ public class ClownHand : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        bzCurve.SetActive(false);
+        //handPrefab.transform.GetChild(1).gameObject.SetActive(false);
+        handInHierarchy.transform.Find("Curve").gameObject.SetActive(false);
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()

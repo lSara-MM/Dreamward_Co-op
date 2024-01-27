@@ -55,7 +55,7 @@ public class BulletSpawner : MonoBehaviour
 
     private void Fire()
     {
-        if (bullet && _animator.GetInteger("ChooseAttack") == 1)
+        if (bullet && _animator.GetInteger("ChooseAttack") == 5)
         {
             spawnedBullet = Instantiate(bullet, transform.position, Quaternion.identity);
             spawnedBullet.GetComponent<Bullet>().speed = speed;

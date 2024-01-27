@@ -17,8 +17,8 @@ public class PlayerHealth : MonoBehaviour
 
     [SerializeField] private int debugLife = 1;
 
-    [SerializeField] private GameObject game;
-    [SerializeField] private GameObject loseCanvas;
+    //[SerializeField] private GameObject game;
+    //[SerializeField] private GameObject loseCanvas;
 
     public AudioClip[] Clip;
     AudioSource aud;
@@ -27,7 +27,7 @@ public class PlayerHealth : MonoBehaviour
     void Start()
     {
         currentHealth = maxHealth;
-        loseCanvas.SetActive(false);
+        //loseCanvas.SetActive(false);
 
         aud = GetComponent<AudioSource>();
     }
@@ -113,8 +113,8 @@ public class PlayerHealth : MonoBehaviour
 
     public void OpenLose()
     {
-        game.SetActive(false);
-        loseCanvas.SetActive(true);
+        //game.SetActive(false);
+        //loseCanvas.SetActive(true);
     }
 
     void AudioPlay(AudioClip a)
