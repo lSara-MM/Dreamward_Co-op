@@ -10,18 +10,18 @@ public class BossMove : StateMachineBehaviour
     private float _timer;
     private int target = 0;
     private Vector2[] _points = { new Vector2(0, 0), new Vector2(-5.78f, 2.74f), new Vector2(6.63f, 2.57f), 
-        new Vector2(5.78f, -0.72f), new Vector2(0, -1.1f), new Vector2(-6.08f, -0.73f)};//Hardcoded jiji
+        new Vector2(5.78f, -0.72f), new Vector2(-6.08f, -0.73f)};//Hardcoded :)
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         _boss = animator.GetComponent<Boss>();
 
-        int aux = Random.Range(0, 7);
+        int aux = Random.Range(0, _points.Length);
 
-        while(aux == target)//check para que no se repita misma ubi
+        while(aux == target)//check to avoid the current point
         {
-            aux = Random.Range(0, 7);
+            aux = Random.Range(0, _points.Length);
         }
 
         target = aux;
