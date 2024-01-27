@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 2145752748239673628}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.669351, y: 3.041013, z: -0.027554989}
+  m_LocalPosition: {x: -7.1649485, y: 1.421179, z: -0.027554989}
   m_LocalScale: {x: 0.6228605, y: 0.09963469, z: 1.3818}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -372,7 +372,7 @@ MonoBehaviour:
   closed: 1
   points:
   - controlType: 0
-    positionLocal: {x: -0.40278482, y: -4.841013, z: 0}
+    positionLocal: {x: -0.4448877, y: -5.7551093, z: 0}
     controlFirstLocal: {x: 1.282478, y: -0.28812066, z: 0}
     controlSecondLocal: {x: -1.282478, y: 0.28812066, z: 0}
     pointTransform: {fileID: 0}
@@ -393,7 +393,7 @@ MonoBehaviour:
       bgCurvePointComponentValues: []
       bgCurvePointGOValues: []
   - controlType: 0
-    positionLocal: {x: -0.504519, y: 1.7310815, z: 0}
+    positionLocal: {x: -0.5466223, y: 1.7310815, z: 0}
     controlFirstLocal: {x: 0.38465023, y: 0.5103651, z: 0}
     controlSecondLocal: {x: -0.38465023, y: -0.5103651, z: 0}
     pointTransform: {fileID: 0}
@@ -414,7 +414,7 @@ MonoBehaviour:
       bgCurvePointComponentValues: []
       bgCurvePointGOValues: []
   - controlType: 0
-    positionLocal: {x: 1.8972481, y: -4.8206654, z: 0}
+    positionLocal: {x: 1.3954852, y: -5.755109, z: 0}
     controlFirstLocal: {x: 1.2874186, y: -0.10628787, z: 0}
     controlSecondLocal: {x: -1.2874186, y: 0.10628787, z: 0}
     pointTransform: {fileID: 0}
@@ -435,23 +435,44 @@ MonoBehaviour:
       bgCurvePointComponentValues: []
       bgCurvePointGOValues: []
   - controlType: 0
-    positionLocal: {x: 1.7326684, y: 1.7354088, z: 0}
+    positionLocal: {x: 1.3562671, y: 1.731081, z: 0}
     controlFirstLocal: {x: -0.005423546, y: 1.2018073, z: 0}
     controlSecondLocal: {x: 0.005423546, y: -1.2018073, z: 0}
     pointTransform: {fileID: 0}
     curve: {fileID: 4439845816229029208}
     fieldsValues: []
   - controlType: 0
-    positionLocal: {x: 3.999, y: -4.9431396, z: 0}
+    positionLocal: {x: 3.0515056, y: -5.755109, z: 0}
     controlFirstLocal: {x: -0.48944098, y: -0.2258958, z: 0}
     controlSecondLocal: {x: 0.48944098, y: 0.2258958, z: 0}
     pointTransform: {fileID: 0}
     curve: {fileID: 4439845816229029208}
     fieldsValues: []
   - controlType: 0
-    positionLocal: {x: 4.0744853, y: 1.7203305, z: 0}
+    positionLocal: {x: 3.1409197, y: 1.731081, z: 0}
     controlFirstLocal: {x: -0.010917092, y: -0.49370414, z: 0}
     controlSecondLocal: {x: 0.010917092, y: 0.49370414, z: 0}
+    pointTransform: {fileID: 0}
+    curve: {fileID: 4439845816229029208}
+    fieldsValues: []
+  - controlType: 1
+    positionLocal: {x: 2.0149994, y: -0.15422845, z: 0}
+    controlFirstLocal: {x: 0.6742662, y: 0.2456497, z: -0}
+    controlSecondLocal: {x: -0.6742662, y: -0.2456497, z: 0}
+    pointTransform: {fileID: 0}
+    curve: {fileID: 4439845816229029208}
+    fieldsValues: []
+  - controlType: 1
+    positionLocal: {x: 0.6234488, y: -1.0457162, z: 0}
+    controlFirstLocal: {x: 0.28605255, y: 0.62598515, z: 0}
+    controlSecondLocal: {x: -0.28605255, y: -0.62598515, z: -0}
+    pointTransform: {fileID: 0}
+    curve: {fileID: 4439845816229029208}
+    fieldsValues: []
+  - controlType: 1
+    positionLocal: {x: 0.925462, y: -4.24898, z: 0}
+    controlFirstLocal: {x: 0.009069562, y: 1.1409669, z: 0}
+    controlSecondLocal: {x: -0.009069562, y: -1.1409669, z: -0}
     pointTransform: {fileID: 0}
     curve: {fileID: 4439845816229029208}
     fieldsValues: []
@@ -677,21 +698,21 @@ MonoBehaviour:
     curve: {fileID: 564069554451185033}
     fieldsValues: []
   - controlType: 1
-    positionLocal: {x: -1.3738575, y: -3.533804, z: 0}
+    positionLocal: {x: -1.1370039, y: -3.533804, z: 0}
     controlFirstLocal: {x: -0.24942665, y: 0.7623982, z: -0}
     controlSecondLocal: {x: 0.24942665, y: -0.7623982, z: 0}
     pointTransform: {fileID: 0}
     curve: {fileID: 564069554451185033}
     fieldsValues: []
   - controlType: 1
-    positionLocal: {x: 1.0473948, y: -4.9663844, z: 0}
+    positionLocal: {x: 1.0473948, y: -4.9180737, z: 0}
     controlFirstLocal: {x: -0.62651825, y: 0.1411848, z: -0}
     controlSecondLocal: {x: 0.62651825, y: -0.1411848, z: 0}
     pointTransform: {fileID: 0}
     curve: {fileID: 564069554451185033}
     fieldsValues: []
   - controlType: 1
-    positionLocal: {x: 10.357217, y: -5.098912, z: 0}
+    positionLocal: {x: 10.357217, y: -4.9180737, z: 0}
     controlFirstLocal: {x: -2.386027, y: -0.023530386, z: -0}
     controlSecondLocal: {x: 2.386027, y: 0.023530386, z: 0}
     pointTransform: {fileID: 0}
