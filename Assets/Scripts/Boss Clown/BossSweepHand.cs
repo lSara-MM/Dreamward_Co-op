@@ -3,31 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using BansheeGz.BGSpline.Components;
 
-public class BossHandRain : StateMachineBehaviour
+public class BossSweepHand : StateMachineBehaviour
 {
-    [SerializeField] private GameObject leftHandPrefab;
-    [SerializeField] private GameObject rightHandPrefab;
-    private GameObject leftHandInHierarchy;
-    private GameObject rightHandInHierarchy;
-    private BGCcCursor _cursorLeft;
-    private BGCcCursor _cursorRight;
+    [SerializeField] private GameObject handPrefab;
+    private GameObject handInHierarchy;
+    private BGCcCursor _cursor;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        leftHandInHierarchy = GameObject.Find(leftHandPrefab.name).transform.Find("RainCurve").gameObject;
-        leftHandInHierarchy.SetActive(true);
-        _cursorLeft = leftHandInHierarchy.transform.Find("RainCurve").GetComponent<BGCcCursor>();
-
-        rightHandInHierarchy = GameObject.Find(rightHandPrefab.name).transform.Find("RainCurve").gameObject;
-        rightHandInHierarchy.SetActive(true);
-        _cursorRight = rightHandInHierarchy.transform.Find("RainCurve").GetComponent<BGCcCursor>();
+        handInHierarchy = GameObject.Find(handPrefab.name).gameObject;
+        handInHierarchy.transform.Find("SweepCurve").gameObject.SetActive(true); //:)
+        _cursor = handInHierarchy.transform.Find("SweepCurve").GetComponent<BGCcCursor>();
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (_cursorLeft.DistanceRatio > 0.98f || _cursorRight.DistanceRatio > 0.98f)
+        if (_cursor.DistanceRatio > 0.98f)
         {
             animator.SetTrigger("Exit");
         }
@@ -36,11 +29,9 @@ public class BossHandRain : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        leftHandInHierarchy.SetActive(false);
-        _cursorLeft.DistanceRatio = 0;
-
-        rightHandInHierarchy.SetActive(false);
-        _cursorRight.DistanceRatio = 0;
+        //handPrefab.transform.GetChild(1).gameObject.SetActive(false);
+        handInHierarchy.transform.Find("SweepCurve").gameObject.SetActive(false);
+        _cursor.DistanceRatio = 0;
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()

@@ -102,8 +102,307 @@ Transform:
   m_Children:
   - {fileID: 2044897166947522854}
   - {fileID: 5115993212818181881}
+  - {fileID: 227290749740257087}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2513150893665964219
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 227290749740257087}
+  - component: {fileID: 3012086071704675928}
+  - component: {fileID: 7510176100380512912}
+  - component: {fileID: 2765761849713962509}
+  - component: {fileID: 977405482380863915}
+  - component: {fileID: 4301353550179912830}
+  m_Layer: 0
+  m_Name: RainCurve
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &227290749740257087
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2513150893665964219}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -6.04, y: 1.498951, z: -0.027554989}
+  m_LocalScale: {x: 1.5625, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4715039625442907018}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3012086071704675928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2513150893665964219}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e70f079e2a6bf364e8185b765fbe61c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  settings:
+    hideHandles: 0
+    newPointDistance: 2
+    showCurve: 1
+    showCurveMode: 1
+    showCurveOption: 0
+    sections: 20
+    showPointMenu: 1
+    showTangents: 0
+    tangentsSize: 0.7
+    tangentsColor: {r: 1, g: 1, b: 1, a: 1}
+    tangentsPerSection: 1
+    controlType: 0
+    vRay: 0
+    lineColor: {r: 1, g: 0, b: 0, a: 1}
+    restrictGizmoz: 
+    showPointControlType: 1
+    showPointPosition: 1
+    showHandles: 1
+    handlesType: 0
+    handlesSettings:
+      RemoveX: 0
+      RemoveY: 0
+      RemoveZ: 1
+      RemoveXZ: 1
+      RemoveXY: 0
+      RemoveYZ: 1
+      AxisScale: 1
+      PlanesScale: 1
+      Alpha: 1
+    showLabels: 1
+    labelColor: {r: 1, g: 1, b: 1, a: 1}
+    showPositions: 0
+    labelColorSelected: {r: 0, g: 1, b: 0, a: 1}
+    showSpheres: 1
+    sphereRadius: 0.1
+    sphereColor: {r: 1, g: 0, b: 0, a: 1}
+    showPointControlPositions: 1
+    showControlHandles: 1
+    controlHandlesType: 0
+    controlHandlesSettings:
+      RemoveX: 0
+      RemoveY: 0
+      RemoveZ: 1
+      RemoveXZ: 1
+      RemoveXY: 0
+      RemoveYZ: 1
+      AxisScale: 0.7
+      PlanesScale: 0.7
+      Alpha: 0.7
+    controlHandlesColor: {r: 0, g: 1, b: 1, a: 1}
+    showControlLabels: 1
+    showControlPositions: 0
+    labelControlColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+    showTransformField: 0
+    existing: 1
+  mode2D: 1
+  closed: 1
+  points:
+  - controlType: 0
+    positionLocal: {x: 8.725811, y: 1.6592896, z: 0}
+    controlFirstLocal: {x: 0.010917092, y: 0.49370414, z: 0}
+    controlSecondLocal: {x: -0.010917092, y: -0.49370414, z: 0}
+    pointTransform: {fileID: 0}
+    curve: {fileID: 3012086071704675928}
+    fieldsValues:
+    - boolValues: 
+      intValues: 
+      floatValues: []
+      stringValues: []
+      vector3Values: []
+      boundsValues: []
+      colorValues: []
+      quaternionValues: []
+      animationCurveValues: []
+      gameObjectValues: []
+      componentValues: []
+      bgCurveValues: []
+      bgCurvePointComponentValues: []
+      bgCurvePointGOValues: []
+  - controlType: 0
+    positionLocal: {x: 8.650327, y: -5.004181, z: 0}
+    controlFirstLocal: {x: 0.48944098, y: 0.2258958, z: -0}
+    controlSecondLocal: {x: -0.48944098, y: -0.2258958, z: 0}
+    pointTransform: {fileID: 0}
+    curve: {fileID: 3012086071704675928}
+    fieldsValues:
+    - boolValues: 
+      intValues: 
+      floatValues: []
+      stringValues: []
+      vector3Values: []
+      boundsValues: []
+      colorValues: []
+      quaternionValues: []
+      animationCurveValues: []
+      gameObjectValues: []
+      componentValues: []
+      bgCurveValues: []
+      bgCurvePointComponentValues: []
+      bgCurvePointGOValues: []
+  - controlType: 0
+    positionLocal: {x: 6.384001, y: 1.6743679, z: 0}
+    controlFirstLocal: {x: 0.005423546, y: -1.2018073, z: 0}
+    controlSecondLocal: {x: -0.005423546, y: 1.2018073, z: -0}
+    pointTransform: {fileID: 0}
+    curve: {fileID: 3012086071704675928}
+    fieldsValues:
+    - boolValues: 
+      intValues: 
+      floatValues: []
+      stringValues: []
+      vector3Values: []
+      boundsValues: []
+      colorValues: []
+      quaternionValues: []
+      animationCurveValues: []
+      gameObjectValues: []
+      componentValues: []
+      bgCurveValues: []
+      bgCurvePointComponentValues: []
+      bgCurvePointGOValues: []
+  - controlType: 0
+    positionLocal: {x: 6.730894, y: -4.9834423, z: 0}
+    controlFirstLocal: {x: -1.2874186, y: 0.10628787, z: 0}
+    controlSecondLocal: {x: 1.2874186, y: -0.10628787, z: 0}
+    pointTransform: {fileID: 0}
+    curve: {fileID: 3012086071704675928}
+    fieldsValues: []
+  - controlType: 0
+    positionLocal: {x: 4.1468244, y: 1.6700406, z: 0}
+    controlFirstLocal: {x: -0.38465023, y: -0.5103651, z: 0}
+    controlSecondLocal: {x: 0.38465023, y: 0.5103651, z: 0}
+    pointTransform: {fileID: 0}
+    curve: {fileID: 3012086071704675928}
+    fieldsValues: []
+  - controlType: 0
+    positionLocal: {x: 4.248558, y: -4.902055, z: 0}
+    controlFirstLocal: {x: -1.282478, y: 0.28812066, z: 0}
+    controlSecondLocal: {x: 1.282478, y: -0.28812066, z: 0}
+    pointTransform: {fileID: 0}
+    curve: {fileID: 3012086071704675928}
+    fieldsValues: []
+  pointsComponents: []
+  pointsGameObjects: []
+  fields: []
+  snapType: 0
+  snapAxis: 1
+  snapDistance: 10
+  snapLayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  snapTriggerInteraction: 0
+  snapToBackFaces: 0
+  snapMonitoring: 0
+  eventMode: 0
+  pointsMode: 0
+  forceChangedEventMode: 0
+--- !u!114 &7510176100380512912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2513150893665964219}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6d20671ad38ded4fa2362df353b9a31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  showHandles: 1
+  hidden: 0
+  parent: {fileID: 0}
+  ccName: 
+  fields: 3
+  mathType: 0
+  sectionParts: 15
+  optimizeStraightLines: 0
+  tolerance: 0.241
+  usePositionToCalculateTangents: 0
+  updateMode: 0
+  rendererForUpdateCheck: {fileID: 0}
+  mathChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  spheresScale: 1
+  spheresColor: {r: 1, g: 1, b: 1, a: 1}
+  spheresCount: 100
+--- !u!114 &2765761849713962509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2513150893665964219}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 924df4c68ad59e943b47b75f2323f73a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  showHandles: 1
+  hidden: 0
+  parent: {fileID: 7510176100380512912}
+  ccName: 
+  distance: 0
+  handlesScale: 1
+  handlesColor: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &977405482380863915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2513150893665964219}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d916ef28168e544d9dc5bb790f67ba0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  showHandles: 1
+  hidden: 0
+  parent: {fileID: 2765761849713962509}
+  ccName: 
+  objectToManipulate: {fileID: 2044897166947522854}
+--- !u!114 &4301353550179912830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2513150893665964219}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 535a3a5d00075854a98f71fdd486b248, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  showHandles: 1
+  hidden: 0
+  parent: {fileID: 2765761849713962509}
+  ccName: 
+  useFixedUpdate: 0
+  speed: 7
+  overflowControl: 0
+  adjustByTotalLength: 0
+  speedField: {fileID: 0}
+  delay: 0
+  delayField: {fileID: 0}
+  pointReachedEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &5380418150419560379
 GameObject:
   m_ObjectHideFlags: 0
@@ -119,7 +418,7 @@ GameObject:
   - component: {fileID: 1973768915713166709}
   - component: {fileID: 7853701471657204333}
   m_Layer: 0
-  m_Name: Curve
+  m_Name: SweepCurve
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -212,47 +511,215 @@ MonoBehaviour:
   closed: 1
   points:
   - controlType: 0
-    positionLocal: {x: 15.007374, y: -1.0672146, z: 0}
+    positionLocal: {x: 13.088224, y: -1.0672146, z: 0}
     controlFirstLocal: {x: 0.010917092, y: 0.49370414, z: 0}
     controlSecondLocal: {x: -0.010917092, y: -0.49370414, z: 0}
     pointTransform: {fileID: 0}
     curve: {fileID: 4161646167054869519}
-    fieldsValues: []
+    fieldsValues:
+    - boolValues: 
+      intValues: 
+      floatValues: []
+      stringValues: []
+      vector3Values: []
+      boundsValues: []
+      colorValues: []
+      quaternionValues: []
+      animationCurveValues: []
+      gameObjectValues: []
+      componentValues: []
+      bgCurveValues: []
+      bgCurvePointComponentValues: []
+      bgCurvePointGOValues: []
   - controlType: 1
-    positionLocal: {x: 13.591278, y: -4.059423, z: 0}
+    positionLocal: {x: 12.911005, y: -4.556546, z: 0}
     controlFirstLocal: {x: 0.48944098, y: 0.2258958, z: -0}
     controlSecondLocal: {x: -0.48944098, y: -0.2258958, z: 0}
     pointTransform: {fileID: 0}
     curve: {fileID: 4161646167054869519}
-    fieldsValues: []
+    fieldsValues:
+    - boolValues: 
+      intValues: 
+      floatValues: []
+      stringValues: []
+      vector3Values: []
+      boundsValues: []
+      colorValues: []
+      quaternionValues: []
+      animationCurveValues: []
+      gameObjectValues: []
+      componentValues: []
+      bgCurveValues: []
+      bgCurvePointComponentValues: []
+      bgCurvePointGOValues: []
   - controlType: 1
-    positionLocal: {x: 10.357217, y: -5.098912, z: 0}
-    controlFirstLocal: {x: 2.386027, y: 0.023530386, z: -0}
-    controlSecondLocal: {x: -2.386027, y: -0.023530386, z: 0}
+    positionLocal: {x: 8.264067, y: -4.918074, z: 0}
+    controlFirstLocal: {x: 2.3860273, y: -0.021678925, z: -0}
+    controlSecondLocal: {x: -2.3860273, y: 0.021678925, z: 0}
     pointTransform: {fileID: 0}
     curve: {fileID: 4161646167054869519}
-    fieldsValues: []
+    fieldsValues:
+    - boolValues: 
+      intValues: 
+      floatValues: []
+      stringValues: []
+      vector3Values: []
+      boundsValues: []
+      colorValues: []
+      quaternionValues: []
+      animationCurveValues: []
+      gameObjectValues: []
+      componentValues: []
+      bgCurveValues: []
+      bgCurvePointComponentValues: []
+      bgCurvePointGOValues: []
   - controlType: 1
-    positionLocal: {x: 1.0473948, y: -4.9663844, z: 0}
+    positionLocal: {x: 1.0473948, y: -4.8081512, z: 0}
     controlFirstLocal: {x: 0.62651825, y: -0.1411848, z: -0}
     controlSecondLocal: {x: -0.62651825, y: 0.1411848, z: 0}
     pointTransform: {fileID: 0}
     curve: {fileID: 4161646167054869519}
-    fieldsValues: []
+    fieldsValues:
+    - boolValues: 
+      intValues: 
+      floatValues: []
+      stringValues: []
+      vector3Values: []
+      boundsValues: []
+      colorValues: []
+      quaternionValues: []
+      animationCurveValues: []
+      gameObjectValues: []
+      componentValues: []
+      bgCurveValues: []
+      bgCurvePointComponentValues: []
+      bgCurvePointGOValues: []
   - controlType: 1
     positionLocal: {x: -1.3738575, y: -3.533804, z: 0}
     controlFirstLocal: {x: 0.24942665, y: -0.7623982, z: -0}
     controlSecondLocal: {x: -0.24942665, y: 0.7623982, z: 0}
     pointTransform: {fileID: 0}
     curve: {fileID: 4161646167054869519}
-    fieldsValues: []
-  - controlType: 0
+    fieldsValues:
+    - boolValues: 
+      intValues: 
+      floatValues: []
+      stringValues: []
+      vector3Values: []
+      boundsValues: []
+      colorValues: []
+      quaternionValues: []
+      animationCurveValues: []
+      gameObjectValues: []
+      componentValues: []
+      bgCurveValues: []
+      bgCurvePointComponentValues: []
+      bgCurvePointGOValues: []
+  - controlType: 1
     positionLocal: {x: -1.2638874, y: -1.070487, z: 0}
     controlFirstLocal: {x: -1, y: -0, z: 0}
-    controlSecondLocal: {x: 1, y: 0, z: 0}
+    controlSecondLocal: {x: 1, y: 0, z: -0}
     pointTransform: {fileID: 0}
     curve: {fileID: 4161646167054869519}
-    fieldsValues: []
+    fieldsValues:
+    - boolValues: 
+      intValues: 
+      floatValues: []
+      stringValues: []
+      vector3Values: []
+      boundsValues: []
+      colorValues: []
+      quaternionValues: []
+      animationCurveValues: []
+      gameObjectValues: []
+      componentValues: []
+      bgCurveValues: []
+      bgCurvePointComponentValues: []
+      bgCurvePointGOValues: []
+  - controlType: 1
+    positionLocal: {x: 2.5216188, y: -2.1876984, z: 0}
+    controlFirstLocal: {x: -1.0916257, y: -0.019407034, z: -0}
+    controlSecondLocal: {x: 1.0916257, y: 0.019407034, z: 0}
+    pointTransform: {fileID: 0}
+    curve: {fileID: 4161646167054869519}
+    fieldsValues:
+    - boolValues: 
+      intValues: 
+      floatValues: []
+      stringValues: []
+      vector3Values: []
+      boundsValues: []
+      colorValues: []
+      quaternionValues: []
+      animationCurveValues: []
+      gameObjectValues: []
+      componentValues: []
+      bgCurveValues: []
+      bgCurvePointComponentValues: []
+      bgCurvePointGOValues: []
+  - controlType: 1
+    positionLocal: {x: 5.4795876, y: -0.8642404, z: 0}
+    controlFirstLocal: {x: -1.4074531, y: -0.08820641, z: 0}
+    controlSecondLocal: {x: 1.4074531, y: 0.08820641, z: -0}
+    pointTransform: {fileID: 0}
+    curve: {fileID: 4161646167054869519}
+    fieldsValues:
+    - boolValues: 
+      intValues: 
+      floatValues: []
+      stringValues: []
+      vector3Values: []
+      boundsValues: []
+      colorValues: []
+      quaternionValues: []
+      animationCurveValues: []
+      gameObjectValues: []
+      componentValues: []
+      bgCurveValues: []
+      bgCurvePointComponentValues: []
+      bgCurvePointGOValues: []
+  - controlType: 1
+    positionLocal: {x: 8.412884, y: -1.702407, z: 0}
+    controlFirstLocal: {x: -2.0431147, y: -0.15731716, z: -0}
+    controlSecondLocal: {x: 2.0431147, y: 0.15731716, z: 0}
+    pointTransform: {fileID: 0}
+    curve: {fileID: 4161646167054869519}
+    fieldsValues:
+    - boolValues: 
+      intValues: 
+      floatValues: []
+      stringValues: []
+      vector3Values: []
+      boundsValues: []
+      colorValues: []
+      quaternionValues: []
+      animationCurveValues: []
+      gameObjectValues: []
+      componentValues: []
+      bgCurveValues: []
+      bgCurvePointComponentValues: []
+      bgCurvePointGOValues: []
+  - controlType: 1
+    positionLocal: {x: 11.376849, y: 0.5512333, z: 0}
+    controlFirstLocal: {x: -1.7930298, y: -0.065601826, z: -0}
+    controlSecondLocal: {x: 1.7930298, y: 0.065601826, z: 0}
+    pointTransform: {fileID: 0}
+    curve: {fileID: 4161646167054869519}
+    fieldsValues:
+    - boolValues: 
+      intValues: 
+      floatValues: []
+      stringValues: []
+      vector3Values: []
+      boundsValues: []
+      colorValues: []
+      quaternionValues: []
+      animationCurveValues: []
+      gameObjectValues: []
+      componentValues: []
+      bgCurveValues: []
+      bgCurvePointComponentValues: []
+      bgCurvePointGOValues: []
   pointsComponents: []
   pointsGameObjects: []
   fields: []
@@ -388,7 +855,7 @@ Transform:
   m_GameObject: {fileID: 8055623043030689659}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 8.967374, y: 0.43173635, z: -0.027554989}
+  m_LocalPosition: {x: 7.59408, y: 3.1582406, z: -0.027554989}
   m_LocalScale: {x: 0.6228605, y: 0.09963469, z: 1.3818}
   m_ConstrainProportionsScale: 0
   m_Children:
