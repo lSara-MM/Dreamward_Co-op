@@ -37,7 +37,7 @@ public class SecondPhase2 : MonoBehaviour
             plattform1.intensity = 0f;
             plattform2.intensity = 0f;
 
-            moon.intensity = 0.59f;
+            moon.intensity = 3.58f;
 
             timing = 0f;
         }
