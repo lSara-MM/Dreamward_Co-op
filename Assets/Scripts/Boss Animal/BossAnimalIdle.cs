@@ -10,14 +10,14 @@ public class BossAnimalIdle : StateMachineBehaviour
 
         if (animator.GetBool("Enraged")) 
         {
-            //Retorna -1 (ataque unico rage) 0 (pilar cercano) y 1 (pilar lejano)
-            animator.SetInteger("ChooseAttack", Random.Range(-1, 2));
+            //Retorna -1 (ataque unico rage) 0 (pilar)
+            animator.SetInteger("ChooseAttack", Random.Range(-1, 1));
             Debug.Log("Se selecciono algo furioso:");
         }
         else 
         {
-            //Retorna 0 (pilar cercano) , 1 (pilar lejano) , 2 (laser inferior) o 3 (laser superior)
-            animator.SetInteger("ChooseAttack", Random.Range(0, 4));
+            //Retorna 0 (pilar) , 1 (laser )
+            animator.SetInteger("ChooseAttack", Random.Range(0, 2));
             Debug.Log("Se selecciono algo chill:");
 
         }
