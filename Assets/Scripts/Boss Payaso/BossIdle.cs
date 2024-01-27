@@ -10,10 +10,10 @@ public class BossIdle : StateMachineBehaviour
     {
         _Boss = animator.gameObject.GetComponent<Boss>();
 
-        int moves = 3;
+        int moves = 4;
         if (_Boss.bossSP)
         {
-            moves = 4;
+            moves = 5;
         }
 
         animator.SetInteger("ChooseAttack", Random.Range(0, moves));
