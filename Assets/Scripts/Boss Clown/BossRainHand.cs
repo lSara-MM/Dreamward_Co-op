@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using BansheeGz.BGSpline.Components;
 
-public class BossHandRain : StateMachineBehaviour
+public class BossRainHand : StateMachineBehaviour
 {
     [SerializeField] private GameObject leftHandPrefab;
     [SerializeField] private GameObject rightHandPrefab;
+
     private GameObject leftHandInHierarchy;
     private GameObject rightHandInHierarchy;
+
     private BGCcCursor _cursorLeft;
     private BGCcCursor _cursorRight;
 
