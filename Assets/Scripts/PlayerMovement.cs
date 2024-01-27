@@ -7,10 +7,10 @@ public class PlayerMovement : MonoBehaviour
     private float horizontal;
     private float speed = 8f;
     private float jumping = 16f;
-    private bool isFacingRigth = true;
+    public bool isFacingRigth = true;
 
     private bool canDash = true;
-    private bool isDashing;
+    public bool isDashing;
     private float dashing = 24f;
     private float dashingTime = 0.2f;
     private float dashingCooldown= 0.5f;
