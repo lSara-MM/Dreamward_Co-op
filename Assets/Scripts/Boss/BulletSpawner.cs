@@ -9,6 +9,8 @@ public class BulletSpawner : MonoBehaviour
 
     [Header("Bullet Attributes")]
     public GameObject bullet;
+    private Animator _animator;
+
     public float bulletLife = 1f;
     public float speed = 1f;
 
@@ -23,7 +25,7 @@ public class BulletSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        _animator = GetComponentInParent<Animator>();
     }
 
 
@@ -42,7 +44,7 @@ public class BulletSpawner : MonoBehaviour
 
     private void Fire()
     {
-        if (bullet)
+        if (bullet && _animator.GetInteger("ChooseAttack") == 1)
         {
             spawnedBullet = Instantiate(bullet, transform.position, Quaternion.identity);
             spawnedBullet.GetComponent<Bullet>().speed = speed;
