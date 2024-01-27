@@ -130,6 +130,7 @@ public class PlayerHealth : MonoBehaviour
             if (!PlayerMovement.isDashing) //Si no está Dasheando recibe daño
             {
                 Debug.Log("Take Damage"); //Función para recibir daño 
+                TakeDmg(1);
             }
         }
     }
