@@ -6,7 +6,9 @@ public class SpawnColumn : MonoBehaviour
 {
 
     [SerializeField] GameObject pilar;
-    [SerializeField] float killHeigth;
+    [SerializeField] ParticleSystem groundTremors;
+    [SerializeField] float killHeigth = 13.0f;
+    public bool spawn;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,32 +16,39 @@ public class SpawnColumn : MonoBehaviour
     }
 
     bool pilarCreated = false;
-    float dtPilar = 0.0f;
     GameObject instancePilar = null;
+    float dtWait = 0.0f;
 
     // Update is called once per frame
     void Update()
     {
         if (pilar != null) 
         {
-            if(true && !pilarCreated) //Recibir un mensaje
+            if(spawn && !pilarCreated) //Recibir un mensaje
             {
                 instancePilar = Instantiate(pilar);
                 instancePilar.transform.position = transform.transform.position;
                 pilarCreated = true;
-                dtPilar = 0.0f;
+                groundTremors.Play();
+                dtWait = 0.0f;
             }
-            if(pilarCreated) 
+            if (pilarCreated) 
             {
-                dtPilar += Time.deltaTime;
-                instancePilar.transform.transform.position = instancePilar.transform.transform.position + new Vector3(0,0.1f, 0);
-                if(instancePilar.transform.transform.position.y > killHeigth) 
+                dtWait += Time.deltaTime;
+
+                if (dtWait > groundTremors.main.duration)
                 {
-                    Destroy(instancePilar);
-                    instancePilar = null;
-                    pilarCreated = false;
+                    instancePilar.transform.transform.position = instancePilar.transform.transform.position + new Vector3(0, 0.1f, 0);
+                    if (instancePilar.transform.transform.position.y > killHeigth)
+                    {
+                        Destroy(instancePilar);
+                        instancePilar = null;
+                        pilarCreated = false;
+                        spawn = false;
+                    }
                 }
             }
+            
         }
     }
 }
