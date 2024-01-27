@@ -5,7 +5,6 @@ using UnityEngine;
 public class BossMove : StateMachineBehaviour
 {
     private Boss _boss;
-    //private Rigidbody2D _rb;
 
     [SerializeField] private float speed;
     private float _timer;
@@ -16,7 +15,6 @@ public class BossMove : StateMachineBehaviour
     {
         _boss = animator.GetComponent<Boss>();
         _timer = Random.Range(3, 5);
-        //_rb = _boss.rb;
         target = new Vector2(Random.Range(-2.5f, 2.5f), Random.Range(-2.5f, 2.5f));
     }
 
@@ -35,14 +33,12 @@ public class BossMove : StateMachineBehaviour
         }
 
         animator.transform.position = Vector2.MoveTowards(animator.transform.position, target, speed * Time.deltaTime);
-        //_rb.velocity = new Vector2(speed, speed);
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
-    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
-        //_rb.velocity = new Vector2(0, 0);
-    }
+    //override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    //{
+    //}
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
     //override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
