@@ -11,8 +11,13 @@ public class SecondPhase : MonoBehaviour
     public Light2D bossEye1;
     public Light2D bossEye2;
     public Light2D bossEye3;
-    public GameObject lamp;
     public Light2D moon;
+
+    public GameObject lamp;
+    public GameObject AllEyes;
+    public GameObject SpotLight1;
+    public GameObject SpotLight2;
+
 
     public bool secondPhase = false;
     float timing = 0f;
@@ -26,6 +31,9 @@ public class SecondPhase : MonoBehaviour
             globalLight.color = new Color(0.580f, 0.654f, 0.764f, 1f);
 
             lamp.SetActive(false);
+            AllEyes.SetActive(false);
+            SpotLight1.SetActive(true);
+            SpotLight2.SetActive(true);
 
             bossEye1.intensity = 0.57f;
             bossEye2.intensity = 0.57f;
@@ -59,6 +67,9 @@ public class SecondPhase : MonoBehaviour
     void ChangeLigth() 
     {
         lamp.SetActive(true);
+        AllEyes.SetActive(true);
+        SpotLight1.SetActive(false);
+        SpotLight2.SetActive(false);
 
         bossEye1.intensity = 1.86f;
         bossEye2.intensity = 1.86f;
