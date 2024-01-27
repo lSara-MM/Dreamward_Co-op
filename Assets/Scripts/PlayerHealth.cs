@@ -9,6 +9,7 @@ public class PlayerHealth : MonoBehaviour
     public int currentHealth = 0;
     public int maxHealth = 3;
     public int maxInitHealth = 3;
+    public PlayerMovement PlayerMovement;
 
     public Image[] hearts;
     [SerializeField] private Sprite fullHeart;
@@ -120,5 +121,16 @@ public class PlayerHealth : MonoBehaviour
     {
         aud.clip = a;
         aud.Play();
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == 7) //Layer Damage = 7
+        {
+            if (!PlayerMovement.isDashing) //Si no está Dasheando recibe daño
+            {
+                Debug.Log("Take Damage"); //Función para recibir daño 
+            }
+        }
     }
 }
