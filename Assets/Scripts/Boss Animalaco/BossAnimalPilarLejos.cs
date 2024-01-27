@@ -2,22 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossIdle : StateMachineBehaviour
+public class BossAnimalPilarLejos : StateMachineBehaviour
 {
-    private Boss _Boss;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
-    override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
-        _Boss = animator.gameObject.GetComponent<Boss>();
-
-        int moves = 3;
-        if (_Boss.bossSP)
-        {
-            moves = 4;
-        }
-
-        animator.SetInteger("ChooseAttack", Random.Range(0, moves));
-    }
+    //override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    //{
+    //    
+    //}
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     //override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
