@@ -3,24 +3,31 @@ using System.Collections.Generic;
 using UnityEngine;
 using BansheeGz.BGSpline.Components;
 
-public class ClownHand : StateMachineBehaviour
+public class BossHandRain : StateMachineBehaviour
 {
-    [SerializeField] private GameObject handPrefab;
-    private GameObject handInHierarchy;
-    private BGCcCursor _cursor;
+    [SerializeField] private GameObject leftHandPrefab;
+    [SerializeField] private GameObject rightHandPrefab;
+    private GameObject leftHandInHierarchy;
+    private GameObject rightHandInHierarchy;
+    private BGCcCursor _cursorLeft;
+    private BGCcCursor _cursorRight;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        handInHierarchy = GameObject.Find(handPrefab.name).gameObject;
-        handInHierarchy.transform.Find("SweepCurve").gameObject.SetActive(true); //:)
-        _cursor = handInHierarchy.transform.Find("SweepCurve").GetComponent<BGCcCursor>();
+        leftHandInHierarchy = GameObject.Find(leftHandPrefab.name).transform.Find("RainCurve").gameObject;
+        leftHandInHierarchy.SetActive(true);
+        _cursorLeft = leftHandInHierarchy.transform.Find("RainCurve").GetComponent<BGCcCursor>();
+
+        rightHandInHierarchy = GameObject.Find(rightHandPrefab.name).transform.Find("RainCurve").gameObject;
+        rightHandInHierarchy.SetActive(true);
+        _cursorRight = rightHandInHierarchy.transform.Find("RainCurve").GetComponent<BGCcCursor>();
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (_cursor.DistanceRatio > 0.98f)
+        if (_cursorLeft.DistanceRatio > 0.98f || _cursorRight.DistanceRatio > 0.98f)
         {
             animator.SetTrigger("Exit");
         }
@@ -29,9 +36,11 @@ public class ClownHand : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        //handPrefab.transform.GetChild(1).gameObject.SetActive(false);
-        handInHierarchy.transform.Find("SweepCurve").gameObject.SetActive(false);
-        _cursor.DistanceRatio = 0;
+        leftHandInHierarchy.SetActive(false);
+        _cursorLeft.DistanceRatio = 0;
+
+        rightHandInHierarchy.SetActive(false);
+        _cursorRight.DistanceRatio = 0;
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
