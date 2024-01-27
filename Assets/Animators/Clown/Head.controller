@@ -80,7 +80,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d019c9e6113c0445a22f54b32b94328, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bzCurve: {fileID: 0}
+  handPrefab: {fileID: 6187518599306518609, guid: 05f0989df17cdf14e94b3cad05c20498,
+    type: 3}
+  handInHierarchy: {fileID: 0}
 --- !u!114 &-7111064383585366361
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -245,6 +247,21 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
+--- !u!114 &-3782572820682180860
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d019c9e6113c0445a22f54b32b94328, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  handPrefab: {fileID: 3959945603160127480, guid: 72536b487b2e53d449b8c3d87376b2a4,
+    type: 3}
+  handInHierarchy: {fileID: 0}
 --- !u!1101 &-3364689570556954848
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -519,7 +536,8 @@ AnimatorState:
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 5063200784352002037}
-  m_StateMachineBehaviours: []
+  m_StateMachineBehaviours:
+  - {fileID: -3782572820682180860}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
