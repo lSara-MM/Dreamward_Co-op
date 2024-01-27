@@ -67,7 +67,7 @@ public class PlayerHealth : MonoBehaviour
             {
                 maxHealth = maxInitHealth;
 
-                AudioPlay(Clip[0]);
+                //AudioPlay(Clip[0]);
             }
         }
         else

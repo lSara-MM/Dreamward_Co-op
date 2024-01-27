@@ -2,34 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossIdle : StateMachineBehaviour
+public class BossBulletHell : StateMachineBehaviour
 {
-    private Boss _Boss;
+    private float _timer = 0f;
+    [SerializeField]private float delay = 1.0f;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        _Boss = animator.gameObject.GetComponent<Boss>();
-
-        int moves = 3;
-        if (_Boss.bossSP)
-        {
-            moves = 4;
-        }
-
-        animator.SetInteger("ChooseAttack", Random.Range(0, moves));
+        _timer = 0f;
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
-    //override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //    
-    //}
+    override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        _timer += Time.deltaTime;
+        
+        if (_timer >= delay)
+        {
+            animator.SetInteger("ChooseAttack", 5);//hardcoded, when == 5 shoot
+        }
+    }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
-    //override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //    
-    //}
+    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        animator.SetInteger("ChooseAttack", 0);//Stop shooting
+    }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
     //override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
