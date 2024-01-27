@@ -5,8 +5,9 @@ using UnityEngine;
 public class Boss : MonoBehaviour
 {
     private Animator _animator;
-    public Rigidbody2D rb;
+    //public Rigidbody2D rb;
     public Transform playerTransform;
+    //todo 2nd phase
 
     [Header("HP")]
     [SerializeField] private float _HP;
@@ -14,7 +15,7 @@ public class Boss : MonoBehaviour
     void Start()
     {
         _animator = GetComponent<Animator>();
-        rb = GetComponent<Rigidbody2D>();
+        //rb = GetComponent<Rigidbody2D>();
         playerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
     }
 
