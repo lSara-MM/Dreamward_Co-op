@@ -654,6 +654,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Left_hand
       objectReference: {fileID: 0}
+    - target: {fileID: 3215748448389096510, guid: 212a175918279ab4a8beb5e011342627,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4875617576096781042, guid: 212a175918279ab4a8beb5e011342627,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 6034159939277884729, guid: 212a175918279ab4a8beb5e011342627,
         type: 3}
       propertyPath: m_Mesh
@@ -3657,8 +3667,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.00015002489, y: 0.00034999847, z: 0}
-    m_Extent: {x: 1.00015, y: 1.00055, z: 0}
+    m_Center: {x: 0.00014996529, y: -0.00055000186, z: 0}
+    m_Extent: {x: 1.00045, y: 0.99965, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -3964,8 +3974,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.00039997697, y: -0.00025001168, z: 0}
-    m_Extent: {x: 1.0001, y: 0.99995005, z: 0}
+    m_Center: {x: 0.00014996529, y: -0.00020003319, z: 0}
+    m_Extent: {x: 1.00025, y: 1.0008, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -4265,6 +4275,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Right_hand
       objectReference: {fileID: 0}
+    - target: {fileID: 3215748448389096510, guid: 212a175918279ab4a8beb5e011342627,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4875617576096781042, guid: 212a175918279ab4a8beb5e011342627,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 6034159939277884729, guid: 212a175918279ab4a8beb5e011342627,
         type: 3}
       propertyPath: m_Mesh
@@ -4383,8 +4403,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.01639998, y: 0.0042499304, z: 0}
-    m_Extent: {x: 1.9533, y: 2.4688501, z: 0}
+    m_Center: {x: 0.015949965, y: 0.0044499636, z: 0}
+    m_Extent: {x: 1.95425, y: 2.4681501, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
