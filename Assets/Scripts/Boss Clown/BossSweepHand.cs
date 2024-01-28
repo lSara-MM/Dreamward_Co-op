@@ -15,12 +15,14 @@ public class BossSweepHand : StateMachineBehaviour
     [SerializeField] private float _maxSpeed = 15f;
     [SerializeField] private float _minSpeed = 7f;
     [SerializeField] private float _acceleration = 0.2f;
+    private Animator _animatorRef;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         handInHierarchy = GameObject.Find(handPrefab.name).gameObject;
         handInHierarchy.transform.Find("SweepCurve").gameObject.SetActive(true); //:)
+        _animatorRef = animator;
         _cursor = handInHierarchy.transform.Find("SweepCurve").GetComponent<BGCcCursor>();
         _changeLinear = handInHierarchy.transform.Find("SweepCurve").GetComponent<BGCcCursorChangeLinear>();
         _changeLinear.PointReached += PointReached;
@@ -40,10 +42,10 @@ public class BossSweepHand : StateMachineBehaviour
             _changeLinear.Speed -= _acceleration;
         }
 
-        if (_cursor.DistanceRatio > 0.98f)
-        {
-            animator.SetTrigger("Exit");
-        }
+        //if (_cursor.DistanceRatio > 0.98f)
+        //{
+        //    animator.SetTrigger("Exit");
+        //}
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
@@ -59,7 +61,9 @@ public class BossSweepHand : StateMachineBehaviour
         if (e.PointIndex == 0)
         {
             _accelerate = true;
+            _animatorRef.SetTrigger("Exit");
         }
+
         else if (e.PointIndex == 4)
         {
             _accelerate = false;
