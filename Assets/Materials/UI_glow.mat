@@ -191,7 +191,7 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _ColorAddSubDiff: {r: -1, g: 0, b: 0, a: 0}
     - _EMISSION_COLOR: {r: 1, g: 0, b: 0.1294117, a: 0}
-    - _EmissionColor: {r: 0.92500156, g: 0, b: 0, a: 1}
+    - _EmissionColor: {r: 0.5313698, g: 0.06266153, b: 0.06266153, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
     - _SPECULAR_COLOR: {r: 1, g: 1, b: 1, a: 0}
