@@ -5,6 +5,7 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
     public Rigidbody2D rb;
+    public GameObject player;
     public GameObject Particles;
 
     // Start is called before the first frame update
@@ -12,6 +13,7 @@ public class SpawnManager : MonoBehaviour
     {
         Particles.SetActive(true);
         rb.gravityScale = 1f;
+        player.transform.position = new Vector3(0f, 40f, 0f);
     }
 
     // Update is called once per frame
