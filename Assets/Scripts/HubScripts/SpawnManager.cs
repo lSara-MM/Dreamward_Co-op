@@ -34,13 +34,14 @@ public class SpawnManager : MonoBehaviour
     {
         timing += Time.deltaTime;
 
-        if (fadeToBlack.color.a > 0f) 
-        {
-            fadeToBlack.color = new Color(0f, 0f, 0f, fadeToBlack.color.a - 0.5f * Time.deltaTime);
-        }
-
         if (!Tickling)
         {
+
+            if (fadeToBlack.color.a > 0f)
+            {
+                fadeToBlack.color = new Color(0f, 0f, 0f, fadeToBlack.color.a - 0.5f * Time.deltaTime);
+            }
+
             if (!timerReset)
             {
                 if (rb.velocity.y == 0f)

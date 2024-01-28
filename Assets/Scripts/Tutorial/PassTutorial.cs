@@ -30,7 +30,7 @@ public class PassTutorial : MonoBehaviour
 
         if (!secondPhase) 
         {
-            fadeToBlack.color = new Color(0f, 0f, 0f, 0f);
+            //fadeToBlack.color = new Color(0f, 0f, 0f, 0f);
             canvas.SetActive(true);
 
             timing = 0f;
