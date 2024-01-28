@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -45,6 +46,18 @@ public class SecondPhaseHub : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKey(KeyCode.P) && Input.GetKey(KeyCode.LeftShift)) 
+        {
+            secondPhase = true;
+            scene = "Boss 1 Clown";
+        }
+        
+        if (Input.GetKey(KeyCode.O) && Input.GetKey(KeyCode.LeftShift)) 
+        {
+            secondPhase = true;
+            scene = "Boss 2 PerroSanchez";
+        }
+
         if (!secondPhase) 
         {
             globalLight.intensity = 1.32f;

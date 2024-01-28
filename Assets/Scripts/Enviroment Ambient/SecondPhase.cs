@@ -27,6 +27,11 @@ public class SecondPhase : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKey(KeyCode.P) && Input.GetKey(KeyCode.LeftShift))
+        {
+            secondPhase = true;
+        }
+
         if (!secondPhase) 
         {
             globalLight.intensity = 1.32f;
