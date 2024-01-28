@@ -8,4 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Main.unity
     guid: a2b58d8c2e473104380da39b8eb2a7e5
+  - enabled: 1
+    path: Assets/Scenes/Boss 1 Clown.unity
+    guid: 1deb30cee6ced664d95f953a58826cde
+  - enabled: 1
+    path: Assets/Scenes/Boss 2 PerroSanchez.unity
+    guid: ef85e1d2131127c41943076e6d861ea3
   m_configObjects: {}
