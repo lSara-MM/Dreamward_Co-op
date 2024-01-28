@@ -11,7 +11,10 @@ public class SpawnManager : MonoBehaviour
 
     public Light2D ligthSpot;
 
-    float timing = 0f;
+    public float timing = 0f;
+
+    public bool Tickling = false;
+    public bool timerReset = false;
 
     // Start is called before the first frame update
     void Start()
@@ -27,34 +30,52 @@ public class SpawnManager : MonoBehaviour
     {
         timing += Time.deltaTime;
 
-        if(rb.velocity.y == 0f) 
+        if (!Tickling)
         {
-            Particles.SetActive(false);
-            rb.gravityScale = 4f;
-            ligthSpot.intensity = 3.47f;
-            timing = 0f;
-        }
-
-        if(ligthSpot.intensity > 0f) 
-        {
-            if(timing > 0.1f && timing < 0.15f) 
+            if (!timerReset)
             {
-                ligthSpot.intensity = 0f;
-            }
-            
-            if(timing > 0.15f && timing < 0.17f) 
-            {
-                ligthSpot.intensity = 2f;
+                if (rb.velocity.y == 0f)
+                {
+                    Particles.SetActive(false);
+                    rb.gravityScale = 4f;
+                    ligthSpot.intensity = 3.47f;
+                    timing = 0f;
+                    timerReset = true;
+                }
             }
 
-            if (timing > 0.17f && timing < 0.2f)
+            if (ligthSpot.intensity > 0f)
             {
-                ligthSpot.intensity = 0f;
-            }
+                if (timing > 0f && timing < 0.2f)
+                {
+                    ligthSpot.intensity = 0.1f;
+                }
 
-            if (timing > 0.2f)
-            {
-                ligthSpot.intensity = 3.47f;
+                if (timing > 0.2f && timing < 0.5f)
+                {
+                    ligthSpot.intensity = 2f;
+                }
+
+                if (timing > 0.5f && timing < 0.7f)
+                {
+                    ligthSpot.intensity = 0.1f;
+                } 
+                
+                if (timing > 0.7f && timing < 0.8f)
+                {
+                    ligthSpot.intensity = 3f;
+                }
+                
+                if (timing > 0.8f && timing < 1f)
+                {
+                    ligthSpot.intensity = 0.1f;
+                }
+
+                if (timing > 1f)
+                {
+                    ligthSpot.intensity = 3.47f;
+                    Tickling = true;
+                }
             }
         }
     }
