@@ -62,16 +62,12 @@ public class BossAnimalPilarAttack : StateMachineBehaviour
         if(repeat>=0) 
         {
             repeat--;
+            animator.SetFloat("ChooseAttack", 10);
             if (repeat > 0) 
             {
                 animator.SetFloat("ChooseAttack", 0); //Hacer este ataque de nuevo
             }
         }
-        else 
-        {
-            animator.SetFloat("ChooseAttack", 10);
-        }
-        
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
