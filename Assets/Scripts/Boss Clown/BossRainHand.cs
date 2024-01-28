@@ -25,6 +25,8 @@ public class BossRainHand : StateMachineBehaviour
     private float _timer = 0f;
     [SerializeField] private float delay = 1.5f;
 
+    private Animator _animatorRef;
+
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
@@ -36,14 +38,16 @@ public class BossRainHand : StateMachineBehaviour
         rightHandInHierarchy.SetActive(true);
         _cursorRight = rightHandInHierarchy.GetComponent<BGCcCursor>();
 
+        _animatorRef = animator;
+
         _changeLinearLeft = leftHandInHierarchy.GetComponent<BGCcCursorChangeLinear>();
         _changeLinearLeft.PointReached += PointReached;
 
         _changeLinearRight = rightHandInHierarchy.GetComponent<BGCcCursorChangeLinear>();
 
         _accelerate = false;
-        _changeLinearRight.Speed = _maxSpeed;
-        _changeLinearLeft.Speed = _maxSpeed;
+        _changeLinearRight.Speed = 2;
+        _changeLinearLeft.Speed = 2;
 
         _timer = 0f;
     }
@@ -67,10 +71,10 @@ public class BossRainHand : StateMachineBehaviour
             }
         }
 
-        if (_cursorLeft.DistanceRatio > 0.98f || _cursorRight.DistanceRatio > 0.98f)
-        {
-            animator.SetTrigger("Exit");
-        }
+        //if (_cursorLeft.DistanceRatio > 0.98f || _cursorRight.DistanceRatio > 0.98f)
+        //{
+        //    animator.SetTrigger("Exit");
+        //}
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
@@ -88,18 +92,23 @@ public class BossRainHand : StateMachineBehaviour
 
     private void PointReached(object sender, BGCcCursorChangeLinear.PointReachedArgs e)
     {
-        if (e.PointIndex == 0 || e.PointIndex == 3 || e.PointIndex == 5)
+        if (e.PointIndex == 1 || e.PointIndex == 4 || e.PointIndex == 6)
         {
             _changeLinearRight.Speed = _maxSpeed;
             _changeLinearLeft.Speed = _maxSpeed;
         }
 
-        else if (e.PointIndex == 2 || e.PointIndex == 4 || e.PointIndex == 6)
+        else if (e.PointIndex == 3 || e.PointIndex == 5 || e.PointIndex == 7)
         {
             _timer = 0;
             _changeLinearRight.Speed = 0;
             _changeLinearLeft.Speed = 0;
             _accelerate = false;
+        }
+
+        else if (e.PointIndex == 0)
+        {
+            _animatorRef.SetTrigger("Exit");
         }
     }
 
