@@ -49,7 +49,7 @@ public class BossHealth : MonoBehaviour
             Debug.Log("SA ENFADAO");
         }
 
-        slider.value = currentHealth;
+        //slider.value = currentHealth;
 
         // Debug
         if (Input.GetKeyDown(KeyCode.F3))

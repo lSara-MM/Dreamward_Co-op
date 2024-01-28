@@ -26,7 +26,7 @@ public class BossAnimalUpBarrage : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        animator.SetInteger("ChooseAttack", 0);//Stop shooting
+        animator.SetInteger("ChooseAttack", 10);//Stop shooting
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
