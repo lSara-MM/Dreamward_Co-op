@@ -14,6 +14,17 @@ public class BossRainHand : StateMachineBehaviour
     private BGCcCursor _cursorLeft;
     private BGCcCursor _cursorRight;
 
+    private BGCcCursorChangeLinear _changeLinearLeft;
+    private BGCcCursorChangeLinear _changeLinearRight;
+
+    private bool _accelerate = true;
+    [SerializeField] private float _maxSpeed = 15f;
+    [SerializeField] private float _minSpeed = 7f;
+    [SerializeField] private float _acceleration = 0.2f;
+
+    private float _timer = 0f;
+    [SerializeField] private float delay = 1.5f;
+
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
@@ -24,11 +35,38 @@ public class BossRainHand : StateMachineBehaviour
         rightHandInHierarchy = GameObject.Find(rightHandPrefab.name).transform.Find("RainCurve").gameObject;
         rightHandInHierarchy.SetActive(true);
         _cursorRight = rightHandInHierarchy.GetComponent<BGCcCursor>();
+
+        _changeLinearLeft = leftHandInHierarchy.GetComponent<BGCcCursorChangeLinear>();
+        _changeLinearLeft.PointReached += PointReached;
+
+        _changeLinearRight = rightHandInHierarchy.GetComponent<BGCcCursorChangeLinear>();
+
+        _accelerate = false;
+        _changeLinearRight.Speed = _maxSpeed;
+        _changeLinearLeft.Speed = _maxSpeed;
+
+        _timer = 0f;
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        if (_accelerate && _changeLinearRight.Speed <= _maxSpeed && _changeLinearLeft.Speed <= _maxSpeed)
+        {
+            _changeLinearLeft.Speed += _acceleration;
+            _changeLinearRight.Speed += _acceleration;
+        }
+
+        if (_changeLinearRight.Speed == 0)
+        {
+            _timer += Time.deltaTime;
+
+            if (_timer >= delay)
+            {
+                _accelerate = true;
+            }
+        }
+
         if (_cursorLeft.DistanceRatio > 0.98f || _cursorRight.DistanceRatio > 0.98f)
         {
             animator.SetTrigger("Exit");
@@ -43,6 +81,26 @@ public class BossRainHand : StateMachineBehaviour
 
         rightHandInHierarchy.SetActive(false);
         _cursorRight.DistanceRatio = 0;
+
+        _changeLinearRight.Speed = _minSpeed;
+        _changeLinearLeft.Speed = _minSpeed;
+    }
+
+    private void PointReached(object sender, BGCcCursorChangeLinear.PointReachedArgs e)
+    {
+        if (e.PointIndex == 0 || e.PointIndex == 3 || e.PointIndex == 5)
+        {
+            _changeLinearRight.Speed = _maxSpeed;
+            _changeLinearLeft.Speed = _maxSpeed;
+        }
+
+        else if (e.PointIndex == 2 || e.PointIndex == 4 || e.PointIndex == 6)
+        {
+            _timer = 0;
+            _changeLinearRight.Speed = 0;
+            _changeLinearLeft.Speed = 0;
+            _accelerate = false;
+        }
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
