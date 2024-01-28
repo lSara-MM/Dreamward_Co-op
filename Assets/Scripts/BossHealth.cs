@@ -31,7 +31,7 @@ public class BossHealth : MonoBehaviour
         slider.minValue = 0;
         slider.value = currentHealth;
 
-        Debug.Log(lvl.Value);
+        //Debug.Log(lvl.Value);
 
         //winCanvas.SetActive(false);
     }

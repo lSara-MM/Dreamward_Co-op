@@ -19,7 +19,7 @@ public class EyesBlink : MonoBehaviour
     {
         timing += Time.deltaTime;
 
-        if (timing > Random.RandomRange(3f, 10f)) 
+        if (timing > Random.Range(3f, 10f))
         {
             this.gameObject.transform.localScale = new Vector3(this.gameObject.transform.localScale.x - 8f * Time.deltaTime, this.gameObject.transform.localScale.y, this.gameObject.transform.localScale.z);
             //sprite.color = new Color(sprite.color.r, sprite.color.g, sprite.color.b, sprite.color.a - Time.deltaTime);
