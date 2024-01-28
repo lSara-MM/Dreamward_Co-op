@@ -18,13 +18,13 @@ public class LampTickling : MonoBehaviour
     {
         timing += Time.deltaTime;
 
-        if(timing > Random.RandomRange(2f, 10f)) 
+        if(timing > Random.Range(2f, 10f)) 
         {
             lamp.enabled = false;
             timing = 0;
         }
 
-        if(timing > Random.RandomRange(0.2f, 0.6f) && !lamp.enabled) 
+        if(timing > Random.Range(0.2f, 0.6f) && !lamp.enabled) 
         {
             lamp.enabled  = true;
         }

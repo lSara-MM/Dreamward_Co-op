@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class BossIdle : StateMachineBehaviour
 {
-    private Boss _Boss;
+    private BossHealth _Boss;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        _Boss = animator.gameObject.GetComponent<Boss>();
+        _Boss = animator.gameObject.GetComponent<BossHealth>();
 
         int moves = 4;
         if (_Boss.bossSP)
