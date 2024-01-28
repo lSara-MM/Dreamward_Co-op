@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class BulletSpawner : MonoBehaviour
 {
-    enum SpawnerType { Straight, Spin }
+    enum SpawnerType { STRAIGHT, SPIN }
 
 
     [Header("Bullet Attributes")]
     public GameObject bullet;
     private Animator _animator;
-    private Boss _boss;
+    private BossHealth _boss;
 
     public float bulletLife = 1f;
     public float speed = 1f;
@@ -23,12 +23,13 @@ public class BulletSpawner : MonoBehaviour
 
     private GameObject spawnedBullet;
     private float timer = 0f;
+
     // Start is called before the first frame update
     void Start()
     {
         realFiringRate = firingRate;
         _animator = GetComponentInParent<Animator>();
-        _boss = GetComponentInParent<Boss>();
+        _boss = GetComponentInParent<BossHealth>();
     }
 
 
@@ -36,6 +37,7 @@ public class BulletSpawner : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
+
         if (_boss.bossSP)
         {
             realFiringRate = firingRate / 2;//increase fire rate
@@ -44,14 +46,17 @@ public class BulletSpawner : MonoBehaviour
         {
             realFiringRate = firingRate;
         }
-        if (spawnerType == SpawnerType.Spin) transform.eulerAngles = new Vector3(0f, 0f, transform.eulerAngles.z + 1f);
+
+        if (spawnerType == SpawnerType.SPIN)
+        {
+            transform.eulerAngles = new Vector3(0f, 0f, transform.eulerAngles.z + 1f);
+        }
         if (timer >= realFiringRate)
         {
             Fire();
             timer = 0;
         }
     }
-
 
     private void Fire()
     {
@@ -63,5 +68,4 @@ public class BulletSpawner : MonoBehaviour
             spawnedBullet.transform.rotation = transform.rotation;
         }
     }
-
 }
