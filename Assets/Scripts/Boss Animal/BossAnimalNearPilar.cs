@@ -37,6 +37,7 @@ public class BossAnimalNearPilar : StateMachineBehaviour
                 SpawnColumn spawnFar = farSpawner.GetComponent<SpawnColumn>();
                 spawnFar.spawn = true;
             }
+            _timer = 0.0f;
         }
     }
 
