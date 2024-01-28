@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossAnimalNearPilar : StateMachineBehaviour
+public class BossAnimalPilarAttack : StateMachineBehaviour
 {
     [SerializeField] BossBeast bossScript;
     [SerializeField] GameObject player;
@@ -15,10 +15,11 @@ public class BossAnimalNearPilar : StateMachineBehaviour
         player = GameObject.FindGameObjectsWithTag("Player")[0];
         nearSpawner = GameObject.Find("PilarAttackSpawnerNear");
         farSpawner = GameObject.Find("PilarAttackSpawnerFar");
-        _timer = 0f;
+        //_timer = 0f;
 
     }
 
+    int repeat = -1;
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
@@ -26,7 +27,7 @@ public class BossAnimalNearPilar : StateMachineBehaviour
 
         if (_timer >= 1.0f)
         {
-            animator.SetInteger("ChooseAttack", 0); //No se como va bien esto
+            //animator.SetInteger("ChooseAttack", 0); //No se como va bien esto
             if (player.transform.position.x > 0) 
             {
                 SpawnColumn spawnNear = nearSpawner.GetComponent<SpawnColumn>();
@@ -38,14 +39,40 @@ public class BossAnimalNearPilar : StateMachineBehaviour
                 spawnFar.spawn = true;
             }
             _timer = 0.0f;
+            //Repetir ataque
+            if (repeat == -1) 
+            {
+                if (animator.GetBool("Enraged"))
+                {
+                    repeat = Random.Range(1, 4);
+                }
+                else
+                {
+                    repeat = Random.Range(0, 2);
+                }
+            }
+            
         }
     }
 
+    
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
-    //override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //    
-    //}
+    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        if(repeat>=0) 
+        {
+            repeat--;
+            if (repeat > 0) 
+            {
+                animator.SetFloat("ChooseAttack", 0); //Hacer este ataque de nuevo
+            }
+        }
+        else 
+        {
+            animator.SetFloat("ChooseAttack", 10);
+        }
+        
+    }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
     //override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
