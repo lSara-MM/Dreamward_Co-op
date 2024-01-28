@@ -21,7 +21,10 @@ public class BossBeast : MonoBehaviour
 
     void Update()
     {
-        
+        if (!_animator.GetBool("Enraged") && bossSP)
+        {
+            _animator.SetBool("Enraged", bossSP);
+        }
     }
 
     public void TakeDamage(float damage)
