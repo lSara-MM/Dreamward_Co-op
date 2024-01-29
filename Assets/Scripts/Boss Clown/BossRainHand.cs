@@ -23,13 +23,19 @@ public class BossRainHand : StateMachineBehaviour
     [SerializeField] private float _acceleration = 0.2f;
 
     private float _timer = 0f;
-    [SerializeField] private float delay = 1.5f;
+    [SerializeField] private float _delay = 1.5f;
+    private float _realDelay;
 
     private Animator _animatorRef;
 
     private BossHealth _boss;
     [SerializeField] private float _maxSpeedSP = 30f;
     [SerializeField] private float _accelerationSP = 0.4f;
+    [SerializeField] private float _delaySP = 0.4f;
+
+    [SerializeField] private float _shakeIntensity = 5;
+    [SerializeField] private float _shakeFrequency = 5;
+    [SerializeField] private float _shakeTime = 0.5f;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -65,6 +71,7 @@ public class BossRainHand : StateMachineBehaviour
             _changeLinearLeft.Speed = 2;
         }
 
+        _realDelay = _delay;
         _timer = 0f;
     }
 
@@ -93,10 +100,20 @@ public class BossRainHand : StateMachineBehaviour
         {
             _timer += Time.deltaTime;
 
-            if (_timer >= delay)
+            if (_boss.bossSP)
+            {
+                _realDelay = _delaySP;
+            }
+            else
+            {
+                _realDelay = _delay;
+            }
+
+            if (_timer >= _realDelay)
             {
                 _accelerate = true;
             }
+
         }
 
         //if (_cursorLeft.DistanceRatio > 0.98f || _cursorRight.DistanceRatio > 0.98f)
@@ -141,6 +158,7 @@ public class BossRainHand : StateMachineBehaviour
             _changeLinearRight.Speed = 0;
             _changeLinearLeft.Speed = 0;
             _accelerate = false;
+            CameraShake.Instance.ShakeCamera(_shakeIntensity, _shakeFrequency, _shakeTime);
         }
 
         else if (e.PointIndex == 0)
