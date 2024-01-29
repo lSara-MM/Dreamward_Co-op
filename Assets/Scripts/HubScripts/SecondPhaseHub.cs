@@ -35,6 +35,7 @@ public class SecondPhaseHub : MonoBehaviour
 
     public Text text1;
     public Text text2;
+    public Text text3;
 
     public string scene;
 
@@ -144,6 +145,11 @@ public class SecondPhaseHub : MonoBehaviour
             if(text2.color.a > 0) 
             {
                 text2.color = new Color(text2.color.r, text2.color.g, text2.color.b, text2.color.a - 0.005f * timing);
+            }
+            
+            if(text3.color.a > 0) 
+            {
+                text3.color = new Color(text3.color.r, text3.color.g, text3.color.b, text3.color.a - 0.005f * timing);
             }
             
             if(player.color.a > 0) 

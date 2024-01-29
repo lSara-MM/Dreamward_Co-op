@@ -16,6 +16,9 @@ public class PassTutorial : MonoBehaviour
 
     public GameObject canvas;
 
+    BoxCollider2D coll;
+    public GameObject Ground;
+
     public string scene;
     public bool secondPhase = false;
     float timing = 0f;
@@ -32,6 +35,7 @@ public class PassTutorial : MonoBehaviour
         {
             //fadeToBlack.color = new Color(0f, 0f, 0f, 0f);
             canvas.SetActive(true);
+            coll = Ground.GetComponent<BoxCollider2D>();
 
             timing = 0f;
         }
@@ -39,6 +43,7 @@ public class PassTutorial : MonoBehaviour
         {
             timing += Time.deltaTime;
             canvas.SetActive(false);
+            coll.isTrigger = true;
 
             if (fadeToBlack.color.a < 1f) 
             {
