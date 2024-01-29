@@ -46,7 +46,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 8748568776341334564, guid: ba5a1c6525bb75849a491054763b5df1, type: 3}
   bulletLife: 10
-  speed: 15
+  speed: 5
   spawnerType: 1
-  firingRate: 0.2
-  realFiringRate: 1
+  firingRate: 0.4

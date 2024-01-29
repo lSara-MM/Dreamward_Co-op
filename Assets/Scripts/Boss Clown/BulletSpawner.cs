@@ -18,8 +18,8 @@ public class BulletSpawner : MonoBehaviour
 
     [Header("Spawner Attributes")]
     [SerializeField] private SpawnerType spawnerType;
-    [SerializeField] private float firingRate = 1f;//keep reference when 2nd phase
-    [SerializeField] private float realFiringRate = 1f;
+    [SerializeField] float firingRate = 1f;//keep reference when 2nd phase
+    private float realFiringRate = 1f;
 
     private GameObject spawnedBullet;
     private float timer = 0f;
@@ -63,7 +63,14 @@ public class BulletSpawner : MonoBehaviour
         if (bullet && _animator.GetInteger("ChooseAttack") == 5)
         {
             spawnedBullet = Instantiate(bullet, transform.position, Quaternion.identity);
-            spawnedBullet.GetComponent<Bullet>().speed = speed;
+            if (_boss.bossSP)
+            {
+                spawnedBullet.GetComponent<Bullet>().speed = speed * 2;
+            }
+            else
+            {
+                spawnedBullet.GetComponent<Bullet>().speed = speed;
+            }
             spawnedBullet.GetComponent<Bullet>().bulletLife = bulletLife;
             spawnedBullet.transform.rotation = transform.rotation;
         }
