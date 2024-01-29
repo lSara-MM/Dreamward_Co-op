@@ -47,18 +47,18 @@ public class PlayerCombat : MonoBehaviour
 
         foreach (Collider2D enemy in hitEnemiesSides)
         {
-            HitWhite hit = enemy.GetComponent<HitWhite>();
+            Blink hit = enemy.GetComponent<Blink>();
             BossHealth bossHit = enemy.GetComponent<BossHealth>();
 
             if (hit != null)
             {
-                Debug.Log("We hit " + enemy.name);
-                hit.DoHitWhite();
+                Debug.Log("Blanqueado" + enemy.name);
+                hit.Flash();
             }
 
-            else if (bossHit != null)
+            if (bossHit != null)
             {
-                Debug.Log("We hit " + enemy.name);
+                Debug.Log("Golpiado " + enemy.name);
                 bossHit.TakeDmg(attackDamage);
             }
         }
@@ -72,18 +72,18 @@ public class PlayerCombat : MonoBehaviour
 
         foreach (Collider2D enemy in hitEnemiesUp)
         {
-            HitWhite hit = enemy.GetComponent<HitWhite>();
+            Blink hit = enemy.GetComponent<Blink>();
             BossHealth bossHit = enemy.GetComponent<BossHealth>();
 
             if (hit != null)
             {
-                Debug.Log("We hit " + enemy.name);
-                hit.DoHitWhite();
+                Debug.Log("Blanqueado" + enemy.name);
+                hit.Flash();
             }
 
-            else if (bossHit != null)
+            if (bossHit != null)
             {
-                Debug.Log("We hit " + enemy.name);
+                Debug.Log("Golpiado " + enemy.name);
                 bossHit.TakeDmg(attackDamage);
             }
         }
