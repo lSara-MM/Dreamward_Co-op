@@ -40,7 +40,7 @@ public class BulletSpawner : MonoBehaviour
 
         if (_boss.bossSP)
         {
-            realFiringRate = firingRate / 2;//increase fire rate
+            realFiringRate = firingRate * 0.80f;//increase fire rate
         }
         else
         {
