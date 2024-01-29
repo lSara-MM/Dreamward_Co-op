@@ -498,9 +498,11 @@ MonoBehaviour:
   attackPointSides: {fileID: 2881318681188936032}
   attackPointUp: {fileID: 2766053907052818266}
   attackRange: 0.59
+  attackDamage: 50
   enemyLayers:
     serializedVersion: 2
     m_Bits: 8
+  _attackDelay: 1
 --- !u!95 &8115852354797941682
 Animator:
   serializedVersion: 5

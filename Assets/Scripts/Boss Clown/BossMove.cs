@@ -27,7 +27,7 @@ public class BossMove : StateMachineBehaviour
             aux = Random.Range(0, _points.Length);
         }
 
-        speed = 10;
+        speed = 7;
 
         _target = aux;
     }
@@ -42,7 +42,7 @@ public class BossMove : StateMachineBehaviour
 
         if (_boss.bossSP)
         {
-            animator.transform.position = Vector2.MoveTowards(animator.transform.position, _points[_target], speed * Time.deltaTime * 2);
+            animator.transform.position = Vector2.MoveTowards(animator.transform.position, _points[_target], speed * Time.deltaTime * 1.5f);
         }
 
         else
