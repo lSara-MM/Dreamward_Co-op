@@ -10,6 +10,7 @@ public class RainSelector : MonoBehaviour
     public ParticleSystem rainParticle2;
 
     public GameObject rain;
+    public DificultySelector dificultySelector;
 
     public AudioSource bellSound;
 
@@ -34,12 +35,14 @@ public class RainSelector : MonoBehaviour
 
             if (isRaining)
             {
+                dificultySelector.hardMode = true;
                 rain.SetActive(true);
                 rainParticle1.Play();
                 rainParticle2.Play();
             }
             else
             {
+                dificultySelector.hardMode = false;
                 rain.SetActive(false);
                 rainParticle1.Pause();
                 rainParticle2.Pause();

@@ -18,6 +18,8 @@ public class SpawnManager : MonoBehaviour
 
     public Light2D ligthSpot;
 
+    public GameObject Dificulty;
+
     public SpriteRenderer fadeToBlack;
 
     PlayerMovement playerMovement;
@@ -29,7 +31,15 @@ public class SpawnManager : MonoBehaviour
     public bool isHub;
     public bool isRaining;
 
-    public RainSelector rainSelector;
+    //public RainSelector rainSelector;
+
+    void Awake()
+    {
+        if (Dificulty != null)
+        {
+            DontDestroyOnLoad(Dificulty);
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -48,21 +58,21 @@ public class SpawnManager : MonoBehaviour
         Tickling = false;
         timerReset = false;
 
-        if (isHub) 
-        {
-            int isRaining = Random.Range(0, 2);
+        //if (isHub) 
+        //{
+        //    int isRaining = Random.Range(0, 2);
 
-            if(isRaining == 1) 
-            {
-                Rain.SetActive(true);
-                rainSelector.isRaining = true;
-            }
-            else 
-            {
-                Rain.SetActive(false);
-                rainSelector.isRaining = false;
-            }
-        }
+        //    if(isRaining == 1) 
+        //    {
+        //        Rain.SetActive(true);
+        //        rainSelector.isRaining = true;
+        //    }
+        //    else 
+        //    {
+        //        Rain.SetActive(false);
+        //        rainSelector.isRaining = false;
+        //    }
+        //}
     }
 
     // Update is called once per frame
