@@ -184,7 +184,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -115, y: 109}
+  m_AnchoredPosition: {x: -115, y: 278}
   m_SizeDelta: {x: 185.27388, y: 227.25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6215224039599067782
@@ -263,7 +263,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -459.9, y: 225}
+  m_AnchoredPosition: {x: -459.9, y: 241}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &6215224040639874941
@@ -606,7 +606,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Name
+  m_Text: Joan
 --- !u!1001 &395248427227248595
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -941,7 +941,7 @@ PrefabInstance:
     - target: {fileID: 5884132958732809984, guid: a754d39cc3754a04b98ba061128bfd1c,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 2.6
+      value: -11
       objectReference: {fileID: 0}
     - target: {fileID: 5884132958732809984, guid: a754d39cc3754a04b98ba061128bfd1c,
         type: 3}
@@ -967,6 +967,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Heart
+      objectReference: {fileID: 0}
+    - target: {fileID: 5884132958732809999, guid: a754d39cc3754a04b98ba061128bfd1c,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.9882353
+      objectReference: {fileID: 0}
+    - target: {fileID: 5884132958732809999, guid: a754d39cc3754a04b98ba061128bfd1c,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.7921569
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
