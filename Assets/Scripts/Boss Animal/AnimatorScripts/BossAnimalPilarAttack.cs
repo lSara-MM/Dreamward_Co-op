@@ -62,10 +62,12 @@ public class BossAnimalPilarAttack : StateMachineBehaviour
         if(repeat>=0) 
         {
             repeat--;
-            animator.SetFloat("ChooseAttack", 10);
+            animator.SetFloat("ChooseAttack", 10.0f);
+            animator.SetInteger("ChooseAttack", 10);
             if (repeat > 0) 
             {
-                animator.SetFloat("ChooseAttack", 0); //Hacer este ataque de nuevo
+                animator.SetFloat("ChooseAttack", 0.0f); //Hacer este ataque de nuevo
+                animator.SetInteger("ChooseAttack", 0);
             }
         }
     }

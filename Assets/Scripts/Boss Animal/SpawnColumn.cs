@@ -8,6 +8,7 @@ public class SpawnColumn : MonoBehaviour
     [SerializeField] GameObject pilar;
     [SerializeField] ParticleSystem groundTremors;
     [SerializeField] float killHeigth = 13.0f;
+    public AudioSource sound;
     public bool spawn;
     // Start is called before the first frame update
     void Start()
@@ -30,6 +31,7 @@ public class SpawnColumn : MonoBehaviour
                 instancePilar.transform.position = transform.transform.position;
                 pilarCreated = true;
                 groundTremors.Play();
+                sound.Play();
                 dtWait = 0.0f;
             }
             if (pilarCreated) 
@@ -38,6 +40,7 @@ public class SpawnColumn : MonoBehaviour
 
                 if (dtWait > groundTremors.main.duration)
                 {
+                    sound.Stop();
                     instancePilar.transform.transform.position = instancePilar.transform.transform.position + new Vector3(0, 0.1f, 0);
                     if (instancePilar.transform.transform.position.y > killHeigth)
                     {
