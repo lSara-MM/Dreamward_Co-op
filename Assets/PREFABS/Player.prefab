@@ -397,7 +397,7 @@ TrailRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 2884eac65eb9ac34996ec4abefcaf13a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -418,7 +418,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 0.3
+  m_Time: 0.43
   m_PreviewTimeScale: 1
   m_Parameters:
     serializedVersion: 3
@@ -428,7 +428,7 @@ TrailRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.5
+        value: 0.7042999
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -449,15 +449,15 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0.3771805, g: 0.40110168, b: 0.49056602, a: 0}
-      key1: {r: 1, g: 1, b: 1, a: 1}
+      key0: {r: 0.5311944, g: 0.5551442, b: 0.6509434, a: 1}
+      key1: {r: 1, g: 1, b: 1, a: 0}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
       key5: {r: 0, g: 0, b: 0, a: 0}
       key6: {r: 0, g: 0, b: 0, a: 0}
       key7: {r: 0, g: 0, b: 0, a: 0}
-      ctime0: 5783
+      ctime0: 15420
       ctime1: 65535
       ctime2: 0
       ctime3: 0
@@ -466,7 +466,7 @@ TrailRenderer:
       ctime6: 0
       ctime7: 0
       atime0: 0
-      atime1: 5783
+      atime1: 65535
       atime2: 65535
       atime3: 0
       atime4: 0
@@ -476,15 +476,15 @@ TrailRenderer:
       m_Mode: 0
       m_ColorSpace: 0
       m_NumColorKeys: 2
-      m_NumAlphaKeys: 3
+      m_NumAlphaKeys: 2
     numCornerVertices: 0
     numCapVertices: 0
     alignment: 0
     textureMode: 0
     textureScale: {x: 1, y: 1}
-    shadowBias: 0.5
+    shadowBias: 0
     generateLightingData: 0
-  m_MinVertexDistance: 0.1
+  m_MinVertexDistance: 0
   m_MaskInteraction: 0
   m_Autodestruct: 0
   m_Emitting: 0
@@ -509,7 +509,7 @@ MonoBehaviour:
   enemyLayers:
     serializedVersion: 2
     m_Bits: 8
-  _attackDelay: 1
+  _attackDelay: 0.5
   attackSound: {fileID: 7803730732648621246}
 --- !u!114 &1549138053254753324
 MonoBehaviour:
@@ -942,7 +942,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: b6003c8b600c6fb45a2134541cf41e3e, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 93a469f936be9ea4ab68d51b4d87ffa7, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.237
   m_Pitch: 1
@@ -1427,7 +1427,7 @@ MonoBehaviour:
   - {x: -0.149788, y: -0.6079919, z: 0}
   m_ShapePathHash: -890938342
   m_Mesh: {fileID: 0}
-  m_InstanceId: 96336
+  m_InstanceId: -79274
   m_LocalBounds:
     m_Center: {x: -0.088401824, y: -0.27256662, z: 0}
     m_Extent: {x: 0.21463129, y: 0.7674357, z: 0}
