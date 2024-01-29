@@ -18,8 +18,10 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private int debugLife = 1;
     private Blink _blink;
 
-    //[SerializeField] private GameObject game;
-    //[SerializeField] private GameObject loseCanvas;
+    [SerializeField] private GameObject game;
+    [SerializeField] private GameObject loseCanvas;
+    [SerializeField] private FadeToBlack fade;
+    private bool _lost;
 
     public AudioClip[] Clip;
     AudioSource aud;
@@ -36,7 +38,8 @@ public class PlayerHealth : MonoBehaviour
     void Start()
     {
         currentHealth = maxHealth;
-        //loseCanvas.SetActive(false);
+        loseCanvas.SetActive(false);
+
         _blink = GetComponent<Blink>();
         _move = GetComponent<PlayerMovement>();
         aud = GetComponent<AudioSource>();
@@ -74,6 +77,14 @@ public class PlayerHealth : MonoBehaviour
                 _timer = 0;
             }
         }
+
+        if (_lost)
+        {
+            if (fade.Fade())
+            {
+                OpenLose();
+            }
+        }
     }
 
     public void TakeDmg(int dmg_)
@@ -97,8 +108,10 @@ public class PlayerHealth : MonoBehaviour
             }
             else
             {
-                // player dead
-                OpenLose();
+                // player dead            
+                //OpenLose();
+                _lost = true;
+                // TODO: put boss on idle
             }
         }
     }
@@ -139,8 +152,9 @@ public class PlayerHealth : MonoBehaviour
 
     public void OpenLose()
     {
-        //game.SetActive(false);
-        //loseCanvas.SetActive(true);
+        game.SetActive(false);
+        loseCanvas.SetActive(true);
+        _lost = false;
     }
 
     void AudioPlay(AudioClip a)
