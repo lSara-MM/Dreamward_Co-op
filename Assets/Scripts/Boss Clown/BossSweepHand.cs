@@ -45,11 +45,6 @@ public class BossSweepHand : StateMachineBehaviour
             {
                 _changeLinear.Speed += _accelerationSP;
             }
-
-            else if (!_accelerate && _changeLinear.Speed >= _minSpeed)
-            {
-                _changeLinear.Speed -= _accelerationSP;
-            }
         }
 
         else
@@ -58,11 +53,11 @@ public class BossSweepHand : StateMachineBehaviour
             {
                 _changeLinear.Speed += _acceleration;
             }
+        }
 
-            else if (!_accelerate && _changeLinear.Speed >= _minSpeed)
-            {
-                _changeLinear.Speed -= _acceleration;
-            }
+        if (!_accelerate && _changeLinear.Speed >= _minSpeed)
+        {
+            _changeLinear.Speed -= _acceleration;
         }
 
         //if (_cursor.DistanceRatio > 0.98f)

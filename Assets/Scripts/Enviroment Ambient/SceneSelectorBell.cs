@@ -8,6 +8,8 @@ public class SceneSelectorBell : MonoBehaviour
     public string PassScene;
     public SecondPhaseHub SceneManager;
 
+    public AudioSource bellSound;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +26,7 @@ public class SceneSelectorBell : MonoBehaviour
     {
         if (PassScene != null && collision.gameObject.tag == "Player")
         {
+            bellSound.Play();
             SceneManager.scene = PassScene;
             SceneManager.secondPhase = true;
         }

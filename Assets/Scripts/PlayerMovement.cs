@@ -9,6 +9,8 @@ public class PlayerMovement : MonoBehaviour
     private float jumping = 16f;
     public bool isFacingRigth = true;
 
+    public GameObject footSteps;
+
     private bool canDash = true;
     public bool isDashing;
     private float dashing = 24f;
@@ -19,6 +21,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private TrailRenderer tr;
+
+    private void Start()
+    {
+        footSteps.SetActive(false);
+    }
 
     // Update is called once per frame
     void Update()
@@ -58,6 +65,16 @@ public class PlayerMovement : MonoBehaviour
         if (isDashing)
         {
             return;
+        }
+
+        if(rb.velocity.x > 0f || rb.velocity.x < 0f && IsGrounded()) 
+        {
+            footSteps.SetActive(true);
+        }
+        
+        if(rb.velocity.x == 0f && IsGrounded()) 
+        {
+            footSteps.SetActive(false);
         }
 
         rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
