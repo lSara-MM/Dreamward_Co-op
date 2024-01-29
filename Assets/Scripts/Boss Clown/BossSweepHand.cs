@@ -13,13 +13,20 @@ public class BossSweepHand : StateMachineBehaviour
     private BGCcCursorChangeLinear _changeLinear;
     private bool _accelerate = true;
     [SerializeField] private float _maxSpeed = 15f;
-    [SerializeField] private float _minSpeed = 7f;
     [SerializeField] private float _acceleration = 0.2f;
+    [SerializeField] private float _minSpeed = 7f;
+
+    private BossHealth _boss;
+    [SerializeField] private float _maxSpeedSP = 30f;
+    [SerializeField] private float _accelerationSP = 0.4f;
+
     private Animator _animatorRef;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        _boss = animator.gameObject.GetComponent<BossHealth>();
+
         handInHierarchy = GameObject.Find(handPrefab.name).gameObject;
         handInHierarchy.transform.Find("SweepCurve").gameObject.SetActive(true); //:)
         _animatorRef = animator;
@@ -32,14 +39,30 @@ public class BossSweepHand : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (_accelerate && _changeLinear.Speed <= _maxSpeed)
+        if (_boss.bossSP)
         {
-            _changeLinear.Speed += _acceleration;
+            if (_accelerate && _changeLinear.Speed <= _maxSpeedSP)
+            {
+                _changeLinear.Speed += _accelerationSP;
+            }
+
+            else if (!_accelerate && _changeLinear.Speed >= _minSpeed)
+            {
+                _changeLinear.Speed -= _accelerationSP;
+            }
         }
 
-        else if (!_accelerate && _changeLinear.Speed >= _minSpeed)
+        else
         {
-            _changeLinear.Speed -= _acceleration;
+            if (_accelerate && _changeLinear.Speed <= _maxSpeed)
+            {
+                _changeLinear.Speed += _acceleration;
+            }
+
+            else if (!_accelerate && _changeLinear.Speed >= _minSpeed)
+            {
+                _changeLinear.Speed -= _acceleration;
+            }
         }
 
         //if (_cursor.DistanceRatio > 0.98f)

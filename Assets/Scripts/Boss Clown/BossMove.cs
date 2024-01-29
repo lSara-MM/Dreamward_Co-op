@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BossMove : StateMachineBehaviour
 {
-    private Boss _boss;
+    private BossHealth _boss;
 
     [SerializeField] private float speed;
     private float _timer;
@@ -18,7 +18,7 @@ public class BossMove : StateMachineBehaviour
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        _boss = animator.GetComponent<Boss>();
+        _boss = animator.gameObject.GetComponent<BossHealth>();
 
         int aux = Random.Range(0, _points.Length);
 
@@ -39,12 +39,20 @@ public class BossMove : StateMachineBehaviour
         {
             speed -= _acceleration;
         }
-        
-        animator.transform.position = Vector2.MoveTowards(animator.transform.position, _points[_target], speed * Time.deltaTime);
+
+        if (_boss.bossSP)
+        {
+            animator.transform.position = Vector2.MoveTowards(animator.transform.position, _points[_target], speed * Time.deltaTime * 2);
+        }
+
+        else
+        {
+            animator.transform.position = Vector2.MoveTowards(animator.transform.position, _points[_target], speed * Time.deltaTime);
+        }
 
         if (Vector2.Distance(animator.transform.position, _points[_target]) < 0.1f)
         {
-           animator.SetTrigger("Exit");
+            animator.SetTrigger("Exit");
         }
     }
 
