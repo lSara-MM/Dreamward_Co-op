@@ -1994,8 +1994,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.0735001, y: 1.4756191, z: 0}
-    m_Extent: {x: 1.5834, y: 2.891081, z: 0}
+    m_Center: {x: 0.07330006, y: 1.47545, z: 0}
+    m_Extent: {x: 1.5836, y: 2.89115, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -2328,8 +2328,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.00030001998, y: 0.00060001016, z: 0}
-    m_Extent: {x: 0.99950004, y: 1.0003, z: 0}
+    m_Center: {x: -0.000050008297, y: -0.00014999509, z: 0}
+    m_Extent: {x: 1.00055, y: 0.99975, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -4876,6 +4876,11 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0.48393556
       objectReference: {fileID: 0}
+    - target: {fileID: 2290954394989381459, guid: fe484d5468a2b604d84d80c6b88ec0e9,
+        type: 3}
+      propertyPath: m_Text
+      value: Joan
+      objectReference: {fileID: 0}
     - target: {fileID: 6215224039467505434, guid: fe484d5468a2b604d84d80c6b88ec0e9,
         type: 3}
       propertyPath: m_IsActive
@@ -6070,8 +6075,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.092399836, y: -1.37955, z: 0}
-    m_Extent: {x: 5.1498003, y: 2.42705, z: 0}
+    m_Center: {x: 0.092999935, y: -1.37965, z: 0}
+    m_Extent: {x: 5.1503, y: 2.4275498, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
