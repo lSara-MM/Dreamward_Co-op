@@ -19,12 +19,12 @@ public class BossHealth : MonoBehaviour
     //[SerializeField] private GameObject game;
     //[SerializeField] private GameObject winCanvas;
 
-    [SerializeField] private GameObject healthbar;
-
     // Start is called before the first frame update
     void Start()
     {
         _animator = GetComponent<Animator>();
+
+        currentHealth = maxHealth;
 
         slider.maxValue = maxHealth;
         slider.minValue = 0;
