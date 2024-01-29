@@ -86,6 +86,7 @@ public class BossHealth : MonoBehaviour
             //OpenWin();
         }
     }
+
     public void Death()
     {
         // boss dead

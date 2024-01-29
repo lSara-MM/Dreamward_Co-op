@@ -34,7 +34,13 @@ public class PlayerCombat : MonoBehaviour
 
         foreach(Collider2D enemy in hitEnemiesSides) 
         {
-            Debug.Log("We hit " + enemy.name);
+            HitWhite hit = enemy.GetComponent<HitWhite>();
+
+            if (hit != null)
+            {
+                Debug.Log("We hit " + enemy.name);
+                hit.DoHitWhite();
+            }
         }
     }
     
@@ -46,7 +52,13 @@ public class PlayerCombat : MonoBehaviour
 
         foreach(Collider2D enemy in hitEnemiesUp) 
         {
-            Debug.Log("We hit " + enemy.name);
+            HitWhite hit = enemy.GetComponent<HitWhite>();
+
+            if (hit != null)
+            {
+                Debug.Log("We hit " + enemy.name);
+                hit.DoHitWhite();
+            }
         }
     }
 
