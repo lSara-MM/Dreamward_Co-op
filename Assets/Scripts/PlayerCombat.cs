@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class PlayerCombat : MonoBehaviour
 {
+    private float vertical;
+
     public Animator animator;
     public Transform attackPointSides;
     public Transform attackPointUp;
@@ -25,13 +27,15 @@ public class PlayerCombat : MonoBehaviour
         {
             attackSound.Play();
 
-            if (Input.GetMouseButtonDown(((int)MouseButton.Left)) && !Input.GetKey(KeyCode.W))
+            vertical = Input.GetAxisRaw("Vertical");
+
+            if (Input.GetButtonDown("Fire1") && vertical <= 0)
             {
                 _timer = 0;
                 AttackSides();
             }
 
-            else if (Input.GetMouseButtonDown(((int)MouseButton.Left)) && Input.GetKey(KeyCode.W))
+            else if (Input.GetButtonDown("Fire1") && vertical > 0)
             {
                 _timer = 0;
                 AttackUp();
