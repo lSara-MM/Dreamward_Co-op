@@ -17,7 +17,7 @@ public class ChangeScene : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (pressAnyKey && Input.anyKeyDown && !(Input.GetMouseButtonDown(0) 
+        if (pressAnyKey && Input.anyKeyDown && !Input.GetKey(KeyCode.Escape) && !(Input.GetMouseButtonDown(0) 
             || Input.GetMouseButtonDown(1) || Input.GetMouseButtonDown(2)))
         {
             ChangeToScene(passToScene);
