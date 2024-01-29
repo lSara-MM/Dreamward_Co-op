@@ -19,7 +19,6 @@ public class BossHealth : MonoBehaviour
     //[SerializeField] private GameObject game;
     //[SerializeField] private GameObject winCanvas;
 
-    [SerializeField] private FloatSO lvl;
     [SerializeField] private GameObject healthbar;
 
     // Start is called before the first frame update
@@ -30,8 +29,6 @@ public class BossHealth : MonoBehaviour
         slider.maxValue = maxHealth;
         slider.minValue = 0;
         slider.value = currentHealth;
-
-        //Debug.Log(lvl.Value);
 
         //winCanvas.SetActive(false);
     }
@@ -49,7 +46,7 @@ public class BossHealth : MonoBehaviour
             Debug.Log("SA ENFADAO");
         }
 
-        //slider.value = currentHealth;
+        slider.value = currentHealth;
 
         // Debug
         if (Input.GetKeyDown(KeyCode.F3))
