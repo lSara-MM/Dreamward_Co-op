@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 22057135}
   - component: {fileID: 22057134}
   - component: {fileID: 22057133}
+  - component: {fileID: 22057136}
   m_Layer: 0
   m_Name: ScreenManager
   m_TagString: Untagged
@@ -166,7 +167,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pressAnyKey: 1
-  passToScene: Tutorial
+  passToScene: LoreMaster
+  dialogue: {fileID: 11400000, guid: a5aef9d379f28914da607f98ef8c9878, type: 2}
+  boss1: {fileID: 11400000, guid: 219db7f10bcc7234f91f4f102b7e2681, type: 2}
+  boss2: {fileID: 11400000, guid: 1912c596e0bdf9449a7702dd1c2e2b80, type: 2}
 --- !u!4 &22057135
 Transform:
   m_ObjectHideFlags: 0
@@ -182,6 +186,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &22057136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 22057132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98daebf8c33a952428f73e30f2045d72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogue: {fileID: 11400000, guid: a5aef9d379f28914da607f98ef8c9878, type: 2}
+  dialogueSelector: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0

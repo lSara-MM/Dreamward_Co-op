@@ -7,13 +7,14 @@ public class SceneSelectorBell : MonoBehaviour
 {
     public string PassScene;
     public SecondPhaseHub SceneManager;
+    public FloatSO Dialogue;
+    public int DialogueSelector; // 0 = Intro dialogue, 1 = Boss 1 dialogue, 2 = Boss 2 Dialogue, 3 = None
 
     public AudioSource bellSound;
 
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
@@ -26,6 +27,7 @@ public class SceneSelectorBell : MonoBehaviour
     {
         if (PassScene != null && collision.gameObject.tag == "Player")
         {
+            Dialogue.Value = DialogueSelector;
             bellSound.Play();
             SceneManager.scene = PassScene;
             SceneManager.secondPhase = true;

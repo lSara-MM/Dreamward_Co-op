@@ -5,6 +5,10 @@ using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
 {
+    public FloatSO Dialogue;
+    public FloatSO Boss1;
+    public FloatSO Boss2;
+
     public GameObject[] dialogue;
     public int storyTeller = 0;
     public UIFadeToBlack fadeToBlack;
@@ -12,6 +16,11 @@ public class DialogueManager : MonoBehaviour
 
     public bool textHasChanged;
     public bool returnFromBlack;
+    bool start = false;
+
+    public Image fadeToBlackImage;
+
+    public ChangeSceneDialogue changeScene;
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +32,7 @@ public class DialogueManager : MonoBehaviour
 
         textHasChanged = false;
         returnFromBlack = false;
+        start = true;
 
         dialogue[0].SetActive(true);
     }
@@ -30,39 +40,101 @@ public class DialogueManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.anyKeyDown && storyTeller < dialogue.Length - 1)
+        if (start) 
         {
-            textHasChanged = true;
+            if (unFade())
+            {
+                start = false;
+            }
         }
 
-        if (textHasChanged)
+        if (!start)
         {
-            Debug.Log("Is fading");
-
-            if (!fadeToBlack.FadeUI())
+            if (Input.anyKeyDown)
             {
-                dialogue[storyTeller].SetActive(false);
+                textHasChanged = true;
+            }
+        }
 
-                storyTeller++;
+        if(textHasChanged && !returnFromBlack && storyTeller == dialogue.Length - 1)
+        {
+            if (Fade())
+            {
+                if (Dialogue.Value == 0)
+                {
+                    changeScene.ChangeToScene("Tutorial");
+                }
+                
+                if (Dialogue.Value == 1)
+                {
+                    Boss1.Value = 1;
+                    changeScene.ChangeToScene("Boss 1 Clown");
+                } 
+                
+                if (Dialogue.Value == 2)
+                {
+                    Boss2.Value = 1;
+                    changeScene.ChangeToScene("Boss 2 PerroSanchez");
+                }
+            }
+        }
 
-                dialogue[storyTeller].SetActive(true);
+        if (storyTeller != dialogue.Length - 1)
+        {
+            if (textHasChanged && !returnFromBlack)
+            {
+                if (Fade())
+                {
+                    dialogue[storyTeller].SetActive(false);
 
-                textHasChanged = false;
+                    storyTeller++;
 
-                Debug.Log("Black");
+                    dialogue[storyTeller].SetActive(true);
+
+                    textHasChanged = false;
+                    returnFromBlack = true;
+                }
             }
         }
 
         if (returnFromBlack)
         {
-            Debug.Log("Return black");
-
-            if (!fadeFromBlack.UnFadeUI()) 
+            if (unFade()) 
             {
                 returnFromBlack = false;
-
-                Debug.Log("Normal");
             }
         }
+    }
+
+    private bool Fade() 
+    {
+        bool hasEnded = false;
+
+        if (fadeToBlackImage.color.a < 1f) 
+        {
+            fadeToBlackImage.color = new Color(fadeToBlackImage.color.r, fadeToBlackImage.color.g, fadeToBlackImage.color.b, fadeToBlackImage.color.a + 0.5f * Time.deltaTime);
+        }
+        else 
+        {
+            hasEnded = true;
+        }
+
+        return hasEnded;
+    }
+
+    private bool unFade() 
+    {
+        bool hasEnded = false;
+
+        if (fadeToBlackImage.color.a > 0f)
+        {
+            fadeToBlackImage.color = new Color(fadeToBlackImage.color.r, fadeToBlackImage.color.g, fadeToBlackImage.color.b, fadeToBlackImage.color.a - 0.5f * Time.deltaTime);
+        }
+        else
+        {
+            hasEnded = true;
+        }
+
+        return hasEnded;
     }
 }

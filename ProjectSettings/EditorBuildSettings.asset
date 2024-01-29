@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/LoreMaster.unity
+    guid: 5ecbf5c657924ac44b29a0be70ff3304
+  - enabled: 1
     path: Assets/Scenes/IntroScene.unity
     guid: 38353247b4dddd749b51f695183f3c18
   - enabled: 1
