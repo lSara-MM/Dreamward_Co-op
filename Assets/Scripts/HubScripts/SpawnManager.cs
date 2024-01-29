@@ -27,6 +27,9 @@ public class SpawnManager : MonoBehaviour
     public bool Tickling = false;
     public bool timerReset = false;
     public bool isHub;
+    public bool isRaining;
+
+    public RainSelector rainSelector;
 
     // Start is called before the first frame update
     void Start()
@@ -52,10 +55,12 @@ public class SpawnManager : MonoBehaviour
             if(isRaining == 1) 
             {
                 Rain.SetActive(true);
+                rainSelector.isRaining = true;
             }
             else 
             {
                 Rain.SetActive(false);
+                rainSelector.isRaining = false;
             }
         }
     }
