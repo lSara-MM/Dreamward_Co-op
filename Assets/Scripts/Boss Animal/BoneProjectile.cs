@@ -11,6 +11,7 @@ public class BoneProjectile : MonoBehaviour
 
     private Vector3 spawnPoint;
     private float timer = 0f;
+    float timeAfterBoomerang = 0f; //Para que las particulas vayan marcha atras
     void Start()
     {
         spawnPoint = transform.position;
@@ -25,20 +26,23 @@ public class BoneProjectile : MonoBehaviour
         //transform.position = spawnPoint + Movement(timer);
         transform.localPosition = spawnPoint + Movement(timer);
     }
+    float reverse = 1.0f;
     private Vector3 Movement(float timer)
     {
         //Ir girando el hueso
-        Vector3 currentEulerAngles = new Vector3(0, 0, 1) * timer * 180;
+        Vector3 currentEulerAngles = new Vector3(0, 0, 1) * timer * 180 * reverse;
         transform.eulerAngles = currentEulerAngles;
         //transform.localEulerAngles = currentEulerAngles;
         if (boomerang && timer > (bulletLife/2) ) 
         {
-            speed *= -1;
+            transform.rotation.eulerAngles.Set(0, 180.0f, 0);
             boomerang = false;
+            reverse = -1.0f;
+            timeAfterBoomerang = bulletLife;
         }
         // Moves right according to the bullet's rotation
-        float x = timer * speed /** transform.right.x*/;
-        float y = timer * speed * 0 /** transform.right.y*/;
+        float x = Mathf.Abs(timer- timeAfterBoomerang) * speed /** transform.right.x*/;
+        float y = Mathf.Abs(timer- timeAfterBoomerang) * speed * 0 /** transform.right.y*/;
         return new Vector3(x, y,0);
     }
 }

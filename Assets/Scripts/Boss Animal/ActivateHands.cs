@@ -34,6 +34,7 @@ public class ActivateHands : MonoBehaviour
 
                 if (dtWait > groundTremors.main.duration)
                 {
+                    groundTremors.Stop();
                     sound.Stop();
                     dtWait = 0.0f;
                     Vector3 pos = gameObject.transform.position;
