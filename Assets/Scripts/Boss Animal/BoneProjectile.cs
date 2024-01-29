@@ -22,18 +22,23 @@ public class BoneProjectile : MonoBehaviour
             Destroy(this.gameObject);
         }
         timer += Time.deltaTime;
-        transform.position = spawnPoint + Movement(timer);
+        //transform.position = spawnPoint + Movement(timer);
+        transform.localPosition = spawnPoint + Movement(timer);
     }
     private Vector3 Movement(float timer)
     {
+        //Ir girando el hueso
+        Vector3 currentEulerAngles = new Vector3(0, 0, 1) * timer * 180;
+        transform.eulerAngles = currentEulerAngles;
+        //transform.localEulerAngles = currentEulerAngles;
         if (boomerang && timer > (bulletLife/2) ) 
         {
             speed *= -1;
             boomerang = false;
         }
         // Moves right according to the bullet's rotation
-        float x = timer * speed * transform.right.x;
-        float y = timer * speed * transform.right.y;
+        float x = timer * speed /** transform.right.x*/;
+        float y = timer * speed * 0 /** transform.right.y*/;
         return new Vector3(x, y,0);
     }
 }
