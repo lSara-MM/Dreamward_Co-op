@@ -16,6 +16,7 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private Sprite emptyHeart;
 
     [SerializeField] private int debugLife = 1;
+    private Blink _blink;
 
     //[SerializeField] private GameObject game;
     //[SerializeField] private GameObject loseCanvas;
@@ -23,12 +24,21 @@ public class PlayerHealth : MonoBehaviour
     public AudioClip[] Clip;
     AudioSource aud;
 
+    //i-frame
+    private bool _isInvuln = false;
+    private float _timer = 0;
+    [SerializeField] private float _invulnTime = 1f;
+
+    private PlayerMovement _move;
+
+
     // Start is called before the first frame update
     void Start()
     {
         currentHealth = maxHealth;
         //loseCanvas.SetActive(false);
-
+        _blink = GetComponent<Blink>();
+        _move = GetComponent<PlayerMovement>();
         aud = GetComponent<AudioSource>();
     }
 
@@ -36,7 +46,7 @@ public class PlayerHealth : MonoBehaviour
     void Update()
     {
         DisplayHealth();
-        
+
         // Debug
         if (Input.GetKeyDown(KeyCode.F1))
         {
@@ -54,26 +64,42 @@ public class PlayerHealth : MonoBehaviour
             Debug.Log("Kill player");
             TakeDmg(maxHealth);
         }
+
+        if (_isInvuln)
+        {
+            _timer += Time.deltaTime;
+            if (_timer >= _invulnTime)
+            {
+                _isInvuln = false;
+                _timer = 0;
+            }
+        }
     }
 
     public void TakeDmg(int dmg_)
     {
-       currentHealth = Mathf.Clamp(currentHealth - dmg_, 0, maxHealth);
-    
-        if (currentHealth > 0)
-        {
-            // player hurt
-            if (currentHealth <= maxInitHealth)
-            {
-                maxHealth = maxInitHealth;
+        currentHealth = Mathf.Clamp(currentHealth - dmg_, 0, maxHealth);
 
-                //AudioPlay(Clip[0]);
-            }
-        }
-        else
+        if (!_isInvuln && !_move.isDashing)
         {
-            // player dead
-            OpenLose();
+            if (currentHealth > 0)
+            {
+                // player hurt
+                _blink.Flash();
+                _isInvuln = true;
+
+                if (currentHealth <= maxInitHealth)
+                {
+                    maxHealth = maxInitHealth;
+
+                    //AudioPlay(Clip[0]);
+                }
+            }
+            else
+            {
+                // player dead
+                OpenLose();
+            }
         }
     }
 

@@ -9,8 +9,8 @@ public class BossMove : StateMachineBehaviour
     [SerializeField] private float speed;
     private float _timer;
     private int _target = 0;
-    private Vector2[] _points = { new Vector2(0, 0), new Vector2(-5.78f, 2.74f), new Vector2(6.63f, 2.57f),
-        new Vector2(5.78f, -0.72f), new Vector2(-6.08f, -0.73f)};//Hardcoded :)
+    private Vector2[] _points = { new Vector2(0, -2.16f), new Vector2(-5.78f, 0.61f), new Vector2(6.63f, 0.61f),
+        new Vector2(5.78f, -2.16f), new Vector2(-6.08f, -2.16f)};//Hardcoded :)
 
     [SerializeField] private float _minSpeed = 0.5f;
     [SerializeField] private float _acceleration = 0.01f;
