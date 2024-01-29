@@ -14,6 +14,8 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] private float _attackDelay = 2;
     private float _timer = 0;
 
+    public AudioSource attackSound;
+
     // Update is called once per frame
     void Update()
     {
@@ -21,6 +23,8 @@ public class PlayerCombat : MonoBehaviour
 
         if (_timer >= _attackDelay)
         {
+            attackSound.Play();
+
             if (Input.GetMouseButtonDown(((int)MouseButton.Left)) && !Input.GetKey(KeyCode.W))
             {
                 _timer = 0;
