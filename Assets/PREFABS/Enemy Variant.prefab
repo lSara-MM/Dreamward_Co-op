@@ -141,6 +141,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3215748448389096510, guid: 212a175918279ab4a8beb5e011342627,
         type: 3}
       insertIndex: -1
+      addedObject: {fileID: 6282404117098712779}
+    - targetCorrespondingSourceObject: {fileID: 3215748448389096510, guid: 212a175918279ab4a8beb5e011342627,
+        type: 3}
+      insertIndex: -1
       addedObject: {fileID: 7301949666523844614}
   m_SourcePrefab: {fileID: 100100000, guid: 212a175918279ab4a8beb5e011342627, type: 3}
 --- !u!1 &347447479915292770 stripped
@@ -149,6 +153,20 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 2914606903974317148}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6282404117098712779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 347447479915292770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b30aedfdb7d3514bac8c216e55176ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashMaterial: {fileID: 2100000, guid: aa810905b36d8c24893929c40b312dfe, type: 2}
+  duration: 0.25
 --- !u!61 &7301949666523844614
 BoxCollider2D:
   m_ObjectHideFlags: 0
