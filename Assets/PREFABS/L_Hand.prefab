@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6309789136884891677}
   - component: {fileID: 8629306414036935549}
   - component: {fileID: 8868739324470613114}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -169,7 +169,7 @@ GameObject:
   m_Component:
   - component: {fileID: 158766279510073647}
   - component: {fileID: 848440092462161199}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Shadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -244,7 +244,7 @@ GameObject:
   - component: {fileID: 7394830032412502588}
   - component: {fileID: 3672070169044270897}
   - component: {fileID: 1981658452511743259}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SweepCurve
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -523,7 +523,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1326398975243125176}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: L_Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -562,7 +562,7 @@ GameObject:
   - component: {fileID: 7420403000729356180}
   - component: {fileID: 9083761577751441048}
   - component: {fileID: 4680967110154995364}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: RainCurve
   m_TagString: Untagged
   m_Icon: {fileID: 0}
