@@ -47,7 +47,7 @@ public class SpawnManager : MonoBehaviour
 
         if (isHub) 
         {
-            int isRaining = Random.RandomRange(0, 2);
+            int isRaining = Random.Range(0, 2);
 
             if(isRaining == 1) 
             {

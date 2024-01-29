@@ -24,9 +24,12 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private TrailRenderer tr;
 
+    [SerializeField] private Animator animator;
+
     private void Start()
     {
         footSteps.SetActive(false);
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -39,18 +42,18 @@ public class PlayerMovement : MonoBehaviour
 
         horizontal = Input.GetAxisRaw("Horizontal");
 
-        if(Input.GetButtonDown("Jump") && IsGrounded()) 
+        if (Input.GetButtonDown("Jump") && IsGrounded()) 
         {
             jumpSound.Play();
             rb.velocity = new Vector2(rb.velocity.x, jumping);
         }
 
-        if(Input.GetButtonUp("Jump") && rb.velocity.y > 0f) 
+        if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f) 
         {
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
         }
 
-        if(Input.GetKeyDown(KeyCode.LeftShift) && canDash) 
+        if (Input.GetKeyDown(KeyCode.LeftShift) && canDash) 
         {
             StartCoroutine(Dash());
         }
@@ -71,6 +74,16 @@ public class PlayerMovement : MonoBehaviour
         if (rb.velocity.x == 0f && IsGrounded())
         {
             footSteps.SetActive(false);
+        }
+
+        // Animations
+        if (horizontal == 0)
+        {
+            animator.SetBool("Run", false);
+        }
+        else
+        {
+            animator.SetBool("Run", true);
         }
 
         rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
