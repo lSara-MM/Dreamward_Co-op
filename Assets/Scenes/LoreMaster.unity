@@ -760,6 +760,8 @@ MonoBehaviour:
   storyTeller: 0
   fadeToBlack: {fileID: 598160441}
   fadeFromBlack: {fileID: 598160440}
+  textHasChanged: 0
+  returnFromBlack: 0
 --- !u!1 &1910287527
 GameObject:
   m_ObjectHideFlags: 0
