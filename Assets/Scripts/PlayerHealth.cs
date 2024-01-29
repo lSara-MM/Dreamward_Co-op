@@ -107,10 +107,10 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDmg(int dmg_)
     {
-        currentHealth = Mathf.Clamp(currentHealth - dmg_, 0, maxHealth);
-
         if (!_isInvuln && !_move.isDashing)
         {
+            currentHealth = Mathf.Clamp(currentHealth - dmg_, 0, maxHealth);
+
             if (currentHealth > 0)
             {
                 // player hurt
