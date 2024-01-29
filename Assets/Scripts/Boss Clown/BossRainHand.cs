@@ -61,14 +61,14 @@ public class BossRainHand : StateMachineBehaviour
 
         if (_boss.bossSP)
         {
-            _changeLinearRight.Speed = 4;
-            _changeLinearLeft.Speed = 4;
+            _changeLinearRight.Speed = 5;
+            _changeLinearLeft.Speed = 5;
         }
 
         else
         {
-            _changeLinearRight.Speed = 2;
-            _changeLinearLeft.Speed = 2;
+            _changeLinearRight.Speed = 3;
+            _changeLinearLeft.Speed = 3;
         }
 
         _realDelay = _delay;

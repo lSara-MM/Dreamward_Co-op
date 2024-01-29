@@ -28,11 +28,12 @@ Transform:
   m_GameObject: {fileID: 2145752748239673628}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.699619, y: 1.691205, z: -0.027554989}
+  m_LocalPosition: {x: -5.939316, y: 0.16782689, z: -0.027554989}
   m_LocalScale: {x: 0.6228605, y: 0.09963469, z: 1.3818}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 158766279510073647}
+  - {fileID: 3979219066479758976}
   m_Father: {fileID: 1326398975243125176}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6309789136884891677
@@ -230,6 +231,88 @@ MonoBehaviour:
   m_LocalBounds:
     m_Center: {x: 0.18430531, y: 0.100808665, z: 0}
     m_Extent: {x: 1.6700962, y: 0.3098193, z: 0}
+--- !u!1 &5065573486643379098
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3979219066479758976}
+  - component: {fileID: 6796983317079806763}
+  m_Layer: 0
+  m_Name: Light 2D
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3979219066479758976
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5065573486643379098}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.605496, y: 10.036665, z: 0.7236937}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3322197436352812621}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6796983317079806763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5065573486643379098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ComponentVersion: 1
+  m_LightType: 3
+  m_BlendStyleIndex: 0
+  m_FalloffIntensity: 0.5
+  m_Color: {r: 1, g: 0.435849, b: 0.9688338, a: 1}
+  m_Intensity: 2.32
+  m_LightVolumeIntensity: 1
+  m_LightVolumeIntensityEnabled: 0
+  m_ApplyToSortingLayers: c3e8a4ea196d85764d103c0da9d0776800000000df1541744f1c97a2
+  m_LightCookieSprite: {fileID: 0}
+  m_DeprecatedPointLightCookieSprite: {fileID: 0}
+  m_LightOrder: 0
+  m_AlphaBlendOnOverlap: 0
+  m_OverlapOperation: 0
+  m_NormalMapDistance: 3
+  m_NormalMapQuality: 2
+  m_UseNormalMap: 0
+  m_ShadowIntensityEnabled: 0
+  m_ShadowIntensity: 0.75
+  m_ShadowVolumeIntensityEnabled: 0
+  m_ShadowVolumeIntensity: 0.75
+  m_LocalBounds:
+    m_Center: {x: 0, y: -0.00000011920929, z: 0}
+    m_Extent: {x: 0.9985302, y: 0.99853027, z: 0}
+  m_PointLightInnerAngle: 360
+  m_PointLightOuterAngle: 360
+  m_PointLightInnerRadius: 0
+  m_PointLightOuterRadius: 1.82
+  m_ShapeLightParametricSides: 5
+  m_ShapeLightParametricAngleOffset: 0
+  m_ShapeLightParametricRadius: 1
+  m_ShapeLightFalloffSize: 0.5
+  m_ShapeLightFalloffOffset: {x: 0, y: 0}
+  m_ShapePath:
+  - {x: -0.5, y: -0.5, z: 0}
+  - {x: 0.5, y: -0.5, z: 0}
+  - {x: 0.5, y: 0.5, z: 0}
+  - {x: -0.5, y: 0.5, z: 0}
 --- !u!1 &5067838199534832185
 GameObject:
   m_ObjectHideFlags: 0
@@ -338,7 +421,7 @@ MonoBehaviour:
   closed: 1
   points:
   - controlType: 0
-    positionLocal: {x: 0.34038067, y: 0.19225383, z: 0}
+    positionLocal: {x: 0.100684166, y: -1.3311241, z: 0}
     controlFirstLocal: {x: 1, y: 0, z: 0}
     controlSecondLocal: {x: -1, y: -0, z: 0}
     pointTransform: {fileID: 0}
@@ -387,23 +470,16 @@ MonoBehaviour:
     curve: {fileID: 3856013184599029508}
     fieldsValues: []
   - controlType: 1
-    positionLocal: {x: 8.887672, y: 1.1660981, z: 0}
+    positionLocal: {x: 7.1788874, y: -0.1802175, z: 0}
     controlFirstLocal: {x: 1.0793724, y: -0.09635687, z: 0}
     controlSecondLocal: {x: -1.0793724, y: 0.09635687, z: -0}
     pointTransform: {fileID: 0}
     curve: {fileID: 3856013184599029508}
     fieldsValues: []
   - controlType: 1
-    positionLocal: {x: 5.839018, y: 0.4278649, z: 0}
+    positionLocal: {x: 3.407571, y: 0.21001136, z: 0}
     controlFirstLocal: {x: 1.830462, y: 0.10292339, z: -0}
     controlSecondLocal: {x: -1.830462, y: -0.10292339, z: 0}
-    pointTransform: {fileID: 0}
-    curve: {fileID: 3856013184599029508}
-    fieldsValues: []
-  - controlType: 1
-    positionLocal: {x: 2.6760683, y: 1.5730312, z: 0}
-    controlFirstLocal: {x: 1.7404423, y: -0.12730527, z: -0}
-    controlSecondLocal: {x: -1.7404423, y: 0.12730527, z: 0}
     pointTransform: {fileID: 0}
     curve: {fileID: 3856013184599029508}
     fieldsValues: []
@@ -656,7 +732,7 @@ MonoBehaviour:
   closed: 1
   points:
   - controlType: 1
-    positionLocal: {x: 0.21784393, y: -3.491205, z: 0}
+    positionLocal: {x: 0.064437866, y: -1.9678268, z: 0}
     controlFirstLocal: {x: 0.1833533, y: 0.80956006, z: 0}
     controlSecondLocal: {x: -0.1833533, y: -0.80956006, z: -0}
     pointTransform: {fileID: 0}
@@ -757,13 +833,6 @@ MonoBehaviour:
     positionLocal: {x: 2.0149994, y: -0.15422845, z: 0}
     controlFirstLocal: {x: 0.6742662, y: 0.2456497, z: -0}
     controlSecondLocal: {x: -0.6742662, y: -0.2456497, z: 0}
-    pointTransform: {fileID: 0}
-    curve: {fileID: 4439845816229029208}
-    fieldsValues: []
-  - controlType: 1
-    positionLocal: {x: 0.6393368, y: -0.945094, z: 0}
-    controlFirstLocal: {x: 0.28605255, y: 0.62598515, z: 0}
-    controlSecondLocal: {x: -0.28605255, y: -0.62598515, z: -0}
     pointTransform: {fileID: 0}
     curve: {fileID: 4439845816229029208}
     fieldsValues: []
