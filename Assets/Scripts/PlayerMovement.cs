@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
 
     public GameObject footSteps;
     public AudioSource jumpSound;
+    public AudioSource dashSound;
 
     private bool canDash = true;
     public bool isDashing;
@@ -59,9 +60,12 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-        if (rb.velocity.x > 0f || rb.velocity.x < 0f && IsGrounded())
+        if (rb.velocity.x > 0f || rb.velocity.x < 0f)
         {
-            footSteps.SetActive(true);
+            if (IsGrounded() && rb.velocity.y == 0f)
+            {
+                footSteps.SetActive(true);
+            }
         }
 
         if (rb.velocity.x == 0f && IsGrounded())
@@ -74,7 +78,7 @@ public class PlayerMovement : MonoBehaviour
         Flip();
     }
 
-    private bool IsGrounded() 
+    public bool IsGrounded() 
     {
         return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
     }
@@ -92,6 +96,7 @@ public class PlayerMovement : MonoBehaviour
 
     private IEnumerator Dash()
     {
+        dashSound.Play();
         canDash = false;
         isDashing = true;
         float originalGravity = rb.gravityScale;

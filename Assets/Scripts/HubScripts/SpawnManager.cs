@@ -19,6 +19,8 @@ public class SpawnManager : MonoBehaviour
 
     public SpriteRenderer fadeToBlack;
 
+    PlayerMovement playerMovement;
+
     public float timing = 0f;
 
     public bool Tickling = false;
@@ -35,6 +37,8 @@ public class SpawnManager : MonoBehaviour
         ambientMusic.volume = 0f;
 
         fadeToBlack.color = new Color(0f, 0f, 0f, 1f);
+
+        playerMovement = player.GetComponent<PlayerMovement>();
 
         Tickling = false;
         timerReset = false;
@@ -64,7 +68,7 @@ public class SpawnManager : MonoBehaviour
                     ambientMusic.volume += 0.05f * Time.deltaTime;
                 }
 
-                if (rb.velocity.y == 0f && fadeToBlack.color.a <= 0f)
+                if (rb.velocity.y == 0f && fadeToBlack.color.a <= 0f && playerMovement.IsGrounded())
                 {
                     Particles.SetActive(false);
                     rb.gravityScale = 4f;
