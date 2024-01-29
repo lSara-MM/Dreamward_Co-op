@@ -112,7 +112,7 @@ public class DialogueManager : MonoBehaviour
 
         if (fadeToBlackImage.color.a < 1f) 
         {
-            fadeToBlackImage.color = new Color(fadeToBlackImage.color.r, fadeToBlackImage.color.g, fadeToBlackImage.color.b, fadeToBlackImage.color.a + 0.5f * Time.deltaTime);
+            fadeToBlackImage.color = new Color(fadeToBlackImage.color.r, fadeToBlackImage.color.g, fadeToBlackImage.color.b, fadeToBlackImage.color.a + 0.8f * Time.deltaTime);
         }
         else 
         {
@@ -128,7 +128,7 @@ public class DialogueManager : MonoBehaviour
 
         if (fadeToBlackImage.color.a > 0f)
         {
-            fadeToBlackImage.color = new Color(fadeToBlackImage.color.r, fadeToBlackImage.color.g, fadeToBlackImage.color.b, fadeToBlackImage.color.a - 0.5f * Time.deltaTime);
+            fadeToBlackImage.color = new Color(fadeToBlackImage.color.r, fadeToBlackImage.color.g, fadeToBlackImage.color.b, fadeToBlackImage.color.a - 0.8f * Time.deltaTime);
         }
         else
         {
