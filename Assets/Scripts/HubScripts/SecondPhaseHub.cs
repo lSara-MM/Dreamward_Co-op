@@ -19,7 +19,9 @@ public class SecondPhaseHub : MonoBehaviour
     public Light2D playerLight;
 
     public GameObject Ground;
+    public GameObject canvas;
     public BoxCollider2D coll;
+    public SpriteRenderer fadeToBlack;
 
     public Rigidbody2D rbPlayer;
 
@@ -77,6 +79,7 @@ public class SecondPhaseHub : MonoBehaviour
             //text2.color = new Color(0f, 0.636f, 1f, 1f);
 
             coll = Ground.GetComponent<BoxCollider2D>();
+            canvas.SetActive(true);
 
             virtualCamera.m_Lens.OrthographicSize = 4.2f;
             timing = 0f;
@@ -86,6 +89,12 @@ public class SecondPhaseHub : MonoBehaviour
             timing += Time.deltaTime;
 
             coll.isTrigger = true;
+            canvas.SetActive(false);
+
+            if (fadeToBlack.color.a < 1f)
+            {
+                fadeToBlack.color = new Color(0f, 0f, 0f, fadeToBlack.color.a + 0.5f * Time.deltaTime);
+            }
 
             if (globalLight.intensity > 0f) 
             {

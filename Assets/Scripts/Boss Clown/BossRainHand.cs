@@ -52,8 +52,18 @@ public class BossRainHand : StateMachineBehaviour
         _changeLinearRight = rightHandInHierarchy.GetComponent<BGCcCursorChangeLinear>();
 
         _accelerate = false;
-        _changeLinearRight.Speed = 2;
-        _changeLinearLeft.Speed = 2;
+
+        if (_boss.bossSP)
+        {
+            _changeLinearRight.Speed = 4;
+            _changeLinearLeft.Speed = 4;
+        }
+
+        else
+        {
+            _changeLinearRight.Speed = 2;
+            _changeLinearLeft.Speed = 2;
+        }
 
         _timer = 0f;
     }
@@ -78,7 +88,7 @@ public class BossRainHand : StateMachineBehaviour
                 _changeLinearRight.Speed += _acceleration;
             }
         }
-        
+
         if (_changeLinearRight.Speed == 0)
         {
             _timer += Time.deltaTime;
