@@ -9,55 +9,78 @@ public class PlayerCombat : MonoBehaviour
     public Transform attackPointSides;
     public Transform attackPointUp;
     public float attackRange = 0.5f;
+    public int attackDamage = 50;
     public LayerMask enemyLayers;
+    [SerializeField] private float _attackDelay = 2;
+    private float _timer = 0;
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(((int)MouseButton.Left)) && !Input.GetKey(KeyCode.W)) 
+        _timer += Time.deltaTime;
+
+        if (_timer >= _attackDelay)
         {
-            AttackSides();
-        }
-        
-        if (Input.GetMouseButtonDown(((int)MouseButton.Left)) && Input.GetKey(KeyCode.W)) 
-        {
-            AttackUp();
+            if (Input.GetMouseButtonDown(((int)MouseButton.Left)) && !Input.GetKey(KeyCode.W))
+            {
+                _timer = 0;
+                AttackSides();
+            }
+
+            else if (Input.GetMouseButtonDown(((int)MouseButton.Left)) && Input.GetKey(KeyCode.W))
+            {
+                _timer = 0;
+                AttackUp();
+            }
         }
     }
-
 
     void AttackSides()
     {
         animator.SetTrigger("AttackSides");
 
-        Collider2D[] hitEnemiesSides =  Physics2D.OverlapCircleAll(attackPointSides.position, attackRange, enemyLayers);
+        Collider2D[] hitEnemiesSides = Physics2D.OverlapCircleAll(attackPointSides.position, attackRange, enemyLayers);
 
-        foreach(Collider2D enemy in hitEnemiesSides) 
+        foreach (Collider2D enemy in hitEnemiesSides)
         {
             HitWhite hit = enemy.GetComponent<HitWhite>();
+            BossHealth bossHit = enemy.GetComponent<BossHealth>();
 
             if (hit != null)
             {
                 Debug.Log("We hit " + enemy.name);
                 hit.DoHitWhite();
             }
+
+            else if (bossHit != null)
+            {
+                Debug.Log("We hit " + enemy.name);
+                bossHit.TakeDmg(attackDamage);
+            }
         }
     }
-    
+
     void AttackUp()
     {
         animator.SetTrigger("AttackUp");
 
-        Collider2D[] hitEnemiesUp =  Physics2D.OverlapCircleAll(attackPointUp.position, attackRange, enemyLayers);
+        Collider2D[] hitEnemiesUp = Physics2D.OverlapCircleAll(attackPointUp.position, attackRange, enemyLayers);
 
-        foreach(Collider2D enemy in hitEnemiesUp) 
+        foreach (Collider2D enemy in hitEnemiesUp)
         {
             HitWhite hit = enemy.GetComponent<HitWhite>();
+            BossHealth bossHit = enemy.GetComponent<BossHealth>();
 
             if (hit != null)
             {
                 Debug.Log("We hit " + enemy.name);
                 hit.DoHitWhite();
+            }
+
+            else if (bossHit != null)
+            {
+                Debug.Log("We hit " + enemy.name);
+                bossHit.TakeDmg(attackDamage);
             }
         }
     }
@@ -65,8 +88,8 @@ public class PlayerCombat : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         if (attackPointSides == null)
-            return; 
-        
+            return;
+
         if (attackPointUp == null)
             return;
 

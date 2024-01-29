@@ -246,8 +246,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.015900016, y: 0.005800009, z: 0}
-    m_Extent: {x: 1.954, y: 2.4692, z: 0}
+    m_Center: {x: 0.016200006, y: 0.004799962, z: 0}
+    m_Extent: {x: 1.9542999, y: 2.4692001, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -398,9 +398,11 @@ MonoBehaviour:
   attackPointSides: {fileID: 2881318681188936032}
   attackPointUp: {fileID: 2766053907052818266}
   attackRange: 0.59
+  attackDamage: 50
   enemyLayers:
     serializedVersion: 2
     m_Bits: 8
+  _attackDelay: 1
 --- !u!95 &8115852354797941682
 Animator:
   serializedVersion: 5
@@ -835,7 +837,7 @@ MonoBehaviour:
   - {x: -0.149788, y: -0.6079919, z: 0}
   m_ShapePathHash: -890938342
   m_Mesh: {fileID: 0}
-  m_InstanceId: -243986
+  m_InstanceId: 103460
   m_LocalBounds:
     m_Center: {x: -0.088401824, y: -0.27256662, z: 0}
     m_Extent: {x: 0.21463129, y: 0.7674357, z: 0}
