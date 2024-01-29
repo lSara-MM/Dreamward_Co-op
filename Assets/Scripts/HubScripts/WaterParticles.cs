@@ -6,6 +6,7 @@ public class WaterParticles : MonoBehaviour
 {
     public GameObject water;
     public GameObject player;
+    public AudioSource splashSound;
 
     public bool splash = false;
 
@@ -28,6 +29,7 @@ public class WaterParticles : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        splashSound.Play();
         splash = true;
     }
 }

@@ -9,6 +9,12 @@ public class SpawnManager : MonoBehaviour
     public GameObject player;
     public GameObject Particles;
 
+    public AudioSource fallSound;
+    public AudioSource splashSound;
+    public AudioSource flickeringLampSound;
+    public AudioSource waterSound;
+    public AudioSource ambientMusic;
+
     public Light2D ligthSpot;
 
     public SpriteRenderer fadeToBlack;
@@ -25,6 +31,8 @@ public class SpawnManager : MonoBehaviour
         rb.gravityScale = 1f;
         player.transform.position = new Vector3(0f, 40f, 0f);
         ligthSpot.intensity = 0f;
+        fallSound.volume = 0f; 
+        ambientMusic.volume = 0f;
 
         fadeToBlack.color = new Color(0f, 0f, 0f, 1f);
 
@@ -46,6 +54,16 @@ public class SpawnManager : MonoBehaviour
 
             if (!timerReset)
             {
+                if (fallSound.volume < 1f)
+                {
+                    fallSound.volume += 0.3f * Time.deltaTime;
+                }
+
+                if (ambientMusic.volume < 0.262f)
+                {
+                    ambientMusic.volume += 0.05f * Time.deltaTime;
+                }
+
                 if (rb.velocity.y == 0f && fadeToBlack.color.a <= 0f)
                 {
                     Particles.SetActive(false);
@@ -53,11 +71,19 @@ public class SpawnManager : MonoBehaviour
                     ligthSpot.intensity = 3.47f;
                     timing = 0f;
                     timerReset = true;
+                    splashSound.Play();
+                    flickeringLampSound.Play();
+                    waterSound.Play();
                 }
             }
 
             if (ligthSpot.intensity > 0f)
             {
+                if (fallSound.volume > 0f)
+                {
+                    fallSound.volume -= 0.8f * Time.deltaTime;
+                }
+
                 if (timing > 0f && timing < 0.2f)
                 {
                     ligthSpot.intensity = 0.1f;
