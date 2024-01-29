@@ -8,6 +8,7 @@ public class SpawnManager : MonoBehaviour
     public Rigidbody2D rb;
     public GameObject player;
     public GameObject Particles;
+    public GameObject Rain;
 
     public AudioSource fallSound;
     public AudioSource splashSound;
@@ -25,6 +26,7 @@ public class SpawnManager : MonoBehaviour
 
     public bool Tickling = false;
     public bool timerReset = false;
+    public bool isHub;
 
     // Start is called before the first frame update
     void Start()
@@ -42,6 +44,20 @@ public class SpawnManager : MonoBehaviour
 
         Tickling = false;
         timerReset = false;
+
+        if (isHub) 
+        {
+            int isRaining = Random.RandomRange(0, 2);
+
+            if(isRaining == 1) 
+            {
+                Rain.SetActive(true);
+            }
+            else 
+            {
+                Rain.SetActive(false);
+            }
+        }
     }
 
     // Update is called once per frame
