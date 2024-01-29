@@ -52,32 +52,29 @@ public class PlayerMovement : MonoBehaviour
             StartCoroutine(Dash());
         }
 
+        if (isDashing)
+        {
+            return;
+        }
+
+        if (rb.velocity.x > 0f || rb.velocity.x < 0f && IsGrounded())
+        {
+            footSteps.SetActive(true);
+        }
+
+        if (rb.velocity.x == 0f && IsGrounded())
+        {
+            footSteps.SetActive(false);
+        }
+
+        rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+
         Flip();
     }
 
     private bool IsGrounded() 
     {
         return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
-    }
-
-    private void FixedUpdate()
-    {
-        if (isDashing)
-        {
-            return;
-        }
-
-        if(rb.velocity.x > 0f || rb.velocity.x < 0f && IsGrounded()) 
-        {
-            footSteps.SetActive(true);
-        }
-        
-        if(rb.velocity.x == 0f && IsGrounded()) 
-        {
-            footSteps.SetActive(false);
-        }
-
-        rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
     }
 
     private void Flip()
