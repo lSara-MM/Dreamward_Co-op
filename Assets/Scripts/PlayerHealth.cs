@@ -11,6 +11,9 @@ public class PlayerHealth : MonoBehaviour
     public int maxInitHealth = 3;
     public PlayerMovement PlayerMovement;
 
+    public GameObject dificultySelector;
+    public DificultySelector dificultySelectorScript;
+
     public Image[] hearts;
     [SerializeField] private Sprite fullHeart;
     [SerializeField] private Sprite emptyHeart;
@@ -43,6 +46,21 @@ public class PlayerHealth : MonoBehaviour
         _blink = GetComponent<Blink>();
         _move = GetComponent<PlayerMovement>();
         aud = GetComponent<AudioSource>();
+
+        // Dificulty Selector
+        dificultySelector = GameObject.Find("DifultySelector");
+
+        if (dificultySelector != null)
+        {
+            dificultySelectorScript = dificultySelector.GetComponent<DificultySelector>();
+        }
+
+        if (dificultySelectorScript.hardMode) 
+        {
+            currentHealth = 1;
+            maxHealth = 1;
+            maxInitHealth = 1;
+        }
     }
 
     // Update is called once per frame
