@@ -36,12 +36,13 @@ public class SpawnLaserEnrage : MonoBehaviour
         }
     }
 
-
+    bool addHeigth = true;
     private void Fire()
     {
         if (bullet && _animator.GetInteger("ChooseAttack") == 6)
         {
-            bool addHeigth = (Random.value > 0.5f);
+            //bool addHeigth = (Random.value > 0.5f);
+            addHeigth = !addHeigth;
             Vector3 spawnPos = transform.position;
             if (addHeigth)
             {
@@ -50,7 +51,7 @@ public class SpawnLaserEnrage : MonoBehaviour
             spawnedBullet = Instantiate(bullet, spawnPos, Quaternion.identity);
             spawnedBullet.GetComponent<BoneProjectile>().speed = speed;
             spawnedBullet.GetComponent<BoneProjectile>().bulletLife = bulletLife;
-            spawnedBullet.GetComponent<BoneProjectile>().boomerang = true;
+            spawnedBullet.GetComponent<BoneProjectile>().boomerang = (Random.value > 0.3f);
             spawnedBullet.transform.rotation = transform.rotation;
         }
     }
