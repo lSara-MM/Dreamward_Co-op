@@ -319,7 +319,7 @@ AnimatorStateTransition:
   serializedVersion: 3
   m_TransitionDuration: 0
   m_TransitionOffset: 0
-  m_ExitTime: 2
+  m_ExitTime: 1
   m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -340,8 +340,10 @@ MonoBehaviour:
   handPrefab: {fileID: 5381330737245252737, guid: 05f0989df17cdf14e94b3cad05c20498,
     type: 3}
   _maxSpeed: 20
-  _minSpeed: 8
   _acceleration: 0.2
+  _minSpeed: 8
+  _maxSpeedSP: 30
+  _accelerationSP: 0.4
 --- !u!1101 &-2502203525248226282
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -517,8 +519,10 @@ MonoBehaviour:
   handPrefab: {fileID: 2284737270421486427, guid: 72536b487b2e53d449b8c3d87376b2a4,
     type: 3}
   _maxSpeed: 20
-  _minSpeed: 8
   _acceleration: 0.2
+  _minSpeed: 8
+  _maxSpeedSP: 30
+  _accelerationSP: 0.4
 --- !u!91 &9100000
 AnimatorController:
   m_ObjectHideFlags: 0
@@ -653,8 +657,10 @@ MonoBehaviour:
   handPrefab: {fileID: 5381330737245252737, guid: 05f0989df17cdf14e94b3cad05c20498,
     type: 3}
   _maxSpeed: 20
-  _minSpeed: 8
   _acceleration: 0.2
+  _minSpeed: 8
+  _maxSpeedSP: 30
+  _accelerationSP: 0.4
 --- !u!114 &2940059848672340237
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -670,8 +676,10 @@ MonoBehaviour:
   handPrefab: {fileID: 2284737270421486427, guid: 72536b487b2e53d449b8c3d87376b2a4,
     type: 3}
   _maxSpeed: 20
-  _minSpeed: 8
   _acceleration: 0.2
+  _minSpeed: 8
+  _maxSpeedSP: 30
+  _accelerationSP: 0.4
 --- !u!1102 &3324074304565560169
 AnimatorState:
   serializedVersion: 6
@@ -720,6 +728,8 @@ MonoBehaviour:
   _minSpeed: 2
   _acceleration: 0.2
   delay: 0
+  _maxSpeedSP: 30
+  _accelerationSP: 0.4
 --- !u!1101 &6506009593705690396
 AnimatorStateTransition:
   m_ObjectHideFlags: 1

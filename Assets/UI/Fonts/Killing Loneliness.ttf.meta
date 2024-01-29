@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ec3085aced67bf4449b9307ec55a2c93
+guid: ffb8d81b415bc034c9807e65150d4d02
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,7 +9,7 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - KG Sorry Not Sorry Chub
+  - Killing Loneliness
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0

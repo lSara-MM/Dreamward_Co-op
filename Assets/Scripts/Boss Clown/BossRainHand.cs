@@ -27,9 +27,15 @@ public class BossRainHand : StateMachineBehaviour
 
     private Animator _animatorRef;
 
+    private BossHealth _boss;
+    [SerializeField] private float _maxSpeedSP = 30f;
+    [SerializeField] private float _accelerationSP = 0.4f;
+
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        _boss = animator.gameObject.GetComponent<BossHealth>();
+
         leftHandInHierarchy = GameObject.Find(leftHandPrefab.name).transform.Find("RainCurve").gameObject;
         leftHandInHierarchy.SetActive(true);
         _cursorLeft = leftHandInHierarchy.GetComponent<BGCcCursor>();
@@ -55,12 +61,24 @@ public class BossRainHand : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (_accelerate && _changeLinearRight.Speed <= _maxSpeed && _changeLinearLeft.Speed <= _maxSpeed)
+        if (_boss.bossSP)
         {
-            _changeLinearLeft.Speed += _acceleration;
-            _changeLinearRight.Speed += _acceleration;
+            if (_accelerate && _changeLinearRight.Speed <= _maxSpeedSP && _changeLinearLeft.Speed <= _maxSpeedSP)
+            {
+                _changeLinearLeft.Speed += _accelerationSP;
+                _changeLinearRight.Speed += _accelerationSP;
+            }
         }
 
+        else
+        {
+            if (_accelerate && _changeLinearRight.Speed <= _maxSpeed && _changeLinearLeft.Speed <= _maxSpeed)
+            {
+                _changeLinearLeft.Speed += _acceleration;
+                _changeLinearRight.Speed += _acceleration;
+            }
+        }
+        
         if (_changeLinearRight.Speed == 0)
         {
             _timer += Time.deltaTime;
@@ -94,8 +112,17 @@ public class BossRainHand : StateMachineBehaviour
     {
         if (e.PointIndex == 1 || e.PointIndex == 4 || e.PointIndex == 6)
         {
-            _changeLinearRight.Speed = _maxSpeed;
-            _changeLinearLeft.Speed = _maxSpeed;
+            if (_boss.bossSP)
+            {
+                _changeLinearRight.Speed = _maxSpeedSP;
+                _changeLinearLeft.Speed = _maxSpeedSP;
+            }
+
+            else
+            {
+                _changeLinearRight.Speed = _maxSpeed;
+                _changeLinearLeft.Speed = _maxSpeed;
+            }
         }
 
         else if (e.PointIndex == 3 || e.PointIndex == 5 || e.PointIndex == 7)
