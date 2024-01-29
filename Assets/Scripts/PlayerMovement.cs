@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     public bool isFacingRigth = true;
 
     public GameObject footSteps;
+    public AudioSource jumpSound;
 
     private bool canDash = true;
     public bool isDashing;
@@ -39,6 +40,7 @@ public class PlayerMovement : MonoBehaviour
 
         if(Input.GetButtonDown("Jump") && IsGrounded()) 
         {
+            jumpSound.Play();
             rb.velocity = new Vector2(rb.velocity.x, jumping);
         }
 
