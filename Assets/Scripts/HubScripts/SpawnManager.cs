@@ -31,11 +31,14 @@ public class SpawnManager : MonoBehaviour
     public bool isHub;
     public bool isRaining;
 
-    public RainSelector rainSelector;
+    //public RainSelector rainSelector;
 
     void Awake()
     {
-        DontDestroyOnLoad(Dificulty);
+        if (Dificulty != null)
+        {
+            DontDestroyOnLoad(Dificulty);
+        }
     }
 
     // Start is called before the first frame update
