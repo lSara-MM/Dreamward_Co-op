@@ -44,9 +44,10 @@ public class SpawnLaserEnrage : MonoBehaviour
             //bool addHeigth = (Random.value > 0.5f);
             addHeigth = !addHeigth;
             Vector3 spawnPos = transform.position;
+            spawnPos.y += -0.5f;
             if (addHeigth)
             {
-                spawnPos.y += 2.0f;
+                spawnPos.y += 2.2f;
             }
             spawnedBullet = Instantiate(bullet, spawnPos, Quaternion.identity);
             spawnedBullet.GetComponent<BoneProjectile>().speed = speed;

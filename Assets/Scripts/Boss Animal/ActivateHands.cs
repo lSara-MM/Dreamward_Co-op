@@ -5,6 +5,7 @@ using UnityEngine;
 public class ActivateHands : MonoBehaviour
 {
     [SerializeField] ParticleSystem groundTremors;
+    [SerializeField] Animator idelDetection;
     public BossHealth vidaBoss; 
     public AudioSource sound;
     bool doOnce = true;
@@ -21,7 +22,7 @@ public class ActivateHands : MonoBehaviour
     void Update()
     {
         
-            if(vidaBoss.bossSP && !activateHands) //Recibir un mensaje
+            if(vidaBoss.bossSP && !activateHands && idelDetection.GetCurrentAnimatorStateInfo(0).IsName("Idle")) //Recibir un mensaje
             {
                 activateHands = true;
                 groundTremors.Play();

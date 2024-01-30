@@ -8,6 +8,7 @@ public class BossAnimalIdle : StateMachineBehaviour
     public float wait = 1.0f;
     public float realWait = 0.0f;
     [SerializeField] float timeDT = 0.0f;
+    [SerializeField] ActivateHands handsReference;
     float lastState = -2;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
