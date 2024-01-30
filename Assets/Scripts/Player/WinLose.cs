@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class WinLose : MonoBehaviour
 {
-
     [Header("Win")]
     [SerializeField] private GameObject[] wToDisable;
     [SerializeField] private GameObject winCanvas;
     [SerializeField] private FadeToBlack fade;
     public bool _won;
+
+    [SerializeField] private BoolSO lvl;
 
     [Header("Lose")]
     [SerializeField] private GameObject[] lToDisable;
@@ -50,6 +51,7 @@ public class WinLose : MonoBehaviour
         }
 
         winCanvas.SetActive(true);
+        lvl.Value = true;
     }
 
     public void OpenLose()
