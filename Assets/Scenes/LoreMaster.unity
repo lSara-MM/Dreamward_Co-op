@@ -1382,8 +1382,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.4958501, y: -0.4119501, z: 0}
-    m_Extent: {x: 10.97275, y: 5.77285, z: 0}
+    m_Center: {x: -0.49625015, y: -0.41094995, z: 0}
+    m_Extent: {x: 10.97375, y: 5.77225, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -2046,7 +2046,10 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'PRESS SPACE OR BUTTON A TO SKIP ALL '
+  m_Text: 'PRESS ENTER OR A BUTTON TO CONTINUE
+
+    PRESS SPACE OR B BUTTON TO SKIP
+    ALL '
 --- !u!222 &1856489981
 CanvasRenderer:
   m_ObjectHideFlags: 0
