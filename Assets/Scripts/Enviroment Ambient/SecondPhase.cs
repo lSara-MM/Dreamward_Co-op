@@ -20,19 +20,18 @@ public class SecondPhase : MonoBehaviour
     public GameObject Curtain;
     public GameObject Curtain1;
 
+    [SerializeField] private BossHealth bossHealth;
 
-    public bool secondPhase = false;
     float timing = 0f;
-
     // Update is called once per frame
     void Update()
     {
         if (Input.GetKey(KeyCode.P) && Input.GetKey(KeyCode.LeftShift))
         {
-            secondPhase = true;
+            bossHealth.bossSP = true;
         }
 
-        if (!secondPhase) 
+        if (!bossHealth.bossSP) 
         {
             globalLight.intensity = 1.32f;
             globalLight.color = new Color(0.580f, 0.654f, 0.764f, 1f);

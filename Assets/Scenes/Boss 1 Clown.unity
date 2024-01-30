@@ -2103,8 +2103,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.07345009, y: 1.4755428, z: 0}
-    m_Extent: {x: 1.5834501, y: 2.8910048, z: 0}
+    m_Center: {x: 0.073250055, y: 1.4753737, z: 0}
+    m_Extent: {x: 1.5836501, y: 2.8911738, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -2141,6 +2141,18 @@ MonoBehaviour:
   - {x: -1.3405764, y: 0.64416647, z: 0}
   - {x: -1.456273, y: 0.21987112, z: 0}
   - {x: -1.1940994, y: 0.007705925, z: 0}
+--- !u!114 &500745623 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1084557107383331328, guid: ecfb135eeda7fdd4cae5353ec34ef524,
+    type: 3}
+  m_PrefabInstance: {fileID: 8617859769677892622}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 500745616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f295fe3422076fc4cbbaf12cbd86cd10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &550418987
 GameObject:
   m_ObjectHideFlags: 0
@@ -2437,8 +2449,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.00020003319, y: 0, z: 0}
-    m_Extent: {x: 1.0008, y: 1.0004, z: 0}
+    m_Center: {x: -0.000100016594, y: -0.000100016594, z: 0}
+    m_Extent: {x: 1.0009, y: 1.0005, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -5705,7 +5717,7 @@ MonoBehaviour:
   SpotLight2: {fileID: 687376493}
   Curtain: {fileID: 1145571280}
   Curtain1: {fileID: 1381746257}
-  secondPhase: 0
+  bossHealth: {fileID: 500745623}
 --- !u!4 &1242399461
 Transform:
   m_ObjectHideFlags: 0
@@ -6145,8 +6157,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.09275007, y: -1.3794999, z: 0}
-    m_Extent: {x: 5.15075, y: 2.4282, z: 0}
+    m_Center: {x: 0.09249997, y: -1.3792, z: 0}
+    m_Extent: {x: 5.1498003, y: 2.4278, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -12269,7 +12281,7 @@ PrefabInstance:
     - target: {fileID: 634344105823805906, guid: ee9c8bd8f8719fc4bb077ec697850e10,
         type: 3}
       propertyPath: dashCost
-      value: 20
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1549138053254753324, guid: ee9c8bd8f8719fc4bb077ec697850e10,
         type: 3}
@@ -12364,7 +12376,7 @@ PrefabInstance:
     - target: {fileID: 7335291830954577519, guid: ee9c8bd8f8719fc4bb077ec697850e10,
         type: 3}
       propertyPath: attackCost
-      value: 10
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8593830673411425771, guid: ee9c8bd8f8719fc4bb077ec697850e10,
         type: 3}

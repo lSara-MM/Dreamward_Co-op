@@ -17,7 +17,6 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] private Stamina stamina;
     [SerializeField] private float attackCost = 20;
 
-
     public LayerMask enemyLayers;
     [SerializeField] private float _attackDelay = 2;
     private float _timer = 0;
