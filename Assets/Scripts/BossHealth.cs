@@ -46,6 +46,11 @@ public class BossHealth : MonoBehaviour
             Debug.Log("SA ENFADAO");
         }
 
+        if (!_animator.GetBool("Enraged") && bossSP)
+        {
+            _animator.SetBool("Enraged", bossSP);
+        }
+
         slider.value = currentHealth;
 
         // Debug
