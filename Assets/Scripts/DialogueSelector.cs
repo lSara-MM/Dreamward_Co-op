@@ -56,6 +56,22 @@ public class DialogueSelector : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Space)) // Andreu pon aquí el control para el mando para Skipear
+        {
+            if (Dialogue.Value == 0)
+            {
+                changeScene.ChangeToScene("Tutorial");
+            }
+
+            if (Dialogue.Value == 1)
+            {
+                changeScene.ChangeToScene("Boss 1 Clown");
+            }
+
+            if (Dialogue.Value == 2)
+            {
+                changeScene.ChangeToScene("Boss 2 PerroSanchez");
+            }
+        }
     }
 }

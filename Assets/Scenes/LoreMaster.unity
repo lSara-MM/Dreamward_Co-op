@@ -184,14 +184,14 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: 4244d7fe8c3a24a4b8b0269af6a77e7a, type: 3}
     m_FontSize: 97
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 0
     m_MaxSize: 154
     m_Alignment: 4
-    m_AlignByGeometry: 0
+    m_AlignByGeometry: 1
     m_RichText: 1
-    m_HorizontalOverflow: 1
-    m_VerticalOverflow: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: FOR LEAVING YOU BEHIND
 --- !u!222 &36919107
@@ -366,7 +366,7 @@ RectTransform:
   m_GameObject: {fileID: 225448936}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.1610636, y: 1.1610636, z: 1.1610636}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1160206413}
@@ -400,16 +400,16 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: 4244d7fe8c3a24a4b8b0269af6a77e7a, type: 3}
     m_FontSize: 97
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 0
     m_MaxSize: 154
     m_Alignment: 4
-    m_AlignByGeometry: 0
+    m_AlignByGeometry: 1
     m_RichText: 1
-    m_HorizontalOverflow: 1
-    m_VerticalOverflow: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: ONLY WHEN YOU REMEMBER
+  m_Text: ONLY WHEN YOU REMEMBER, THE ONE WHO LEFT US, THEY WILL BE BACK
 --- !u!222 &225448939
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -588,7 +588,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &407726529
 RectTransform:
   m_ObjectHideFlags: 0
@@ -598,7 +598,7 @@ RectTransform:
   m_GameObject: {fileID: 407726528}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 0.99, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 745132734}
@@ -630,18 +630,18 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 4244d7fe8c3a24a4b8b0269af6a77e7a, type: 3}
-    m_FontSize: 97
+    m_FontSize: 112
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 0
-    m_MaxSize: 154
+    m_MaxSize: 185
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 1
-    m_VerticalOverflow: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: WHEN EVERYONE SLEEPS
+  m_Text: WHEN EVERYONE SLEEPS AND THE DARK OF THE NIGTH ARISES
 --- !u!222 &407726531
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -700,7 +700,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_UiScaleMode: 0
   m_ReferencePixelsPerUnit: 100
-  m_ScaleFactor: 1
+  m_ScaleFactor: 7.04
   m_ReferenceResolution: {x: 800, y: 600}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
@@ -747,6 +747,7 @@ RectTransform:
   - {fileID: 745132734}
   - {fileID: 491997772}
   - {fileID: 1160206413}
+  - {fileID: 1856489979}
   - {fileID: 598160437}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -816,14 +817,14 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: 4244d7fe8c3a24a4b8b0269af6a77e7a, type: 3}
     m_FontSize: 97
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 0
     m_MaxSize: 154
     m_Alignment: 4
-    m_AlignByGeometry: 0
+    m_AlignByGeometry: 1
     m_RichText: 1
-    m_HorizontalOverflow: 1
-    m_VerticalOverflow: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: EVERYBODY BAILED ON ME
 --- !u!222 &434150031
@@ -891,12 +892,9 @@ MonoBehaviour:
   Boss2: {fileID: 11400000, guid: 1912c596e0bdf9449a7702dd1c2e2b80, type: 2}
   dialogue:
   - {fileID: 2131674881}
-  - {fileID: 1646728499}
   - {fileID: 1446006705}
-  - {fileID: 2052267398}
   - {fileID: 434150028}
   - {fileID: 1727683367}
-  - {fileID: 1805183727}
   - {fileID: 2045985890}
   storyTeller: 0
   fadeToBlack: {fileID: 598160441}
@@ -1069,16 +1067,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Dialogue: {fileID: 11400000, guid: a5aef9d379f28914da607f98ef8c9878, type: 2}
-  Boss1: {fileID: 0}
-  Boss2: {fileID: 0}
+  Boss1: {fileID: 11400000, guid: 219db7f10bcc7234f91f4f102b7e2681, type: 2}
+  Boss2: {fileID: 11400000, guid: 1912c596e0bdf9449a7702dd1c2e2b80, type: 2}
   dialogue:
   - {fileID: 407726528}
-  - {fileID: 1910287527}
   - {fileID: 1934134799}
-  - {fileID: 1517658061}
   - {fileID: 1942377899}
   - {fileID: 2063023465}
-  - {fileID: 1787869868}
   - {fileID: 1805463423}
   storyTeller: 0
   fadeToBlack: {fileID: 598160441}
@@ -1296,8 +1291,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.49559975, y: -0.41225004, z: 0}
-    m_Extent: {x: 10.9732, y: 5.77205, z: 0}
+    m_Center: {x: -0.4960003, y: -0.41164994, z: 0}
+    m_Extent: {x: 10.9732, y: 5.7716503, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -1398,16 +1393,16 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: 4244d7fe8c3a24a4b8b0269af6a77e7a, type: 3}
     m_FontSize: 97
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 0
     m_MaxSize: 154
     m_Alignment: 4
-    m_AlignByGeometry: 0
+    m_AlignByGeometry: 1
     m_RichText: 1
-    m_HorizontalOverflow: 1
-    m_VerticalOverflow: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: MY BEST FRIEND
+  m_Text: MY BEST FRIEND AND LOYAL COMPANION
 --- !u!222 &1106324962
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1554,14 +1549,8 @@ MonoBehaviour:
   Boss2: {fileID: 11400000, guid: 1912c596e0bdf9449a7702dd1c2e2b80, type: 2}
   dialogue:
   - {fileID: 225448936}
-  - {fileID: 1719570683}
-  - {fileID: 1644944486}
   - {fileID: 1106324959}
-  - {fileID: 1236556342}
   - {fileID: 1992186349}
-  - {fileID: 1125914791}
-  - {fileID: 987120508}
-  - {fileID: 989956941}
   - {fileID: 36919104}
   storyTeller: 0
   fadeToBlack: {fileID: 598160441}
@@ -1676,7 +1665,7 @@ RectTransform:
   m_GameObject: {fileID: 1446006705}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.96466, y: 0.96466, z: 0.96466}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 491997772}
@@ -1710,16 +1699,16 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: 4244d7fe8c3a24a4b8b0269af6a77e7a, type: 3}
     m_FontSize: 97
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 0
     m_MaxSize: 154
     m_Alignment: 4
-    m_AlignByGeometry: 0
+    m_AlignByGeometry: 1
     m_RichText: 1
-    m_HorizontalOverflow: 1
-    m_VerticalOverflow: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: THAT ONE DAY
+  m_Text: THAT ONE DAY, WAS SUPPOSED TO BE MY HAPPIEST DAY
 --- !u!222 &1446006708
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2071,14 +2060,14 @@ RectTransform:
   m_GameObject: {fileID: 1727683367}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.97739923, y: 0.97739923, z: 0.97739923}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 491997772}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 960, y: 540}
+  m_AnchoredPosition: {x: 960, y: 543}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1727683369
@@ -2105,16 +2094,16 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: 4244d7fe8c3a24a4b8b0269af6a77e7a, type: 3}
     m_FontSize: 97
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 0
     m_MaxSize: 154
     m_Alignment: 4
-    m_AlignByGeometry: 0
+    m_AlignByGeometry: 1
     m_RichText: 1
-    m_HorizontalOverflow: 1
-    m_VerticalOverflow: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: ONLY THE CLOWN WAS THERE
+  m_Text: ONLY THE CLOWN WAS THERE, AND THAT FEELING OF LONELINESS
 --- !u!222 &1727683370
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2298,7 +2287,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1805463424
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2342,14 +2331,14 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: 4244d7fe8c3a24a4b8b0269af6a77e7a, type: 3}
     m_FontSize: 77
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 0
     m_MaxSize: 154
     m_Alignment: 4
-    m_AlignByGeometry: 0
+    m_AlignByGeometry: 1
     m_RichText: 1
-    m_HorizontalOverflow: 1
-    m_VerticalOverflow: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: DREAM MY LITTLE SOUL AND GIVE ME PEACE THIS NIGHT
 --- !u!222 &1805463426
@@ -2359,6 +2348,85 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1805463423}
+  m_CullTransparentMesh: 1
+--- !u!1 &1856489978
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1856489979}
+  - component: {fileID: 1856489981}
+  - component: {fileID: 1856489980}
+  m_Layer: 5
+  m_Name: Skip Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1856489979
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1856489978}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 422228669}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 76.5, y: -62.4}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1856489980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1856489978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.645283, g: 0.645283, b: 0.645283, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 4244d7fe8c3a24a4b8b0269af6a77e7a, type: 3}
+    m_FontSize: 5
+    m_FontStyle: 0
+    m_BestFit: 1
+    m_MinSize: 0
+    m_MaxSize: 40
+    m_Alignment: 4
+    m_AlignByGeometry: 1
+    m_RichText: 1
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
+    m_LineSpacing: 1
+  m_Text: 'PRESS SPACE OR BUTTON A TO SKIP ALL '
+--- !u!222 &1856489981
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1856489978}
   m_CullTransparentMesh: 1
 --- !u!1 &1873039314
 GameObject:
@@ -2389,7 +2457,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 865bdadbdc4307143a3a81a1154ec615, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.128
+  m_Volume: 0.156
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -2584,7 +2652,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1934134800
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2594,7 +2662,7 @@ RectTransform:
   m_GameObject: {fileID: 1934134799}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.87982, y: 0.87982, z: 0.87982}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 745132734}
@@ -2628,16 +2696,16 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: 4244d7fe8c3a24a4b8b0269af6a77e7a, type: 3}
     m_FontSize: 97
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 0
     m_MaxSize: 154
     m_Alignment: 4
-    m_AlignByGeometry: 0
+    m_AlignByGeometry: 1
     m_RichText: 1
-    m_HorizontalOverflow: 1
-    m_VerticalOverflow: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: MY BRAVE GUARDIAN
+  m_Text: YOU MY BRAVE GUARDIAN, WILL PROTECT AND FIGHT
 --- !u!222 &1934134802
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2663,7 +2731,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1942377900
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2707,14 +2775,14 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: 4244d7fe8c3a24a4b8b0269af6a77e7a, type: 3}
     m_FontSize: 97
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 0
     m_MaxSize: 154
     m_Alignment: 4
-    m_AlignByGeometry: 0
+    m_AlignByGeometry: 1
     m_RichText: 1
-    m_HorizontalOverflow: 1
-    m_VerticalOverflow: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: AGAINST FEARS AND NIGHTMARES
 --- !u!222 &1942377902
@@ -2786,16 +2854,16 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: 4244d7fe8c3a24a4b8b0269af6a77e7a, type: 3}
     m_FontSize: 97
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 0
     m_MaxSize: 154
     m_Alignment: 4
-    m_AlignByGeometry: 0
+    m_AlignByGeometry: 1
     m_RichText: 1
-    m_HorizontalOverflow: 1
-    m_VerticalOverflow: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: MY DOG
+  m_Text: MY DOG, I MISS YOU, I AM SORRY
 --- !u!222 &1992186352
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2865,14 +2933,14 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: 4244d7fe8c3a24a4b8b0269af6a77e7a, type: 3}
     m_FontSize: 97
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 0
     m_MaxSize: 154
     m_Alignment: 4
-    m_AlignByGeometry: 0
+    m_AlignByGeometry: 1
     m_RichText: 1
-    m_HorizontalOverflow: 1
-    m_VerticalOverflow: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: WAS PROJECTED ON HIM
 --- !u!222 &2045985893
@@ -2979,7 +3047,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2063023466
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3023,16 +3091,16 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: 4244d7fe8c3a24a4b8b0269af6a77e7a, type: 3}
     m_FontSize: 97
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 0
     m_MaxSize: 154
     m_Alignment: 4
-    m_AlignByGeometry: 0
+    m_AlignByGeometry: 1
     m_RichText: 1
-    m_HorizontalOverflow: 1
-    m_VerticalOverflow: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: PROTECT THE INNOCENT
+  m_Text: 'PROTECT THE INNOCENT AND SPREAD YOUR LULLABY '
 --- !u!222 &2063023468
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3137,7 +3205,7 @@ RectTransform:
   m_GameObject: {fileID: 2131674881}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.90104, y: 0.90104, z: 0.90104}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 491997772}
@@ -3171,16 +3239,16 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: 4244d7fe8c3a24a4b8b0269af6a77e7a, type: 3}
     m_FontSize: 97
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 0
     m_MaxSize: 154
     m_Alignment: 4
-    m_AlignByGeometry: 0
+    m_AlignByGeometry: 1
     m_RichText: 1
-    m_HorizontalOverflow: 1
-    m_VerticalOverflow: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: IN THE DEEPEST SIDES OF THE MIND
+  m_Text: IN THE DEEPEST SIDES OF THE MIND, OUR BIGGEST FEARS BECOME REAL
 --- !u!222 &2131674884
 CanvasRenderer:
   m_ObjectHideFlags: 0
