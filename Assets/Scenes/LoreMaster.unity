@@ -1246,12 +1246,12 @@ MonoBehaviour:
   - {fileID: 737327776}
   - {fileID: 1439543134}
   storyTeller: 0
-  fadeToBlack: {fileID: 0}
-  fadeFromBlack: {fileID: 0}
+  fadeToBlack: {fileID: 598160441}
+  fadeFromBlack: {fileID: 598160440}
   textHasChanged: 0
   returnFromBlack: 0
-  fadeToBlackImage: {fileID: 0}
-  changeScene: {fileID: 0}
+  fadeToBlackImage: {fileID: 598160438}
+  changeScene: {fileID: 2090439461}
 --- !u!1 &870002424
 GameObject:
   m_ObjectHideFlags: 0
@@ -1382,8 +1382,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.49655008, y: -0.41225004, z: 0}
-    m_Extent: {x: 10.973049, y: 5.77215, z: 0}
+    m_Center: {x: -0.4958501, y: -0.4119501, z: 0}
+    m_Extent: {x: 10.97275, y: 5.77285, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -2240,12 +2240,12 @@ MonoBehaviour:
   - {fileID: 1384718676}
   - {fileID: 198434347}
   storyTeller: 0
-  fadeToBlack: {fileID: 0}
-  fadeFromBlack: {fileID: 0}
+  fadeToBlack: {fileID: 598160441}
+  fadeFromBlack: {fileID: 598160440}
   textHasChanged: 0
   returnFromBlack: 0
-  fadeToBlackImage: {fileID: 0}
-  changeScene: {fileID: 0}
+  fadeToBlackImage: {fileID: 598160438}
+  changeScene: {fileID: 2090439461}
 --- !u!1 &1930761775
 GameObject:
   m_ObjectHideFlags: 0
@@ -2463,12 +2463,12 @@ MonoBehaviour:
   - {fileID: 149390447}
   - {fileID: 1799825153}
   storyTeller: 0
-  fadeToBlack: {fileID: 0}
-  fadeFromBlack: {fileID: 0}
+  fadeToBlack: {fileID: 598160441}
+  fadeFromBlack: {fileID: 598160440}
   textHasChanged: 0
   returnFromBlack: 0
-  fadeToBlackImage: {fileID: 0}
-  changeScene: {fileID: 0}
+  fadeToBlackImage: {fileID: 598160438}
+  changeScene: {fileID: 2090439461}
 --- !u!1 &2090439457
 GameObject:
   m_ObjectHideFlags: 0
@@ -2517,9 +2517,9 @@ MonoBehaviour:
   Dialogue: {fileID: 11400000, guid: a5aef9d379f28914da607f98ef8c9878, type: 2}
   Boss1: {fileID: 11400000, guid: 219db7f10bcc7234f91f4f102b7e2681, type: 2}
   Boss2: {fileID: 11400000, guid: 1912c596e0bdf9449a7702dd1c2e2b80, type: 2}
-  IntroDialogue: {fileID: 0}
-  Boss1Dialogue: {fileID: 0}
-  Boss2Dialogue: {fileID: 0}
+  IntroDialogue: {fileID: 737507963}
+  Boss1Dialogue: {fileID: 1928435225}
+  Boss2Dialogue: {fileID: 2050346896}
   changeScene: {fileID: 2090439461}
 --- !u!114 &2090439461
 MonoBehaviour:
