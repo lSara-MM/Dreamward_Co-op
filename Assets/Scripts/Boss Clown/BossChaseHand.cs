@@ -37,7 +37,7 @@ public class BossChaseHand : StateMachineBehaviour
 
         _player = GameObject.Find("Player").transform;
         _speed = 10;
-        _landingPos = new Vector2(0, 0);
+        _landingPos = new Vector2(999,999);
         _timer = 0;
         _fallTimer = 0;
         _handTransform = GameObject.Find(handPrefab.name).transform.Find("Hand");
@@ -72,7 +72,7 @@ public class BossChaseHand : StateMachineBehaviour
 
                 else if (_goStart)
                 {
-                    _handTransform.position = Vector2.MoveTowards(_handTransform.position, _startingPoint, _speed * 0.80f * Time.deltaTime);
+                    _handTransform.position = Vector2.MoveTowards(_handTransform.position, _startingPoint, _speed * 0.75f * Time.deltaTime);
 
                     if (Vector2.Distance(_handTransform.position, _startingPoint) < 0.1f)
                     {
@@ -83,7 +83,7 @@ public class BossChaseHand : StateMachineBehaviour
 
             else
             {
-                if (_landingPos == new Vector2(0, 0))// choose where to land
+                if (_landingPos == new Vector2(999, 999))// choose where to land
                 {
                     _landingPos = new Vector2(_player.position.x, _player.position.y);
                 }
