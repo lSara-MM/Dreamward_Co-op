@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6309789136884891677}
   - component: {fileID: 8629306414036935549}
   - component: {fileID: 8868739324470613114}
+  - component: {fileID: 8526055870260801327}
   m_Layer: 7
   m_Name: Hand
   m_TagString: Untagged
@@ -160,6 +161,27 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!95 &8526055870260801327
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2145752748239673628}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c8252afd85600c04a87c9ab822b253c2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &3172074396042974765
 GameObject:
   m_ObjectHideFlags: 0
