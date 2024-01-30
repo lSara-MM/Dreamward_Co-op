@@ -56,7 +56,7 @@ public class DialogueSelector : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space)) // Andreu pon aquí el control para el mando para Skipear
+        if (Input.GetButtonDown("Jump"))// button jump = space/A button
         {
             if (Dialogue.Value == 0)
             {
