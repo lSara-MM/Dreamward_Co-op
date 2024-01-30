@@ -137,6 +137,7 @@ GameObject:
   - component: {fileID: 8115852354797941682}
   - component: {fileID: 8215374752680485007}
   - component: {fileID: 8593830673411425771}
+  - component: {fileID: 544273033336851665}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -542,10 +543,9 @@ MonoBehaviour:
   - {fileID: 0}
   fullHeart: {fileID: 21300000, guid: 7eb2a2f500055504aba497358926e97a, type: 3}
   emptyHeart: {fileID: 21300000, guid: da3412a7a2ffc974c8d7a436f1ad442f, type: 3}
-  debugLife: 1
-  game: {fileID: 0}
-  loseCanvas: {fileID: 0}
-  fade: {fileID: 8593830673411425771}
+  _godMode: 0
+  _debugLife: 1
+  _winLose: {fileID: 0}
   Clip: []
   _invulnTime: 0.75
 --- !u!114 &1348742391309941357
@@ -597,10 +597,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slider: {fileID: 0}
   rechargeSpeed: 10
-  debugStamina: 20
   maxEnergy: 100
   currentEnergy: 0
   textEnergyBar: {fileID: 0}
+  _godMode: 0
+  debugStamina: 20
 --- !u!114 &8593830673411425771
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -616,6 +617,28 @@ MonoBehaviour:
   fadeToBlack: {fileID: 0}
   fadeSpeed: 1
   fadeMax: 0.5
+--- !u!114 &544273033336851665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3857786462063389791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91df6aa21d64fce4d97e5438806020b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wToDisable:
+  - {fileID: 0}
+  winCanvas: {fileID: 0}
+  fade: {fileID: 8593830673411425771}
+  _won: 0
+  lToDisable:
+  - {fileID: 0}
+  - {fileID: 3857786462063389791}
+  loseCanvas: {fileID: 0}
+  _lost: 0
 --- !u!1 &4233289192221513711
 GameObject:
   m_ObjectHideFlags: 0
