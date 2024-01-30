@@ -7,6 +7,8 @@ public class ChangeScene : MonoBehaviour
 {
     [SerializeField] private bool pressAnyKey = false;
     [SerializeField] private string passToScene;
+
+    [Header("Serialized vars")]
     [SerializeField] private FloatSO dialogue;
     [SerializeField] private FloatSO boss1;
     [SerializeField] private FloatSO boss2;
@@ -21,7 +23,6 @@ public class ChangeScene : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         if (pressAnyKey && (Input.GetButtonUp("Jump") || Input.anyKeyDown) && !Input.GetKey(KeyCode.Escape) && !(Input.GetMouseButtonDown(0) 
             || Input.GetMouseButtonDown(1) || Input.GetMouseButtonDown(2)))
         {
