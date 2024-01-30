@@ -63,7 +63,9 @@ public class PlayerHealth : MonoBehaviour
                 maxInitHealth = 1;
             }
         }
-      _boss = GameObject.Find("Enemy").gameObject;  _bossAnimator = _boss.GetComponent<Animator>();// :D
+
+        _boss = GameObject.Find("Enemy").gameObject; // Andreu ni lo toques
+        _bossAnimator = _boss.GetComponent<Animator>(); // Andreu ni lo toques
     }
 
     // Update is called once per frame
