@@ -50,7 +50,7 @@ public class DialogueManager : MonoBehaviour
 
         if (!start)
         {
-            if (Input.GetButtonUp("Submit"))
+            if (Input.GetButtonUp("Submit") || ((Input.anyKeyDown) && !Input.GetKeyDown(KeyCode.Space)))
             {
                 textHasChanged = true;
             }
