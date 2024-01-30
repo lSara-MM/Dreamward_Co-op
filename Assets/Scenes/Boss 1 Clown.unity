@@ -11984,11 +11984,6 @@ PrefabInstance:
       propertyPath: slider
       value: 
       objectReference: {fileID: 279691932}
-    - target: {fileID: 8215374752680485007, guid: ee9c8bd8f8719fc4bb077ec697850e10,
-        type: 3}
-      propertyPath: rechargeSpeed
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 8593830673411425771, guid: ee9c8bd8f8719fc4bb077ec697850e10,
         type: 3}
       propertyPath: fadeToBlack
