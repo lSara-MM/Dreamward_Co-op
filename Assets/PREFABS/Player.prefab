@@ -300,6 +300,8 @@ MonoBehaviour:
   jumpSound: {fileID: 2150561718219957820}
   dashSound: {fileID: 1363216824662803057}
   isDashing: 0
+  stamina: {fileID: 0}
+  dashCost: 10
   rb: {fileID: 5933665710776427204}
   groundCheck: {fileID: 6387241373896987591}
   groundLayer:
@@ -341,8 +343,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.036300004, y: 0.08534992, z: 0}
-    m_Extent: {x: 1.7837, y: 2.6212502, z: 0}
+    m_Center: {x: -0.038900018, y: 0.085749984, z: 0}
+    m_Extent: {x: 1.7816, y: 2.62155, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -506,6 +508,8 @@ MonoBehaviour:
   attackPointUp: {fileID: 2766053907052818266}
   attackRange: 0.59
   attackDamage: 50
+  stamina: {fileID: 0}
+  attackCost: 20
   enemyLayers:
     serializedVersion: 2
     m_Bits: 8
@@ -527,6 +531,8 @@ MonoBehaviour:
   maxHealth: 5
   maxInitHealth: 5
   PlayerMovement: {fileID: 634344105823805906}
+  dificultySelector: {fileID: 0}
+  dificultySelectorScript: {fileID: 0}
   hearts:
   - {fileID: 0}
   - {fileID: 0}
@@ -540,7 +546,7 @@ MonoBehaviour:
   loseCanvas: {fileID: 0}
   fade: {fileID: 8593830673411425771}
   Clip: []
-  _invulnTime: 1
+  _invulnTime: 0.75
 --- !u!114 &1348742391309941357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -554,7 +560,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flashMaterial: {fileID: 2100000, guid: aa810905b36d8c24893929c40b312dfe, type: 2}
-  duration: 0.25
+  duration: 0.75
 --- !u!95 &8115852354797941682
 Animator:
   serializedVersion: 5
@@ -1277,7 +1283,7 @@ MonoBehaviour:
   - {x: -0.149788, y: -0.6079919, z: 0}
   m_ShapePathHash: -890938342
   m_Mesh: {fileID: 0}
-  m_InstanceId: -10962
+  m_InstanceId: 170854
   m_LocalBounds:
     m_Center: {x: -0.088401824, y: -0.27256662, z: 0}
     m_Extent: {x: 0.21463129, y: 0.7674357, z: 0}

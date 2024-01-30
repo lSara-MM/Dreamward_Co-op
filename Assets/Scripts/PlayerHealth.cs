@@ -36,6 +36,8 @@ public class PlayerHealth : MonoBehaviour
 
     private PlayerMovement _move;
 
+    private Animator _bossAnimator;
+    private GameObject _boss;
 
     // Start is called before the first frame update
     void Start()
@@ -55,12 +57,15 @@ public class PlayerHealth : MonoBehaviour
             dificultySelectorScript = dificultySelector.GetComponent<DificultySelector>();
         }
 
-        if (dificultySelectorScript.hardMode) 
+        if (dificultySelectorScript.hardMode)
         {
             currentHealth = 1;
             maxHealth = 1;
             maxInitHealth = 1;
         }
+
+        _boss = GameObject.Find("Enemy").gameObject;
+        _bossAnimator = _boss.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -107,10 +112,10 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDmg(int dmg_)
     {
-        currentHealth = Mathf.Clamp(currentHealth - dmg_, 0, maxHealth);
-
         if (!_isInvuln && !_move.isDashing)
         {
+            currentHealth = Mathf.Clamp(currentHealth - dmg_, 0, maxHealth);
+
             if (currentHealth > 0)
             {
                 // player hurt
@@ -129,7 +134,7 @@ public class PlayerHealth : MonoBehaviour
                 // player dead            
                 //OpenLose();
                 _lost = true;
-                // TODO: put boss on idle
+                _bossAnimator.SetTrigger("BossWins");
             }
         }
     }

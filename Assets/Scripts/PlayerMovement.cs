@@ -19,6 +19,9 @@ public class PlayerMovement : MonoBehaviour
     private float dashingTime = 0.2f;
     private float dashingCooldown= 0.5f;
 
+    [SerializeField] private Stamina stamina;
+    [SerializeField] private float dashCost = 10;
+
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
@@ -30,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
     {
         footSteps.SetActive(false);
         animator = GetComponent<Animator>();
+        stamina = GetComponent<Stamina>();
     }
 
     // Update is called once per frame
@@ -55,7 +59,10 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetButtonDown("Fire3") && canDash) 
         {
-            StartCoroutine(Dash());
+            if (stamina.UseEnergy(dashCost))
+            {
+                StartCoroutine(Dash());
+            }
         }
 
         if (isDashing)
@@ -112,14 +119,18 @@ public class PlayerMovement : MonoBehaviour
         dashSound.Play();
         canDash = false;
         isDashing = true;
+
         float originalGravity = rb.gravityScale;
         rb.gravityScale = 0f;
         rb.velocity = new Vector2(transform.localScale.x * dashing, 0f);
         tr.emitting = true;
+
         yield return new WaitForSeconds(dashingTime);
+
         tr.emitting = false;
         rb.gravityScale = originalGravity;
         isDashing = false;
+
         yield return new WaitForSeconds(dashingCooldown);
         canDash = true;
     }

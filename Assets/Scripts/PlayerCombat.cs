@@ -10,13 +10,23 @@ public class PlayerCombat : MonoBehaviour
     public Animator animator;
     public Transform attackPointSides;
     public Transform attackPointUp;
+
     public float attackRange = 0.5f;
     public int attackDamage = 50;
+
+    [SerializeField] private Stamina stamina;
+    [SerializeField] private float attackCost = 20;
+
     public LayerMask enemyLayers;
     [SerializeField] private float _attackDelay = 2;
     private float _timer = 0;
 
     public AudioSource attackSound;
+
+    private void Start()
+    {
+        stamina = GetComponent<Stamina>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -25,8 +35,6 @@ public class PlayerCombat : MonoBehaviour
 
         if (_timer >= _attackDelay)
         {
-            attackSound.Play();
-
             vertical = Input.GetAxisRaw("Vertical");
 
             if (Input.GetButtonDown("Fire1") && vertical <= 0)
@@ -45,62 +53,70 @@ public class PlayerCombat : MonoBehaviour
 
     void AttackSides()
     {
-        animator.SetTrigger("AttackSides");
-
-        Collider2D[] hitEnemiesSides = Physics2D.OverlapCircleAll(attackPointSides.position, attackRange, enemyLayers);
-
-        foreach (Collider2D enemy in hitEnemiesSides)
+        if (stamina.UseEnergy(attackCost))
         {
-            Blink hit = enemy.GetComponent<Blink>();
-            HitWhite hitDummy = enemy.GetComponent<HitWhite>();
-            BossHealth bossHit = enemy.GetComponent<BossHealth>();
+            attackSound.Play();
+            animator.SetTrigger("AttackSides");
 
-            if (hit != null)
-            {
-                Debug.Log("Blanqueado" + enemy.name);
-                hit.Flash();
-            }
+            Collider2D[] hitEnemiesSides = Physics2D.OverlapCircleAll(attackPointSides.position, attackRange, enemyLayers);
 
-            if (hitDummy != null)
+            foreach (Collider2D enemy in hitEnemiesSides)
             {
-                hitDummy.DoHitWhite();
-            }
+                Blink hit = enemy.GetComponent<Blink>();
+                HitWhite hitDummy = enemy.GetComponent<HitWhite>();
+                BossHealth bossHit = enemy.GetComponent<BossHealth>();
 
-            if (bossHit != null)
-            {
-                Debug.Log("Golpiado " + enemy.name);
-                bossHit.TakeDmg(attackDamage);
+                if (hit != null)
+                {
+                    Debug.Log("Blanqueado" + enemy.name);
+                    hit.Flash();
+                }
+
+                if (hitDummy != null)
+                {
+                    hitDummy.DoHitWhite();
+                }
+
+                if (bossHit != null)
+                {
+                    Debug.Log("Golpiado " + enemy.name);
+                    bossHit.TakeDmg(attackDamage);
+                }
             }
         }
     }
 
     void AttackUp()
     {
-        animator.SetTrigger("AttackUp");
-
-        Collider2D[] hitEnemiesUp = Physics2D.OverlapCircleAll(attackPointUp.position, attackRange, enemyLayers);
-
-        foreach (Collider2D enemy in hitEnemiesUp)
+        if (stamina.UseEnergy(attackCost))
         {
-            Blink hit = enemy.GetComponent<Blink>();
-            HitWhite hitDummy = enemy.GetComponent<HitWhite>();
-            BossHealth bossHit = enemy.GetComponent<BossHealth>();
+            attackSound.Play();
+            animator.SetTrigger("AttackUp");
 
-            if (hit != null)
-            {
-                Debug.Log("Blanqueado" + enemy.name);
-                hit.Flash();
-            }
+            Collider2D[] hitEnemiesUp = Physics2D.OverlapCircleAll(attackPointUp.position, attackRange, enemyLayers);
 
-            if (hitDummy != null)
+            foreach (Collider2D enemy in hitEnemiesUp)
             {
-                hitDummy.DoHitWhite();
-            }
+                Blink hit = enemy.GetComponent<Blink>();
+                HitWhite hitDummy = enemy.GetComponent<HitWhite>();
+                BossHealth bossHit = enemy.GetComponent<BossHealth>();
 
-            if (bossHit != null)
-            {
-                Debug.Log("Golpiado " + enemy.name);
-                bossHit.TakeDmg(attackDamage);
+                if (hit != null)
+                {
+                    Debug.Log("Blanqueado" + enemy.name);
+                    hit.Flash();
+                }
+
+                if (hitDummy != null)
+                {
+                    hitDummy.DoHitWhite();
+                }
+
+                if (bossHit != null)
+                {
+                    Debug.Log("Golpiado " + enemy.name);
+                    bossHit.TakeDmg(attackDamage);
+                }
             }
         }
     }
