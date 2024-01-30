@@ -4858,7 +4858,7 @@ PrefabInstance:
     - target: {fileID: 4040444141185376587, guid: d9b25364e15019a419de6b3bf1abbcaa,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.6067688
+      value: -1.45
       objectReference: {fileID: 0}
     - target: {fileID: 4040444141185376587, guid: d9b25364e15019a419de6b3bf1abbcaa,
         type: 3}
@@ -9969,21 +9969,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 618543684}
     m_Modifications:
-    - target: {fileID: 634344105823805906, guid: ee9c8bd8f8719fc4bb077ec697850e10,
-        type: 3}
-      propertyPath: tr
-      value: 
-      objectReference: {fileID: 1939265888}
-    - target: {fileID: 634344105823805906, guid: ee9c8bd8f8719fc4bb077ec697850e10,
-        type: 3}
-      propertyPath: footSteps
-      value: 
-      objectReference: {fileID: 1653426310}
-    - target: {fileID: 634344105823805906, guid: ee9c8bd8f8719fc4bb077ec697850e10,
-        type: 3}
-      propertyPath: jumpSound
-      value: 
-      objectReference: {fileID: 1653426309}
     - target: {fileID: 836130489334011582, guid: ee9c8bd8f8719fc4bb077ec697850e10,
         type: 3}
       propertyPath: m_LocalBounds.m_Center.x
@@ -10136,6 +10121,11 @@ PrefabInstance:
       propertyPath: slider
       value: 
       objectReference: {fileID: 1061240362}
+    - target: {fileID: 8215374752680485007, guid: ee9c8bd8f8719fc4bb077ec697850e10,
+        type: 3}
+      propertyPath: slider
+      value: 
+      objectReference: {fileID: 1061240362}
     - target: {fileID: 8593830673411425771, guid: ee9c8bd8f8719fc4bb077ec697850e10,
         type: 3}
       propertyPath: fadeToBlack
@@ -10162,18 +10152,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ee9c8bd8f8719fc4bb077ec697850e10, type: 3}
---- !u!82 &1653426309 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 2150561718219957820, guid: ee9c8bd8f8719fc4bb077ec697850e10,
-    type: 3}
-  m_PrefabInstance: {fileID: 1653426308}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1653426310 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7605292138450467591, guid: ee9c8bd8f8719fc4bb077ec697850e10,
-    type: 3}
-  m_PrefabInstance: {fileID: 1653426308}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1653426311 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4317860123883828310, guid: ee9c8bd8f8719fc4bb077ec697850e10,
@@ -11948,12 +11926,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 826192471}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!96 &1939265888 stripped
-TrailRenderer:
-  m_CorrespondingSourceObject: {fileID: 608940054043915935, guid: ee9c8bd8f8719fc4bb077ec697850e10,
-    type: 3}
-  m_PrefabInstance: {fileID: 1653426308}
-  m_PrefabAsset: {fileID: 0}
 --- !u!43 &2006355113
 Mesh:
   m_ObjectHideFlags: 0
