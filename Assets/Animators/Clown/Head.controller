@@ -181,9 +181,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 15
-  _delay: 2
-  _delaySP: 1
-  _delayFall: 0.25
+  _delay: 1.5
+  _delaySP: 0.5
+  _delayFall: 0.2
   handPrefab: {fileID: 5381330737245252737, guid: 05f0989df17cdf14e94b3cad05c20498,
     type: 3}
   _shakeHand: 0.2
@@ -491,7 +491,7 @@ MonoBehaviour:
   _speed: 15
   _delay: 2
   _delaySP: 1
-  _delayFall: 0.25
+  _delayFall: 0.2
   handPrefab: {fileID: 2284737270421486427, guid: 72536b487b2e53d449b8c3d87376b2a4,
     type: 3}
   _shakeHand: 0.2
@@ -1051,12 +1051,12 @@ MonoBehaviour:
     type: 3}
   rightHandPrefab: {fileID: 2284737270421486427, guid: 72536b487b2e53d449b8c3d87376b2a4,
     type: 3}
-  _maxSpeed: 15
+  _maxSpeed: 20
   _minSpeed: 2
   _acceleration: 0.2
   _delay: 1
-  _maxSpeedSP: 30
-  _accelerationSP: 0.4
+  _maxSpeedSP: 35
+  _accelerationSP: 0.6
   _delaySP: 0.5
   _shakeIntensity: 5
   _shakeFrequency: 5
