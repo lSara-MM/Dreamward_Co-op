@@ -20,12 +20,12 @@ public class BossBulletHell : StateMachineBehaviour
         
         if (_timer >= delay)
         {
-            animator.SetInteger("ChooseAttack", 5);//hardcoded, when == 5 shoot
+            animator.SetInteger("ChooseAttack", 9);//hardcoded, when == 9 shoot
         }
 
         if (_timer >= end)
         {
-            animator.SetTrigger("Exit");//hardcoded, when == 5 shoot
+            animator.SetTrigger("Exit");
         }
     }
 
