@@ -13,6 +13,7 @@ public class BossChaseHand : StateMachineBehaviour
 
     private float _fallTimer = 0;
     [SerializeField] private float _delayFall = 0.01f;
+    [SerializeField] private float _delayFallSP = 0.01f;
 
     private Vector2 _landingPos = new Vector2(0, 0);
     [SerializeField] private GameObject handPrefab;
@@ -56,6 +57,7 @@ public class BossChaseHand : StateMachineBehaviour
         if (_boss.bossSP)
         {
             _delay = _delaySP;
+            _delayFall = _delayFallSP;
         }
 
         if (_timer >= _delay)
