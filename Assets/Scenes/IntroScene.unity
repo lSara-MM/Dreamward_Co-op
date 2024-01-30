@@ -167,7 +167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pressAnyKey: 1
-  passToScene: LoreMaster
+  passToScene: IntroImage
   dialogue: {fileID: 11400000, guid: a5aef9d379f28914da607f98ef8c9878, type: 2}
   boss1: {fileID: 11400000, guid: 219db7f10bcc7234f91f4f102b7e2681, type: 2}
   boss2: {fileID: 11400000, guid: 1912c596e0bdf9449a7702dd1c2e2b80, type: 2}
