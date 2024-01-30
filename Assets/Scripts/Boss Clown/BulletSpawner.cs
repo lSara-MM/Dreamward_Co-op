@@ -60,7 +60,7 @@ public class BulletSpawner : MonoBehaviour
 
     private void Fire()
     {
-        if (bullet && _animator.GetInteger("ChooseAttack") == 5)
+        if (bullet && _animator.GetInteger("ChooseAttack") == 9)
         {
             spawnedBullet = Instantiate(bullet, transform.position, Quaternion.identity);
             if (_boss.bossSP)
