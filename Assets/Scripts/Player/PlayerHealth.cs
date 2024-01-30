@@ -55,17 +55,15 @@ public class PlayerHealth : MonoBehaviour
         if (dificultySelector != null)
         {
             dificultySelectorScript = dificultySelector.GetComponent<DificultySelector>();
-        }
 
-        if (dificultySelectorScript.hardMode)
-        {
-            currentHealth = 1;
-            maxHealth = 1;
-            maxInitHealth = 1;
+            if (dificultySelectorScript.hardMode)
+            {
+                currentHealth = 1;
+                maxHealth = 1;
+                maxInitHealth = 1;
+            }
         }
-
-        _boss = GameObject.Find("Enemy").gameObject;
-        _bossAnimator = _boss.GetComponent<Animator>();
+      _boss = GameObject.Find("Enemy").gameObject;  _bossAnimator = _boss.GetComponent<Animator>();// :D
     }
 
     // Update is called once per frame

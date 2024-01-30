@@ -596,7 +596,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 0}
-  rechargeSpeed: 1
+  rechargeSpeed: 10
   debugStamina: 20
   maxEnergy: 100
   currentEnergy: 0
