@@ -40,7 +40,6 @@ public class Stamina : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.F2))
         {
-            Debug.Log("God mode");
             _godMode = !_godMode;
         }
         if (Input.GetKeyDown(KeyCode.F7))
