@@ -56,7 +56,7 @@ public class DialogueSelector : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Jump"))// button jump = space/A button
+        if (Input.GetButtonDown("Fire2"))// button jump = space/B button
         {
             if (Dialogue.Value == 0)
             {
