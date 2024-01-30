@@ -10,6 +10,8 @@ public class SceneSelectorBell : MonoBehaviour
     public FloatSO Dialogue;
     public int DialogueSelector; // 0 = Intro dialogue, 1 = Boss 1 dialogue, 2 = Boss 2 Dialogue, 3 = None
 
+    public Rigidbody2D player;
+
     public AudioSource bellSound;
 
     // Start is called before the first frame update
@@ -27,6 +29,7 @@ public class SceneSelectorBell : MonoBehaviour
     {
         if (PassScene != null && collision.gameObject.tag == "Player")
         {
+            player.gravityScale = 2f;
             Dialogue.Value = DialogueSelector;
             bellSound.Play();
             SceneManager.scene = PassScene;
