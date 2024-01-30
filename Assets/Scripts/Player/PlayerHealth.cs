@@ -184,11 +184,8 @@ public class PlayerHealth : MonoBehaviour
     {
         if (collision.gameObject.layer == 7) //Layer Damage = 7
         {
-            if (!PlayerMovement.isDashing) //Si no está Dasheando recibe daño
-            {
-                Debug.Log("Take Damage"); //Función para recibir daño 
-                TakeDmg(1);
-            }
+            Debug.Log("Take Damage"); //Función para recibir daño 
+            TakeDmg(1);
         }
     }
 

@@ -29,6 +29,8 @@ public class BossChaseHand : StateMachineBehaviour
     private AudioSource _clownAudio;
     public AudioClip _groundHit;
 
+    private Animator _handAnimator;
+
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
@@ -43,6 +45,9 @@ public class BossChaseHand : StateMachineBehaviour
         _handTransform = GameObject.Find(handPrefab.name).transform.Find("Hand");
         _startingPoint = new Vector2(_handTransform.position.x, _handTransform.position.y);
         _goStart = false;
+
+        _handAnimator = GameObject.Find(handPrefab.name).transform.Find("Hand").gameObject.GetComponent<Animator>();
+        _handAnimator.SetTrigger("EnterFist");
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -77,6 +82,7 @@ public class BossChaseHand : StateMachineBehaviour
                     if (Vector2.Distance(_handTransform.position, _startingPoint) < 0.1f)
                     {
                         animator.SetTrigger("Exit");
+                        _handAnimator.SetTrigger("Exit");
                     }
                 }
             }
@@ -85,7 +91,7 @@ public class BossChaseHand : StateMachineBehaviour
             {
                 if (_landingPos == new Vector2(999, 999))// choose where to land
                 {
-                    _landingPos = new Vector2(_player.position.x, _player.position.y);
+                    _landingPos = new Vector2(_player.position.x, -2.71f);
                 }
 
                 _fallTimer += Time.deltaTime;

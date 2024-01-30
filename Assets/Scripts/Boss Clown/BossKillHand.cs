@@ -2,35 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossSpawn : StateMachineBehaviour
+public class BossKillHand : StateMachineBehaviour
 {
-    [SerializeField] private float speed = 5;
-    [SerializeField] private float _delay = 5;
-    private float _timer;
-    private Vector2 _target = new Vector2(0, 0);  
+    private Animator _bossAnimator;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
-    //override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //
-    //}
+    override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        _bossAnimator = GameObject.Find("Enemy").transform.gameObject.GetComponent<Animator>();
+    }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        animator.transform.position = Vector2.MoveTowards(animator.transform.position, _target, speed * Time.deltaTime);
-
-        if (Vector2.Distance(animator.transform.position, _target) < 0.0001f)
+        if (_bossAnimator.GetCurrentAnimatorStateInfo(0).IsName("Death"))
         {
-            _timer += Time.deltaTime;
-            animator.SetFloat("SpeedAnim", 1);
-            //TODO: play audio
+            animator.SetTrigger("Death");
+        }
 
-            if (_timer >= _delay)
-            {
-                _timer = 0;
-                animator.SetTrigger("Exit");
-            }
+        if (_bossAnimator.GetCurrentAnimatorStateInfo(0).IsName("BossWin"))
+        {
+            animator.SetTrigger("BossWins");
         }
     }
 

@@ -17,11 +17,14 @@ public class WinLose : MonoBehaviour
     [SerializeField] private GameObject loseCanvas;
     public bool _lost;
 
+    private Animator _bossAnimator;
+
     // Start is called before the first frame update
     void Start()
     {
         winCanvas.SetActive(false);
         loseCanvas.SetActive(false);
+        _bossAnimator = GameObject.Find("Enemy").transform.gameObject.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -29,9 +32,12 @@ public class WinLose : MonoBehaviour
     {
         if (_won)
         {
-            if (fade.Fade())
+            if (_bossAnimator.GetCurrentAnimatorStateInfo(0).IsName("Finish"))
             {
-                OpenWin();
+                if (fade.Fade())
+                {
+                    OpenWin();
+                }
             }
         }
 
