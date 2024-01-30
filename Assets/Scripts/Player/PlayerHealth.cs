@@ -66,7 +66,11 @@ public class PlayerHealth : MonoBehaviour
         }
 
         _boss = GameObject.Find("Enemy").gameObject; // Andreu ni lo toques
-        _bossAnimator = _boss.GetComponent<Animator>(); // Andreu ni lo toques
+
+        if (_boss != null)
+        {
+            _bossAnimator = _boss.GetComponent<Animator>(); // Andreu ni lo toques
+        }
     }
 
     // Update is called once per frame
