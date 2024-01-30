@@ -21,6 +21,7 @@ public class BossSweepHand : StateMachineBehaviour
     [SerializeField] private float _accelerationSP = 0.4f;
 
     private Animator _animatorRef;
+    private Animator _handAnimator;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -34,6 +35,9 @@ public class BossSweepHand : StateMachineBehaviour
         _changeLinear = handInHierarchy.transform.Find("SweepCurve").GetComponent<BGCcCursorChangeLinear>();
         _changeLinear.PointReached += PointReached;
         _accelerate = true;
+
+        _handAnimator = GameObject.Find(handPrefab.name).transform.Find("Hand").gameObject.GetComponent<Animator>();
+        _handAnimator.SetTrigger("EnterSweep");
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -80,6 +84,7 @@ public class BossSweepHand : StateMachineBehaviour
         {
             _accelerate = true;
             _animatorRef.SetTrigger("Exit");
+            _handAnimator.SetTrigger("Exit");
         }
 
         else if (e.PointIndex == 6)

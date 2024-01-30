@@ -40,6 +40,10 @@ public class BossRainHand : StateMachineBehaviour
     private AudioSource _clownAudio;
     public AudioClip _groundHit;
 
+    private Animator _leftHandAnimator;
+    private Animator _rightHandAnimator;
+
+
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
@@ -77,6 +81,11 @@ public class BossRainHand : StateMachineBehaviour
 
         _realDelay = _delay;
         _timer = 0f;
+
+        _leftHandAnimator = GameObject.Find(leftHandPrefab.name).transform.Find("Hand").gameObject.GetComponent<Animator>();
+        _leftHandAnimator.SetTrigger("EnterFist");
+        _rightHandAnimator = GameObject.Find(rightHandPrefab.name).transform.Find("Hand").gameObject.GetComponent<Animator>();
+        _rightHandAnimator.SetTrigger("EnterFist");
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -170,6 +179,8 @@ public class BossRainHand : StateMachineBehaviour
         else if (e.PointIndex == 0)
         {
             _animatorRef.SetTrigger("Exit");
+            _leftHandAnimator.SetTrigger("Exit");
+            _rightHandAnimator.SetTrigger("Exit");
         }
     }
 
