@@ -48,10 +48,10 @@ ParticleSystem:
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
-  emitterVelocityMode: 1
-  looping: 1
+  emitterVelocityMode: 0
+  looping: 0
   prewarm: 0
-  playOnAwake: 0
+  playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -117,8 +117,8 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.2
-      minScalar: 0.7
+      scalar: 0.1
+      minScalar: 1.7
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -289,7 +289,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 3
       scalar: 1
-      minScalar: 3
+      minScalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -3790,14 +3790,14 @@ ParticleSystem:
         m_RotationOrder: 4
     minKillSpeed: 0
     maxKillSpeed: 0
-    radiusScale: 1
+    radiusScale: 0.65
     collidesWith:
       serializedVersion: 2
-      m_Bits: 4294967295
+      m_Bits: 839
     maxCollisionShapes: 256
     quality: 0
     voxelSize: 0.5
-    collisionMessages: 1
+    collisionMessages: 0
     collidesWithDynamic: 1
     interiorCollisions: 0
   TriggerModule:
@@ -4799,19 +4799,19 @@ ParticleSystemRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_MeshDistribution: 0
   m_SortMode: 0
-  m_MinParticleSize: 0
+  m_MinParticleSize: 0.03
   m_MaxParticleSize: 0.5
   m_CameraVelocityScale: 0
-  m_VelocityScale: 0.02
-  m_LengthScale: 2
+  m_VelocityScale: 0
+  m_LengthScale: 1
   m_SortingFudge: 0
   m_NormalDirection: 1
   m_ShadowBias: 0
   m_RenderAlignment: 0
-  m_Pivot: {x: 0, y: 0, z: 0}
+  m_Pivot: {x: 0, y: -0.15, z: 0}
   m_Flip: {x: 0, y: 0, z: 0}
   m_EnableGPUInstancing: 1
   m_ApplyActiveColorSpace: 1
@@ -4844,4 +4844,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerHealth: {fileID: 0}
-  _dmg: 0
+  _dmg: 1

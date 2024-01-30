@@ -11544,8 +11544,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.00044998527, y: -0.00085002184, z: 0}
-    m_Extent: {x: 0.99994993, y: 1.00015, z: 0}
+    m_Center: {x: -0.00070002675, y: 0.00020003319, z: 0}
+    m_Extent: {x: 1.0002, y: 1.0007, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -14332,8 +14332,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.000050008297, y: -0.00014996529, z: 0}
-    m_Extent: {x: 1.0002501, y: 1.00025, z: 0}
+    m_Center: {x: 0.00015002489, y: -0.00015002489, z: 0}
+    m_Extent: {x: 1.00015, y: 1.0006499, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -16214,6 +16214,46 @@ PrefabInstance:
       propertyPath: _playerHealth
       value: 
       objectReference: {fileID: 1689337271}
+    - target: {fileID: 4714186207777206045, guid: c31556b1672a6444da479d87f7efc3fa,
+        type: 3}
+      propertyPath: m_Pivot.y
+      value: -0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4714186207777206045, guid: c31556b1672a6444da479d87f7efc3fa,
+        type: 3}
+      propertyPath: m_AllowRoll
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4714186207777206045, guid: c31556b1672a6444da479d87f7efc3fa,
+        type: 3}
+      propertyPath: m_RenderMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4714186207777206045, guid: c31556b1672a6444da479d87f7efc3fa,
+        type: 3}
+      propertyPath: m_LengthScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4714186207777206045, guid: c31556b1672a6444da479d87f7efc3fa,
+        type: 3}
+      propertyPath: m_VelocityScale
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4714186207777206045, guid: c31556b1672a6444da479d87f7efc3fa,
+        type: 3}
+      propertyPath: m_MaxParticleSize
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4714186207777206045, guid: c31556b1672a6444da479d87f7efc3fa,
+        type: 3}
+      propertyPath: m_MinParticleSize
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 4714186207777206045, guid: c31556b1672a6444da479d87f7efc3fa,
+        type: 3}
+      propertyPath: m_FreeformStretching
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4832783355955770117, guid: c31556b1672a6444da479d87f7efc3fa,
         type: 3}
       propertyPath: looping
@@ -16221,8 +16261,78 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4832783355955770117, guid: c31556b1672a6444da479d87f7efc3fa,
         type: 3}
+      propertyPath: lengthInSec
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4832783355955770117, guid: c31556b1672a6444da479d87f7efc3fa,
+        type: 3}
       propertyPath: playOnAwake
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4832783355955770117, guid: c31556b1672a6444da479d87f7efc3fa,
+        type: 3}
+      propertyPath: autoRandomSeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4832783355955770117, guid: c31556b1672a6444da479d87f7efc3fa,
+        type: 3}
+      propertyPath: SizeModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4832783355955770117, guid: c31556b1672a6444da479d87f7efc3fa,
+        type: 3}
+      propertyPath: ShapeModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4832783355955770117, guid: c31556b1672a6444da479d87f7efc3fa,
+        type: 3}
+      propertyPath: emitterVelocityMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4832783355955770117, guid: c31556b1672a6444da479d87f7efc3fa,
+        type: 3}
+      propertyPath: InitialModule.rotation3D
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4832783355955770117, guid: c31556b1672a6444da479d87f7efc3fa,
+        type: 3}
+      propertyPath: CollisionModule.radiusScale
+      value: 0.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 4832783355955770117, guid: c31556b1672a6444da479d87f7efc3fa,
+        type: 3}
+      propertyPath: CollisionModule.collisionMessages
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4832783355955770117, guid: c31556b1672a6444da479d87f7efc3fa,
+        type: 3}
+      propertyPath: InitialModule.startSize.minScalar
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4832783355955770117, guid: c31556b1672a6444da479d87f7efc3fa,
+        type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4832783355955770117, guid: c31556b1672a6444da479d87f7efc3fa,
+        type: 3}
+      propertyPath: CollisionModule.collidesWith.m_Bits
+      value: 839
+      objectReference: {fileID: 0}
+    - target: {fileID: 4832783355955770117, guid: c31556b1672a6444da479d87f7efc3fa,
+        type: 3}
+      propertyPath: CollisionModule.collidesWithDynamic
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4832783355955770117, guid: c31556b1672a6444da479d87f7efc3fa,
+        type: 3}
+      propertyPath: InitialModule.gravityModifier.scalar
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4832783355955770117, guid: c31556b1672a6444da479d87f7efc3fa,
+        type: 3}
+      propertyPath: InitialModule.startLifetime.minScalar
+      value: 1.7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
