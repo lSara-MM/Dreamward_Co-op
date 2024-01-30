@@ -37,10 +37,14 @@ public class BossRainHand : StateMachineBehaviour
     [SerializeField] private float _shakeFrequency = 5;
     [SerializeField] private float _shakeTime = 0.5f;
 
+    private AudioSource _clownAudio;
+    public AudioClip _groundHit;
+
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         _boss = animator.gameObject.GetComponent<BossHealth>();
+        _clownAudio = animator.gameObject.GetComponent<AudioSource>();
 
         leftHandInHierarchy = GameObject.Find(leftHandPrefab.name).transform.Find("RainCurve").gameObject;
         leftHandInHierarchy.SetActive(true);
@@ -159,6 +163,8 @@ public class BossRainHand : StateMachineBehaviour
             _changeLinearLeft.Speed = 0;
             _accelerate = false;
             CameraShake.Instance.ShakeCamera(_shakeIntensity, _shakeFrequency, _shakeTime);
+            _clownAudio.clip = _groundHit;
+            _clownAudio.PlayDelayed(0.0f);
         }
 
         else if (e.PointIndex == 0)

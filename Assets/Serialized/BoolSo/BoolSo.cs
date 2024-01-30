@@ -4,12 +4,11 @@ using UnityEngine;
 
 [CreateAssetMenu]
 
-public class FloatSO : ScriptableObject
+public class BoolSO : ScriptableObject
 {
-    [SerializeField]
-    private float _value;
+    [SerializeField] private bool _value;
 
-    public float Value
+    public bool Value
     {
         get { return _value; }
         set { _value = value; }

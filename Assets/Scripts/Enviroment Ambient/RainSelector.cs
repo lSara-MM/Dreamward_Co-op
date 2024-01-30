@@ -14,6 +14,8 @@ public class RainSelector : MonoBehaviour
 
     public AudioSource bellSound;
 
+    [SerializeField] private LevelsManager _lvlsManager;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,18 +37,20 @@ public class RainSelector : MonoBehaviour
 
             if (isRaining)
             {
-                dificultySelector.hardMode = true;
-                rain.SetActive(true);
                 rainParticle1.Play();
                 rainParticle2.Play();
             }
             else
             {
-                dificultySelector.hardMode = false;
-                rain.SetActive(false);
                 rainParticle1.Pause();
                 rainParticle2.Pause();
             }
+
+            dificultySelector.hardMode = isRaining;
+            rain.SetActive(isRaining);
+
+            // Change bells' colors
+            _lvlsManager.ChangeNightmare(isRaining);
         }
     }
 }

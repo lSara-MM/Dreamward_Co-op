@@ -16,8 +16,7 @@ public class BossHealth : MonoBehaviour
     public int currentHealth = 300;
     public int maxHealth = 500;
 
-    //[SerializeField] private GameObject game;
-    //[SerializeField] private GameObject winCanvas;
+    [SerializeField] private WinLose _winLose;
 
     // Start is called before the first frame update
     void Start()
@@ -29,8 +28,6 @@ public class BossHealth : MonoBehaviour
         slider.maxValue = maxHealth;
         slider.minValue = 0;
         slider.value = currentHealth;
-
-        //winCanvas.SetActive(false);
     }
 
     // Update is called once per frame
@@ -40,7 +37,7 @@ public class BossHealth : MonoBehaviour
         {
             currentHealth = maxHealth;
         }
-        if (currentHealth <= maxHealth / 2 && bossSP == false)
+        if (currentHealth <= maxHealth / 2 && bossSP == false && !_winLose._won)
         {
             bossSP = true;
             Debug.Log("SA ENFADAO");
@@ -85,7 +82,7 @@ public class BossHealth : MonoBehaviour
             // boss dead
             currentHealth = 0;
             Death();
-            //OpenWin();
+            _winLose._won = true;
         }
     }
 

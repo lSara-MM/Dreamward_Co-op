@@ -24,11 +24,7 @@ public class PlayerHealth : MonoBehaviour
 
     private Blink _blink;
 
-    [Header("Lose")]
-    [SerializeField] private GameObject game;
-    [SerializeField] private GameObject loseCanvas;
-    [SerializeField] private FadeToBlack fade;
-    private bool _lost;
+    [SerializeField] private WinLose _winLose;
 
     [Header("Audio")]
     public AudioClip[] Clip;
@@ -48,9 +44,9 @@ public class PlayerHealth : MonoBehaviour
     void Start()
     {
         currentHealth = maxHealth;
-        loseCanvas.SetActive(false);
 
         _blink = GetComponent<Blink>();
+        _winLose = GetComponent<WinLose>();
         _move = GetComponent<PlayerMovement>();
         aud = GetComponent<AudioSource>();
 
@@ -70,7 +66,11 @@ public class PlayerHealth : MonoBehaviour
         }
 
         _boss = GameObject.Find("Enemy").gameObject; // Andreu ni lo toques
-        _bossAnimator = _boss.GetComponent<Animator>(); // Andreu ni lo toques
+
+        if (_boss != null)
+        {
+            _bossAnimator = _boss.GetComponent<Animator>(); // Andreu ni lo toques
+        }
     }
 
     // Update is called once per frame
@@ -110,14 +110,6 @@ public class PlayerHealth : MonoBehaviour
                 _timer = 0;
             }
         }
-
-        if (_lost)
-        {
-            if (fade.Fade())
-            {
-                OpenLose();
-            }
-        }
     }
 
     public void TakeDmg(int dmg_)
@@ -141,9 +133,8 @@ public class PlayerHealth : MonoBehaviour
             }
             else
             {
-                // player dead            
-                //OpenLose();
-                _lost = true;
+                // player dead     
+                _winLose._lost = true;
                 _bossAnimator.SetTrigger("BossWins");
             }
         }
@@ -181,13 +172,6 @@ public class PlayerHealth : MonoBehaviour
                 hearts[i].enabled = false;
             }
         }
-    }
-
-    public void OpenLose()
-    {
-        game.SetActive(false);
-        loseCanvas.SetActive(true);
-        _lost = false;
     }
 
     void AudioPlay(AudioClip a)

@@ -20,6 +20,8 @@ public class SpawnManager : MonoBehaviour
 
     public GameObject Dificulty;
 
+    GameObject musicIntroImage;
+
     public SpriteRenderer fadeToBlack;
 
     PlayerMovement playerMovement;
@@ -57,6 +59,11 @@ public class SpawnManager : MonoBehaviour
 
         Tickling = false;
         timerReset = false;
+
+        musicIntroImage = GameObject.Find("DialogueSound");
+
+        if(musicIntroImage != null)
+            Destroy(musicIntroImage);
 
         //if (isHub) 
         //{
