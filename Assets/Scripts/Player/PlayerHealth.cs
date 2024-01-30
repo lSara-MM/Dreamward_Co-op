@@ -18,14 +18,19 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private Sprite fullHeart;
     [SerializeField] private Sprite emptyHeart;
 
-    [SerializeField] private int debugLife = 1;
+    [Header("Debug")]
+    [SerializeField] private bool _godMode = false;
+    [SerializeField] private int _debugLife = 1;
+
     private Blink _blink;
 
+    [Header("Lose")]
     [SerializeField] private GameObject game;
     [SerializeField] private GameObject loseCanvas;
     [SerializeField] private FadeToBlack fade;
     private bool _lost;
 
+    [Header("Audio")]
     public AudioClip[] Clip;
     AudioSource aud;
 
@@ -77,7 +82,12 @@ public class PlayerHealth : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F1))
         {
             Debug.Log("Dmg player");
-            TakeDmg(debugLife);
+            TakeDmg(_debugLife);
+        }
+        if (Input.GetKeyDown(KeyCode.F2))
+        {
+            Debug.Log("God mode");
+            _godMode = !_godMode;
         }
         // Reset all
         if (Input.GetKeyDown(KeyCode.F4))
@@ -112,7 +122,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDmg(int dmg_)
     {
-        if (!_isInvuln && !_move.isDashing)
+        if (!_godMode && !_isInvuln && !_move.isDashing)
         {
             currentHealth = Mathf.Clamp(currentHealth - dmg_, 0, maxHealth);
 

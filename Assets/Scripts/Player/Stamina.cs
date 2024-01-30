@@ -8,12 +8,16 @@ public class Stamina : MonoBehaviour
 {
     [SerializeField] private Slider slider;
     [SerializeField] private float rechargeSpeed = 1;
-    [SerializeField] private int debugStamina = 20;
 
     public float maxEnergy = 100;
     public float currentEnergy;
 
     public Text textEnergyBar;
+
+    [Header("Debug")]
+    [SerializeField] private bool _godMode = false;
+    [SerializeField] private int debugStamina = 20;
+
 
     // Start is called before the first frame update
     void Start()
@@ -34,6 +38,11 @@ public class Stamina : MonoBehaviour
             slider.value = currentEnergy;
         }
 
+        if (Input.GetKeyDown(KeyCode.F2))
+        {
+            Debug.Log("God mode");
+            _godMode = !_godMode;
+        }
         if (Input.GetKeyDown(KeyCode.F7))
         {
             Debug.Log("Use Debug Stamina");
@@ -43,6 +52,7 @@ public class Stamina : MonoBehaviour
 
     public bool UseEnergy(float energy)
     {
+        if (_godMode) { return true; }
         if (currentEnergy >= energy)
         {
             currentEnergy -= energy;
