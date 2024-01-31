@@ -35,6 +35,7 @@ public class DialogueManager : MonoBehaviour
         textHasChanged = false;
         returnFromBlack = false;
         start = true;
+        DrawsInOrder();
 
         dialogue[0].SetActive(true);
     }
@@ -114,13 +115,21 @@ public class DialogueManager : MonoBehaviour
     {
         if(Dialogue.Value == 0) 
         {
-            if(storyTeller == 1) 
+            if(storyTeller == 0) 
             {
                 draws[0].SetActive(true);
             }
-            else 
+
+            if (storyTeller == 1)
             {
+                draws[1].SetActive(true);
                 draws[0].SetActive(false);
+            }
+            
+            if (storyTeller == 2)
+            {
+                draws[1].SetActive(false);
+                draws[0].SetActive(true);
             }
         }
     }
