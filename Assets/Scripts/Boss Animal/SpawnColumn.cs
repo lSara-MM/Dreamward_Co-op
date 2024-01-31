@@ -4,38 +4,40 @@ using UnityEngine;
 
 public class SpawnColumn : MonoBehaviour
 {
+    [SerializeField] private GameObject pillar;
+    [SerializeField] private ParticleSystem groundTremors;
+    [SerializeField] private ParticleSystem ghost;
+    [SerializeField] private float killHeight = 13.0f;
 
-    [SerializeField] GameObject pilar;
-    [SerializeField] ParticleSystem groundTremors;
-    [SerializeField] ParticleSystem ghost;
-    [SerializeField] float killHeigth = 13.0f;
     public AudioSource sound;
     public bool spawn;
+
+    [Header("Bools guarros")]
+    bool pillarCreated = false;
+    GameObject instancePillar = null;
+    float dtWait = 0.0f;
+
     // Start is called before the first frame update
     void Start()
     {
         
     }
 
-    bool pilarCreated = false;
-    GameObject instancePilar = null;
-    float dtWait = 0.0f;
-
     // Update is called once per frame
     void Update()
     {
-        if (pilar != null) 
+        if (pillar != null) 
         {
-            if(spawn && !pilarCreated) //Recibir un mensaje
+            if(spawn && !pillarCreated) //Recibir un mensaje
             {
-                instancePilar = Instantiate(pilar);
-                instancePilar.transform.position = transform.transform.position;
-                pilarCreated = true;
+                instancePillar = Instantiate(pillar);
+                instancePillar.transform.position = transform.transform.position;
+                pillarCreated = true;
                 groundTremors.Play();
                 sound.Play();
                 dtWait = 0.0f;
             }
-            if (pilarCreated) 
+            if (pillarCreated) 
             {
                 dtWait += Time.deltaTime;
 
@@ -43,13 +45,13 @@ public class SpawnColumn : MonoBehaviour
                 {
                     sound.Stop();
                     ghost.Play();
-                    instancePilar.transform.transform.position = instancePilar.transform.transform.position + new Vector3(0, 0.1f, 0);
-                    if (instancePilar.transform.transform.position.y > killHeigth)
+                    instancePillar.transform.transform.position = instancePillar.transform.transform.position + new Vector3(0, 0.1f, 0);
+                    if (instancePillar.transform.transform.position.y > killHeight)
                     {
-                        Destroy(instancePilar);
+                        Destroy(instancePillar);
                         //ghost.Stop();
-                        instancePilar = null;
-                        pilarCreated = false;
+                        instancePillar = null;
+                        pillarCreated = false;
                         spawn = false;
                     }
                 }
