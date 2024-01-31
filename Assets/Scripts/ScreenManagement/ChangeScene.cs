@@ -25,7 +25,10 @@ public class ChangeScene : MonoBehaviour
     {
         if (pressAnyKey && (Input.GetButtonUp("Jump") || Input.anyKeyDown) && !Input.GetKey(KeyCode.Escape))
         {
-            ChangeToScene(passToScene);
+            if (passToScene != "")
+            {
+                ChangeToScene(passToScene);
+            }
         }
     }
 
