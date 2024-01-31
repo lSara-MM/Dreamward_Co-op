@@ -72,11 +72,7 @@ public class SpawnDebry : MonoBehaviour
         if(timer == 0.0f && bossState.bossSP && activeAttack) 
         {
             random = Random.Range(-1, 2);
-            if (bullet && _animator.GetInteger("ChooseAttack") == 6 + ((int)direction)) 
-            {
-                soundSource.clip = sounds[random + 1];
-                soundSource.Play();
-            }
+            
         }
 
         //If not longer attacking deactivate
@@ -95,12 +91,13 @@ public class SpawnDebry : MonoBehaviour
             float speedMod = 0.0f;
             float scale = 1.0f;
             
+                soundSource.clip = sounds[random + 1];
+                soundSource.Play();
+
             switch (random) 
             {
-
                 case -1:
                     {
-                        
                         speedMod = 0.8f;
                         scale = 0.7f;
                         break;

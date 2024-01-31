@@ -16,6 +16,8 @@ public class BossIdle : StateMachineBehaviour
     {
         _Boss = animator.gameObject.GetComponent<BossHealth>();
         realWait = wait;
+        posToMove++; //Cambiar a la posicion de la isla que ir
+        if (posToMove == positions.Length) { posToMove = 0; } //Si se salio del rango del vector ponerlo a 0 de nuevo
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -29,9 +31,6 @@ public class BossIdle : StateMachineBehaviour
         idleTime += Time.deltaTime;
 
         animator.transform.position = Vector3.MoveTowards(animator.transform.position, positions[posToMove], 2 * Time.deltaTime);
-
-        posToMove++; //Cambiar a la posicion de la isla que ir
-        if (posToMove == positions.Length) { posToMove = 0; } //Si se salio del rango del vector ponerlo a 0 de nuevo
 
         if (idleTime >= realWait)
         {
