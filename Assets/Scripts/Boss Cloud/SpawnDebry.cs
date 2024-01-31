@@ -72,11 +72,7 @@ public class SpawnDebry : MonoBehaviour
         if(timer == 0.0f && bossState.bossSP && activeAttack) 
         {
             random = Random.Range(-1, 2);
-            if (bullet && _animator.GetInteger("ChooseAttack") == 6 + ((int)direction)) 
-            {
-                soundSource.clip = sounds[random + 1];
-                soundSource.Play();
-            }
+            
         }
 
         //If not longer attacking deactivate
@@ -95,12 +91,13 @@ public class SpawnDebry : MonoBehaviour
             float speedMod = 0.0f;
             float scale = 1.0f;
             
+                soundSource.clip = sounds[random + 1];
+                soundSource.Play();
+
             switch (random) 
             {
-
                 case -1:
                     {
-                        
                         speedMod = 0.8f;
                         scale = 0.7f;
                         break;
@@ -140,19 +137,19 @@ public class SpawnDebry : MonoBehaviour
     private void WindPush(bool secondPhase)
     {
         delayWind += Time.deltaTime;
-        if (delayWind>= 0.2f) 
+        if (delayWind>= 0.05f) 
         {
             Vector3 newPosplayer;
             newPosplayer = _player.transform.position;
             if (_player.transform.localScale.x / Mathf.Abs(_player.transform.localScale.x) == direction) 
             {
-                if (secondPhase) { newPosplayer.x += 0.35f * direction; }
-                else { newPosplayer.x += 0.15f * direction; }
+                if (secondPhase) { newPosplayer.x += 0.1f * direction; }
+                else { newPosplayer.x += 0.06f * direction; }
             }
             else 
             {
-                if (secondPhase) {newPosplayer.x += 0.15f*direction; }
-                else { newPosplayer.x += 0.08f * direction; }
+                if (secondPhase) {newPosplayer.x += 0.06f*direction; }
+                else { newPosplayer.x += 0.02f * direction; }
                     
             }
             
