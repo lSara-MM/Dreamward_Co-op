@@ -180,8 +180,8 @@ public class BossRainHand : StateMachineBehaviour
 
         else if (e.PointIndex == 0)
         {
-            _leftHandAnimator.SetTrigger("Exit");
-            _rightHandAnimator.SetTrigger("Exit");
+            _leftHandAnimator.SetTrigger("ExitFist");
+            _rightHandAnimator.SetTrigger("ExitFist");
             _animatorRef.SetTrigger("Exit");
         }
     }
