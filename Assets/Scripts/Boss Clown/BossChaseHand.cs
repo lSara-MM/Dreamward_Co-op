@@ -48,7 +48,7 @@ public class BossChaseHand : StateMachineBehaviour
         _goStart = false;
 
         _handAnimator = GameObject.Find(handPrefab.name).transform.Find("Hand").gameObject.GetComponent<Animator>();
-        _handAnimator.SetTrigger("EnterFist");
+        _handAnimator.SetBool("Fisting", true);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -83,7 +83,7 @@ public class BossChaseHand : StateMachineBehaviour
 
                     if (Vector2.Distance(_handTransform.position, _startingPoint) < 0.1f)
                     {
-                        _handAnimator.SetTrigger("ExitFist");
+                        _handAnimator.SetBool("Fisting", false);
                         animator.SetTrigger("Exit");
                     }
                 }

@@ -84,8 +84,8 @@ public class BossRainHand : StateMachineBehaviour
 
         _leftHandAnimator = GameObject.Find(leftHandPrefab.name).transform.Find("Hand").gameObject.GetComponent<Animator>();
         _rightHandAnimator = GameObject.Find(rightHandPrefab.name).transform.Find("Hand").gameObject.GetComponent<Animator>();
-        _leftHandAnimator.SetTrigger("EnterFist");
-        _rightHandAnimator.SetTrigger("EnterFist");
+        _leftHandAnimator.SetBool("Fisting", true);
+        _rightHandAnimator.SetBool("Fisting", true);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -129,12 +129,12 @@ public class BossRainHand : StateMachineBehaviour
 
         }
 
-        //if (_cursorLeft.DistanceRatio > 0.98f || _cursorRight.DistanceRatio > 0.98f)
-        //{
-        //    animator.SetTrigger("Exit");
-        //    _leftHandAnimator.SetTrigger("Exit");
-        //    _rightHandAnimator.SetTrigger("Exit");
-        //}
+        if (_cursorLeft.DistanceRatio > 0.98f || _cursorRight.DistanceRatio > 0.98f)
+        {
+            _animatorRef.SetTrigger("Exit");
+            _rightHandAnimator.SetBool("Fisting",false);
+            _leftHandAnimator.SetBool("Fisting", false);
+        }
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
@@ -178,12 +178,12 @@ public class BossRainHand : StateMachineBehaviour
             _clownAudio.PlayDelayed(0.0f);
         }
 
-        else if (e.PointIndex == 0)
-        {
-            _rightHandAnimator.SetTrigger("ExitFist");
-            _leftHandAnimator.SetTrigger("ExitFist");
-            _animatorRef.SetTrigger("Exit");
-        }
+        //else if (e.PointIndex == 0)
+        //{
+        //    _rightHandAnimator.SetTrigger("ExitFist");
+        //    _leftHandAnimator.SetTrigger("ExitFist");
+        //    _animatorRef.SetTrigger("Exit");
+        //}
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
