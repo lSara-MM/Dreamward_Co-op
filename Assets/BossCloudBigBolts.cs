@@ -6,13 +6,10 @@ public class BossCloudBigBolts : StateMachineBehaviour
 {
     [SerializeField] private StartCouroutine _scriptCouroutine;
 
-    [SerializeField] private GameObject _lightningPrefab;
-    [SerializeField] private GameObject _player;
+    [SerializeField] private GameObject _bigBoltsPrefab;
+    [SerializeField] private int _loops = 1;
 
     [SerializeField] private float _offset = 2f;
-
-    [Header("Particles Parameters")]
-    [SerializeField] private float _psLife = 1f;
     [SerializeField] private float _psDelay = 1;
 
     private BossHealth _boss;
@@ -21,10 +18,9 @@ public class BossCloudBigBolts : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         _boss = animator.gameObject.GetComponent<BossHealth>();
-        _player = GameObject.Find("Player");
         _scriptCouroutine = GameObject.Find("Game").GetComponent<StartCouroutine>();
 
-        _scriptCouroutine.CallCouroutine(_boss, _psDelay, new Vector3(_player.transform.position.x, -3.80f, 0), _offset);
+        _scriptCouroutine.CallBigBoltsCouroutine(_bigBoltsPrefab, _boss, _psDelay, new Vector3(0, -3.80f, 0), _offset, _loops);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

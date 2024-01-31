@@ -12,9 +12,6 @@ public class BossCloudLightning : StateMachineBehaviour
     [SerializeField] private GameObject _player;
 
     [SerializeField] private float _offset = 2f;
-
-    [Header("Particles Parameters")]
-    [SerializeField] private float _psLife = 1f;
     [SerializeField] private float _psDelay = 1;
 
     private BossHealth _boss;
@@ -26,7 +23,7 @@ public class BossCloudLightning : StateMachineBehaviour
         _player = GameObject.Find("Player");
         _scriptCouroutine = GameObject.Find("Game").GetComponent<StartCouroutine>();
 
-        _scriptCouroutine.CallCouroutine(_boss, _psDelay, new Vector3(_player.transform.position.x, -3.80f, 0), _offset);
+        _scriptCouroutine.CallLightningCouroutine(_lightningPrefab, _boss, _psDelay, new Vector3(_player.transform.position.x, -3.80f, 0), _offset);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

@@ -18,7 +18,7 @@ public class LightingAmbient : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        actualLigth = Random.RandomRange(0, lightings.Length);
+        actualLigth = Random.Range(0, lightings.Length);
 
         for(int i = 0; i < lightings.Length; i++)
         {
@@ -33,9 +33,9 @@ public class LightingAmbient : MonoBehaviour
 
         if (!waitLight)
         {
-            if (timing >= Random.RandomRange(minTime, maxTime))
+            if (timing >= Random.Range(minTime, maxTime))
             {
-                actualLigth = Random.RandomRange(0, lightings.Length);
+                actualLigth = Random.Range(0, lightings.Length);
                 waitLight = true;
             }
         }

@@ -23463,7 +23463,7 @@ ParticleSystem:
       properties: 0
       emitProbability: 1
     - serializedVersion: 3
-      emitter: {fileID: 0}
+      emitter: {fileID: 5617050592771464355}
       type: 0
       properties: 0
       emitProbability: 1
@@ -54475,6 +54475,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc6ab218c3410d04a83079953d108b23, type: 3}
+--- !u!198 &5617050592771464355 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 7596118245819473567, guid: dc6ab218c3410d04a83079953d108b23,
+    type: 3}
+  m_PrefabInstance: {fileID: 2637157252471226940}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6814402758952935857 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8793436297066734477, guid: dc6ab218c3410d04a83079953d108b23,

@@ -7,6 +7,7 @@ public class BossIdle : StateMachineBehaviour
     public float wait = 1.0f;
     public float realWait = 0.0f;
     [SerializeField] float idleTime = 0.0f;
+    [SerializeField] int moves = 3;
     private BossHealth _Boss;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -18,7 +19,6 @@ public class BossIdle : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        int moves = 3;
         if (_Boss.bossSP)
         {
             moves = 5;
@@ -32,9 +32,6 @@ public class BossIdle : StateMachineBehaviour
 
             idleTime = 0.0f;
         }
-        
-
-        
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
