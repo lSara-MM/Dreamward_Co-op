@@ -3,9 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+enum PressKey
+{
+    NONE,
+    ANY_KEY,
+    ON_CLICK,
+}
+
 public class ChangeScene : MonoBehaviour
 {
-    [SerializeField] private bool pressAnyKey = false;
+    [SerializeField] private PressKey pressAnyKey = PressKey.NONE;
     [SerializeField] private string passToScene;
 
     [Header("Serialized vars")]
@@ -23,7 +30,15 @@ public class ChangeScene : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (pressAnyKey && (Input.GetButtonUp("Jump") || Input.anyKeyDown) && !Input.GetKey(KeyCode.Escape))
+        if (pressAnyKey == PressKey.ANY_KEY && (Input.GetButtonUp("Jump") || Input.anyKeyDown) && !Input.GetKey(KeyCode.Escape))
+        {
+            if (passToScene != "")
+            {
+                ChangeToScene(passToScene);
+            }
+        }
+        else if (pressAnyKey == PressKey.ON_CLICK && (Input.GetButtonUp("Jump") ||
+            (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1) || Input.GetMouseButtonDown(2))) && !Input.GetKey(KeyCode.Escape))
         {
             if (passToScene != "")
             {

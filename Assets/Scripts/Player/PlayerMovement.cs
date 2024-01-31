@@ -13,6 +13,8 @@ public class PlayerMovement : MonoBehaviour
     public AudioSource jumpSound;
     public AudioSource dashSound;
 
+    bool isJumping = false;
+
     private bool canDash = true;
     public bool isDashing;
     private float dashing = 24f;
@@ -48,8 +50,20 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetButtonDown("Jump") && IsGrounded()) 
         {
+            isJumping = true;
             jumpSound.Play();
             rb.velocity = new Vector2(rb.velocity.x, jumping);
+
+            animator.SetBool("Jump", true);
+        }
+
+        if (isJumping)
+        {
+            if(rb.velocity.y == 0f && IsGrounded())
+            {
+                animator.SetBool("Jump", false);
+                isJumping = false;
+            }
         }
 
         if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f) 
@@ -84,13 +98,16 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // Animations
-        if (horizontal == 0)
+        if (!isJumping)
         {
-            animator.SetBool("Run", false);
-        }
-        else
-        {
-            animator.SetBool("Run", true);
+            if (horizontal == 0)
+            {
+                animator.SetBool("Run", false);
+            }
+            else
+            {
+                animator.SetBool("Run", true);
+            }
         }
 
         rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);

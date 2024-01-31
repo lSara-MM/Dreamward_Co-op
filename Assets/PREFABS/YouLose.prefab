@@ -151,8 +151,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ecfb2ac1b8ca1549a54a74b15d470f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pressAnyKey: 1
+  pressAnyKey: 2
   passToScene: Hub
+  dialogue: {fileID: 0}
+  boss1: {fileID: 0}
+  boss2: {fileID: 0}
 --- !u!1 &1888079968235407446
 GameObject:
   m_ObjectHideFlags: 0
@@ -386,4 +389,4 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Press any button
+  m_Text: Click / (A) to continue
