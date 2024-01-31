@@ -82,7 +82,7 @@ public class DialogueManager : MonoBehaviour
             }
         }
 
-        if (storyTeller != dialogue.Length - 1)
+        if (storyTeller != dialogue.Length)
         {
             if (textHasChanged && !returnFromBlack)
             {
@@ -94,7 +94,10 @@ public class DialogueManager : MonoBehaviour
 
                     DrawsInOrder();
 
-                    dialogue[storyTeller].SetActive(true);
+                    if (storyTeller != dialogue.Length)
+                    {
+                        dialogue[storyTeller].SetActive(true);
+                    }
 
                     textHasChanged = false;
                     returnFromBlack = true;
@@ -129,7 +132,19 @@ public class DialogueManager : MonoBehaviour
             if (storyTeller == 2)
             {
                 draws[1].SetActive(false);
-                draws[0].SetActive(true);
+                draws[2].SetActive(true);
+            }
+
+            if (storyTeller == 4)
+            {
+                draws[2].SetActive(false);
+                draws[1].SetActive(true);
+            }
+
+            if (storyTeller == 5)
+            {
+                draws[1].SetActive(false);
+                draws[3].SetActive(true);
             }
         }
     }
