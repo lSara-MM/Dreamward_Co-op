@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BossCloudLateral : StateMachineBehaviour
 {
-    private float _timer = 0f;
+    [SerializeField] float _timer = 0f;
     [SerializeField] private float delay = 1.0f;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -35,7 +35,8 @@ public class BossCloudLateral : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        animator.SetInteger("ChooseAttack", -1);//Stop shooting
+        animator.SetInteger("ChooseAttack", 11);//Stop shooting
+        _timer = 0.0f;
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
