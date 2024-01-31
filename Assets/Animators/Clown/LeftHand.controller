@@ -219,7 +219,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   _delay: 0
-  target: {x: -12, y: 7}
+  target: {x: 12, y: 0}
 --- !u!91 &9100000
 AnimatorController:
   m_ObjectHideFlags: 0

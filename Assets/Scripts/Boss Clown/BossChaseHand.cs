@@ -93,7 +93,7 @@ public class BossChaseHand : StateMachineBehaviour
             {
                 if (_landingPos == new Vector2(999, 999))// choose where to land
                 {
-                    _landingPos = new Vector2(_player.position.x, -2.71f);
+                    _landingPos = new Vector2(_player.position.x, -3.2f);
                 }
 
                 _fallTimer += Time.deltaTime;
