@@ -999,6 +999,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1650353164}
   - {fileID: 737507964}
   - {fileID: 1928435226}
   - {fileID: 2050346897}
@@ -1393,7 +1394,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &737507964
 Transform:
   m_ObjectHideFlags: 0
@@ -1415,7 +1416,6 @@ Transform:
   - {fileID: 1439543135}
   - {fileID: 53462458}
   - {fileID: 1776913043}
-  - {fileID: 1650353164}
   m_Father: {fileID: 422228669}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &737507965
@@ -1810,8 +1810,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.49604988, y: -0.41199994, z: 0}
-    m_Extent: {x: 10.97305, y: 5.7716, z: 0}
+    m_Center: {x: -0.49664974, y: -0.41124988, z: 0}
+    m_Extent: {x: 10.97355, y: 5.77265, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -2417,8 +2417,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1650353163}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -960, y: -540, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2426,7 +2426,7 @@ Transform:
   - {fileID: 1971890206}
   - {fileID: 221445225}
   - {fileID: 1384647430}
-  m_Father: {fileID: 737507964}
+  m_Father: {fileID: 422228669}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1732656732
 GameObject:
@@ -2889,7 +2889,11 @@ MonoBehaviour:
   - {fileID: 870002424}
   - {fileID: 1384718676}
   - {fileID: 198434347}
-  draws: []
+  draws:
+  - {fileID: 743485724}
+  - {fileID: 1971890205}
+  - {fileID: 221445224}
+  - {fileID: 1384647429}
   storyTeller: 0
   fadeToBlack: {fileID: 598160441}
   fadeFromBlack: {fileID: 598160440}
@@ -3210,7 +3214,11 @@ MonoBehaviour:
   - {fileID: 282863988}
   - {fileID: 149390447}
   - {fileID: 1799825153}
-  draws: []
+  draws:
+  - {fileID: 743485724}
+  - {fileID: 1971890205}
+  - {fileID: 221445224}
+  - {fileID: 1384647429}
   storyTeller: 0
   fadeToBlack: {fileID: 598160441}
   fadeFromBlack: {fileID: 598160440}

@@ -59,30 +59,7 @@ public class DialogueManager : MonoBehaviour
             }
         }
 
-        if(textHasChanged && !returnFromBlack && storyTeller == dialogue.Length - 1)
-        {
-            if (Fade())
-            {
-                if (Dialogue.Value == 0)
-                {
-                    changeScene.ChangeToScene("Tutorial");
-                }
-                
-                if (Dialogue.Value == 1)
-                {
-                    Boss1.Value = 1;
-                    changeScene.ChangeToScene("Boss 1 Clown");
-                } 
-                
-                if (Dialogue.Value == 2)
-                {
-                    Boss2.Value = 1;
-                    changeScene.ChangeToScene("Boss 2 PerroSanchez");
-                }
-            }
-        }
-
-        if (storyTeller != dialogue.Length)
+        if (storyTeller < dialogue.Length - 1)
         {
             if (textHasChanged && !returnFromBlack)
             {
@@ -101,6 +78,29 @@ public class DialogueManager : MonoBehaviour
 
                     textHasChanged = false;
                     returnFromBlack = true;
+                }
+            }
+        }
+
+        if (textHasChanged && !returnFromBlack && storyTeller >= dialogue.Length - 1)
+        {
+            if (Fade())
+            {
+                if (Dialogue.Value == 0)
+                {
+                    changeScene.ChangeToScene("Tutorial");
+                }
+
+                if (Dialogue.Value == 1)
+                {
+                    Boss1.Value = 1;
+                    changeScene.ChangeToScene("Boss 1 Clown");
+                }
+
+                if (Dialogue.Value == 2)
+                {
+                    Boss2.Value = 1;
+                    changeScene.ChangeToScene("Boss 2 PerroSanchez");
                 }
             }
         }
@@ -145,6 +145,46 @@ public class DialogueManager : MonoBehaviour
             {
                 draws[1].SetActive(false);
                 draws[3].SetActive(true);
+            }
+        }
+
+        if (Dialogue.Value == 1)
+        {
+            if (storyTeller == 0)
+            {
+                draws[0].SetActive(true);
+            }
+
+            if (storyTeller == 1)
+            {
+                draws[1].SetActive(true);
+                draws[0].SetActive(false);
+            }
+
+            if (storyTeller == 2)
+            {
+                draws[1].SetActive(false);
+                draws[2].SetActive(true);
+            }
+
+            if (storyTeller == 3)
+            {
+                draws[2].SetActive(false);
+                draws[1].SetActive(true);
+            }
+        }
+
+        if (Dialogue.Value == 2)
+        {
+            if (storyTeller == 0)
+            {
+                draws[0].SetActive(true);
+            }
+
+            if (storyTeller == 3)
+            {
+                draws[1].SetActive(true);
+                draws[0].SetActive(false);
             }
         }
     }
