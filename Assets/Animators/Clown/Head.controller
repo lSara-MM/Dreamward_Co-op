@@ -118,6 +118,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 2.5
   _delay: 2
+  _laughClip: {fileID: 8300000, guid: 9c4a7386085c4524c829cb4bdc8ad25a, type: 3}
 --- !u!1101 &-8161806535415490815
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -274,7 +275,6 @@ AnimatorState:
   - {fileID: 4349042088200373500}
   m_StateMachineBehaviours:
   - {fileID: -4490972876146018325}
-  - {fileID: 7732901174349866391}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1

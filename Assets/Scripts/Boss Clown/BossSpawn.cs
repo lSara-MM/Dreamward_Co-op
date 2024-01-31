@@ -7,13 +7,18 @@ public class BossSpawn : StateMachineBehaviour
     [SerializeField] private float speed = 5;
     [SerializeField] private float _delay = 5;
     private float _timer;
-    private Vector2 _target = new Vector2(0, 0);  
+    private Vector2 _target = new Vector2(0, 0);
+    private AudioSource _audioSource;
+    public AudioClip _laughClip;
+    private bool _playOnce = false;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
-    //override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //
-    //}
+    override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        _audioSource = animator.gameObject.GetComponent<AudioSource>();
+        _audioSource.clip = _laughClip;
+        _playOnce = true;
+    }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -24,7 +29,11 @@ public class BossSpawn : StateMachineBehaviour
         {
             _timer += Time.deltaTime;
             animator.SetFloat("SpeedAnim", 1);
-            //TODO: play audio
+
+            if (_playOnce)
+            {
+                _audioSource.PlayDelayed(0);
+            }
 
             if (_timer >= _delay)
             {
