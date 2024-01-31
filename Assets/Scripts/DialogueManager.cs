@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,7 @@ public class DialogueManager : MonoBehaviour
     public FloatSO Boss2;
 
     public GameObject[] dialogue;
+    public GameObject[] draws;
     public int storyTeller = 0;
     public UIFadeToBlack fadeToBlack;
     public UIFadeFromBlack fadeFromBlack;
@@ -89,6 +91,8 @@ public class DialogueManager : MonoBehaviour
 
                     storyTeller++;
 
+                    DrawsInOrder();
+
                     dialogue[storyTeller].SetActive(true);
 
                     textHasChanged = false;
@@ -102,6 +106,21 @@ public class DialogueManager : MonoBehaviour
             if (unFade()) 
             {
                 returnFromBlack = false;
+            }
+        }
+    }
+
+    private void DrawsInOrder()
+    {
+        if(Dialogue.Value == 0) 
+        {
+            if(storyTeller == 1) 
+            {
+                draws[0].SetActive(true);
+            }
+            else 
+            {
+                draws[0].SetActive(false);
             }
         }
     }
