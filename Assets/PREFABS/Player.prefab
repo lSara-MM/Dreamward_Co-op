@@ -345,8 +345,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.038749993, y: 0.08445001, z: 0}
-    m_Extent: {x: 1.7820499, y: 2.62145, z: 0}
+    m_Center: {x: -0.039349973, y: 0.084499955, z: 0}
+    m_Extent: {x: 1.7822499, y: 2.6212, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -548,6 +548,9 @@ MonoBehaviour:
   _winLose: {fileID: 0}
   Clip: []
   _invulnTime: 0.75
+  _shakeIntensity: 8
+  _shakeFrequency: 8
+  _shakeTime: 0.5
 --- !u!114 &1348742391309941357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -634,6 +637,7 @@ MonoBehaviour:
   winCanvas: {fileID: 0}
   fade: {fileID: 8593830673411425771}
   _won: 0
+  lvl: {fileID: 0}
   lToDisable:
   - {fileID: 0}
   - {fileID: 3857786462063389791}
@@ -1325,7 +1329,7 @@ MonoBehaviour:
   - {x: -0.149788, y: -0.6079919, z: 0}
   m_ShapePathHash: -890938342
   m_Mesh: {fileID: 0}
-  m_InstanceId: 170854
+  m_InstanceId: 32786
   m_LocalBounds:
     m_Center: {x: -0.088401824, y: -0.27256662, z: 0}
     m_Extent: {x: 0.21463129, y: 0.7674357, z: 0}

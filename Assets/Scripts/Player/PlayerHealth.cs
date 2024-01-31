@@ -40,6 +40,10 @@ public class PlayerHealth : MonoBehaviour
     private Animator _bossAnimator;
     private GameObject _boss;
 
+    [SerializeField] private float _shakeIntensity = 5;
+    [SerializeField] private float _shakeFrequency = 5;
+    [SerializeField] private float _shakeTime = 0.5f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -117,6 +121,8 @@ public class PlayerHealth : MonoBehaviour
         if (!_godMode && !_isInvuln && !_move.isDashing)
         {
             currentHealth = Mathf.Clamp(currentHealth - dmg_, 0, maxHealth);
+
+            CameraShake.Instance.ShakeCamera(_shakeIntensity, _shakeFrequency, _shakeTime);
 
             if (currentHealth > 0)
             {

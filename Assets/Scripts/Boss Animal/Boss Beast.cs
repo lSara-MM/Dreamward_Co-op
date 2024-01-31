@@ -6,6 +6,7 @@ public class BossBeast : MonoBehaviour
 {
     private Animator _animator;
     public Transform playerTransform;
+    public BossHealth health;
     public bool bossSP = false;// Boss second phase
 
     [Header("HP")]
@@ -21,7 +22,14 @@ public class BossBeast : MonoBehaviour
 
     void Update()
     {
-        
+        if (health.bossSP) 
+        {
+            bossSP = true;
+            if (!_animator.GetBool("Enraged") && bossSP)
+            {
+                _animator.SetBool("Enraged", bossSP);
+            }
+        }
     }
 
     public void TakeDamage(float damage)

@@ -76,7 +76,7 @@ AnimatorStateMachine:
     m_Position: {x: 690, y: 400, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 6841649170614681718}
-    m_Position: {x: 30, y: -180, z: 0}
+    m_Position: {x: 170, y: -180, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions:
   - {fileID: -415173978051018570}
@@ -183,7 +183,8 @@ MonoBehaviour:
   _speed: 15
   _delay: 2
   _delaySP: 1
-  _delayFall: 0.25
+  _delayFall: 0.5
+  _delayFallSP: 0.25
   handPrefab: {fileID: 5381330737245252737, guid: 05f0989df17cdf14e94b3cad05c20498,
     type: 3}
   _shakeHand: 0.2
@@ -491,7 +492,8 @@ MonoBehaviour:
   _speed: 15
   _delay: 2
   _delaySP: 1
-  _delayFall: 0.25
+  _delayFall: 0.5
+  _delayFallSP: 0.25
   handPrefab: {fileID: 2284737270421486427, guid: 72536b487b2e53d449b8c3d87376b2a4,
     type: 3}
   _shakeHand: 0.2
@@ -891,20 +893,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4a32ddac42298041aec8d0fe07db8bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2165193787250786325
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1a2eae0d32eb054784932d834511498, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 2.5
-  _delay: 5
 --- !u!114 &2400594382905952243
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1051,17 +1039,42 @@ MonoBehaviour:
     type: 3}
   rightHandPrefab: {fileID: 2284737270421486427, guid: 72536b487b2e53d449b8c3d87376b2a4,
     type: 3}
-  _maxSpeed: 15
+  _maxSpeed: 20
   _minSpeed: 2
-  _acceleration: 0.2
-  _delay: 1
-  _maxSpeedSP: 30
-  _accelerationSP: 0.4
-  _delaySP: 0.5
+  _acceleration: 0.3
+  _delay: 0.75
+  _maxSpeedSP: 35
+  _accelerationSP: 0.6
+  _delaySP: 0.25
   _shakeIntensity: 5
   _shakeFrequency: 5
   _shakeTime: 0.5
   _groundHit: {fileID: 8300000, guid: 09edbbf8335b41d4aaf9e6cd25222bf7, type: 3}
+--- !u!1101 &5753296002603338065
+AnimatorStateTransition:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_Conditions:
+  - m_ConditionMode: 1
+    m_ConditionEvent: Exit
+    m_EventTreshold: 0
+  m_DstStateMachine: {fileID: 0}
+  m_DstState: {fileID: 6841649170614681718}
+  m_Solo: 0
+  m_Mute: 0
+  m_IsExit: 0
+  serializedVersion: 3
+  m_TransitionDuration: 0.25
+  m_TransitionOffset: 0
+  m_ExitTime: 0.8648649
+  m_HasExitTime: 1
+  m_HasFixedDuration: 1
+  m_InterruptionSource: 0
+  m_OrderedInterruption: 1
+  m_CanTransitionToSelf: 1
 --- !u!1101 &6506009593705690396
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -1097,9 +1110,10 @@ AnimatorState:
   m_Name: BossWin
   m_Speed: 1
   m_CycleOffset: 0
-  m_Transitions: []
+  m_Transitions:
+  - {fileID: 5753296002603338065}
   m_StateMachineBehaviours:
-  - {fileID: 2165193787250786325}
+  - {fileID: 8808447013271072164}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -1218,3 +1232,18 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
+--- !u!114 &8808447013271072164
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7caa3019d06608b4286f6c56963831fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 3
+  _delay: 1.5
+  target: {x: 0, y: 0}

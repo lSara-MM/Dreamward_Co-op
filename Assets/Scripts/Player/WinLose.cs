@@ -43,9 +43,12 @@ public class WinLose : MonoBehaviour
 
         if (_lost)
         {
-            if (fade.Fade())
+            if (_bossAnimator.GetCurrentAnimatorStateInfo(0).IsName("Finish"))
             {
-                OpenLose();
+                if (fade.Fade())
+                {
+                    OpenLose();
+                }
             }
         }
     }
