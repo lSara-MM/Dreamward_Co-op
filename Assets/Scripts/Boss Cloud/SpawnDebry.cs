@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpawnDebryRigth : MonoBehaviour
+public class SpawnDebry : MonoBehaviour
 {
     public GameObject _boss;
 
@@ -12,10 +12,12 @@ public class SpawnDebryRigth : MonoBehaviour
     public float direction = 1;
 
     public float bulletLife = 1f;
-    public float speed = 1f;
+    public float speed = -1f;
     public float variance = 0.5f;
     [SerializeField] float scale;
 
+    public AudioClip[] sounds;
+    public AudioSource soundSource;
 
     [Header("Spawner Attributes")]
     [SerializeField] private float realFiringRate = 1f;
@@ -36,24 +38,29 @@ public class SpawnDebryRigth : MonoBehaviour
         timer += Time.deltaTime;
         if (timer >= realFiringRate)
         {
+            soundSource.Stop();
             Fire();
-            timer = 0;
+            timer = 0.0f;
         }
     }
 
 
     private void Fire()
     {
-        if (bullet && _animator.GetInteger("ChooseAttack") == 5)
+        if (bullet && _animator.GetInteger("ChooseAttack") == 6+((int)direction))
         {
             int random = Random.Range(-1, 2);
             Vector3 spawnPos = transform.position;
             float speedMod = 0.0f;
             float scale = 1.0f;
-            switch (random)
+            soundSource.clip = sounds[random + 1];
+            soundSource.Play();
+            switch (random) 
             {
+
                 case -1:
                     {
+                        
                         speedMod = 0.6f;
                         scale = 0.7f;
                         break;
