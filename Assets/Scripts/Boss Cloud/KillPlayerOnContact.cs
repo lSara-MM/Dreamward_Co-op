@@ -22,7 +22,7 @@ public class KillPlayerOnContact : MonoBehaviour
         Debug.Log(collision);
     }
 
-    private void OnCollisionEnter(Collision2D collision)
+    private void OnCollisionEnter(Collision collision)
     {
         collision.collider.GetType();
     }
