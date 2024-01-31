@@ -104,8 +104,26 @@ public class SpawnDebry : MonoBehaviour
         }
     }
 
+    float delayWind = 0.0f;
     private void WindPush()
     {
-    
+        delayWind += Time.deltaTime;
+        if (delayWind>= 0.2f) 
+        {
+            Vector3 newPosplayer;
+            newPosplayer = _player.transform.position;
+            if (_player.transform.localScale.x / Mathf.Abs(_player.transform.localScale.x) == direction) 
+            {
+                newPosplayer.x += 0.25f * direction;
+            }
+            else 
+            {
+            newPosplayer.x += 0.08f*direction;
+            }
+            
+            _player.transform.position = newPosplayer;
+            delayWind = 0.0f;
+        }
+        
     }
 }
