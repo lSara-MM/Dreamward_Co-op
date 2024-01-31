@@ -454,7 +454,7 @@ MonoBehaviour:
     curve: {fileID: 4439845816229029208}
     fieldsValues: []
   - controlType: 0
-    positionLocal: {x: -0.5466223, y: 1.7310815, z: 0}
+    positionLocal: {x: -0.5466223, y: 2.2, z: 0}
     controlFirstLocal: {x: 0.38465023, y: 0.5103651, z: 0}
     controlSecondLocal: {x: -0.38465023, y: -0.5103651, z: 0}
     pointTransform: {fileID: 0}
@@ -496,7 +496,7 @@ MonoBehaviour:
       bgCurvePointComponentValues: []
       bgCurvePointGOValues: []
   - controlType: 0
-    positionLocal: {x: 1.3562671, y: 1.731081, z: 0}
+    positionLocal: {x: 1.3562671, y: 2.2, z: 0}
     controlFirstLocal: {x: -0.005423546, y: 1.2018073, z: 0}
     controlSecondLocal: {x: 0.005423546, y: -1.2018073, z: 0}
     pointTransform: {fileID: 0}
@@ -510,7 +510,7 @@ MonoBehaviour:
     curve: {fileID: 4439845816229029208}
     fieldsValues: []
   - controlType: 0
-    positionLocal: {x: 3.1409197, y: 1.731081, z: 0}
+    positionLocal: {x: 3.1409197, y: 2.2, z: 0}
     controlFirstLocal: {x: -0.010917092, y: -0.49370414, z: 0}
     controlSecondLocal: {x: 0.010917092, y: 0.49370414, z: 0}
     pointTransform: {fileID: 0}
