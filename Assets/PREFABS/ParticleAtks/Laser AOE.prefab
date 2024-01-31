@@ -39427,7 +39427,7 @@ GameObject:
   - component: {fileID: 1888952713437492621}
   m_Layer: 0
   m_Name: Laser AOE
-  m_TagString: Untagged
+  m_TagString: ParticleAtk
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -39442,7 +39442,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2.8067813, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5389750941251046527}
@@ -39467,7 +39467,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7988202028097865942}
   serializedVersion: 8
-  lengthInSec: 3
+  lengthInSec: 0.1
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
@@ -39482,7 +39482,7 @@ ParticleSystem:
   startDelay:
     serializedVersion: 2
     minMaxState: 0
-    scalar: 0.5
+    scalar: 0.3
     minScalar: 0
     maxCurve:
       serializedVersion: 2
@@ -39542,7 +39542,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.5
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -43329,6 +43329,11 @@ ParticleSystem:
     - serializedVersion: 3
       emitter: {fileID: 8715612969029827317}
       type: 2
+      properties: 0
+      emitProbability: 1
+    - serializedVersion: 3
+      emitter: {fileID: 2089182491199025825}
+      type: 0
       properties: 0
       emitProbability: 1
   LightsModule:
@@ -54290,6 +54295,12 @@ PrefabInstance:
 --- !u!4 &1124807665163997107 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8793436297066734477, guid: dc6ab218c3410d04a83079953d108b23,
+    type: 3}
+  m_PrefabInstance: {fileID: 8472556384188951614}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &2089182491199025825 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 7596118245819473567, guid: dc6ab218c3410d04a83079953d108b23,
     type: 3}
   m_PrefabInstance: {fileID: 8472556384188951614}
   m_PrefabAsset: {fileID: 0}

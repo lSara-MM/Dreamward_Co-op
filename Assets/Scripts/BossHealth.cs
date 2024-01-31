@@ -18,6 +18,12 @@ public class BossHealth : MonoBehaviour
 
     [SerializeField] private WinLose _winLose;
 
+    private float _timer = 0f;
+    [SerializeField] float _delayBullet = 0.5f;
+    [SerializeField] float _bulletTime = 0.7f;
+    private bool _hitBoss = false;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +34,7 @@ public class BossHealth : MonoBehaviour
         slider.maxValue = maxHealth;
         slider.minValue = 0;
         slider.value = currentHealth;
+        _hitBoss = false;
     }
 
     // Update is called once per frame
@@ -62,11 +69,26 @@ public class BossHealth : MonoBehaviour
             Debug.Log("Kill boss");
             TakeDmg(maxHealth);
         }
+
+        if (_hitBoss)
+        {
+            _timer += Time.deltaTime;
+
+            if (_timer >= _delayBullet)
+            {
+                _timer = 0;
+                Time.timeScale = 1;
+                _hitBoss = false;
+            }
+        }
     }
 
     public void TakeDmg(int dmg_)
     {
         currentHealth = Mathf.Clamp(currentHealth - dmg_, 0, maxHealth);
+
+        Time.timeScale = _bulletTime;
+        _hitBoss = true;
 
         if (currentHealth > 0)
         {

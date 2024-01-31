@@ -83,8 +83,8 @@ public class BossSweepHand : StateMachineBehaviour
         if (e.PointIndex == 0)
         {
             _accelerate = true;
-            _animatorRef.SetTrigger("Exit");
             _handAnimator.SetTrigger("Exit");
+            _animatorRef.SetTrigger("Exit");
         }
 
         else if (e.PointIndex == 6)

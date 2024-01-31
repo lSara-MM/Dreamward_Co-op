@@ -7,6 +7,7 @@ public class BossBulletHell : StateMachineBehaviour
     private float _timer = 0f;
     [SerializeField]private float delay = 1.0f;
     [SerializeField] private float end = 5.0f;
+
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
