@@ -83,7 +83,7 @@ public class BossChaseHand : StateMachineBehaviour
 
                     if (Vector2.Distance(_handTransform.position, _startingPoint) < 0.1f)
                     {
-                        _handAnimator.SetTrigger("Exit");
+                        _handAnimator.SetTrigger("ExitFist");
                         animator.SetTrigger("Exit");
                     }
                 }
