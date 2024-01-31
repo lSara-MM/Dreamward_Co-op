@@ -7,6 +7,7 @@ public class SpawnDebry : MonoBehaviour
     public GameObject _boss;
     public BossHealth bossState;
     public GameObject _player;
+    public ParticleSystem wind;
 
     [Header("Bullet Attributes")]
     public GameObject bullet;
@@ -41,7 +42,12 @@ public class SpawnDebry : MonoBehaviour
         timer += Time.deltaTime;
         if (bossState.bossSP && _animator.GetInteger("ChooseAttack") == 6 + ((int)direction)) 
         {
+            if (!wind.isPlaying) { wind.Play(); }
             WindPush();
+        }
+        else 
+        {
+            wind.Stop();
         }
         if (timer >= realFiringRate)
         {
@@ -75,7 +81,7 @@ public class SpawnDebry : MonoBehaviour
                 case -1:
                     {
                         
-                        speedMod = 0.7f;
+                        speedMod = 0.8f;
                         scale = 0.7f;
                         break;
                     }
@@ -87,7 +93,7 @@ public class SpawnDebry : MonoBehaviour
                     }
                 case 1:
                     {
-                        speedMod = 1.5f;
+                        speedMod = 1.7f;
                         scale = 1.3f;
                         break;
                     }
