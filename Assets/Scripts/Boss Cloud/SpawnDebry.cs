@@ -5,6 +5,8 @@ using UnityEngine;
 public class SpawnDebry : MonoBehaviour
 {
     public GameObject _boss;
+    public BossHealth bossState;
+    public GameObject _player;
 
     [Header("Bullet Attributes")]
     public GameObject bullet;
@@ -37,6 +39,10 @@ public class SpawnDebry : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
+        if (bossState.bossSP && _animator.GetInteger("ChooseAttack") == 6 + ((int)direction)) 
+        {
+            WindPush();
+        }
         if (timer >= realFiringRate)
         {
             soundSource.Stop();
@@ -96,5 +102,10 @@ public class SpawnDebry : MonoBehaviour
 
             spawnedBullet.transform.rotation = transform.rotation;
         }
+    }
+
+    private void WindPush()
+    {
+    
     }
 }
