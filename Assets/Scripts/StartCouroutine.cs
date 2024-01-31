@@ -38,8 +38,17 @@ public class StartCouroutine : MonoBehaviour
         for (int i = 1; i < numBolts; ++i)
         {
             yield return new WaitForSeconds(_psDelay);
-            Debug.Log(_spawnedPrefab[i - 1].transform.position.x + (_offset * rand));
             _spawnedPrefab[i] = Instantiate(_prefab, new Vector3(_spawnedPrefab[i - 1].transform.position.x + (_offset * rand), _position.y, _position.z), Quaternion.identity);
         }
+
+        for (int i = 0; i < numBolts; ++i)
+        {
+            while (!_spawnedPrefab[i].GetComponent<ParticleSystem>().IsAlive())
+            {
+                Destroy(_spawnedPrefab[i]);
+                yield return null;
+            }
+        }
+
     }
 }

@@ -14,13 +14,10 @@ public class BossCloudLightning : StateMachineBehaviour
     [SerializeField] private float _offset = 2f;
 
     [Header("Particles Parameters")]
-    [SerializeField] private GameObject[] _spawnedBolts;
-
     [SerializeField] private float _psLife = 1f;
     [SerializeField] private float _psDelay = 1;
 
     private BossHealth _boss;
-    private float _timer = 0f;
 
     //OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -35,20 +32,14 @@ public class BossCloudLightning : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     //override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     //{
-    //    
+
     //}
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
-    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
-        _timer += Time.deltaTime;
+    //override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    //{
 
-        if (_timer > _psLife)
-        {
-            Destroy(_spawnedBolts[0]);
-            _timer = 0f;
-        }
-    }
+    //}
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
     //override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
