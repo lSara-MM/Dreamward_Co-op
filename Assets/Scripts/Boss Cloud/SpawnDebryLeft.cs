@@ -16,6 +16,8 @@ public class SpawnDebryLeft : MonoBehaviour
     public float variance = 0.5f;
     [SerializeField] float scale;
 
+    public AudioClip[] sounds;
+    public AudioSource soundSource;
 
     [Header("Spawner Attributes")]
     [SerializeField] private float realFiringRate = 1f;
@@ -36,6 +38,7 @@ public class SpawnDebryLeft : MonoBehaviour
         timer += Time.deltaTime;
         if (timer >= realFiringRate)
         {
+            soundSource.Stop();
             Fire();
             timer = 0.0f;
         }
@@ -50,10 +53,14 @@ public class SpawnDebryLeft : MonoBehaviour
             Vector3 spawnPos = transform.position;
             float speedMod = 0.0f;
             float scale = 1.0f;
+            soundSource.clip = sounds[random + 1];
+            soundSource.Play();
             switch (random) 
             {
+
                 case -1:
                     {
+                        
                         speedMod = 0.6f;
                         scale = 0.7f;
                         break;
