@@ -20,7 +20,7 @@ public class BossCloudBigBolts : StateMachineBehaviour
         _boss = animator.gameObject.GetComponent<BossHealth>();
         _scriptCouroutine = GameObject.Find("Game").GetComponent<StartCouroutine>();
 
-        _scriptCouroutine.CallBigBoltsCouroutine(_bigBoltsPrefab, _boss, _psDelay, new Vector3(0, -3.80f, 0), _offset, _loops);
+        _scriptCouroutine.CallBigBoltsCouroutine(_bigBoltsPrefab, _boss, _psDelay, Vector3.zero, _offset, _loops);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
