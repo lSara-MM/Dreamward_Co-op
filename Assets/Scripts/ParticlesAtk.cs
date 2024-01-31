@@ -6,6 +6,7 @@ public class ParticlesAtk : MonoBehaviour
 {
     [SerializeField] private ParticleSystem _subEmitter;
     [SerializeField] private GameObject _collider;
+    [SerializeField] private bool _toDie  = false;
 
     [SerializeField] private PlayerHealth _playerHealth;
     [SerializeField] private int _dmg = 1;
@@ -24,6 +25,7 @@ public class ParticlesAtk : MonoBehaviour
             if (_subEmitter.particleCount == 1)
             {
                 _collider.SetActive(true);
+                _toDie = true;
             }
             else
             {

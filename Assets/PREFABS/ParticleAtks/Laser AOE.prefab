@@ -39427,7 +39427,7 @@ GameObject:
   - component: {fileID: 1888952713437492621}
   m_Layer: 0
   m_Name: Laser AOE
-  m_TagString: Untagged
+  m_TagString: ParticleAtk
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -43331,6 +43331,11 @@ ParticleSystem:
       type: 2
       properties: 0
       emitProbability: 1
+    - serializedVersion: 3
+      emitter: {fileID: 2089182491199025825}
+      type: 0
+      properties: 0
+      emitProbability: 1
   LightsModule:
     enabled: 0
     ratio: 0
@@ -44357,6 +44362,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _subEmitter: {fileID: 5798315939163334061}
   _collider: {fileID: 3317933829067256515}
+  _toDie: 0
   _playerHealth: {fileID: 0}
   _dmg: 1
 --- !u!1 &8158879797783156725
@@ -54290,6 +54296,12 @@ PrefabInstance:
 --- !u!4 &1124807665163997107 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8793436297066734477, guid: dc6ab218c3410d04a83079953d108b23,
+    type: 3}
+  m_PrefabInstance: {fileID: 8472556384188951614}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &2089182491199025825 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 7596118245819473567, guid: dc6ab218c3410d04a83079953d108b23,
     type: 3}
   m_PrefabInstance: {fileID: 8472556384188951614}
   m_PrefabAsset: {fileID: 0}
