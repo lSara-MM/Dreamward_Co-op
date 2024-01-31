@@ -193,6 +193,12 @@ public class PlayerHealth : MonoBehaviour
             Debug.Log("Take Damage"); //Función para recibir daño 
             TakeDmg(1);
         }
+
+        if (collision.gameObject.layer == 11) //Layer Death = 11
+        {
+            Debug.Log("Die"); //Función para recibir daño 
+            TakeDmg(currentHealth);
+        }
     }
 
     private void OnTriggerEnter(Collider other)

@@ -21,9 +21,4 @@ public class KillPlayerOnContact : MonoBehaviour
         collision.collider.GetType();
         Debug.Log(collision);
     }
-
-    private void OnCollisionEnter(Collision2D collision)
-    {
-        collision.collider.GetType();
-    }
 }
