@@ -1245,5 +1245,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
-  _delay: 1.5
+  _delay: 2
   target: {x: 0, y: 0}
