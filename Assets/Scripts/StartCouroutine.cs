@@ -16,7 +16,7 @@ public class StartCouroutine : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     // TODO: to make generic all
@@ -30,12 +30,16 @@ public class StartCouroutine : MonoBehaviour
         int numBolts = 3;
         if (_boss.bossSP) { numBolts = 5; }
 
+        int[] nums = new int[] { -1, 1 };
+        int rand = nums[Random.Range(0, nums.Length)];
+
         _spawnedPrefab[0] = Instantiate(_prefab, _position, Quaternion.identity);
 
         for (int i = 1; i < numBolts; ++i)
         {
             yield return new WaitForSeconds(_psDelay);
-            _spawnedPrefab[i] = Instantiate(_prefab, new Vector3(_spawnedPrefab[i - 1].transform.position.x + _offset, _position.y, _position.z), Quaternion.identity);
+            Debug.Log(_spawnedPrefab[i - 1].transform.position.x + (_offset * rand));
+            _spawnedPrefab[i] = Instantiate(_prefab, new Vector3(_spawnedPrefab[i - 1].transform.position.x + (_offset * rand), _position.y, _position.z), Quaternion.identity);
         }
     }
 }

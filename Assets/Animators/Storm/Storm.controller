@@ -165,10 +165,10 @@ MonoBehaviour:
   _lightningPrefab: {fileID: 7988202028097865942, guid: 79484a37e63679e40a791767076126aa,
     type: 3}
   _player: {fileID: 3857786462063389791, guid: ee9c8bd8f8719fc4bb077ec697850e10, type: 3}
-  _offset: 1.5
+  _offset: 2
   _spawnedBolts: []
   _psLife: 1
-  _psDelay: 0.1
+  _psDelay: 0.3
 --- !u!114 &-4957794880761763931
 MonoBehaviour:
   m_ObjectHideFlags: 1

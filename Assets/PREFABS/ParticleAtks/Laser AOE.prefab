@@ -39442,7 +39442,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2.8067813, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5389750941251046527}
@@ -39467,7 +39467,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7988202028097865942}
   serializedVersion: 8
-  lengthInSec: 3
+  lengthInSec: 0.1
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
@@ -39482,7 +39482,7 @@ ParticleSystem:
   startDelay:
     serializedVersion: 2
     minMaxState: 0
-    scalar: 0.5
+    scalar: 0.3
     minScalar: 0
     maxCurve:
       serializedVersion: 2
@@ -39542,7 +39542,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.5
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -44362,7 +44362,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _subEmitter: {fileID: 5798315939163334061}
   _collider: {fileID: 3317933829067256515}
-  _toDie: 0
   _playerHealth: {fileID: 0}
   _dmg: 1
 --- !u!1 &8158879797783156725
