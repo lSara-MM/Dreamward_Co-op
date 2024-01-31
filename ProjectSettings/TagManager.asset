@@ -6,7 +6,9 @@ TagManager:
   tags:
   - BossAtk
   - Lamp
-  - Rain
+  - FxTemporaire
+  - Boss
+  - ParticleAtk
   layers:
   - Default
   - TransparentFX
