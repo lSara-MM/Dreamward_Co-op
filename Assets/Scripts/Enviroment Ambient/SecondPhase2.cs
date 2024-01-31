@@ -38,8 +38,8 @@ public class SecondPhase2 : MonoBehaviour
             faddingHasEnded = false;
 
             bossEye1.intensity = 0.57f;
-            bossEye2.intensity = 0.57f;
-            bossEye3.intensity = 0.57f;
+            bossEye2.intensity = 0.343f;
+            bossEye3.intensity = 2.51f;
 
             plattform1.intensity = 0f;
             plattform2.intensity = 0f;
@@ -72,6 +72,11 @@ public class SecondPhase2 : MonoBehaviour
                 if (spriteMoon.color.r > 0.717f && spriteMoon.color.g > 0.160f && spriteMoon.color.b > 0f && spriteMoon.color.a > 0.1f)
                 {
                     spriteMoon.color = new Color(spriteMoon.color.r - 0.005f * timing, spriteMoon.color.g, spriteMoon.color.b, spriteMoon.color.a);
+                }
+
+                if (bossEye3.color.a > 0f)
+                {
+                    bossEye3.color = new Color(bossEye3.color.r, bossEye3.color.g, bossEye3.color.b, bossEye3.color.a - 0.005f * timing);
                 }
             }
 
