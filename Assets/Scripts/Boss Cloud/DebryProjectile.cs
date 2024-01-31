@@ -17,8 +17,8 @@ public class DebryProjectile : MonoBehaviour
     {
         spawnPoint = transform.position;
         Vector3 newScale = transform.localScale;
-        newScale.x *= scale;
-        newScale.y *= scale;
+        newScale.x *= scale * scale;
+        newScale.y *= (scale+1.0f)/2;
         newScale.z *= scale;
         transform.localScale = newScale;
     }

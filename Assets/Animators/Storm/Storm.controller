@@ -84,7 +84,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _timer: 0
-  delay: 1
+  delay: 1.3
 --- !u!1102 &-6665014340272153554
 AnimatorState:
   serializedVersion: 6
@@ -607,6 +607,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 252ea7be5c5507b48b2ad2952ab3dff9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wait: 1
+  wait: 1.4
   realWait: 0
   idleTime: 0

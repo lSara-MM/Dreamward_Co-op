@@ -31,6 +31,7 @@ public class SpawnDebry : MonoBehaviour
         _animator = _boss.GetComponent<Animator>();
     }
 
+    int random;
 
     // Update is called once per frame
     void Update()
@@ -42,6 +43,15 @@ public class SpawnDebry : MonoBehaviour
             Fire();
             timer = 0.0f;
         }
+        if(timer == 0.0f) 
+        {
+            random = Random.Range(-1, 2);
+            if (bullet && _animator.GetInteger("ChooseAttack") == 6 + ((int)direction)) 
+            {
+                soundSource.clip = sounds[random + 1];
+                soundSource.Play();
+            }
+        }
     }
 
 
@@ -49,19 +59,17 @@ public class SpawnDebry : MonoBehaviour
     {
         if (bullet && _animator.GetInteger("ChooseAttack") == 6+((int)direction))
         {
-            int random = Random.Range(-1, 2);
             Vector3 spawnPos = transform.position;
             float speedMod = 0.0f;
             float scale = 1.0f;
-            soundSource.clip = sounds[random + 1];
-            soundSource.Play();
+            
             switch (random) 
             {
 
                 case -1:
                     {
                         
-                        speedMod = 0.6f;
+                        speedMod = 0.7f;
                         scale = 0.7f;
                         break;
                     }
@@ -73,8 +81,8 @@ public class SpawnDebry : MonoBehaviour
                     }
                 case 1:
                     {
-                        speedMod = 1.4f;
-                        scale = 1.2f;
+                        speedMod = 1.5f;
+                        scale = 1.3f;
                         break;
                     }
             }
