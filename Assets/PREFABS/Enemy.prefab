@@ -91,7 +91,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!95 &88307245541797488
@@ -132,8 +132,9 @@ MonoBehaviour:
   debugLife: 20
   currentHealth: 2000
   maxHealth: 2000
-  lvl: {fileID: 0}
-  healthbar: {fileID: 0}
+  _winLose: {fileID: 0}
+  _delayBullet: 0.5
+  _bulletTime: 0.7
 --- !u!1 &4538425055271914732
 GameObject:
   m_ObjectHideFlags: 0

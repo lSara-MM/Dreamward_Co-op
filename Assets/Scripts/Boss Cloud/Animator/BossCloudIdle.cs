@@ -9,6 +9,8 @@ public class BossIdle : StateMachineBehaviour
     [SerializeField] float idleTime = 0.0f;
     [SerializeField] int moves = 3;
     private BossHealth _Boss;
+    public Vector3[] positions; //Positions at where the cloud boss will move
+    int posToMove = 0;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
@@ -25,6 +27,12 @@ public class BossIdle : StateMachineBehaviour
         }
 
         idleTime += Time.deltaTime;
+
+        animator.transform.position = Vector3.MoveTowards(animator.transform.position, positions[posToMove], 2 * Time.deltaTime);
+
+        posToMove++; //Cambiar a la posicion de la isla que ir
+        if (posToMove == positions.Length) { posToMove = 0; } //Si se salio del rango del vector ponerlo a 0 de nuevo
+
         if (idleTime >= realWait)
         {
             //Lateral attack D (0), lateral attack I (1), Strong Rain (2)

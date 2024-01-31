@@ -140,19 +140,19 @@ public class SpawnDebry : MonoBehaviour
     private void WindPush(bool secondPhase)
     {
         delayWind += Time.deltaTime;
-        if (delayWind>= 0.2f) 
+        if (delayWind>= 0.05f) 
         {
             Vector3 newPosplayer;
             newPosplayer = _player.transform.position;
             if (_player.transform.localScale.x / Mathf.Abs(_player.transform.localScale.x) == direction) 
             {
-                if (secondPhase) { newPosplayer.x += 0.35f * direction; }
-                else { newPosplayer.x += 0.15f * direction; }
+                if (secondPhase) { newPosplayer.x += 0.1f * direction; }
+                else { newPosplayer.x += 0.06f * direction; }
             }
             else 
             {
-                if (secondPhase) {newPosplayer.x += 0.15f*direction; }
-                else { newPosplayer.x += 0.08f * direction; }
+                if (secondPhase) {newPosplayer.x += 0.06f*direction; }
+                else { newPosplayer.x += 0.02f * direction; }
                     
             }
             
