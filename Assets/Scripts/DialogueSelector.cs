@@ -14,9 +14,16 @@ public class DialogueSelector : MonoBehaviour
 
     public ChangeSceneDialogue changeScene;
 
+    public AudioSource music;
+
     // Start is called before the first frame update
     void Start()
     {
+        if (!GameObject.Find("DialogueSound")) 
+        {
+            music.Play();
+        }
+
         if (Dialogue.Value == 0) 
         {
             IntroDialogue.SetActive(true);
