@@ -187,7 +187,7 @@ MonoBehaviour:
   _delayFallSP: 0.25
   handPrefab: {fileID: 5381330737245252737, guid: 05f0989df17cdf14e94b3cad05c20498,
     type: 3}
-  _shakeHand: 0.2
+  _shakeHand: 0.1
   _shakeIntensity: 5
   _shakeFrequency: 5
   _shakeTime: 0.5
@@ -496,7 +496,7 @@ MonoBehaviour:
   _delayFallSP: 0.25
   handPrefab: {fileID: 2284737270421486427, guid: 72536b487b2e53d449b8c3d87376b2a4,
     type: 3}
-  _shakeHand: 0.2
+  _shakeHand: 0.1
   _shakeIntensity: 5
   _shakeFrequency: 5
   _shakeTime: 0.5
