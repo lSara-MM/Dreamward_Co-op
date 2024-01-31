@@ -25,7 +25,7 @@ public class BossCloudLateral : StateMachineBehaviour
             }
             else if (animator.GetInteger("ChooseAttack") == 1) 
             {
-                animator.SetInteger("ChooseAttack", 6);//hardcoded, when == 6 shoot LEFT
+                animator.SetInteger("ChooseAttack", 7);//hardcoded, when == 6 shoot LEFT
             }
             
             
