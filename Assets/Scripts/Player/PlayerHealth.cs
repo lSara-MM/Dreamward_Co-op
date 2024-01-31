@@ -38,7 +38,7 @@ public class PlayerHealth : MonoBehaviour
     private PlayerMovement _move;
 
     private Animator _bossAnimator;
-    private GameObject _boss;
+    public GameObject _boss;
 
     [SerializeField] private float _shakeIntensity = 5;
     [SerializeField] private float _shakeFrequency = 5;
@@ -69,7 +69,7 @@ public class PlayerHealth : MonoBehaviour
             }
         }
 
-        _boss = GameObject.Find("Enemy").gameObject; // Andreu ni lo toques
+        //_boss = GameObject.Find("Enemy").gameObject; // Andreu ni lo toques
 
         if (_boss != null)
         {
