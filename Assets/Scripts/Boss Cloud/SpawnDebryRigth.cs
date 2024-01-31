@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpawnDebry : MonoBehaviour
+public class SpawnDebryRigth : MonoBehaviour
 {
     public GameObject _boss;
 
@@ -16,13 +16,6 @@ public class SpawnDebry : MonoBehaviour
     public float variance = 0.5f;
     [SerializeField] float scale;
 
-    enum heigth 
-    {
-        LOW, 
-        MEDIUM,
-        HIGH,
-    }
-    [SerializeField] heigth actualH = heigth.LOW;
 
     [Header("Spawner Attributes")]
     [SerializeField] private float realFiringRate = 1f;
@@ -51,36 +44,39 @@ public class SpawnDebry : MonoBehaviour
 
     private void Fire()
     {
-        if (bullet && (_animator.GetInteger("ChooseAttack") == 5 || _animator.GetInteger("ChooseAttack") == 6))
+        if (bullet && _animator.GetInteger("ChooseAttack") == 5)
         {
             int random = Random.Range(-1, 2);
             Vector3 spawnPos = transform.position;
-            switch (actualH) 
+            float speedMod = 0.0f;
+            float scale = 1.0f;
+            switch (random)
             {
-                case heigth.LOW:
+                case -1:
                     {
-                        actualH = heigth.MEDIUM;
-                        spawnPos.y += -2.5f;
+                        speedMod = 0.6f;
+                        scale = 0.7f;
                         break;
                     }
-                case heigth.MEDIUM:
+                case 0:
                     {
-                        actualH = heigth.HIGH;
-                        spawnPos.y += 0.0f;
+                        speedMod = 1.0f;
+                        scale = 1.0f;
                         break;
                     }
-                case heigth.HIGH: 
+                case 1:
                     {
-                        actualH = heigth.LOW;
-                        spawnPos.y += 2.5f;
+                        speedMod = 1.4f;
+                        scale = 1.2f;
                         break;
                     }
             }
+
             spawnedBullet = Instantiate(bullet, spawnPos, Quaternion.identity);
-            spawnedBullet.GetComponent<DebryProjectile>().speed = speed/ (1 + variance * random);
+            spawnedBullet.GetComponent<DebryProjectile>().speed = speed / speedMod;
             spawnedBullet.GetComponent<DebryProjectile>().bulletLife = bulletLife;
             spawnedBullet.GetComponent<DebryProjectile>().direction = direction;
-            spawnedBullet.GetComponent<DebryProjectile>().scale *= (1.0f + variance * random);
+            spawnedBullet.GetComponent<DebryProjectile>().scale *= scale;
 
 
             spawnedBullet.transform.rotation = transform.rotation;

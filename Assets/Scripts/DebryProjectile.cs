@@ -35,9 +35,6 @@ public class DebryProjectile : MonoBehaviour
     float reverse = 1.0f;
     private Vector3 Movement(float timer)
     {
-        //Ir girando el hueso
-        Vector3 currentEulerAngles = new Vector3(0, 0, 1) * timer * 180 * reverse;
-        transform.eulerAngles = currentEulerAngles;
         // Moves right according to the bullet's rotation
         float x = timer * speed * direction;/** transform.right.x*/;
         return new Vector3(x, 0,0);

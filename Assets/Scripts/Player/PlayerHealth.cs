@@ -186,7 +186,7 @@ public class PlayerHealth : MonoBehaviour
         aud.Play();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.layer == 7) //Layer Damage = 7
         {
@@ -199,7 +199,6 @@ public class PlayerHealth : MonoBehaviour
     {
         if (other.gameObject.layer == 7) //Layer Damage = 7
         {
-            if (!PlayerMovement.isDashing) //Si no está Dasheando recibe daño
             {
                 Debug.Log("Take Damage"); //Función para recibir daño 
                 TakeDmg(1);
