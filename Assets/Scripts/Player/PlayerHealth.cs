@@ -44,6 +44,8 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private float _shakeFrequency = 5;
     [SerializeField] private float _shakeTime = 0.5f;
 
+    private Animator _animator;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -53,6 +55,7 @@ public class PlayerHealth : MonoBehaviour
         _winLose = GetComponent<WinLose>();
         _move = GetComponent<PlayerMovement>();
         aud = GetComponent<AudioSource>();
+        _animator = GetComponent<Animator>();
 
         // Dificulty Selector
         dificultySelector = GameObject.Find("DifultySelector");
@@ -114,6 +117,12 @@ public class PlayerHealth : MonoBehaviour
                 _timer = 0;
             }
         }
+
+        if (_animator.GetCurrentAnimatorStateInfo(0).IsName("End"))
+        {
+            this.gameObject.GetComponent<SpriteRenderer>().enabled = false; // Nose si desactivo player entero se rompe
+            this.gameObject.GetComponent<Collider2D>().enabled = false; // Avoid collisions after death
+        }
     }
 
     public void TakeDmg(int dmg_)
@@ -139,7 +148,8 @@ public class PlayerHealth : MonoBehaviour
             }
             else
             {
-                // player dead     
+                // player dead
+                _animator.SetTrigger("Death");
                 _winLose._lost = true;
                 _bossAnimator.SetTrigger("BossWins");
             }
