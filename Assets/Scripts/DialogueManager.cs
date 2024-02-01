@@ -223,12 +223,12 @@ public class DialogueManager : MonoBehaviour
             if (storyTeller == 1)
             {
                 draws[0].SetActive(false);
-                draws[1].SetActive(true);
+                draws[7].SetActive(true);
             }
 
             if (storyTeller == 2)
             {
-                draws[1].SetActive(false);
+                draws[7].SetActive(false);
                 draws[0].SetActive(true);
             }
 
@@ -247,7 +247,7 @@ public class DialogueManager : MonoBehaviour
             if (storyTeller == 5)
             {
                 draws[0].SetActive(false);
-                draws[1].SetActive(true);
+                draws[8].SetActive(true);
             }
         }
     }
