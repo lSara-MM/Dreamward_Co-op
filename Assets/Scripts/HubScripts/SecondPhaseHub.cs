@@ -33,7 +33,7 @@ public class SecondPhaseHub : MonoBehaviour
     public SpriteRenderer groundSprite;
 
     public SpriteRenderer player;
-    public SpriteRenderer scissors;
+    //public SpriteRenderer scissors;
 
     public Text text1;
     public Text text2;
@@ -74,7 +74,7 @@ public class SecondPhaseHub : MonoBehaviour
             waterSide.color = new Color(0.094f, 0.289f, 0.339f, 1f);
             groundSprite.color = new Color(0.403f, 0.660f, 0.830f, 0.580f);
             player.color = new Color(1f, 1f, 1f, 1f);
-            scissors.color = new Color(1f, 0.853f, 0f, 1f);
+            //scissors.color = new Color(1f, 0.853f, 0f, 1f);
             //text1.color = new Color(0f, 0.636f, 1f, 1f);
             //text2.color = new Color(0f, 0.636f, 1f, 1f);
 
@@ -166,10 +166,10 @@ public class SecondPhaseHub : MonoBehaviour
                 player.color = new Color(player.color.r, player.color.g, player.color.b, player.color.a - 0.005f * timing);
             }
             
-            if(scissors.color.a > 0) 
-            {
-                scissors.color = new Color(scissors.color.r, scissors.color.g, scissors.color.b, scissors.color.a - 0.005f * timing);
-            }
+            //if(scissors.color.a > 0) 
+            //{
+            //    scissors.color = new Color(scissors.color.r, scissors.color.g, scissors.color.b, scissors.color.a - 0.005f * timing);
+            //}
 
             if (timing > 3f)
             {
