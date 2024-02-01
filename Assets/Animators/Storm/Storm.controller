@@ -253,6 +253,7 @@ MonoBehaviour:
   _player: {fileID: 3857786462063389791, guid: ee9c8bd8f8719fc4bb077ec697850e10, type: 3}
   _offset: 2
   _psDelay: 0.3
+  _sound: {fileID: 0}
 --- !u!114 &-4957794880761763931
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -841,6 +842,7 @@ MonoBehaviour:
   _loops: 3
   _offset: 1.5
   _psDelay: 2
+  _sound: {fileID: 0}
 --- !u!1102 &5471401542647001123
 AnimatorState:
   serializedVersion: 6
@@ -1010,11 +1012,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 252ea7be5c5507b48b2ad2952ab3dff9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wait: 2
+  wait: 1.2
   realWait: 0
   idleTime: 0
   moves: 4
-  lastCommand: 9
+  lastCommand: 10
   positions:
   - {x: 0, y: 1.2, z: 0}
   - {x: 0, y: 1, z: 0}

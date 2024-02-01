@@ -16,8 +16,13 @@ public class BossIdle : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         _Boss = animator.gameObject.GetComponent<BossHealth>();
-        if (_Boss.bossSP) { idleTime = 0.0f; }
-            realWait = wait;
+        realWait = wait;
+        if (_Boss.bossSP) 
+        { 
+            idleTime = 0.0f;
+            realWait = 0.8f;
+        }
+        animator.SetTrigger("Exit");
         posToMove++; //Cambiar a la posicion de la isla que ir
         if (posToMove == positions.Length) { posToMove = 0; } //Si se salio del rango del vector ponerlo a 0 de nuevo
     }
@@ -38,16 +43,17 @@ public class BossIdle : StateMachineBehaviour
         {
             //Lateral attack D (0), lateral attack I (1), Strong Rain (2)
 
-            int randNum = Random.Range(0, moves);
-
-            if (_Boss.bossSP)
-            {
-                int secondRand = Random.Range(0, moves);
-                if (secondRand > randNum) { randNum = secondRand; }
-            }
+            int randNum;
 
             while (animator.GetInteger("ChooseAttack") == lastAttack || animator.GetInteger("ChooseAttack") == lastCommand) 
             {
+                randNum = Random.Range(0, moves);
+                if (_Boss.bossSP)
+                {
+                    int secondRand = Random.Range(0, moves);
+                    if (secondRand > randNum)
+                    { randNum = secondRand; }
+                }
                 animator.SetInteger("ChooseAttack", randNum);
             }
             

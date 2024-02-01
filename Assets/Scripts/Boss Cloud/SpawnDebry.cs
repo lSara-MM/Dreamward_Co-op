@@ -123,6 +123,7 @@ public class SpawnDebry : MonoBehaviour
             }
 
             spawnedBullet = Instantiate(bullet, spawnPos, Quaternion.identity);
+            if (direction < 0) { spawnedBullet.GetComponent<SpriteRenderer>().flipX = true; }
             spawnedBullet.GetComponent<DebryProjectile>().speed = speed / speedMod;
             spawnedBullet.GetComponent<DebryProjectile>().bulletLife = bulletLife;
             spawnedBullet.GetComponent<DebryProjectile>().direction = direction;
