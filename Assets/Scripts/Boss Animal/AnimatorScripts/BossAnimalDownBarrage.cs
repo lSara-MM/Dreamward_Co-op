@@ -11,7 +11,7 @@ public class BossAnimalDownBarrage : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         spawner = GameObject.Find("BeastLateralSpawner");
-        spawner.transform.transform.position += new Vector3(0, -3.0f,0); 
+        spawner.transform.transform.position += new Vector3(0, -0.5f,0); 
         _timer = 0f;
     }
 
@@ -30,7 +30,7 @@ public class BossAnimalDownBarrage : StateMachineBehaviour
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         animator.SetInteger("ChooseAttack", 12);//Stop shooting
-        spawner.transform.transform.position += new Vector3(0, 3.0f, 0);
+        spawner.transform.transform.position += new Vector3(0, 0.5f, 0);
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
