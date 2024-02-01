@@ -120,8 +120,8 @@ public class PlayerHealth : MonoBehaviour
 
         if (_animator.GetCurrentAnimatorStateInfo(0).IsName("End"))
         {
-            this.gameObject.GetComponent<SpriteRenderer>().enabled = false; // Nose si desactivo player entero se rompe
-            this.gameObject.GetComponent<Collider2D>().enabled = false; // Avoid collisions after death
+            this.gameObject.GetComponent<SpriteRenderer>().enabled = false; 
+            this.gameObject.GetComponent<Collider2D>().enabled = false; 
         }
     }
 
