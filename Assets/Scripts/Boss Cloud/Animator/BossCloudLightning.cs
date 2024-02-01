@@ -14,11 +14,14 @@ public class BossCloudLightning : StateMachineBehaviour
     [SerializeField] private float _offset = 2f;
     [SerializeField] private float _psDelay = 1;
 
+    [SerializeField] private AudioSource _sound;
+
     private BossHealth _boss;
 
     //OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        _sound.Play();
         _boss = animator.gameObject.GetComponent<BossHealth>();
         _player = GameObject.Find("Player");
         _scriptCouroutine = GameObject.Find("Game").GetComponent<StartCouroutine>();
@@ -36,6 +39,7 @@ public class BossCloudLightning : StateMachineBehaviour
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         animator.SetInteger("ChooseAttack", 13); //Ningun ataque
+        _sound.Stop();
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
