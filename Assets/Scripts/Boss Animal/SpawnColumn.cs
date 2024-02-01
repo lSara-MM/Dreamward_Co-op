@@ -45,11 +45,11 @@ public class SpawnColumn : MonoBehaviour
                 {
                     sound.Stop();
                     ghost.Play();
-                    instancePillar.transform.transform.position = instancePillar.transform.transform.position + new Vector3(0, 0.1f, 0);
+                    instancePillar.transform.transform.position = instancePillar.transform.transform.position + new Vector3(0, 0.06f, 0);
                     if (instancePillar.transform.transform.position.y > killHeight)
                     {
                         Destroy(instancePillar);
-                        //ghost.Stop();
+                        ghost.Stop();
                         instancePillar = null;
                         pillarCreated = false;
                         spawn = false;
