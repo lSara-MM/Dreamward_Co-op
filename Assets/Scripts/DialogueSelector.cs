@@ -7,10 +7,12 @@ public class DialogueSelector : MonoBehaviour
     public FloatSO Dialogue;
     public FloatSO Boss1;
     public FloatSO Boss2;
+    public FloatSO Boss3;
 
     public GameObject IntroDialogue;
     public GameObject Boss1Dialogue;
     public GameObject Boss2Dialogue;
+    public GameObject Boss3Dialogue;
 
     public ChangeSceneDialogue changeScene;
 
@@ -29,6 +31,7 @@ public class DialogueSelector : MonoBehaviour
             IntroDialogue.SetActive(true);
             Boss1Dialogue.SetActive(false);
             Boss2Dialogue.SetActive(false);
+            Boss3Dialogue.SetActive(false);
         }
         
         if (Dialogue.Value == 1) 
@@ -38,6 +41,7 @@ public class DialogueSelector : MonoBehaviour
                 IntroDialogue.SetActive(false);
                 Boss1Dialogue.SetActive(true);
                 Boss2Dialogue.SetActive(false);
+                Boss3Dialogue.SetActive(false);
             }
             else 
             {
@@ -51,11 +55,27 @@ public class DialogueSelector : MonoBehaviour
             {
                 IntroDialogue.SetActive(false);
                 Boss1Dialogue.SetActive(false);
+                Boss3Dialogue.SetActive(false);
                 Boss2Dialogue.SetActive(true);
             }
             else
             {
                 changeScene.ChangeToScene("Boss 2 PerroSanchez");
+            }
+        }
+
+        if (Dialogue.Value == 4)
+        {
+            if (Boss3.Value == 0)
+            {
+                IntroDialogue.SetActive(false);
+                Boss1Dialogue.SetActive(false);
+                Boss2Dialogue.SetActive(false);
+                Boss3Dialogue.SetActive(true);
+            }
+            else
+            {
+                changeScene.ChangeToScene("Boss 3 Storm");
             }
         }
     }
@@ -78,6 +98,11 @@ public class DialogueSelector : MonoBehaviour
             if (Dialogue.Value == 2)
             {
                 changeScene.ChangeToScene("Boss 2 PerroSanchez");
+            }
+            
+            if (Dialogue.Value == 4)
+            {
+                changeScene.ChangeToScene("Boss 3 Storm");
             }
         }
     }

@@ -27,6 +27,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Boss 2 PerroSanchez.unity
     guid: ef85e1d2131127c41943076e6d861ea3
   - enabled: 1
+    path: Assets/Scenes/Boss 3 Storm.unity
+    guid: 597e56803dfded34b8c6c1de7e6ba762
+  - enabled: 1
     path: Assets/Scenes/ImageBoss1.unity
     guid: 317d779a34b313b45bc985bcade397ef
   - enabled: 1

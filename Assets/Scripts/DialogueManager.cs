@@ -9,6 +9,7 @@ public class DialogueManager : MonoBehaviour
     public FloatSO Dialogue;
     public FloatSO Boss1;
     public FloatSO Boss2;
+    public FloatSO Boss3;
 
     public GameObject[] dialogue;
     public GameObject[] draws;
@@ -101,6 +102,12 @@ public class DialogueManager : MonoBehaviour
                 {
                     Boss2.Value = 1;
                     changeScene.ChangeToScene("Boss 2 PerroSanchez");
+                }
+                
+                if (Dialogue.Value == 4)
+                {
+                    Boss3.Value = 1;
+                    changeScene.ChangeToScene("Boss 3 Storm");
                 }
             }
         }
@@ -199,6 +206,38 @@ public class DialogueManager : MonoBehaviour
                 draws[1].SetActive(true);
             }
             
+            if (storyTeller == 4)
+            {
+                draws[1].SetActive(false);
+                draws[1].SetActive(true);
+            }
+        }
+
+        if (Dialogue.Value == 4)
+        {
+            if (storyTeller == 0)
+            {
+                draws[5].SetActive(true);
+            }
+
+            if (storyTeller == 1)
+            {
+                draws[5].SetActive(false);
+                draws[6].SetActive(true);
+            }
+
+            if (storyTeller == 2)
+            {
+                draws[6].SetActive(false);
+                draws[4].SetActive(true);
+            }
+
+            if (storyTeller == 3)
+            {
+                draws[4].SetActive(false);
+                draws[1].SetActive(true);
+            }
+
             if (storyTeller == 4)
             {
                 draws[1].SetActive(false);

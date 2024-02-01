@@ -10,6 +10,7 @@ public class ChangeSceneDialogue : MonoBehaviour
     [SerializeField] private FloatSO dialogue;
     [SerializeField] private FloatSO boss1;
     [SerializeField] private FloatSO boss2;
+    [SerializeField] private FloatSO boss3;
 
     // Start is called before the first frame update
     void Start()
