@@ -50,11 +50,11 @@ public class StartCouroutine : MonoBehaviour
     public IEnumerator SpawnBigBolts(GameObject _prefab, BossHealth _boss, float _psDelay, Vector3 _position, float _offset, int _loops)
     {
         float[] nums = new float[] { 0, _offset };
-        float rand = nums[Random.Range(0, nums.Length)];
+        
 
         for (int i = 0; i < _loops; ++i)
         {
-            Instantiate(_prefab, new Vector3(_position.x + rand, _position.y, _position.z), Quaternion.identity);
+            Instantiate(_prefab, new Vector3(_position.x + nums[Random.Range(0, nums.Length)], _position.y, _position.z), Quaternion.identity);
             yield return new WaitForSeconds(_psDelay);
         }
 

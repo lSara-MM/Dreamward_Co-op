@@ -4899,7 +4899,8 @@ GameObject:
   - component: {fileID: 7113981514988912470}
   - component: {fileID: 5964380154283669459}
   - component: {fileID: 8998349879164911119}
-  m_Layer: 0
+  - component: {fileID: 4443799545880616953}
+  m_Layer: 7
   m_Name: Snow AOE
   m_TagString: ParticleAtk
   m_Icon: {fileID: 0}
@@ -5567,7 +5568,7 @@ ParticleSystem:
     donutRadius: 0.2
     m_Position: {x: 0, y: 8, z: 0}
     m_Rotation: {x: 90, y: 0, z: 0}
-    m_Scale: {x: 1, y: 1, z: 1}
+    m_Scale: {x: 2.59, y: 1, z: 0.55}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -8742,10 +8743,10 @@ ParticleSystem:
         m_RotationOrder: 4
     minKillSpeed: 0
     maxKillSpeed: 10000
-    radiusScale: 0.0001
+    radiusScale: 0.3
     collidesWith:
       serializedVersion: 2
-      m_Bits: 2039
+      m_Bits: 6006
     maxCollisionShapes: 256
     quality: 0
     voxelSize: 0.5
@@ -9804,6 +9805,22 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &4443799545880616953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 588061549859784845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1419320b070967d44b187429f706bdd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _subEmitter: {fileID: 0}
+  _collider: {fileID: 0}
+  _playerHealth: {fileID: 0}
+  _dmg: 1
 --- !u!1 &2658450678556867793
 GameObject:
   m_ObjectHideFlags: 0
@@ -24503,7 +24520,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6617943451700283442
 Transform:
   m_ObjectHideFlags: 0
