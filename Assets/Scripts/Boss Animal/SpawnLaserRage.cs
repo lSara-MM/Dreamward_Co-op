@@ -52,7 +52,7 @@ public class SpawnLaserEnrage : MonoBehaviour
             spawnedBullet = Instantiate(bullet, spawnPos, Quaternion.identity);
             spawnedBullet.GetComponent<BoneProjectile>().speed = speed;
             spawnedBullet.GetComponent<BoneProjectile>().bulletLife = bulletLife;
-            spawnedBullet.GetComponent<BoneProjectile>().boomerang = (Random.value > 0.5f);
+            spawnedBullet.GetComponent<BoneProjectile>().boomerang = (Random.value > 0.6f);
             spawnedBullet.transform.rotation = transform.rotation;
         }
     }
