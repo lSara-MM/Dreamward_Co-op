@@ -17,7 +17,8 @@ public class BossIdle : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         _Boss = animator.gameObject.GetComponent<BossHealth>();
-        realWait = wait;
+        if (_Boss.bossSP) { idleTime = 0.0f; }
+            realWait = wait;
         posToMove++; //Cambiar a la posicion de la isla que ir
         if (posToMove == positions.Length) { posToMove = 0; } //Si se salio del rango del vector ponerlo a 0 de nuevo
     }
