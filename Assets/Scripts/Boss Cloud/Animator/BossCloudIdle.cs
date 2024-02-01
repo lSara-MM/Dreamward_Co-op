@@ -37,8 +37,30 @@ public class BossIdle : StateMachineBehaviour
         if (idleTime >= realWait)
         {
             //Lateral attack D (0), lateral attack I (1), Strong Rain (2)
+            
             animator.SetInteger("ChooseAttack", Random.Range(0, moves));
-            if(firstCommand == 9) { firstCommand = animator.GetInteger("ChooseAttack"); }
+            while(secondCommand == animator.GetInteger("ChooseAttack") || secondCommand==-1 && (animator.GetInteger("ChooseAttack") > 2)) 
+            {
+                animator.SetInteger("ChooseAttack", Random.Range(0, moves));
+            }
+            if(firstCommand == animator.GetInteger("ChooseAttack")) // Guardar si a repetido el ataque anterior
+            {
+                secondCommand = firstCommand;
+            }
+            else if(firstCommand < 0 && (animator.GetInteger("ChooseAttack") == 0 || animator.GetInteger("ChooseAttack") == 1)) //Guardar como -1 si uso un ataque de viento antes y ahora
+            {
+                secondCommand = -1;
+            }
+            else //Si no ha sido el segundo comando igual que el primero reseteamos todo
+            {
+                secondCommand = 9;
+                firstCommand = 9;
+            }
+            if (firstCommand == 9) //Estado base donde cojemos el ataque que acaba de hacer
+            { 
+                firstCommand = animator.GetInteger("ChooseAttack");
+                if(firstCommand<2) { firstCommand = -1; } //Debido a que wind tiene dos numeros lo guardamos como un -1
+            }            
 
             idleTime = 0.0f;
         }
