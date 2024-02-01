@@ -187,9 +187,15 @@ public class DialogueManager : MonoBehaviour
                 draws[5].SetActive(true);
             }
 
-            if (storyTeller == 3)
+            if (storyTeller == 2)
             {
                 draws[5].SetActive(false);
+                draws[0].SetActive(true);
+            }
+
+            if (storyTeller == 3)
+            {
+                draws[0].SetActive(false);
                 draws[1].SetActive(true);
             }
             
