@@ -152,25 +152,25 @@ public class DialogueManager : MonoBehaviour
         {
             if (storyTeller == 0)
             {
-                draws[0].SetActive(true);
+                draws[4].SetActive(true);
             }
 
             if (storyTeller == 1)
             {
+                draws[4].SetActive(false);
                 draws[1].SetActive(true);
-                draws[0].SetActive(false);
             }
 
             if (storyTeller == 2)
             {
                 draws[1].SetActive(false);
-                draws[2].SetActive(true);
+                draws[5].SetActive(true);
             }
 
             if (storyTeller == 3)
             {
-                draws[2].SetActive(false);
-                draws[1].SetActive(true);
+                draws[5].SetActive(false);
+                draws[6].SetActive(true);
             }
         }
 
@@ -178,13 +178,31 @@ public class DialogueManager : MonoBehaviour
         {
             if (storyTeller == 0)
             {
-                draws[0].SetActive(true);
+                draws[5].SetActive(true);
+            }
+            
+            if (storyTeller == 1)
+            {
+                draws[5].SetActive(false);
+                draws[6].SetActive(true);
+            }
+
+            if (storyTeller == 2)
+            {
+                draws[6].SetActive(false);
+                draws[4].SetActive(true);
             }
 
             if (storyTeller == 3)
             {
+                draws[4].SetActive(false);
                 draws[1].SetActive(true);
-                draws[0].SetActive(false);
+            }
+            
+            if (storyTeller == 4)
+            {
+                draws[1].SetActive(false);
+                draws[1].SetActive(true);
             }
         }
     }
