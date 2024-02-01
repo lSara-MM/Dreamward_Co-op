@@ -21,7 +21,7 @@ public class BossHealth : MonoBehaviour
     private float _timer = 0f;
     [SerializeField] float _delayBullet = 0.5f;
     [SerializeField] float _bulletTime = 0.7f;
-    private bool _hitBoss = false;
+    public bool _hitBoss = false; //Necesito que sea publico para que blinkee la nube
 
 
     // Start is called before the first frame update
