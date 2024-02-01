@@ -58,14 +58,17 @@ public class ZoomAndPassScene : MonoBehaviour
     {
         timing += Time.deltaTime;
 
-        if (Input.GetMouseButtonDown(0) || Input.anyKeyDown || timing > 5f) // Andreu put input button
+        if (!startTransition && !hasFaded)
         {
-            imgPasser++;
-            startTransition = true;
-            timing = 0f;
+            if (Input.GetMouseButtonDown(0) || Input.anyKeyDown || timing > 5f || Input.GetButtonDown("Submit"))
+            {
+                imgPasser++;
+                startTransition = true;
+                timing = 0f;
+            }
         }
 
-        if (startTransition)
+        if (startTransition && !fade.startBlackAndFade)
         {
             if (fade.Fade())
             {
