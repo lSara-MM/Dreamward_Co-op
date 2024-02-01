@@ -1,31 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1102 &-8595520793530416596
-AnimatorState:
-  serializedVersion: 6
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: dogWin
-  m_Speed: 1
-  m_CycleOffset: 0
-  m_Transitions: []
-  m_StateMachineBehaviours: []
-  m_Position: {x: 50, y: 50, z: 0}
-  m_IKOnFeet: 0
-  m_WriteDefaultValues: 1
-  m_Mirror: 0
-  m_SpeedParameterActive: 0
-  m_MirrorParameterActive: 0
-  m_CycleOffsetParameterActive: 0
-  m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 2daa1336cd8447647aaa5074bab08f9d, type: 2}
-  m_Tag: 
-  m_SpeedParameter: 
-  m_MirrorParameter: 
-  m_CycleOffsetParameter: 
-  m_TimeParameter: 
 --- !u!1102 &-8550742649520965844
 AnimatorState:
   serializedVersion: 6
@@ -89,10 +63,7 @@ AnimatorStateMachine:
     m_Position: {x: 280, y: -100, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -3082219787421293130}
-    m_Position: {x: -220, y: 40, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: -8595520793530416596}
-    m_Position: {x: -185, y: 105, z: 0}
+    m_Position: {x: -200, y: 70, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions:
   - {fileID: -415173978051018570}
@@ -139,7 +110,8 @@ AnimatorState:
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -7171833999893730731}
-  m_StateMachineBehaviours: []
+  m_StateMachineBehaviours:
+  - {fileID: -4124580810638581634}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -251,6 +223,19 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
+--- !u!114 &-4124580810638581634
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceacab4eecef9d747ae8217f4a4c1928, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _audioClip: {fileID: 8300000, guid: 69a8669297153dc4faf5be68ebb48c0b, type: 3}
 --- !u!114 &-3460984869317619736
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -329,6 +314,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   delay: 0.9
+  _audioClip: {fileID: 8300000, guid: d55e0aa5e4b20814581001bfcfa73ef3, type: 3}
 --- !u!1101 &-2502203525248226282
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -450,6 +436,19 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
+--- !u!114 &-1744829524706374481
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceacab4eecef9d747ae8217f4a4c1928, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _audioClip: {fileID: 8300000, guid: b6b9690c674d1bd44ab4ef8387800b6c, type: 3}
 --- !u!114 &-1584527102944739517
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -463,6 +462,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   delay: 1
+  _audioClip: {fileID: 8300000, guid: d55e0aa5e4b20814581001bfcfa73ef3, type: 3}
 --- !u!1101 &-415173978051018570
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -658,7 +658,8 @@ AnimatorState:
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -6438846613174836485}
-  m_StateMachineBehaviours: []
+  m_StateMachineBehaviours:
+  - {fileID: -1744829524706374481}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -714,6 +715,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   delay: 1.2
+  _audioClip: {fileID: 8300000, guid: d55e0aa5e4b20814581001bfcfa73ef3, type: 3}
 --- !u!1101 &5063200784352002037
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
