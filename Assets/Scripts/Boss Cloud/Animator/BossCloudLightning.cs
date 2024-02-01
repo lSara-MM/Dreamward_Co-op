@@ -35,7 +35,7 @@ public class BossCloudLightning : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        animator.SetInteger("ChooseAttack", 11); //Ningun ataque
+        animator.SetInteger("ChooseAttack", 13); //Ningun ataque
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()

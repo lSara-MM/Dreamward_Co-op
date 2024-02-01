@@ -29,7 +29,7 @@ public class BossIdle : StateMachineBehaviour
         {
             moves = 5;
         }
-
+        int lastAttack = animator.GetInteger("ChooseAttack") - 10;
         idleTime += Time.deltaTime;
 
         animator.transform.position = Vector3.MoveTowards(animator.transform.position, positions[posToMove], 2 * Time.deltaTime);
@@ -46,7 +46,7 @@ public class BossIdle : StateMachineBehaviour
                 if (secondRand > randNum) { randNum = secondRand; }
             }
 
-            while (animator.GetInteger("ChooseAttack") == lastCommand) 
+            while (animator.GetInteger("ChooseAttack") == lastAttack || animator.GetInteger("ChooseAttack") == lastCommand) 
             {
                 animator.SetInteger("ChooseAttack", randNum);
             }

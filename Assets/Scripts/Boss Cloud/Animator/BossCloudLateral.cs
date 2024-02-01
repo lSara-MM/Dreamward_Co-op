@@ -35,7 +35,16 @@ public class BossCloudLateral : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        animator.SetInteger("ChooseAttack", 11);//Stop shooting
+        if(animator.GetInteger("ChooseAttack") == 5)
+        {
+
+            animator.SetInteger("ChooseAttack", 10);//Stop shooting
+        }
+        else 
+        {
+            animator.SetInteger("ChooseAttack", 11);//Stop shooting
+        }
+        
         _timer = 0.0f;
     }
 
