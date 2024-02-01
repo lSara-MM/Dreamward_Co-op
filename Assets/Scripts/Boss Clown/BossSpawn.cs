@@ -33,7 +33,6 @@ public class BossSpawn : StateMachineBehaviour
             if (_playOnce)
             {
                 _audioSource.PlayDelayed(0);
-                _playOnce = false;
             }
 
             if (_timer >= _delay)
