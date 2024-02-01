@@ -1010,12 +1010,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 252ea7be5c5507b48b2ad2952ab3dff9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wait: 3
+  wait: 2
   realWait: 0
   idleTime: 0
   moves: 4
-  firstCommand: 9
-  secondCommand: 9
+  lastCommand: 9
   positions:
   - {x: 0, y: 1.2, z: 0}
   - {x: 0, y: 1, z: 0}
