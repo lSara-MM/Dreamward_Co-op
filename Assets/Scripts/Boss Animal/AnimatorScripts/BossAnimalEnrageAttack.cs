@@ -6,10 +6,17 @@ public class BossAnimalEnrageAttack : StateMachineBehaviour
 {
     private float _timer = 0f;
     [SerializeField] private float delay = 1.0f;
+    private AudioSource _audioSource;
+    public AudioClip _audioClip;
+
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         _timer = 0f;
+        _audioSource = animator.gameObject.GetComponent<AudioSource>();
+        _audioSource.clip = _audioClip;
+        _audioSource.loop = true;
+        _audioSource.PlayDelayed(0);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -27,6 +34,7 @@ public class BossAnimalEnrageAttack : StateMachineBehaviour
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         animator.SetInteger("ChooseAttack", 9);//Stop shooting
+        _audioSource.Stop();
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
