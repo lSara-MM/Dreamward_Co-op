@@ -19,10 +19,11 @@ public class BossCloudBigBolts : StateMachineBehaviour
     //OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        _sound.Play();
+       
         _boss = animator.gameObject.GetComponent<BossHealth>();
         _scriptCouroutine = GameObject.Find("Game").GetComponent<StartCouroutine>();
         _sound = GameObject.Find("Game").GetComponent<AudioSource>();
+        if (_sound) _sound.Play();
         _scriptCouroutine.CallBigBoltsCouroutine(_bigBoltsPrefab, _boss, _psDelay, Vector3.zero, _offset, _loops);
     }
 
@@ -36,7 +37,7 @@ public class BossCloudBigBolts : StateMachineBehaviour
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         animator.SetInteger("ChooseAttack", 14); //Poner a ningun ataque
-        _sound.Stop();
+        if (_sound) _sound.Stop();
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
