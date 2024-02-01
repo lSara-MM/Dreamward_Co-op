@@ -9,6 +9,7 @@ TagManager:
   - FxTemporaire
   - Boss
   - ParticleAtk
+  - Rain
   layers:
   - Default
   - TransparentFX
@@ -21,7 +22,7 @@ TagManager:
   - Ground Soft
   - Ground Hard
   - Background
-  - 
+  - Death
   - 
   - 
   - 

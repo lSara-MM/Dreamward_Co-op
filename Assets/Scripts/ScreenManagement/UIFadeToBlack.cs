@@ -6,13 +6,13 @@ using UnityEngine.UI;
 
 public class UIFadeToBlack : MonoBehaviour
 {
-    [SerializeField] private Image[] listFadeImg;
-    [SerializeField] private Text[] listFadeText;
+    public Image[] listFadeImg;
+    public Text[] listFadeText;
 
     [SerializeField] private float fadeSpeed = 0.5f;
     [SerializeField] private float fadeMax = 0f;
 
-    private float _timing = 0f;
+    public float timing = 0f;
     private bool _hasFaded = false;
 
     private Color _aux;
@@ -20,12 +20,12 @@ public class UIFadeToBlack : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _timing = 0;
+        timing = 0;
     }
 
     public bool FadeUI()
     {
-        _timing += Time.deltaTime;
+        timing += Time.deltaTime;
 
         for (int i = 0; i < listFadeImg.Length; i++)
         {
@@ -43,7 +43,7 @@ public class UIFadeToBlack : MonoBehaviour
                 _aux.a = fadeMax;
                 listFadeImg[i].color = _aux;
 
-                _timing = 0;
+                timing = 0;
                 _hasFaded = true;
             }
         }
@@ -64,11 +64,28 @@ public class UIFadeToBlack : MonoBehaviour
                 _aux.a = fadeMax;
                 listFadeText[i].color = _aux;
 
-                _timing = 0;
+                timing = 0;
                 _hasFaded = true;
             }
         }
 
         return _hasFaded;
+    }
+
+    public void SetAlpha(float alpha)
+    {
+        for (int i = 0; i < listFadeImg.Length; i++)
+        {
+            _aux = listFadeImg[i].color;
+            _aux.a = alpha;
+            listFadeImg[i].color = _aux;
+        }
+
+        for (int i = 0; i < listFadeText.Length; i++)
+        {
+            _aux = listFadeText[i].color;
+            _aux.a = alpha;
+            listFadeText[i].color = _aux;
+        }
     }
 }

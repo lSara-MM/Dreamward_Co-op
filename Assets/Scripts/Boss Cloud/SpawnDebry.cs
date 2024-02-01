@@ -110,8 +110,8 @@ public class SpawnDebry : MonoBehaviour
                     }
                 case 1:
                     {
-                        speedMod = 1.7f;
-                        scale = 1.3f;
+                        speedMod = 1.6f;
+                        scale = 1.2f;
                         break;
                     }
                 default: 

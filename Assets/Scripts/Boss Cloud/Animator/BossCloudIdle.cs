@@ -8,6 +8,8 @@ public class BossIdle : StateMachineBehaviour
     public float realWait = 0.0f;
     [SerializeField] float idleTime = 0.0f;
     [SerializeField] int moves = 3;
+    [SerializeField] private int firstCommand = 9;
+    [SerializeField] private int secondCommand = 9;
     private BossHealth _Boss;
     public Vector3[] positions; //Positions at where the cloud boss will move
     int posToMove = 0;
@@ -36,6 +38,7 @@ public class BossIdle : StateMachineBehaviour
         {
             //Lateral attack D (0), lateral attack I (1), Strong Rain (2)
             animator.SetInteger("ChooseAttack", Random.Range(0, moves));
+            if(firstCommand == 9) { firstCommand = animator.GetInteger("ChooseAttack"); }
 
             idleTime = 0.0f;
         }

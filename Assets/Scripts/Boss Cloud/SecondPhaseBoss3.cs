@@ -7,8 +7,6 @@ public class SecondPhaseBoss3 : MonoBehaviour
 {
     public Light2D globalLight;
     public Light2D bossEye1;
-    public Light2D bossEye2;
-    public Light2D bossEye3;
 
     public Light2D Lamp1;
     public Light2D Lamp2;
@@ -41,8 +39,6 @@ public class SecondPhaseBoss3 : MonoBehaviour
             Lamp2.color = new Color(0.717f, 0.559f, 0.152f, 1f);
 
             bossEye1.intensity = 0.57f;
-            bossEye2.intensity = 0.57f;
-            bossEye3.intensity = 0.57f;
 
             Lightings.SetActive(false);
 
@@ -84,7 +80,5 @@ public class SecondPhaseBoss3 : MonoBehaviour
         Lamp2.color = new Color(0.213f, 0.034f, 0.273f, 1f);
 
         bossEye1.intensity = 1.86f;
-        bossEye2.intensity = 1.86f;
-        bossEye3.intensity = 0.63f;
     }
 }
