@@ -19,8 +19,14 @@ public class SecondPhase2 : MonoBehaviour
     public bool faddingHasEnded = false;
     public float timing = 0f;
 
-    [SerializeField] private BossHealth bossHealth;
+    private Animator _animator; 
 
+
+    [SerializeField] private BossHealth bossHealth;
+    void Start()
+    {
+        _animator = GameObject.Find("Enemy").GetComponent<Animator>();
+    }
     // Update is called once per frame
     void Update()
     {
@@ -48,7 +54,7 @@ public class SecondPhase2 : MonoBehaviour
 
             timing = 0f;
         }
-        else
+        else if (bossHealth.bossSP && _animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
         {
             timing += Time.deltaTime;
 
@@ -74,9 +80,9 @@ public class SecondPhase2 : MonoBehaviour
                     spriteMoon.color = new Color(spriteMoon.color.r - 0.005f * timing, spriteMoon.color.g, spriteMoon.color.b, spriteMoon.color.a);
                 }
 
-                if (bossEye3.color.a > 0f)
+                if (bossEye3.color.r < 0.65f)
                 {
-                    bossEye3.color = new Color(bossEye3.color.r, bossEye3.color.g, bossEye3.color.b, bossEye3.color.a - 0.005f * timing);
+                    bossEye3.color = new Color(bossEye3.color.r + 0.005f * timing, bossEye3.color.g, bossEye3.color.b, bossEye3.color.a);//Better not to, otherwise howl goes unseen
                 }
             }
 
