@@ -56,6 +56,10 @@ public class ChangeScene : MonoBehaviour
                     }
                 }
             }
+            else
+            {
+                ChangeToScene(passToScene);
+            }
         }
         else if (pressAnyKey == PressKey.ON_CLICK && (Input.GetButtonUp("Jump") ||
             (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1) || Input.GetMouseButtonDown(2))) && !Input.GetKey(KeyCode.Escape))
@@ -73,6 +77,10 @@ public class ChangeScene : MonoBehaviour
                         ChangeToScene(passToScene);
                     }
                 }
+            }
+            else
+            {
+                ChangeToScene(passToScene);
             }
         }
 
