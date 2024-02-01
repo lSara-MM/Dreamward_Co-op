@@ -6,7 +6,7 @@ public class SpawnColumn : MonoBehaviour
 {
     [SerializeField] private GameObject pillar;
     [SerializeField] private ParticleSystem groundTremors;
-    [SerializeField] private ParticleSystem ghost;
+    //[SerializeField] private ParticleSystem ghost;
     [SerializeField] private float killHeight = 13.0f;
 
     public AudioSource sound;
@@ -36,7 +36,7 @@ public class SpawnColumn : MonoBehaviour
                 groundTremors.Play();
                 sound.Play();
                 dtWait = 0.0f;
-                ghost.Stop();
+                //ghost.Stop();
             }
             if (pillarCreated) 
             {
@@ -46,12 +46,12 @@ public class SpawnColumn : MonoBehaviour
                 {
                     sound.Stop();
                     //if (dtWait > groundTremors.main.duration + 1.2f) {ghost.Play(); }
-                    if (!ghost.isPlaying) { ghost.Play(); }
-                    instancePillar.transform.transform.position = instancePillar.transform.transform.position + new Vector3(0, 0.04f, 0);
+                    //if (!ghost.isPlaying) { ghost.Play(); }
+                    instancePillar.transform.transform.position = instancePillar.transform.transform.position + new Vector3(0, 0.08f, 0);
                     if (instancePillar.transform.transform.position.y > killHeight)
                     {
                         Destroy(instancePillar);
-                        ghost.Stop();
+                        //ghost.Stop();
                         instancePillar = null;
                         pillarCreated = false;
                         spawn = false;

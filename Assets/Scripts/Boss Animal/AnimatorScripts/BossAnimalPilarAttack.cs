@@ -15,11 +15,11 @@ public class BossAnimalPilarAttack : StateMachineBehaviour
         player = GameObject.FindGameObjectsWithTag("Player")[0];
         nearSpawner = GameObject.Find("PilarAttackSpawnerNear");
         farSpawner = GameObject.Find("PilarAttackSpawnerFar");
-        //_timer = 0f;
+        _timer = 0f;
 
     }
 
-    int repeat = -1;
+    //int repeat = -1;
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
@@ -27,30 +27,32 @@ public class BossAnimalPilarAttack : StateMachineBehaviour
 
         if (_timer >= 1.0f)
         {
-            //animator.SetInteger("ChooseAttack", 0); //No se como va bien esto
+            animator.SetInteger("ChooseAttack", 0); //No se como va bien esto
             if (player.transform.position.x > 0) 
             {
                 SpawnColumn spawnNear = nearSpawner.GetComponent<SpawnColumn>();
                 spawnNear.spawn = true;
             }
-            else
+            else 
             {
                 SpawnColumn spawnFar = farSpawner.GetComponent<SpawnColumn>();
                 spawnFar.spawn = true;
             }
+            
+            
             _timer = 0.0f;
             //Repetir ataque
-            if (repeat == -1) 
-            {
-                if (animator.GetBool("Enraged"))
-                {
-                    repeat = Random.Range(1, 4);
-                }
-                else
-                {
-                    repeat = Random.Range(0, 2);
-                }
-            }
+            //if (repeat == -1) 
+            //{
+            //    if (animator.GetBool("Enraged"))
+            //    {
+            //        repeat = Random.Range(1, 4);
+            //    }
+            //    else
+            //    {
+            //        repeat = Random.Range(0, 2);
+            //    }
+            //}
             
         }
     }
@@ -59,16 +61,15 @@ public class BossAnimalPilarAttack : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if(repeat>=0) 
+        //if(repeat>=0) 
         {
-            repeat--;
-            animator.SetFloat("ChooseAttack", 10.0f);
+            //repeat--;
             animator.SetInteger("ChooseAttack", 10);
-            if (repeat > 0) 
-            {
-                animator.SetFloat("ChooseAttack", 0.0f); //Hacer este ataque de nuevo
-                animator.SetInteger("ChooseAttack", 0);
-            }
+            
+            //if (repeat > 0) 
+            //{
+            //    animator.SetInteger("ChooseAttack", 0);
+            //}
         }
     }
 
