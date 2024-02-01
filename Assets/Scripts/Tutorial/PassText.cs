@@ -5,31 +5,45 @@ using UnityEngine.UI;
 
 public class PassText : MonoBehaviour
 {
-    public Text text;
-    public bool isVisible = false;
-    public float timing = 0f;
+    [Header("UI")]
+    [SerializeField] private Image[] listFadeImg;
+    [SerializeField] private Text[] listFadeText;
 
+    [Header("Scripts")]
+    [SerializeField] private UIFadeFromBlack fadeFromBlack;
+    [SerializeField] private UIFadeToBlack fadeToBlack;
+
+    public bool isVisible = false;
     public PassTutorial passTutorial;
 
     // Start is called before the first frame update
     void Start()
     {
-        text.color = new Color(text.color.r, text.color.g, text.color.b, 0f);
+        fadeFromBlack = GetComponent<UIFadeFromBlack>();
+        fadeToBlack = GetComponent<UIFadeToBlack>();
+
+        fadeFromBlack.listFadeImg = listFadeImg;
+        fadeFromBlack.listFadeText = listFadeText;
+
+        fadeToBlack.listFadeImg = listFadeImg;
+        fadeToBlack.listFadeText = listFadeText;
+
+        fadeToBlack.SetAlpha(0);
     }
 
     // Update is called once per frame
     void Update()
     {
-        timing += Time.deltaTime;
-
-        if(isVisible && text.color.a < 1f && !passTutorial.secondPhase) 
+        // Fade from black
+        if (isVisible && !passTutorial.secondPhase)
         {
-            text.color = new Color(text.color.r, text.color.g, text.color.b, text.color.a + Time.deltaTime);
+            fadeFromBlack.UnFadeUI();
         }
-        
-        if(!isVisible && text.color.a > 0f && !passTutorial.secondPhase) 
+
+        // Fade to black
+        if (!isVisible && !passTutorial.secondPhase)
         {
-            text.color = new Color(text.color.r, text.color.g, text.color.b, text.color.a - Time.deltaTime);
+            fadeToBlack.FadeUI();
         }
     }
 
@@ -37,7 +51,8 @@ public class PassText : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            timing = 0f;
+            fadeFromBlack.timing = 0f;
+            fadeToBlack.timing = 0f;
             isVisible = true;
         }
     }
@@ -46,7 +61,8 @@ public class PassText : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            timing = 0f;
+            fadeFromBlack.timing = 0f;
+            fadeToBlack.timing = 0f;
             isVisible = false;
         }
     }
