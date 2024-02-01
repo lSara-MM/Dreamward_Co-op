@@ -40,10 +40,15 @@ public class BossIdle : StateMachineBehaviour
 
             int randNum = Random.Range(0, moves);
 
+            if (_Boss.bossSP)
+            {
+                int secondRand = Random.Range(0, moves);
+                if (secondRand > randNum) { randNum = secondRand; }
+            }
+
             while (animator.GetInteger("ChooseAttack") == lastCommand) 
             {
                 animator.SetInteger("ChooseAttack", randNum);
-                if
             }
             
             lastCommand = animator.GetInteger("ChooseAttack");
