@@ -100,7 +100,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &5721967189569248410
 RectTransform:
   m_ObjectHideFlags: 0
@@ -218,6 +218,7 @@ MonoBehaviour:
   - {fileID: 6886171764254597096}
   fadeSpeed: 0.5
   fadeMax: 1
+  timing: 0
 --- !u!114 &4070169906293025383
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -235,6 +236,8 @@ MonoBehaviour:
   dialogue: {fileID: 0}
   boss1: {fileID: 0}
   boss2: {fileID: 0}
+  fadeToBlack: {fileID: 0}
+  IsIntroScene: 0
 --- !u!1 &3555062495554755562
 GameObject:
   m_ObjectHideFlags: 0
