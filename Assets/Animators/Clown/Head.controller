@@ -118,7 +118,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 2.5
   _delay: 2
-  _laughClip: {fileID: 8300000, guid: 9c4a7386085c4524c829cb4bdc8ad25a, type: 3}
+  _laughClip: {fileID: 8300000, guid: 3bb76d813776d4f41846db753ced90b4, type: 3}
 --- !u!1101 &-8161806535415490815
 AnimatorStateTransition:
   m_ObjectHideFlags: 1

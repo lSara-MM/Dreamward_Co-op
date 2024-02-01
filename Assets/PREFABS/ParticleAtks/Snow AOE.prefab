@@ -4900,6 +4900,7 @@ GameObject:
   - component: {fileID: 5964380154283669459}
   - component: {fileID: 8998349879164911119}
   - component: {fileID: 4443799545880616953}
+  - component: {fileID: 6935443634764322122}
   m_Layer: 7
   m_Name: Snow AOE
   m_TagString: ParticleAtk
@@ -9821,6 +9822,19 @@ MonoBehaviour:
   _collider: {fileID: 0}
   _playerHealth: {fileID: 0}
   _dmg: 1
+--- !u!114 &6935443634764322122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 588061549859784845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c81ea4a7145da4948b7c1808e8517aea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _start: 0
 --- !u!1 &2658450678556867793
 GameObject:
   m_ObjectHideFlags: 0

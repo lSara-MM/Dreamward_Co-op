@@ -36,6 +36,7 @@ public class SpawnColumn : MonoBehaviour
                 groundTremors.Play();
                 sound.Play();
                 dtWait = 0.0f;
+                ghost.Stop();
             }
             if (pillarCreated) 
             {
@@ -44,8 +45,9 @@ public class SpawnColumn : MonoBehaviour
                 if (dtWait > groundTremors.main.duration)
                 {
                     sound.Stop();
-                    ghost.Play();
-                    instancePillar.transform.transform.position = instancePillar.transform.transform.position + new Vector3(0, 0.06f, 0);
+                    //if (dtWait > groundTremors.main.duration + 1.2f) {ghost.Play(); }
+                    if (!ghost.isPlaying) { ghost.Play(); }
+                    instancePillar.transform.transform.position = instancePillar.transform.transform.position + new Vector3(0, 0.04f, 0);
                     if (instancePillar.transform.transform.position.y > killHeight)
                     {
                         Destroy(instancePillar);
