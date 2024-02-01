@@ -9,6 +9,8 @@ public class PlayerMovement : MonoBehaviour
     private float jumping = 16f;
     public bool isFacingRigth = true;
 
+    bool firstFall = true;
+
     public GameObject footSteps;
     public AudioSource jumpSound;
     public AudioSource dashSound;
@@ -41,6 +43,11 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (firstFall)
+        {
+            animator.SetBool("FirstFall", true);
+        }
+
         if (isDashing) 
         {
             return;
@@ -95,6 +102,8 @@ public class PlayerMovement : MonoBehaviour
         if (rb.velocity.x == 0f && IsGrounded())
         {
             footSteps.SetActive(false);
+            animator.SetBool("FirstFall", false);
+            firstFall = false;
         }
 
         // Animations
