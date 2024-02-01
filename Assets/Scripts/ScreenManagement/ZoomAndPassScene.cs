@@ -15,7 +15,7 @@ public class ZoomAndPassScene : MonoBehaviour
 
     public GameObject music;
 
-    float timing = 0f;
+    public float timing = 0f;
 
     int imgPasser = 0;
 
@@ -23,6 +23,7 @@ public class ZoomAndPassScene : MonoBehaviour
 
     public bool Intro = false;
     public bool Hub = false;
+    public bool Credits = false;
     bool hasFaded = false;
 
     private void Awake()
@@ -56,7 +57,10 @@ public class ZoomAndPassScene : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        timing += Time.deltaTime;
+        if (!Credits)
+        {
+            timing += Time.deltaTime;
+        }
 
         if (!startTransition && !hasFaded)
         {
