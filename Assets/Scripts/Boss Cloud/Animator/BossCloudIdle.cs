@@ -20,7 +20,6 @@ public class BossIdle : StateMachineBehaviour
         if (_Boss.bossSP) 
         { 
             idleTime = 0.0f;
-            realWait = 0.8f;
         }
         animator.SetTrigger("Exit");
         posToMove++; //Cambiar a la posicion de la isla que ir
