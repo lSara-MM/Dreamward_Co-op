@@ -10,7 +10,8 @@ public class RainSelector : MonoBehaviour
     public ParticleSystem rainParticle2;
 
     public GameObject rain;
-    public DificultySelector dificultySelector;
+    public GameObject dificultyGM;
+    private DificultySelector dificultySelector;
 
     public AudioSource bellSound;
 
@@ -19,7 +20,11 @@ public class RainSelector : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        dificultyGM = GameObject.Find("DifultySelector");
+        dificultySelector = dificultyGM.GetComponent<DificultySelector>();
 
+        isRaining = false;
+        dificultySelector.hardMode = isRaining;
     }
 
     // Update is called once per frame
