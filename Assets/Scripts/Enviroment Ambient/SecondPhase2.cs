@@ -45,7 +45,7 @@ public class SecondPhase2 : MonoBehaviour
 
             bossEye1.intensity = 0.57f;
             bossEye2.intensity = 0.343f;
-            bossEye3.intensity = 2.51f;
+            bossEye3.intensity = 1.57f;
 
             plattform1.intensity = 0f;
             plattform2.intensity = 0f;
