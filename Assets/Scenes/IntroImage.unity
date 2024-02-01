@@ -887,8 +887,6 @@ GameObject:
   - component: {fileID: 915269507}
   - component: {fileID: 915269506}
   - component: {fileID: 915269505}
-  - component: {fileID: 915269504}
-  - component: {fileID: 915269503}
   m_Layer: 5
   m_Name: FadeToBlack
   m_TagString: Untagged
@@ -896,42 +894,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &915269503
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 915269502}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e1995f95ffa4a7418c5f13d9592dae9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  listFadeImg:
-  - {fileID: 915269505}
-  listFadeText: []
-  fadeSpeed: 0.5
-  fadeMax: 1
-  timing: 0
---- !u!114 &915269504
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 915269502}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f253b161afd79245880577896fe5288, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  listFadeImg:
-  - {fileID: 915269505}
-  listFadeText: []
-  fadeSpeed: 0.5
-  fadeMax: 0
-  timing: 0
 --- !u!114 &915269505
 MonoBehaviour:
   m_ObjectHideFlags: 0
