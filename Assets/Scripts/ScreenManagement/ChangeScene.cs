@@ -21,9 +21,19 @@ public class ChangeScene : MonoBehaviour
     [SerializeField] private FloatSO boss2;
     //[SerializeField] public int dialogueScene; // 0 = Intro dialogue, 1 = Boss 1 dialogue, 2 = Boss 2 Dialogue, 3 = None
 
+    // Variables para FadeToBlack
+    public SimpleFadeToBlack fadeToBlack;
+    public bool IsIntroScene = false;
+    bool IsFading = false;
+
     // Start is called before the first frame update
     void Start()
     {
+        //if (passBlack && fadeToBlack != null) 
+        //{
+        //    fadeToBlack.fadeToBlackImage.color = new Color(1f, 1f, 1f, 1f);
+        //}
+
         //dialogue.Value = dialogueScene;
     }
 
@@ -32,17 +42,50 @@ public class ChangeScene : MonoBehaviour
     {
         if (pressAnyKey == PressKey.ANY_KEY && (Input.GetButtonUp("Jump") || Input.anyKeyDown) && !Input.GetKey(KeyCode.Escape))
         {
-            if (passToScene != "")
+            if (fadeToBlack != null)
             {
-                ChangeToScene(passToScene);
+                if (passToScene != "" && !fadeToBlack.startBlackAndFade)
+                {
+                    if (IsIntroScene)
+                    {
+                        IsFading = true;
+                    }
+                    else
+                    {
+                        ChangeToScene(passToScene);
+                    }
+                }
             }
         }
         else if (pressAnyKey == PressKey.ON_CLICK && (Input.GetButtonUp("Jump") ||
             (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1) || Input.GetMouseButtonDown(2))) && !Input.GetKey(KeyCode.Escape))
         {
-            if (passToScene != "")
+            if (fadeToBlack != null)
             {
-                ChangeToScene(passToScene);
+                if (passToScene != "" && !fadeToBlack.startBlackAndFade)
+                {
+                    if (IsIntroScene)
+                    {
+                        IsFading = true;
+                    }
+                    else
+                    {
+                        ChangeToScene(passToScene);
+                    }
+                }
+            }
+        }
+
+        if (IsFading)
+        {
+            if (fadeToBlack != null)
+            {
+                if (fadeToBlack.Fade())
+                {
+                    ChangeToScene(passToScene);
+
+                    IsIntroScene = false;
+                }
             }
         }
     }
