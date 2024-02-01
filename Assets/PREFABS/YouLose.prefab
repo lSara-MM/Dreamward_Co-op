@@ -139,6 +139,7 @@ MonoBehaviour:
   - {fileID: 3171814467455778181}
   fadeSpeed: 0.5
   fadeMax: 1
+  timing: 0
 --- !u!114 &3847208051215436727
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -156,6 +157,8 @@ MonoBehaviour:
   dialogue: {fileID: 0}
   boss1: {fileID: 0}
   boss2: {fileID: 0}
+  fadeToBlack: {fileID: 0}
+  IsIntroScene: 0
 --- !u!1 &1888079968235407446
 GameObject:
   m_ObjectHideFlags: 0
@@ -310,7 +313,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Puto Casual
+  m_Text: You faded in the Darkness
 --- !u!1 &2764187115593422422
 GameObject:
   m_ObjectHideFlags: 0
