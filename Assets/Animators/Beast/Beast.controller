@@ -95,8 +95,8 @@ AnimatorStateTransition:
   serializedVersion: 3
   m_TransitionDuration: 0
   m_TransitionOffset: 0
-  m_ExitTime: 0.75
-  m_HasExitTime: 0
+  m_ExitTime: 1
+  m_HasExitTime: 1
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
@@ -113,8 +113,7 @@ AnimatorState:
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -7171833999893730731}
-  m_StateMachineBehaviours:
-  - {fileID: 578719182734654441}
+  m_StateMachineBehaviours: []
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -123,7 +122,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 0}
+  m_Motion: {fileID: 7400000, guid: 876ed718eae73d746b3030b3a610c5c6, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -195,7 +194,7 @@ AnimatorStateTransition:
   serializedVersion: 3
   m_TransitionDuration: 0
   m_TransitionOffset: 0
-  m_ExitTime: 5
+  m_ExitTime: 1
   m_HasExitTime: 1
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -259,9 +258,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.25
+  m_TransitionDuration: 0
   m_TransitionOffset: 0
-  m_ExitTime: 12
+  m_ExitTime: 1
   m_HasExitTime: 1
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -420,7 +419,7 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.10279679
+  m_TransitionDuration: 0
   m_TransitionOffset: 0
   m_ExitTime: 1
   m_HasExitTime: 1
@@ -480,37 +479,37 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: ChooseAttack
     m_Type: 3
     m_DefaultFloat: 0
     m_DefaultInt: 11
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Enraged
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: BossWins
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Exit
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Howl
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -524,21 +523,6 @@ AnimatorController:
     m_IKPass: 0
     m_SyncedLayerAffectsTiming: 0
     m_Controller: {fileID: 9100000}
---- !u!114 &578719182734654441
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7caa3019d06608b4286f6c56963831fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 3
-  _delay: 2
-  target: {x: 18, y: 0}
 --- !u!1101 &809765959950485631
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -586,7 +570,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: a6ba1c39f46aae54b9cb212420a5196a, type: 2}
+  m_Motion: {fileID: 7400000, guid: 6e2be26bcf978094f9445889750681b8, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -606,9 +590,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.25
+  m_TransitionDuration: 0
   m_TransitionOffset: 0
-  m_ExitTime: 4
+  m_ExitTime: 1
   m_HasExitTime: 1
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -793,5 +777,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
-  _delay: 5
+  _delay: 2
   target: {x: 5.885631, y: 0.3591247}
