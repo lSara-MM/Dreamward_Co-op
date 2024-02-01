@@ -117,12 +117,6 @@ public class PlayerHealth : MonoBehaviour
                 _timer = 0;
             }
         }
-
-        if (_animator.GetCurrentAnimatorStateInfo(0).IsName("End"))
-        {
-            this.gameObject.GetComponent<SpriteRenderer>().enabled = false; 
-            this.gameObject.GetComponent<Collider2D>().enabled = false; 
-        }
     }
 
     public void TakeDmg(int dmg_)
@@ -149,6 +143,9 @@ public class PlayerHealth : MonoBehaviour
             else
             {
                 // player dead
+                this.gameObject.GetComponent<SpriteRenderer>().enabled = false; // Nose si desactivo player entero se rompe
+                this.gameObject.GetComponent<Collider2D>().enabled = false; // Avoid collisions after death
+                this.gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
                 _animator.SetTrigger("Death");
                 _winLose._lost = true;
                 _bossAnimator.SetTrigger("BossWins");
