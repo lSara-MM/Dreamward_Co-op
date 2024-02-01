@@ -477,6 +477,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e98db8d9855a46d4eac881833765cf04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _prefab: {fileID: 588061549859784845, guid: ecbb254d80d31a94596fb166768579d8, type: 3}
 --- !u!91 &9100000
 AnimatorController:
   m_ObjectHideFlags: 0
@@ -1013,6 +1014,8 @@ MonoBehaviour:
   realWait: 0
   idleTime: 0
   moves: 4
+  firstCommand: 9
+  secondCommand: 9
   positions:
   - {x: 0, y: 1.8, z: 0}
   - {x: 0, y: 1, z: 0}
