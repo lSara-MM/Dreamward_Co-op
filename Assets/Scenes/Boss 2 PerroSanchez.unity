@@ -2529,8 +2529,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.00015002489, y: 0.000049978495, z: 0}
-    m_Extent: {x: 1.00085, y: 0.99985003, z: 0}
+    m_Center: {x: 0.00020000339, y: 0.00034999847, z: 0}
+    m_Extent: {x: 0.9999, y: 1.00055, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -3306,13 +3306,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6983042838369601309, guid: 4982b458790d95f4a882651b6234b706,
         type: 3}
-      propertyPath: lengthInSec
-      value: 2.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6983042838369601309, guid: 4982b458790d95f4a882651b6234b706,
-        type: 3}
       propertyPath: startDelay.scalar
-      value: 0
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 6983042838369601309, guid: 4982b458790d95f4a882651b6234b706,
         type: 3}
@@ -3322,17 +3317,7 @@ PrefabInstance:
     - target: {fileID: 6983042838369601309, guid: 4982b458790d95f4a882651b6234b706,
         type: 3}
       propertyPath: InitialModule.startSpeed.scalar
-      value: 6.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 6983042838369601309, guid: 4982b458790d95f4a882651b6234b706,
-        type: 3}
-      propertyPath: InitialModule.startLifetime.scalar
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6983042838369601309, guid: 4982b458790d95f4a882651b6234b706,
-        type: 3}
-      propertyPath: InitialModule.startLifetime.minScalar
-      value: 1.4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6983042838369601309, guid: 4982b458790d95f4a882651b6234b706,
         type: 3}
@@ -16042,33 +16027,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6983042838369601309, guid: 4982b458790d95f4a882651b6234b706,
         type: 3}
-      propertyPath: lengthInSec
-      value: 2.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6983042838369601309, guid: 4982b458790d95f4a882651b6234b706,
-        type: 3}
       propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6983042838369601309, guid: 4982b458790d95f4a882651b6234b706,
         type: 3}
       propertyPath: startDelay.scalar
-      value: 0
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 6983042838369601309, guid: 4982b458790d95f4a882651b6234b706,
         type: 3}
       propertyPath: InitialModule.startSpeed.scalar
-      value: 6.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 6983042838369601309, guid: 4982b458790d95f4a882651b6234b706,
-        type: 3}
-      propertyPath: InitialModule.startLifetime.scalar
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6983042838369601309, guid: 4982b458790d95f4a882651b6234b706,
-        type: 3}
-      propertyPath: InitialModule.startLifetime.minScalar
-      value: 1.4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6983042838369601309, guid: 4982b458790d95f4a882651b6234b706,
         type: 3}
@@ -22189,8 +22159,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.000050008297, y: -0.00055000186, z: 0}
-    m_Extent: {x: 1.0007501, y: 1.00005, z: 0}
+    m_Center: {x: -0.00030001998, y: -0.00054997206, z: 0}
+    m_Extent: {x: 1, y: 0.99995, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -22567,8 +22537,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.00025001168, y: -0.000050008297, z: 0}
-    m_Extent: {x: 1.0000501, y: 1.0000501, z: 0}
+    m_Center: {x: 0.000050008297, y: -0.00034999847, z: 0}
+    m_Extent: {x: 1.0006499, y: 1.00045, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
