@@ -2,17 +2,28 @@ using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ZoomAndPassScene : MonoBehaviour
 {
     public ChangeScene changeScene;
     public SimpleFadeToBlack fade;
 
+    public GameObject[] images;
+
+    public GameObject lines;
+
     public GameObject music;
 
     float timing = 0f;
 
+    int imgPasser = 0;
+
     public bool startTransition = false;
+
+    public bool Intro = false;
+    public bool Hub = false;
+    bool hasFaded = false;
 
     private void Awake()
     {
@@ -22,22 +33,69 @@ public class ZoomAndPassScene : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (!Hub)
+        {
+            lines.SetActive(false);
+        }
+        else
+        {
+            lines.SetActive(true);
+        }
+
+        for (int i = 0; i < images.Length; i++)
+        {
+            images[i].SetActive(false);
+        }
+
+        if(images.Length > 0f)
+        {
+            images[0].SetActive(true);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) || Input.anyKeyDown) // Andreu put input button
+        timing += Time.deltaTime;
+
+        if (Input.GetMouseButtonDown(0) || Input.anyKeyDown || timing > 5f) // Andreu put input button
         {
+            imgPasser++;
             startTransition = true;
+            timing = 0f;
         }
 
         if (startTransition)
         {
             if (fade.Fade())
             {
-                changeScene.ChangeToScene("LoreMaster");
+                hasFaded = true;
+
+                if (imgPasser == 1)
+                {
+                    lines.SetActive(true);
+                }
+
+                if (imgPasser < images.Length) 
+                {
+                    images[imgPasser - 1].SetActive(false);
+                    images[imgPasser].SetActive(true);
+                }
+
+                if(imgPasser == images.Length)
+                {
+                    if (Intro)
+                    {
+                        changeScene.ChangeToScene("LoreMaster");
+                    }
+
+                    if (Hub)
+                    {
+                        changeScene.ChangeToScene("Hub");
+                    }
+                }
+
+                startTransition = false;
             }
 
             //    timing += Time.deltaTime;
@@ -57,6 +115,15 @@ public class ZoomAndPassScene : MonoBehaviour
             //        }
 
             //    }
+        }
+
+        if (hasFaded)
+        {
+            if (fade.unFade())
+            {
+                hasFaded = false;
+                timing = 0f;
+            }
         }
     }
 }
