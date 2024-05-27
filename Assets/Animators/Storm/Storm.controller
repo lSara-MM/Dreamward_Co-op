@@ -479,6 +479,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _prefab: {fileID: 588061549859784845, guid: ecbb254d80d31a94596fb166768579d8, type: 3}
+  sound: {fileID: 308394994861823760, guid: ff83f275bf3da5a4ab118ad7d4869e13, type: 3}
 --- !u!91 &9100000
 AnimatorController:
   m_ObjectHideFlags: 0

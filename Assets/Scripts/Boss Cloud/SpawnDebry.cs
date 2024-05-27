@@ -144,13 +144,13 @@ public class SpawnDebry : MonoBehaviour
             newPosplayer = _player.transform.position;
             if (_player.transform.localScale.x / Mathf.Abs(_player.transform.localScale.x) == direction) 
             {
-                if (secondPhase) { newPosplayer.x += 0.1f * direction; }
-                else { newPosplayer.x += 0.06f * direction; }
+                if (secondPhase) { newPosplayer.x += 0.15f * direction; }
+                else { newPosplayer.x += 0.09f * direction; }
             }
             else 
             {
-                if (secondPhase) {newPosplayer.x += 0.06f*direction; }
-                else { newPosplayer.x += 0.02f * direction; }
+                if (secondPhase) {newPosplayer.x += 0.08f*direction; }
+                else { newPosplayer.x += 0.05f * direction; }
                     
             }
             

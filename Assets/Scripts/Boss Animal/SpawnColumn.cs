@@ -32,7 +32,8 @@ public class SpawnColumn : MonoBehaviour
             {
                 instancePillar = Instantiate(pillar);
                 instancePillar.transform.position = transform.transform.position;
-                pillarCreated = true;
+                instancePillar.transform.localScale = transform.localScale;
+               pillarCreated = true;
                 groundTremors.Play();
                 sound.Play();
                 dtWait = 0.0f;

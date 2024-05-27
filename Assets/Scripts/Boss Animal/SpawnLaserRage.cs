@@ -11,6 +11,7 @@ public class SpawnLaserEnrage : MonoBehaviour
 
     public float bulletLife = 1f;
     public float speed = 1f;
+    public float boomerangChance = 1f;
 
     [Header("Spawner Attributes")]
     [SerializeField] private float realFiringRate = 1.4f;
@@ -52,7 +53,7 @@ public class SpawnLaserEnrage : MonoBehaviour
             spawnedBullet = Instantiate(bullet, spawnPos, Quaternion.identity);
             spawnedBullet.GetComponent<BoneProjectile>().speed = speed;
             spawnedBullet.GetComponent<BoneProjectile>().bulletLife = bulletLife;
-            spawnedBullet.GetComponent<BoneProjectile>().boomerang = (Random.value > 0.6f);
+            spawnedBullet.GetComponent<BoneProjectile>().boomerang = (Random.value > 1f-boomerangChance);
             spawnedBullet.transform.rotation = transform.rotation;
         }
     }

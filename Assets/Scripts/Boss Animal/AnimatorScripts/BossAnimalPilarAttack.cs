@@ -47,11 +47,11 @@ public class BossAnimalPilarAttack : StateMachineBehaviour
             {
                 if (animator.GetBool("Enraged"))
                 {
-                    repeat = Random.Range(1, 4);
+                    repeat = Random.Range(2, 5);
                 }
                 else
                 {
-                    repeat = Random.Range(0, 2);
+                    repeat = Random.Range(1, 3);
                 }
             }
 
@@ -62,7 +62,7 @@ public class BossAnimalPilarAttack : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (repeat >= 0)
+        if (repeat > -1)
         {
             repeat--;
             animator.SetInteger("ChooseAttack", 10);

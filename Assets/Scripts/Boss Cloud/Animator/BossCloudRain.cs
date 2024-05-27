@@ -6,12 +6,14 @@ public class BossCloudRain : StateMachineBehaviour
 {
     [SerializeField] private GameObject _prefab;
     private GameObject _prefabInHierarchy;
+    [SerializeField] private GameObject sound;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         _prefabInHierarchy = GameObject.Find(_prefab.name);
         _prefabInHierarchy.GetComponent<ParticleSystem>().Play();
+        sound.GetComponent<AudioSource>().Play();
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
