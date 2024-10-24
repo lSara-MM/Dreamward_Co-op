@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
     private float jumping = 16f;
     public bool isFacingRigth = true;
 
-    bool firstFall = true;
+    public bool firstFall = true;
 
     public GameObject footSteps;
     public AudioSource jumpSound;

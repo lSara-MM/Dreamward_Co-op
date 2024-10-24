@@ -48,7 +48,7 @@ public class SpawnManager : MonoBehaviour
     {
         Particles.SetActive(true);
         rb.gravityScale = 1f;
-        player.transform.position = new Vector3(0f, 40f, 0f);
+        //player.transform.position = new Vector3(0f, 40f, 0f);
         ligthSpot.intensity = 0f;
         fallSound.volume = 0f; 
         ambientMusic.volume = 0f;
