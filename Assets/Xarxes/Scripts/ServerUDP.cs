@@ -71,7 +71,7 @@ public class ServerUDP : MonoBehaviour
                serverText = serverText + "\n" + "Message received from {0}:" + Remote.ToString();
                serverText = serverText + "\n" + Encoding.ASCII.GetString(data, 0, recv);
 
-                Debug.Log(serverText);
+               Debug.Log(serverText);
 
             }
             //TO DO 4
