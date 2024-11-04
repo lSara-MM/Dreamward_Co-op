@@ -9,19 +9,13 @@ public class ServerUDP : MonoBehaviour
 {
     Socket socket;
 
-    public GameObject UItextObj;
-    TextMeshProUGUI UItext;
-    string serverText;
-
     void Start()
     {
-        UItext = UItextObj.GetComponent<TextMeshProUGUI>();
 
     }
+
     public void startServer()
     {
-        serverText = "Starting UDP Server...";
-
         //TO DO 1
         //UDP doesn't keep track of our connections like TCP
         //This means that we "can only" reply to other endpoints,
@@ -40,21 +34,19 @@ public class ServerUDP : MonoBehaviour
         //It's time to call the Receive thread
         Thread newConnection = new Thread(Receive);
         newConnection.Start();
+
+        Debug.Log("Server Start");
     }
 
     void Update()
     {
-        UItext.text = serverText;
 
     }
-
 
     void Receive()
     {
         int recv;
         byte[] data = new byte[1024];
-
-        serverText = serverText + "\n" + "Waiting for new Client...";
 
         //TO DO 3
         //We don't know who may be comunicating with this server, so we have to create an
@@ -75,8 +67,11 @@ public class ServerUDP : MonoBehaviour
                 break;
             else
             {
-                serverText = serverText + "\n" + "Message received from {0}:" + Remote.ToString();
-                serverText = serverText + "\n" + Encoding.ASCII.GetString(data, 0, recv);
+               string serverText = "";
+               serverText = serverText + "\n" + "Message received from {0}:" + Remote.ToString();
+               serverText = serverText + "\n" + Encoding.ASCII.GetString(data, 0, recv);
+
+                Debug.Log(serverText);
 
             }
             //TO DO 4

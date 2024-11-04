@@ -5,39 +5,42 @@ using UnityEngine;
 using System.Threading;
 using TMPro;
 
-using UnityEngine.UI;
 using System.Linq;
 using System;
 
 public class ClientUDP : MonoBehaviour
 {
     Socket socket;
-    public GameObject UItextObj;
-    TextMeshProUGUI UItext;
-    string clientText;
 
-    public InputField inputField_IP;
-    public InputField inputField_Text;
+    [Header ("Start client")]
+    public TMP_InputField inputField_IP;
+    public GameObject errorText;
 
     // Start is called before the first frame update
     void Start()
     {
-        UItext = UItextObj.GetComponent<TextMeshProUGUI>();
+
     }
+
     public void StartClient()
     {
         if (ValidateIPv4(inputField_IP.text))
         {
+            errorText.SetActive(false);
             inputField_IP.gameObject.transform.parent.gameObject.SetActive(false);
 
             Thread mainThread = new Thread(Send);
             mainThread.Start();
         }
+        else
+        {
+            errorText.SetActive(true);
+        }
     }
 
     void Update()
     {
-        UItext.text = clientText;
+        //UItext.text = clientText;
     }
 
     void Send()
@@ -83,8 +86,8 @@ public class ClientUDP : MonoBehaviour
         byte[] data = new byte[1024];
         int recv = socket.ReceiveFrom(data, ref Remote);
 
-        clientText = ("Message received from {0}: " + Remote.ToString());
-        clientText = clientText += "\n" + Encoding.ASCII.GetString(data, 0, recv);
+        //clientText = ("Message received from {0}: " + Remote.ToString());
+        //clientText = clientText += "\n" + Encoding.ASCII.GetString(data, 0, recv);
     }
 
     // Validate the IP the user has introduced. Return true if valid IP

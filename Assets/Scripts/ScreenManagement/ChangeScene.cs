@@ -26,9 +26,14 @@ public class ChangeScene : MonoBehaviour
     public bool IsIntroScene = false;
     bool IsFading = false;
 
+    [SerializeField] List<GameObject> dontDestroyList = new List<GameObject>();
+
     // Start is called before the first frame update
     void Start()
     {
+        dontDestroyList.Add(GameObject.FindGameObjectWithTag("Server"));
+        dontDestroyList.Add(GameObject.FindGameObjectWithTag("Client"));
+
         //if (passBlack && fadeToBlack != null) 
         //{
         //    fadeToBlack.fadeToBlackImage.color = new Color(1f, 1f, 1f, 1f);
@@ -101,6 +106,12 @@ public class ChangeScene : MonoBehaviour
     public void ChangeToScene(string passToScene)
     {
         Debug.Log("Change Scene" + passToScene);
+
+        foreach (GameObject item in dontDestroyList)
+        {
+            DontDestroyOnLoad(item);
+        }
+
         SceneManager.LoadScene(passToScene);
     }
 }

@@ -10,6 +10,8 @@ TagManager:
   - Boss
   - ParticleAtk
   - Rain
+  - Server
+  - Client
   layers:
   - Default
   - TransparentFX
