@@ -8,34 +8,40 @@ using TMPro;
 public class ServerUDP : MonoBehaviour
 {
     Socket socket;
+    public InputErrorHandler cs_InputErrorHandler;
+    public ChangeScene cs_ChangeScene;
+
+    public string scene = "Hub";
+
+    [SerializeField] PlayerData playerData;
 
     void Start()
     {
 
     }
 
-    public void startServer()
+    public void StartServer()
     {
-        //TO DO 1
-        //UDP doesn't keep track of our connections like TCP
-        //This means that we "can only" reply to other endpoints,
-        //since we don't know where or who they are
-        //We want any UDP connection that wants to communicate with 9050 port to send it to our socket.
-        //So as with TCP, we create a socket and bind it to the 9050 port. 
+        playerData = cs_InputErrorHandler.ValidateHost();
 
-        IPEndPoint ipep = new IPEndPoint(IPAddress.Any, 9050);
-        socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
-        socket.Bind(ipep);
+        if (playerData != null)
+        {
+            IPEndPoint ipep = new IPEndPoint(IPAddress.Any, 9050);
+            socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+            socket.Bind(ipep);
 
-        //socket.Listen(10);
+            //socket.Listen(10);
 
-        //TO DO 3
-        //Our client is sending a handshake, the server has to be able to recieve it
-        //It's time to call the Receive thread
-        Thread newConnection = new Thread(Receive);
-        newConnection.Start();
+            //TO DO 3
+            //Our client is sending a handshake, the server has to be able to recieve it
+            //It's time to call the Receive thread
+            Thread newConnection = new Thread(Receive);
+            newConnection.Start();
 
-        Debug.Log("Server Start");
+            Debug.Log("Server Start");
+
+            cs_ChangeScene.ChangeToScene(scene);
+        }
     }
 
     void Update()

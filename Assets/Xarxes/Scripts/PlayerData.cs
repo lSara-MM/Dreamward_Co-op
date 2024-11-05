@@ -9,7 +9,7 @@ public class PlayerData
     public string name;
     public string IP;
 
-    public PlayerData(string name, string IP)
+    public PlayerData(string name, string IP = "0.0.0.0")
     {
         this.network_id = Guid.NewGuid();
         this.name = name;

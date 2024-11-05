@@ -8,9 +8,14 @@ using System.Runtime.CompilerServices;
 public class ClientUDP : MonoBehaviour
 {
     Socket socket;
-    public InputErrorHandler inputErrorHandler;
+    public InputErrorHandler cs_InputErrorHandler;
+    public ChangeScene cs_ChangeScene;
+
+    public string scene = "Hub";
 
     [SerializeField] PlayerData playerData;
+
+    bool hostExists = true;
 
     // Start is called before the first frame update
     void Start()
@@ -20,13 +25,20 @@ public class ClientUDP : MonoBehaviour
 
     public void StartClient()
     {
-        playerData = inputErrorHandler.ValidateClient();
+        playerData = cs_InputErrorHandler.ValidateClient();
 
         if (playerData != null)
         {
             Debug.Log(playerData.network_id.ToString());
             Thread mainThread = new Thread(Send);
             mainThread.Start();
+
+            if (hostExists)
+            {
+                cs_InputErrorHandler.HostMissing();
+            }
+
+            Debug.Log("Client Start");
         }
     }
 
@@ -82,17 +94,17 @@ public class ClientUDP : MonoBehaviour
         try
         {
             recv = socket.ReceiveFrom(data, ref Remote);
+            cs_ChangeScene.ChangeToScene(scene);
         }
         catch (System.Exception ex)
         {
             Debug.LogWarning(ex, this);
+            hostExists = false;
             throw;
         }
 
         //clientText = ("Message received from {0}: " + Remote.ToString());
         //clientText = clientText += "\n" + Encoding.ASCII.GetString(data, 0, recv);
     }
-
-   
 }
 
