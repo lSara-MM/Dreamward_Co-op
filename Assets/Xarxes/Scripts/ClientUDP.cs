@@ -3,18 +3,14 @@ using System.Net.Sockets;
 using System.Text;
 using UnityEngine;
 using System.Threading;
-using TMPro;
-
-using System.Linq;
-using System;
+using System.Runtime.CompilerServices;
 
 public class ClientUDP : MonoBehaviour
 {
     Socket socket;
+    public InputErrorHandler inputErrorHandler;
 
-    [Header ("Start client")]
-    public TMP_InputField inputField_IP;
-    public GameObject errorText;
+    [SerializeField] PlayerData playerData;
 
     // Start is called before the first frame update
     void Start()
@@ -24,17 +20,13 @@ public class ClientUDP : MonoBehaviour
 
     public void StartClient()
     {
-        if (ValidateIPv4(inputField_IP.text))
-        {
-            errorText.SetActive(false);
-            inputField_IP.gameObject.transform.parent.gameObject.SetActive(false);
+        playerData = inputErrorHandler.ValidateClient();
 
+        if (playerData != null)
+        {
+            Debug.Log(playerData.network_id.ToString());
             Thread mainThread = new Thread(Send);
             mainThread.Start();
-        }
-        else
-        {
-            errorText.SetActive(true);
         }
     }
 
@@ -50,7 +42,7 @@ public class ClientUDP : MonoBehaviour
         //we are going to send a message to establish our communication so we need an endpoint
         //We need the server's IP and the port we've binded it to before
         //Again, initialize the socket
-        IPEndPoint ipep = new IPEndPoint(IPAddress.Parse(inputField_IP.text), 9050);
+        IPEndPoint ipep = new IPEndPoint(IPAddress.Parse(playerData.IP), 9050);
 
         socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
 
@@ -84,29 +76,16 @@ public class ClientUDP : MonoBehaviour
         EndPoint Remote = (EndPoint)(sender);
 
         byte[] data = new byte[1024];
-        int recv = socket.ReceiveFrom(data, ref Remote);
+
+        if (Remote.ToString() != "0.0.0.0:0") 
+        {
+            int recv = socket.ReceiveFrom(data, ref Remote);
+        }
 
         //clientText = ("Message received from {0}: " + Remote.ToString());
         //clientText = clientText += "\n" + Encoding.ASCII.GetString(data, 0, recv);
     }
 
-    // Validate the IP the user has introduced. Return true if valid IP
-    public bool ValidateIPv4(string ipString)
-    {
-        if (String.IsNullOrEmpty(ipString))
-        {
-            return false;
-        }
-
-        string[] splitValues = ipString.Split('.');
-        if (splitValues.Length != 4)
-        {
-            return false;
-        }
-
-        byte tempForParsing;
-
-        return splitValues.All(r => byte.TryParse(r, out tempForParsing));
-    }
+   
 }
 
