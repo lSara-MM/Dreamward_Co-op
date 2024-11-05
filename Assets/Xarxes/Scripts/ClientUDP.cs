@@ -77,6 +77,7 @@ public class ClientUDP : MonoBehaviour
 
         byte[] data = new byte[1024];
 
+        // arreglar ahora 
         if (Remote.ToString() != "0.0.0.0:0") 
         {
             int recv = socket.ReceiveFrom(data, ref Remote);
