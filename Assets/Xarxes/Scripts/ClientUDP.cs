@@ -77,10 +77,16 @@ public class ClientUDP : MonoBehaviour
 
         byte[] data = new byte[1024];
 
-        // arreglar ahora 
-        if (Remote.ToString() != "0.0.0.0:0") 
+        int recv = 0;
+
+        try
         {
-            int recv = socket.ReceiveFrom(data, ref Remote);
+            recv = socket.ReceiveFrom(data, ref Remote);
+        }
+        catch (System.Exception ex)
+        {
+            Debug.LogWarning(ex, this);
+            throw;
         }
 
         //clientText = ("Message received from {0}: " + Remote.ToString());
