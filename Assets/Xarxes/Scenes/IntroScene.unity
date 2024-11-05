@@ -172,7 +172,6 @@ MonoBehaviour:
   boss2: {fileID: 11400000, guid: 1912c596e0bdf9449a7702dd1c2e2b80, type: 2}
   fadeToBlack: {fileID: 1338386553}
   IsIntroScene: 1
-  dontDestroyList: []
 --- !u!4 &22057135
 Transform:
   m_ObjectHideFlags: 0
@@ -979,6 +978,7 @@ MonoBehaviour:
   cs_InputErrorHandler: {fileID: 656517225}
   cs_ChangeScene: {fileID: 22057134}
   scene: Hub
+  bs_changeScene: -1
 --- !u!4 &457988775
 Transform:
   m_ObjectHideFlags: 0

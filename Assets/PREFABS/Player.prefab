@@ -380,6 +380,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isFacingRigth: 1
+  firstFall: 1
   footSteps: {fileID: 7605292138450467591}
   jumpSound: {fileID: 2150561718219957820}
   dashSound: {fileID: 1363216824662803057}
@@ -1319,7 +1320,7 @@ MonoBehaviour:
   - {x: -0.26381758, y: -0.30029714, z: 0}
   m_ShapePathHash: 1636874062
   m_Mesh: {fileID: 0}
-  m_InstanceId: 271996
+  m_InstanceId: 107796
   m_LocalBounds:
     m_Center: {x: -0.08754636, y: -0.10493763, z: 0}
     m_Extent: {x: 0.17627122, y: 0.19535951, z: 0}

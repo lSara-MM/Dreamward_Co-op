@@ -26,7 +26,6 @@ public class ChangeScene : MonoBehaviour
     public bool IsIntroScene = false;
     bool IsFading = false;
 
-    [SerializeField] List<GameObject> dontDestroyList = new List<GameObject>();
 
     // Start is called before the first frame update
     void Start()
@@ -104,16 +103,11 @@ public class ChangeScene : MonoBehaviour
     {
         Debug.Log("Change Scene " + passToScene);
 
-        foreach (GameObject item in dontDestroyList)
+        foreach (GameObject item in Globals.dontDestroyList)
         {
             DontDestroyOnLoad(item);
         }
 
         SceneManager.LoadScene(passToScene);
-    }
-
-    public void AddDontDestroy(GameObject item)
-    {
-        dontDestroyList.Add(item);
     }
 }

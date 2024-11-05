@@ -20,6 +20,11 @@ public class ServerUDP : MonoBehaviour
 
     }
 
+    public PlayerData GetPlayerData()
+    {
+        return playerData;
+    }
+
     public void StartServer()
     {
         playerData = cs_InputErrorHandler.ValidateHost();
@@ -39,7 +44,7 @@ public class ServerUDP : MonoBehaviour
             newConnection.Start();
 
             Debug.Log("Server Start");
-            cs_ChangeScene.AddDontDestroy(gameObject);
+            Globals.AddDontDestroy(gameObject);
             cs_ChangeScene.ChangeToScene(scene);
         }
     }
@@ -73,11 +78,11 @@ public class ServerUDP : MonoBehaviour
                 break;
             else
             {
-               string serverText = "";
-               serverText = serverText + "\n" + "Message received from {0}:" + Remote.ToString();
-               serverText = serverText + "\n" + Encoding.ASCII.GetString(data, 0, recv);
+                string serverText = "";
+                serverText = serverText + "\n" + "Message received from {0}:" + Remote.ToString();
+                serverText = serverText + "\n" + Encoding.ASCII.GetString(data, 0, recv);
 
-               Debug.Log(serverText);
+                Debug.Log(serverText);
 
             }
             //TO DO 4

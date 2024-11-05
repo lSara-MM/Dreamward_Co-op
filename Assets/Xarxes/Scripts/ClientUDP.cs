@@ -39,7 +39,7 @@ public class ClientUDP : MonoBehaviour
                 Debug.Log("Client Start");
                 bs_changeScene = BOOLEAN_STATE.NONE;
 
-                cs_ChangeScene.AddDontDestroy(gameObject);
+                Globals.AddDontDestroy(gameObject);
                 cs_ChangeScene.ChangeToScene(scene);
             }
             else if (bs_changeScene == BOOLEAN_STATE.FALSE)
@@ -47,6 +47,10 @@ public class ClientUDP : MonoBehaviour
                 cs_InputErrorHandler.HostMissing();
             }
         }
+    }
+    public PlayerData GetPlayerData()
+    {
+        return playerData;
     }
 
     public void StartClient()
