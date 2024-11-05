@@ -5,6 +5,13 @@ using UnityEngine;
 using System.Threading;
 using System.Runtime.CompilerServices;
 
+public enum BOOLEAN_STATE
+{
+    NONE = -1,
+    FALSE,
+    TRUE
+}
+
 public class ClientUDP : MonoBehaviour
 {
     Socket socket;
@@ -15,12 +22,31 @@ public class ClientUDP : MonoBehaviour
 
     [SerializeField] PlayerData playerData;
 
-    bool hostExists = true;
+    [SerializeField] BOOLEAN_STATE bs_changeScene = BOOLEAN_STATE.NONE;
 
     // Start is called before the first frame update
     void Start()
     {
 
+    }
+
+    void Update()
+    {
+        if (playerData != null)
+        {
+            if (bs_changeScene == BOOLEAN_STATE.TRUE)
+            {
+                Debug.Log("Client Start");
+                bs_changeScene = BOOLEAN_STATE.NONE;
+
+                cs_ChangeScene.AddDontDestroy(gameObject);
+                cs_ChangeScene.ChangeToScene(scene);
+            }
+            else if (bs_changeScene == BOOLEAN_STATE.FALSE)
+            {
+                cs_InputErrorHandler.HostMissing();
+            }
+        }
     }
 
     public void StartClient()
@@ -32,19 +58,7 @@ public class ClientUDP : MonoBehaviour
             Debug.Log(playerData.network_id.ToString());
             Thread mainThread = new Thread(Send);
             mainThread.Start();
-
-            if (hostExists)
-            {
-                cs_InputErrorHandler.HostMissing();
-            }
-
-            Debug.Log("Client Start");
         }
-    }
-
-    void Update()
-    {
-        //UItext.text = clientText;
     }
 
     void Send()
@@ -94,12 +108,12 @@ public class ClientUDP : MonoBehaviour
         try
         {
             recv = socket.ReceiveFrom(data, ref Remote);
-            cs_ChangeScene.ChangeToScene(scene);
+            bs_changeScene = BOOLEAN_STATE.TRUE;
         }
         catch (System.Exception ex)
         {
             Debug.LogWarning(ex, this);
-            hostExists = false;
+            bs_changeScene = BOOLEAN_STATE.FALSE;
             throw;
         }
 

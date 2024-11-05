@@ -39,7 +39,7 @@ public class ServerUDP : MonoBehaviour
             newConnection.Start();
 
             Debug.Log("Server Start");
-
+            cs_ChangeScene.AddDontDestroy(gameObject);
             cs_ChangeScene.ChangeToScene(scene);
         }
     }

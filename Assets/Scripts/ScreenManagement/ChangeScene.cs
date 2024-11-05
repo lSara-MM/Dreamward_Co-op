@@ -31,9 +31,6 @@ public class ChangeScene : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        dontDestroyList.Add(GameObject.FindGameObjectWithTag("Server"));
-        dontDestroyList.Add(GameObject.FindGameObjectWithTag("Client"));
-
         //if (passBlack && fadeToBlack != null) 
         //{
         //    fadeToBlack.fadeToBlackImage.color = new Color(1f, 1f, 1f, 1f);
@@ -105,7 +102,7 @@ public class ChangeScene : MonoBehaviour
 
     public void ChangeToScene(string passToScene)
     {
-        Debug.Log("Change Scene" + passToScene);
+        Debug.Log("Change Scene " + passToScene);
 
         foreach (GameObject item in dontDestroyList)
         {
@@ -113,5 +110,10 @@ public class ChangeScene : MonoBehaviour
         }
 
         SceneManager.LoadScene(passToScene);
+    }
+
+    public void AddDontDestroy(GameObject item)
+    {
+        dontDestroyList.Add(item);
     }
 }
