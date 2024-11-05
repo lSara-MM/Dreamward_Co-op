@@ -34,7 +34,7 @@ public class ServerUDP : MonoBehaviour
 
             //TO DO 3
             //Our client is sending a handshake, the server has to be able to recieve it
-            //It's time to call the Receive thread
+            //It is time to call the Receive thread
             Thread newConnection = new Thread(Receive);
             newConnection.Start();
 
