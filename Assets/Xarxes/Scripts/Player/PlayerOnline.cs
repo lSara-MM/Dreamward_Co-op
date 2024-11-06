@@ -4,20 +4,24 @@ using UnityEngine;
 
 public class PlayerOnline : MonoBehaviour
 {
-    [SerializeField] PlayerData playerData;
+    [SerializeField] private PlayerData playerData;
 
     GameObject online;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         if (online = GameObject.FindGameObjectWithTag("Server"))
         {
             playerData = online.GetComponent<ServerUDP>().GetPlayerData();
+            playerData.playerNum = 1;
+            Debug.Log("Server");
         }
         else if (online = GameObject.FindGameObjectWithTag("Client"))
         {
             playerData = online.GetComponent<ClientUDP>().GetPlayerData();
+            playerData.playerNum = 2;
+            Debug.Log("Client");
         }
         else
         {
@@ -29,5 +33,10 @@ public class PlayerOnline : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public PlayerData GetPlayerData()
+    {
+        return playerData;
     }
 }
