@@ -7,6 +7,7 @@ public class SerializationTester : MonoBehaviour
 {
     SerializationManager serializationManager;
     byte[] data;
+
     void Start()
     {
         serializationManager = new SerializationManager();
@@ -14,7 +15,7 @@ public class SerializationTester : MonoBehaviour
         data = new byte[1024];
         testStruct player = new testStruct();
         player.name = "Juan";
-        player.position = new Vector2(13, 24);
+        player.position = new Vector2(this.transform.position.x, this.transform.position.y);
 
         testStruct emptyStruct = new testStruct();
 

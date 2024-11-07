@@ -23,6 +23,9 @@ public class PlayerCombat : MonoBehaviour
 
     public AudioSource attackSound;
 
+    [Header("Online")]
+    public bool isNPC = false;
+
     private void Start()
     {
         stamina = GetComponent<Stamina>();
@@ -36,18 +39,22 @@ public class PlayerCombat : MonoBehaviour
         if (_timer >= _attackDelay)
         {
             vertical = Input.GetAxisRaw("Vertical");
+            CombatMovement();
+        }
+    }
 
-            if (Input.GetButtonDown("Fire1") && vertical <= 0)
-            {
-                _timer = 0;
-                AttackSides();
-            }
+    private void CombatMovement()
+    {
+        if ((Input.GetButtonDown("Fire1") && !isNPC) || (/*TODO input -->Input.GetButtonDown("Fire1") &&*/ isNPC) && vertical <= 0)
+        {
+            _timer = 0;
+            AttackSides();
+        }
 
-            else if (Input.GetButtonDown("Fire1") && vertical > 0)
-            {
-                _timer = 0;
-                AttackUp();
-            }
+        else if ((Input.GetButtonDown("Fire1") && !isNPC) || (/*TODO input -->Input.GetButtonDown("Fire1") &&*/ isNPC) && vertical > 0)
+        {
+            _timer = 0;
+            AttackUp();
         }
     }
 

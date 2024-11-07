@@ -21,7 +21,7 @@ public class PlayerMovement : MonoBehaviour
     public bool isDashing;
     private float dashing = 24f;
     private float dashingTime = 0.2f;
-    private float dashingCooldown= 0.5f;
+    private float dashingCooldown = 0.5f;
 
     [SerializeField] private Stamina stamina;
     [SerializeField] private float dashCost = 10;
@@ -32,6 +32,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private TrailRenderer tr;
 
     [SerializeField] private Animator animator;
+
+    [Header("Online")]
+    public bool isNPC = false;
 
     private void Start()
     {
@@ -48,14 +51,30 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("FirstFall", true);
         }
 
-        if (isDashing) 
+        if (isDashing)
         {
             return;
         }
 
         horizontal = Input.GetAxisRaw("Horizontal");
 
-        if (Input.GetButtonDown("Jump") && IsGrounded()) 
+        ManageMovement();
+        ManageAnimations();
+
+        if (isDashing)
+        {
+            return;
+        }
+
+        rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+
+        Flip();
+    }
+
+    private void ManageMovement()
+    {
+        if (((Input.GetButtonDown("Jump") && !isNPC) ||
+            (/*TODO input --> Input.GetButtonDown("Jump") &&*/ isNPC)) && IsGrounded())
         {
             isJumping = true;
             jumpSound.Play();
@@ -64,32 +83,38 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("Jump", true);
         }
 
-        if (isJumping)
-        {
-            if(rb.velocity.y == 0f && IsGrounded())
-            {
-                animator.SetBool("Jump", false);
-                isJumping = false;
-            }
-        }
-
-        if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f) 
+        if (((Input.GetButtonUp("Jump") && !isNPC) ||
+            (/*TODO input -->Input.GetButtonUp("Jump") &&*/ isNPC)) && rb.velocity.y > 0f)
         {
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
         }
 
-        if (Input.GetButtonDown("Fire3") && canDash) 
+        if ((Input.GetButtonDown("Fire3") && !isNPC) ||
+            (/*TODO input -->Input.GetButtonDown("Fire3") &&*/ isNPC)
+            && canDash)
         {
             if (stamina.UseEnergy(dashCost))
             {
                 StartCoroutine(Dash());
             }
         }
+    }
 
-        if (isDashing)
+    private void ManageAnimations()
+    {
+        if (isJumping)
         {
-            return;
+            if (rb.velocity.y == 0f && IsGrounded())
+            {
+                animator.SetBool("Jump", false);
+                isJumping = false;
+            }
         }
+
+        //if (isDashing)
+        //{
+        //    return;
+        //}
 
         if (rb.velocity.x > 0f || rb.velocity.x < 0f)
         {
@@ -118,20 +143,16 @@ public class PlayerMovement : MonoBehaviour
                 animator.SetBool("Run", true);
             }
         }
-
-        rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
-
-        Flip();
     }
 
-    public bool IsGrounded() 
+    public bool IsGrounded()
     {
         return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
     }
 
     private void Flip()
     {
-        if(isFacingRigth && horizontal < 0f || !isFacingRigth && horizontal > 0f) 
+        if (isFacingRigth && horizontal < 0f || !isFacingRigth && horizontal > 0f)
         {
             isFacingRigth = !isFacingRigth;
             Vector3 localScale = transform.localScale;
