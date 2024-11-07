@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class OnlineVisuals : MonoBehaviour
 {
-    public List<Material> fontMaterials_list = new List<Material>();
+    public List<Color> fontMaterials_list = new List<Color>();
     public TMP_Text nameText;
 
     [SerializeField] private PlayerData cs_PlayerData;
@@ -19,7 +19,9 @@ public class OnlineVisuals : MonoBehaviour
         if (cs_PlayerData != null)
         {
             nameText.text = cs_PlayerData.name;
-            nameText.material = fontMaterials_list[cs_PlayerData.playerNum - 1];
+            nameText.outlineColor = fontMaterials_list[cs_PlayerData.playerNum - 1];
+
+            this.gameObject.GetComponent<SpriteRenderer>().material.color = cs_PlayerData.color;
         }
     }
 

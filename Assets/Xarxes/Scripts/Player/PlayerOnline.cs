@@ -16,12 +16,15 @@ public class PlayerOnline : MonoBehaviour
             playerData = online.GetComponent<ServerUDP>().GetPlayerData();
             playerData.playerNum = 1;
             Debug.Log("Server");
+            Debug.Log("Player: " + playerData.playerNum);
         }
         else if (online = GameObject.FindGameObjectWithTag("Client"))
         {
             playerData = online.GetComponent<ClientUDP>().GetPlayerData();
             playerData.playerNum = 2;
+            playerData.color = new Color(0.5882353f, 1f, 0.1647059f, 1f);
             Debug.Log("Client");
+            Debug.Log("Player: " + playerData.playerNum);
         }
         else
         {
