@@ -108,13 +108,8 @@ public class PlayerMovement : MonoBehaviour
             {
                 animator.SetBool("Jump", false);
                 isJumping = false;
-             }
+            }
         }
-
-        //if (isDashing)
-        //{
-        //    return;
-        //}
 
         if (rb.velocity.x > 0f || rb.velocity.x < 0f)
         {
