@@ -65,16 +65,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5880543669921993358, guid: ee9c8bd8f8719fc4bb077ec697850e10,
         type: 3}
+      propertyPath: nameText
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5880543669921993358, guid: ee9c8bd8f8719fc4bb077ec697850e10,
+        type: 3}
       propertyPath: cs_PlayerOnline
       value: 
       objectReference: {fileID: 8733647627395245984}
     - target: {fileID: 8768761659453967360, guid: ee9c8bd8f8719fc4bb077ec697850e10,
         type: 3}
       propertyPath: m_InstanceId
-      value: -79750
+      value: -169480
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 2563516912874966518, guid: ee9c8bd8f8719fc4bb077ec697850e10, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ee9c8bd8f8719fc4bb077ec697850e10, type: 3}
