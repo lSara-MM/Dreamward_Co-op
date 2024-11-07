@@ -75,7 +75,7 @@ public class Blink : MonoBehaviour
         // After the pause, swap back to the original material.
         spriteRenderer.material = originalMaterial;
 
-        // Set the routine to null, signaling that it's finished.
+        // Set the routine to null, signaling that it's finished
         flashRoutine = null;
     }
 
