@@ -3,20 +3,14 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-public struct testStruct
-{
-    public string name;
-    public Vector2 position;
-}
-
 public class SerializationManager
 {
-    public string StructToJson(testStruct t)  // Transform the struct into Json
+    public string StructToJson(SerializedData t)  // Transform the struct into Json
     {
         return JsonUtility.ToJson(t);
     }
 
-    public byte[] SerializeToBinary(testStruct t)  // Transform the struct into Json and return it serialized in binary
+    public byte[] SerializeToBinary(SerializedData t)  // Transform the struct into Json and return it serialized in binary
     {
         string json = JsonUtility.ToJson(t);
         using (MemoryStream stream = new MemoryStream())
@@ -30,12 +24,12 @@ public class SerializationManager
         }
     }
 
-    public testStruct DeserializeFromJson(string json)  // Recives Json string and transform it into our Struct
+    public SerializedData DeserializeFromJson(string json)  // Recives Json string and transform it into our Struct
     {
-        return JsonUtility.FromJson<testStruct>(json);
+        return JsonUtility.FromJson<SerializedData>(json);
     }
 
-    public testStruct DeserializeFromBinary(byte[] binaryData)  // Receives the struct in binary and converts it into our struct and returns it
+    public SerializedData DeserializeFromBinary(byte[] binaryData)  // Receives the struct in binary and converts it into our struct and returns it
     {
         string json;
         using (MemoryStream stream = new MemoryStream(binaryData))
@@ -46,6 +40,6 @@ public class SerializationManager
             }
         }
 
-        return JsonUtility.FromJson<testStruct>(json);
+        return JsonUtility.FromJson<SerializedData>(json);
     }
 }

@@ -60,12 +60,18 @@ public class ClientUDP : MonoBehaviour
         if (playerData != null)
         {
             Debug.Log(playerData.network_id.ToString());
-            Thread mainThread = new Thread(Send);
+
+            byte[] data = new byte[1024];
+            string handshake = "User connected";
+
+            data = Encoding.ASCII.GetBytes(handshake);
+
+            Thread mainThread = new Thread(() => Send(data));
             mainThread.Start();
         }
     }
 
-    void Send()
+    void Send(byte[] data)
     {
         //TO DO 2
         //Unlike with TCP, we don't "connect" first,
@@ -80,11 +86,7 @@ public class ClientUDP : MonoBehaviour
         //Send the Handshake to the server's endpoint.
         //This time, our UDP socket doesn't have it, so we have to pass it
         //as a parameter on it's SendTo() method
-
-        byte[] data = new byte[1024];
-        string handshake = "User connected";
-
-        data = Encoding.ASCII.GetBytes(handshake);
+        
         socket.SendTo(data, ipep);
 
         //TO DO 5

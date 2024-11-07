@@ -10,21 +10,21 @@ public class SerializationTester : MonoBehaviour
 
     void Start()
     {
-        serializationManager = new SerializationManager();
+        //serializationManager = new SerializationManager();
 
-        data = new byte[1024];
-        testStruct player = new testStruct();
-        player.name = "Juan";
-        player.position = new Vector2(this.transform.position.x, this.transform.position.y);
+        //data = new byte[1024];
+        //testStruct player = new testStruct();
+        //player.name = "Juan";
+        //player.position = new Vector2(this.transform.position.x, this.transform.position.y);
 
-        testStruct emptyStruct = new testStruct();
+        //testStruct emptyStruct = new testStruct();
 
-        data = serializationManager.SerializeToBinary(player);
-        string hexString = BitConverter.ToString(data).Replace("-", " ");
-        Debug.Log("Datos binarios en hexadecimal: " + hexString);
+        //data = serializationManager.SerializeToBinary(player);
+        //string hexString = BitConverter.ToString(data).Replace("-", " ");
+        //Debug.Log("Datos binarios en hexadecimal: " + hexString);
 
-        emptyStruct = serializationManager.DeserializeFromBinary(data);
-        Debug.Log(emptyStruct.name + emptyStruct.position.ToString());
+        //emptyStruct = serializationManager.DeserializeFromBinary(data);
+        //Debug.Log(emptyStruct.name + emptyStruct.position.ToString());
     }
 
     void Update()
