@@ -108,7 +108,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 animator.SetBool("Jump", false);
                 isJumping = false;
-            }
+             }
         }
 
         //if (isDashing)
