@@ -15,15 +15,27 @@ public class PlayerOnline : MonoBehaviour
     void Awake()
     {
         // Provisional Testing
-        SerializedData serializedData = new SerializedData(new Guid(), ACTION_TYPE.MESSAGE, parameters: new Vector2(10, 15));
-        Debug.Log("Before Serialization: " + serializedData.network_id + " / " + serializedData.action + " / " + serializedData.parameters);
+        //SerializedData serializedData = new SerializedData(new Guid(), ACTION_TYPE.MESSAGE, parameters: new Vector2(10, 15));
+        //Debug.Log("Before Serialization: " + serializedData.network_id + " / " + serializedData.action + " / " + serializedData.parameters);
 
-        byte[] data = SerializationManager.SerializeToBinary(serializedData);
-        string hexString = BitConverter.ToString(data).Replace("-", " ");
-        Debug.Log("Datos binarios en hexadecimal: " + hexString);
+        //byte[] data = SerializationManager.SerializeToBinary(serializedData);
+        //string hexString = BitConverter.ToString(data).Replace("-", " ");
+        //Debug.Log("Datos binarios en hexadecimal: " + hexString);
 
-        SerializedData serializedDataReply = SerializationManager.DeserializeFromBinary(data);
-        Debug.Log("After Serialization: " + serializedDataReply.network_id + " / " + serializedDataReply.action + " / " + serializedDataReply.parameters);
+        //SerializedData serializedDataReply = SerializationManager.DeserializeFromBinary(data);
+        //Debug.Log("After Serialization: " + serializedDataReply.network_id + " / " + serializedDataReply.action + " / " + serializedDataReply.parameters); 
+
+        // Provisional Testing 2
+        Serialization2 serialization2 = new Serialization2();
+        byte[] data = new byte[1024];
+        TestStruct player = new TestStruct("Juan", new Vector2(4000, 30), ACTION_TYPE.MESSAGE);
+        Debug.Log("Before Serialization: " + player.name + " / " + player.position + " / " + player.jiji);
+
+        data = serialization2.SerializeToBinary(player);
+        TestStruct emptyStruct = new TestStruct();
+        
+        emptyStruct = serialization2.DeserializeFromBinary(data);
+        Debug.Log("After Serialization: " + emptyStruct.name + " / " + emptyStruct.position + " / " + emptyStruct.jiji);
 
         if (online = GameObject.FindGameObjectWithTag("Server"))
         {
