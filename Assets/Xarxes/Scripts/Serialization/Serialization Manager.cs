@@ -12,7 +12,7 @@ public class SerializationManager
 
     public byte[] SerializeToBinary(SerializedData t)  // Transform the struct into Json and return it serialized in binary
     {
-        string json = JsonUtility.ToJson(t);
+        string json = StructToJson(t);
         using (MemoryStream stream = new MemoryStream())
         {
             using (BinaryWriter writer = new BinaryWriter(stream, System.Text.Encoding.UTF8, true))
@@ -40,6 +40,6 @@ public class SerializationManager
             }
         }
 
-        return JsonUtility.FromJson<SerializedData>(json);
+        return DeserializeFromJson(json);
     }
 }
