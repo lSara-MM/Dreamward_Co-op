@@ -108,10 +108,10 @@ public class ServerUDP : MonoBehaviour, INetworking
 
     public void SendPacket(SerializedData outputPacket, EndPoint toAddress)
     {
-        byte[] data = SerializationManager.SerializeToBinary(outputPacket);
-
         try
         {
+            byte[] data = SerializationManager.SerializeToBinary(outputPacket);
+
             socket.SendTo(data, toAddress);
         }
         catch (SocketException ex)
