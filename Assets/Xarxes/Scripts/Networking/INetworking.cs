@@ -1,18 +1,31 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Net.Sockets;
-using UnityEngine;
+using System.Net;
 
 public interface INetworking
 {
     // Clients and server will have the same UDP interface,
     // the difference will be how they use it.
 
-    void Start();
-    void OnPacketReceived(byte[] inputPacket, Socket fromAddress);
+    // For setup like binding sockets
+    void InitNetcode();
+
+    // Called to start the server or client
+    void OnStart();
+
+    // Called when a packet is received
+    void OnPacketReceived(byte[] inputPacket, EndPoint fromAddress);
+
+    // Called to handle periodic updates, if needed
     void OnUpdate();
-    void OnConnectionReset(Socket fromAddress);
-    void SendPacket(byte[] outputPacket, Socket toAddress);
+
+    // Sends a packet
+    void SendPacket(SerializedData outputPacket, EndPoint toAddress);
+
+    // Called to handle connection resets
+    void OnConnectionReset(EndPoint fromAddress);
+
+    // Handle disconnection
     void OnDisconnect();
-    void ReportError();
+
+    // Error handling
+    void ReportError(string message);
 }

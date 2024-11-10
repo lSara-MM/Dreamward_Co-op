@@ -31,15 +31,15 @@ public class PlayerOnline : MonoBehaviour
 
 
             // TODO: TESTING STUFF
-            SerializedData serializedData = new SerializedData(new Guid(), ACTION_TYPE.SPAWN_OBJECT, playerData);
+            //SerializedData serializedData = new SerializedData(new Guid(), ACTION_TYPE.SPAWN_OBJECT, playerData);
             
-            SerializationManager serializationManager = new SerializationManager();
-            byte[] data = serializationManager.SerializeToBinary(serializedData);
-            string hexString = BitConverter.ToString(data).Replace("-", " ");
-            Debug.Log("Datos binarios en hexadecimal: " + hexString);
+            //SerializationManager serializationManager = new SerializationManager();
+            //byte[] data = serializationManager.SerializeToBinary(serializedData);
+            //string hexString = BitConverter.ToString(data).Replace("-", " ");
+            //Debug.Log("Datos binarios en hexadecimal: " + hexString);
 
-            SerializedData serializedDataReply = serializationManager.DeserializeFromBinary(data);
-            Debug.Log(serializedDataReply.network_id + serializedDataReply.action.ToString());
+            //SerializedData serializedDataReply = serializationManager.DeserializeFromBinary(data);
+            //Debug.Log(serializedDataReply.network_id + serializedDataReply.action.ToString());
         }
         else
         {
