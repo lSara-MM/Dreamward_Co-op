@@ -14,6 +14,7 @@ public class PlayerOnline : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        #region Old Serialization Debug
         // Provisional Testing
         //SerializedData serializedData = new SerializedData(new Guid(), ACTION_TYPE.MESSAGE, parameters: new Vector2(10, 15));
         //Debug.Log("Before Serialization: " + serializedData.network_id + " / " + serializedData.action + " / " + serializedData.parameters);
@@ -24,18 +25,21 @@ public class PlayerOnline : MonoBehaviour
 
         //SerializedData serializedDataReply = SerializationManager.DeserializeFromBinary(data);
         //Debug.Log("After Serialization: " + serializedDataReply.network_id + " / " + serializedDataReply.action + " / " + serializedDataReply.parameters); 
+        #endregion
 
+        #region New Serialization Debug
         // Provisional Testing 2
         Serialization2 serialization2 = new Serialization2();
         byte[] data = new byte[1024];
-        TestStruct player = new TestStruct("Juan", new Vector2(4000, 30), ACTION_TYPE.MESSAGE);
+        TestStruct player = new TestStruct("Juan", new Vector2(4000, 30), "aaaa");
         Debug.Log("Before Serialization: " + player.name + " / " + player.position + " / " + player.jiji);
 
         data = serialization2.SerializeToBinary(player);
         TestStruct emptyStruct = new TestStruct();
-        
+
         emptyStruct = serialization2.DeserializeFromBinary(data);
         Debug.Log("After Serialization: " + emptyStruct.name + " / " + emptyStruct.position + " / " + emptyStruct.jiji);
+        #endregion
 
         if (online = GameObject.FindGameObjectWithTag("Server"))
         {

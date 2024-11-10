@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using Newtonsoft.Json;
 
 public struct TestStruct
 {
@@ -24,7 +25,12 @@ public class Serialization2 : MonoBehaviour
 
     public byte[] SerializeToBinary<T>(T data)
     {
-        string json = JsonUtility.ToJson(data);
+        JsonSerializerSettings settings = new JsonSerializerSettings
+        {
+            ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+        };
+
+        string json = JsonConvert.SerializeObject(data, settings);
 
         stream = new MemoryStream();
 
@@ -49,6 +55,6 @@ public class Serialization2 : MonoBehaviour
             }
         }
 
-        return JsonUtility.FromJson<TestStruct>(json);
+        return JsonConvert.DeserializeObject<TestStruct>(json);
     }
 }
