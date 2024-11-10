@@ -14,6 +14,17 @@ public class PlayerOnline : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        // Provisional Testing
+        SerializedData serializedData = new SerializedData(new Guid(), ACTION_TYPE.MESSAGE, parameters: new Vector2(10, 15));
+        Debug.Log("Before Serialization: " + serializedData.network_id + " / " + serializedData.action + " / " + serializedData.parameters);
+
+        byte[] data = SerializationManager.SerializeToBinary(serializedData);
+        string hexString = BitConverter.ToString(data).Replace("-", " ");
+        Debug.Log("Datos binarios en hexadecimal: " + hexString);
+
+        SerializedData serializedDataReply = SerializationManager.DeserializeFromBinary(data);
+        Debug.Log("After Serialization: " + serializedDataReply.network_id + " / " + serializedDataReply.action + " / " + serializedDataReply.parameters);
+
         if (online = GameObject.FindGameObjectWithTag("Server"))
         {
             playerData = online.GetComponent<ServerUDP>().GetPlayerData();
