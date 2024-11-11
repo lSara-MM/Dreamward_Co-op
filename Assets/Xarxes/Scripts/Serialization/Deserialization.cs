@@ -6,7 +6,6 @@ using UnityEngine;
 public class Deserialization : MonoBehaviour
 {
     public Dictionary<ACTION_TYPE, Action<ISerializedData>> actionsDictionary;
-    Serialization2 serialization2 = new Serialization2();
 
     private void Start()
     {

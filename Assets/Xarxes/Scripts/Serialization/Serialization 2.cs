@@ -6,6 +6,7 @@ using UnityEngine;
 using Newtonsoft.Json;
 using Unity.VisualScripting;
 using System.Reflection;
+using Newtonsoft.Json.Linq;
 
 public struct TestStruct
 {
@@ -24,7 +25,8 @@ public struct TestStruct
 public class Serialization2
 {
     public MemoryStream stream;
-    
+    public Deserialization cs_deserialization;
+
     public void SerializeData<T>(Guid id, ACTION_TYPE action, T parameters = default, string message = default)
     {
         SerializedData<T> serializedData = new SerializedData<T>(id, action, parameters, message);
@@ -51,11 +53,74 @@ public class Serialization2
         using (BinaryWriter writer = new BinaryWriter(stream, System.Text.Encoding.UTF8, true))
         {
             writer.Write(json);
+            Debug.Log(json);
         }
 
         byte[] binaryData = stream.ToArray();
 
         return binaryData;
+    }
+
+    public void DeserializeFromBinary2(byte[] binaryData)
+    {
+        string json;
+
+        using (MemoryStream stream = new MemoryStream(binaryData))
+        {
+            using (BinaryReader reader = new BinaryReader(stream, System.Text.Encoding.UTF8))
+            {
+                json = reader.ReadString();
+                ParseData(json);
+
+                //cs_deserialization.actionsDictionary[(ACTION_TYPE)(int)jsonObject["action"]].Invoke(jsonObject);
+            }
+        }
+    }
+
+    private void ParseData(string json)
+    {
+        JObject jsonObject = JObject.Parse(json);
+        ACTION_TYPE action = (ACTION_TYPE)(int)jsonObject["action"];
+
+        // 
+        switch (action)
+        {
+            case ACTION_TYPE.SPAWN_OBJECT:
+                {
+                    SerializedData<ns_struct.spawnPrefab> data = new SerializedData<ns_struct.spawnPrefab>();
+                    ns_struct.spawnPrefab structData = new ns_struct.spawnPrefab();
+                    structData.Deserialize(jsonObject);
+
+                    data.parameters = structData;
+                    cs_deserialization.actionsDictionary[action].Invoke(data);
+                }
+                break;
+            case ACTION_TYPE.INPUT_PLAYER:
+                {
+                    SerializedData<ns_struct.playerInput> data = new SerializedData<ns_struct.playerInput>();
+                    ns_struct.playerInput structData = new ns_struct.playerInput();
+                    structData.Deserialize(jsonObject);
+
+                    data.parameters = structData;
+                    cs_deserialization.actionsDictionary[action].Invoke(data);
+                }
+                break;
+            case ACTION_TYPE.DESTROY:
+                {
+                    SerializedData<ns_struct.spawnPrefab> data = new SerializedData<ns_struct.spawnPrefab>();
+                    ns_struct.spawnPrefab structData = new ns_struct.spawnPrefab();
+                    structData.Deserialize(jsonObject);
+
+                    data.parameters = structData;
+                    cs_deserialization.actionsDictionary[action].Invoke(data);
+                }
+                break;
+            case ACTION_TYPE.MESSAGE:
+                {
+
+                }
+                break;
+        }
     }
 
     public SerializedData<T> DeserializeFromBinary<T>(byte[] binaryData)
@@ -66,7 +131,9 @@ public class Serialization2
         {
             using (BinaryReader reader = new BinaryReader(stream, System.Text.Encoding.UTF8))
             {
-                json = reader.ReadString();
+                json = reader.ReadString(); 
+                var jsonObject = JObject.Parse(json);
+                var name = (string)jsonObject["action"];
             }
         }
 

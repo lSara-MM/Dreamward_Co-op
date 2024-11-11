@@ -9,7 +9,8 @@ public enum ACTION_TYPE
     SPAWN_OBJECT,
     INPUT_PLAYER,
     DESTROY,
-    MESSAGE
+    MESSAGE,
+    NONE
 }
 public interface ISerializedData
 {

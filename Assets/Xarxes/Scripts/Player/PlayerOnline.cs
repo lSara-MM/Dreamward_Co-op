@@ -112,16 +112,31 @@ public class PlayerOnline : MonoBehaviour
         #endregion
 
         #region New Serialization Debug with SerializedData
+        //// Provisional Testing 2
+        //Serialization2 serialization = new Serialization2();
+        //byte[] data = new byte[1024];
+
+        //SerializedData<ns_struct.playerInput> player2 = new SerializedData<ns_struct.playerInput>(new Guid(), ACTION_TYPE.SPAWN_OBJECT, new ns_struct.playerInput(KeyCode.N, KEY_STATE.KEY_UP));
+        //Debug.Log("Before Serialization: ");
+        //player2.parameters.Print();
+
+        //data = serialization.SerializeToBinary(player2);
+        //SerializedData<ns_struct.playerInput> emptyStruct = serialization.DeserializeFromBinary<ns_struct.playerInput>(data);
+        //Debug.Log("After Serialization: ");
+        //emptyStruct.parameters.Print();
+        #endregion
+
+        #region New Serialization Debug with SerializedData spawnPrefab
         // Provisional Testing 2
         Serialization2 serialization = new Serialization2();
         byte[] data = new byte[1024];
 
-        SerializedData<ns_struct.playerInput> player2 = new SerializedData<ns_struct.playerInput>(new Guid(), ACTION_TYPE.SPAWN_OBJECT, new ns_struct.playerInput(KeyCode.N, KEY_STATE.KEY_UP));
+        SerializedData<ns_struct.spawnPrefab> player2 = new SerializedData<ns_struct.spawnPrefab>(new Guid(), ACTION_TYPE.SPAWN_OBJECT, new ns_struct.spawnPrefab("KeyCode.N", new Vector2(123, 54)));
         Debug.Log("Before Serialization: ");
         player2.parameters.Print();
 
         data = serialization.SerializeToBinary(player2);
-        SerializedData<ns_struct.playerInput> emptyStruct = serialization.DeserializeFromBinary<ns_struct.playerInput>(data);
+        SerializedData<ns_struct.spawnPrefab> emptyStruct = serialization.DeserializeFromBinary<ns_struct.spawnPrefab>(data);
         Debug.Log("After Serialization: ");
         emptyStruct.parameters.Print();
         #endregion

@@ -1,3 +1,4 @@
+using Newtonsoft.Json.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -18,7 +19,7 @@ namespace ns_struct
         public string path { get; set; }
         public Vector2 spawnPosition { get; set; }
 
-        public spawnPrefab(string path, Vector2 spawn)
+        public spawnPrefab(string path = default, Vector2 spawn = default)
         {
             this.path = path;
             this.spawnPosition = spawn;
@@ -27,6 +28,12 @@ namespace ns_struct
         public void Print()
         {
             Debug.Log($"Path: {path}, SpawnPosition: {spawnPosition}");
+        }
+
+        public void Deserialize(JObject jsonObject)
+        {
+            this.path = (string)jsonObject["path"];
+            this.spawnPosition.Set((float)jsonObject["spawnPosition"], (float)jsonObject["spawnPosition"]);
         }
     }
     #endregion //Spawn Object
@@ -38,7 +45,7 @@ namespace ns_struct
         public KeyCode key { get; set; }
         public KEY_STATE state { get; set; }
 
-        public playerInput(KeyCode key, KEY_STATE state)
+        public playerInput(KeyCode key = default, KEY_STATE state = default)
         {
             this.key = key;
             this.state = state;
@@ -47,6 +54,11 @@ namespace ns_struct
         public void Print()
         {
             Debug.Log($"Key: {key}, State: {state}");
+        }
+        public void Deserialize(JObject jsonObject)
+        {
+            this.key = (KeyCode)(int)jsonObject["key"];
+            this.state = (KEY_STATE)(int)jsonObject["state"];
         }
     }
 
