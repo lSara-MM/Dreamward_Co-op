@@ -4,6 +4,14 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
+public enum ACTION_TYPE
+{
+    SPAWN_OBJECT,
+    INPUT_PLAYER,
+    DESTROY,
+    MESSAGE
+}
+
 public struct SerializedData
 {
     public Guid network_id { get; set; }
@@ -20,20 +28,19 @@ public struct SerializedData
     }
 }
 
-public enum ACTION_TYPE
-{
-    SPAWN_OBJECT,
-    INPUT_PLAYER,
-    DESTROY,
-    MESSAGE
-}
-
-public class Serialization
+public class Deserialization : MonoBehaviour
 {
     public Dictionary<ACTION_TYPE, Action<string>> actionsDictionary /*= new Dictionary<ACTION_TYPE, Action<string>>
     {
         { ACTION_TYPE.SPAWN_OBJECT, },
     }*/;
+
+    Serialization2 serialization2 = new Serialization2();
+
+    public void SpawnPrefab(SerializedData data)
+    {
+        Instantiate(Resources.Load(data.parameters as string), new Vector3(0, 0, 0), Quaternion.identity);
+    }
 
     //public string StructToJson<T>(T t) where T : struct  // Transform the struct into Json
     //{

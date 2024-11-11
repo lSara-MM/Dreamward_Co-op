@@ -13,6 +13,8 @@ public class ServerUDP : MonoBehaviour, INetworking
     public ChangeScene cs_ChangeScene;
     public string scene = "Hub";
 
+    Deserialization cs_Deserialization;
+
     public PlayerData GetPlayerData()
     {
         return playerData;
@@ -98,6 +100,7 @@ public class ServerUDP : MonoBehaviour, INetworking
         if (!string.IsNullOrEmpty(receivedData.message))
         {
             Debug.Log($"Message received: {receivedData.message}");
+            //cs_Deserialization.actionsDictionary[receivedData.action].Invoke(/*receivedData.parameters*/);
         }
     }
 

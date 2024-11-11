@@ -19,7 +19,7 @@ public struct TestStruct
     }
 }
 
-public class Serialization2 : MonoBehaviour
+public class Serialization2
 {
     public MemoryStream stream;
 
@@ -43,6 +43,7 @@ public class Serialization2 : MonoBehaviour
 
         return binaryData;
     }
+
     public TestStruct DeserializeFromBinary(byte[] binaryData)
     {
         string json;
