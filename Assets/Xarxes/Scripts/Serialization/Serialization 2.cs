@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using Newtonsoft.Json;
+using Unity.VisualScripting;
 
 public struct TestStruct
 {
@@ -22,6 +23,16 @@ public struct TestStruct
 public class Serialization2
 {
     public MemoryStream stream;
+    
+    public void SerializeData(Guid id, ACTION_TYPE action, object parameters = default, string message = default)
+    {
+        SerializedData serializedData = new SerializedData(id, action, parameters, message);
+        byte[] data = new byte[1024];
+
+        data = SerializeToBinary(serializedData);
+
+        // TODO: send the data?
+    }
 
     public byte[] SerializeToBinary<T>(T data)
     {
@@ -29,6 +40,8 @@ public class Serialization2
         {
             ReferenceLoopHandling = ReferenceLoopHandling.Ignore
         };
+
+        // TODO: dictionary thing
 
         string json = JsonConvert.SerializeObject(data, settings);
 

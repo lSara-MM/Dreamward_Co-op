@@ -8,8 +8,7 @@ public class PlayerOnline : MonoBehaviour
     [SerializeField] private PlayerData playerData;
 
     GameObject online;
-
-    public event SendData.del_SendInputData OnAnyInput;
+    Serialization2 cs_Serialization = new Serialization2();
 
     // Start is called before the first frame update
     void Awake()
@@ -31,7 +30,7 @@ public class PlayerOnline : MonoBehaviour
         // Provisional Testing 2
         Serialization2 serialization2 = new Serialization2();
         byte[] data = new byte[1024];
-        TestStruct player = new TestStruct("Juan", new Vector2(4000, 30), "aaaa");
+        TestStruct player = new TestStruct("Juan", new Vector2(4000, 30), new Vector2(978654, 8765));
         Debug.Log("Before Serialization: " + player.name + " / " + player.position + " / " + player.jiji);
 
         data = serialization2.SerializeToBinary(player);
@@ -39,6 +38,20 @@ public class PlayerOnline : MonoBehaviour
 
         emptyStruct = serialization2.DeserializeFromBinary(data);
         Debug.Log("After Serialization: " + emptyStruct.name + " / " + emptyStruct.position + " / " + emptyStruct.jiji);
+        #endregion
+
+        #region New Serialization Debug with SerializedData
+        //// Provisional Testing 2
+        //Serialization2 serialization = new Serialization2();
+        //byte[] data = new byte[1024];
+        //SerializedData player2 = new SerializedData(new Guid(), ACTION_TYPE.SPAWN_OBJECT, new Vector2(4000, 30));
+        //Debug.Log("Before Serialization: " + player2.network_id + " / " + player2.action + " / " + player2.parameters);
+
+        //data = serialization.SerializeToBinary(player2);
+        //SerializedData emptyStruct = new SerializedData();
+
+        //emptyStruct = serialization.DeserializeFromBinary(data);
+        //Debug.Log("After Serialization: " + emptyStruct.network_id + " / " + emptyStruct.action + " / " + emptyStruct.parameters);
         #endregion
 
         if (online = GameObject.FindGameObjectWithTag("Server"))
@@ -83,7 +96,8 @@ public class PlayerOnline : MonoBehaviour
             {
                 if (Input.GetKeyDown(key) || Input.GetKeyUp(key))
                 {
-                    OnAnyInput?.Invoke(key);
+                    // TODO: should serialize the data to send it?
+                    cs_Serialization.SerializeData(playerData.network_id, ACTION_TYPE.INPUT_PLAYER, key);
                 }
             }
         }
