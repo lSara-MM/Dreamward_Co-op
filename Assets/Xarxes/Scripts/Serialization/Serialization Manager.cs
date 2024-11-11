@@ -5,41 +5,41 @@ using UnityEngine;
 
 public class SerializationManager
 {
-    static public string StructToJson(SerializedData t)  // Transform the struct into Json
-    {
-        return JsonUtility.ToJson(t);
-    }
+    //static public string StructToJson(SerializedData t)  // Transform the struct into Json
+    //{
+    //    return JsonUtility.ToJson(t);
+    //}
 
-    static public byte[] SerializeToBinary(SerializedData t)  // Transform the struct into Json and return it serialized in binary
-    {
-        string json = StructToJson(t);
-        using (MemoryStream stream = new MemoryStream())
-        {
-            using (BinaryWriter writer = new BinaryWriter(stream, System.Text.Encoding.UTF8, true))
-            {
-                writer.Write(json);
-            }
+    //static public byte[] SerializeToBinary(SerializedData t)  // Transform the struct into Json and return it serialized in binary
+    //{
+    //    string json = StructToJson(t);
+    //    using (MemoryStream stream = new MemoryStream())
+    //    {
+    //        using (BinaryWriter writer = new BinaryWriter(stream, System.Text.Encoding.UTF8, true))
+    //        {
+    //            writer.Write(json);
+    //        }
 
-            return stream.ToArray();
-        }
-    }
+    //        return stream.ToArray();
+    //    }
+    //}
 
-    static public SerializedData DeserializeFromJson(string json)  // Recives Json string and transform it into our Struct
-    {
-        return JsonUtility.FromJson<SerializedData>(json);
-    }
+    //static public SerializedData DeserializeFromJson(string json)  // Recives Json string and transform it into our Struct
+    //{
+    //    return JsonUtility.FromJson<SerializedData>(json);
+    //}
 
-    static public SerializedData DeserializeFromBinary(byte[] binaryData)  // Receives the struct in binary and converts it into our struct and returns it
-    {
-        string json;
-        using (MemoryStream stream = new MemoryStream(binaryData))
-        {
-            using (BinaryReader reader = new BinaryReader(stream, System.Text.Encoding.UTF8))
-            {
-                json = reader.ReadString();
-            }
-        }
+    //static public SerializedData DeserializeFromBinary(byte[] binaryData)  // Receives the struct in binary and converts it into our struct and returns it
+    //{
+    //    string json;
+    //    using (MemoryStream stream = new MemoryStream(binaryData))
+    //    {
+    //        using (BinaryReader reader = new BinaryReader(stream, System.Text.Encoding.UTF8))
+    //        {
+    //            json = reader.ReadString();
+    //        }
+    //    }
 
-        return DeserializeFromJson(json);
-    }
+    //    return DeserializeFromJson(json);
+    //}
 }

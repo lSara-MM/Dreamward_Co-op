@@ -5,6 +5,7 @@ using System.IO;
 using UnityEngine;
 using Newtonsoft.Json;
 using Unity.VisualScripting;
+using System.Reflection;
 
 public struct TestStruct
 {
@@ -24,9 +25,9 @@ public class Serialization2
 {
     public MemoryStream stream;
     
-    public void SerializeData(Guid id, ACTION_TYPE action, object parameters = default, string message = default)
+    public void SerializeData<T>(Guid id, ACTION_TYPE action, T parameters = default, string message = default)
     {
-        SerializedData serializedData = new SerializedData(id, action, parameters, message);
+        SerializedData<T> serializedData = new SerializedData<T>(id, action, parameters, message);
         byte[] data = new byte[1024];
 
         data = SerializeToBinary(serializedData);
@@ -57,7 +58,7 @@ public class Serialization2
         return binaryData;
     }
 
-    public TestStruct DeserializeFromBinary(byte[] binaryData)
+    public SerializedData<T> DeserializeFromBinary<T>(byte[] binaryData)
     {
         string json;
 
@@ -69,6 +70,6 @@ public class Serialization2
             }
         }
 
-        return JsonConvert.DeserializeObject<TestStruct>(json);
+        return JsonConvert.DeserializeObject<SerializedData<T>>(json);
     }
 }

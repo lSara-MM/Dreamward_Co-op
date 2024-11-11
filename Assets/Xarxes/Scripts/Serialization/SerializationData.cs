@@ -11,16 +11,22 @@ public enum ACTION_TYPE
     DESTROY,
     MESSAGE
 }
+public interface ISerializedData
+{
+    Guid network_id { get; }
+    ACTION_TYPE action { get; }
+    string message { get; }
+}
 
 [System.Serializable]
-public struct SerializedData
+public struct SerializedData<T> : ISerializedData
 {
     public Guid network_id { get; set; }
     public ACTION_TYPE action { get; set; }
-    public object parameters { get; set; }
+    public T parameters { get; set; }
     public string message { get; set; }
 
-    public SerializedData(Guid id, ACTION_TYPE action, object parameters = default, string message = null)
+    public SerializedData(Guid id, ACTION_TYPE action, T parameters = default, string message = null)
     {
         network_id = id;
         this.action = action;

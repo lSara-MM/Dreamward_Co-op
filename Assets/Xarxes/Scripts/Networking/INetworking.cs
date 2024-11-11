@@ -18,7 +18,7 @@ public interface INetworking
     void OnUpdate();
 
     // Sends a packet
-    void SendPacket(SerializedData outputPacket, EndPoint toAddress);
+    void SendPacket<T>(SerializedData<T> outputPacket, EndPoint toAddress);
 
     // Called to handle connection resets
     void OnConnectionReset(EndPoint fromAddress);

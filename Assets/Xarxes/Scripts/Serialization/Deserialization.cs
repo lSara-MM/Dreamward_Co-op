@@ -5,30 +5,32 @@ using UnityEngine;
 
 public class Deserialization : MonoBehaviour
 {
-    public Dictionary<ACTION_TYPE, Action<SerializedData>> actionsDictionary;
+    public Dictionary<ACTION_TYPE, Action<ISerializedData>> actionsDictionary;
     Serialization2 serialization2 = new Serialization2();
 
     private void Start()
     {
-        actionsDictionary = new Dictionary<ACTION_TYPE, Action<SerializedData>>()
+        actionsDictionary = new Dictionary<ACTION_TYPE, Action<ISerializedData>>()
         {
-            { ACTION_TYPE.SPAWN_OBJECT, SpawnPrefab },
-            { ACTION_TYPE.INPUT_PLAYER, ExecuteInput },
-            { ACTION_TYPE.DESTROY, Destroy },
+            { ACTION_TYPE.SPAWN_OBJECT, data => SpawnPrefab((SerializedData<ns_struct.spawnPrefab>)data) },
+            { ACTION_TYPE.INPUT_PLAYER, data => ExecuteInput((SerializedData<ns_struct.playerInput>)data) },
+            { ACTION_TYPE.DESTROY, data => Destroy((SerializedData<string>)data) }
         };
     }
 
-    public void SpawnPrefab(SerializedData data)
+    public void SpawnPrefab(SerializedData<ns_struct.spawnPrefab> data)
     {
-        Instantiate(Resources.Load(data.parameters as string), new Vector3(0, 0, 0), Quaternion.identity);
+        ns_struct.spawnPrefab param = data.parameters;
+        Instantiate(Resources.Load(param.path), param.spawnPosition, Quaternion.identity);
     }
 
-    public void ExecuteInput(SerializedData data)
+    public void ExecuteInput(SerializedData<ns_struct.playerInput> data)
     {
         Debug.Log("ExecuteInput");
     }
-    public void Destroy(SerializedData data)
+    public void Destroy(SerializedData<string> data)
     {
         Debug.Log("Destroy");
+        Destroy(GameObject.Find(data.parameters));
     }
 }

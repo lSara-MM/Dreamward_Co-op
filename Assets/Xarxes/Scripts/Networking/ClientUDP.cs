@@ -23,6 +23,8 @@ public class ClientUDP : MonoBehaviour, INetworking
     [SerializeField] private PlayerData playerData;
     [SerializeField] private BOOLEAN_STATE bs_changeScene = BOOLEAN_STATE.NONE;
 
+    Serialization2 serialization2 = new Serialization2();
+
     public PlayerData GetPlayerData()
     {
         return playerData;
@@ -55,7 +57,7 @@ public class ClientUDP : MonoBehaviour, INetworking
 
             // Send Ping after receiving
 
-            SerializedData messageData = new SerializedData
+            SerializedData<object> messageData = new SerializedData<object>
             (
                 id: GetPlayerData().network_id,
                 action: ACTION_TYPE.MESSAGE,
@@ -92,7 +94,7 @@ public class ClientUDP : MonoBehaviour, INetworking
 
     public void OnPacketReceived(byte[] inputPacket, EndPoint fromAddress)
     {
-        SerializedData receivedData = SerializationManager.DeserializeFromBinary(inputPacket);
+        SerializedData<string> receivedData = serialization2.DeserializeFromBinary<string>(inputPacket);
 
         Debug.Log($"Data received from {fromAddress}");
 
@@ -121,11 +123,11 @@ public class ClientUDP : MonoBehaviour, INetworking
         }
     }
 
-    public void SendPacket(SerializedData outputPacket, EndPoint toAddress)
+    public void SendPacket<T>(SerializedData<T> outputPacket, EndPoint toAddress)
     {
         try
         {
-            byte[] data = SerializationManager.SerializeToBinary(outputPacket);
+            byte[] data = serialization2.SerializeToBinary(outputPacket);
 
             socket.SendTo(data, toAddress);
 

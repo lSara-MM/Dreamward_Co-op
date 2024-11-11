@@ -13,6 +13,7 @@ public class ServerUDP : MonoBehaviour, INetworking
     public ChangeScene cs_ChangeScene;
     public string scene = "Hub";
 
+    Serialization2 serialization2 = new Serialization2();
     Deserialization cs_Deserialization;
 
     public PlayerData GetPlayerData()
@@ -72,7 +73,7 @@ public class ServerUDP : MonoBehaviour, INetworking
 
                     // Send Ping after receiving
 
-                    SerializedData messageData = new SerializedData
+                    SerializedData<object> messageData = new SerializedData<object>
                     (
                         id: GetPlayerData().network_id,
                         action: ACTION_TYPE.MESSAGE,
@@ -93,7 +94,7 @@ public class ServerUDP : MonoBehaviour, INetworking
 
     public void OnPacketReceived(byte[] inputPacket, EndPoint fromAddress) 
     {
-        SerializedData receivedData = SerializationManager.DeserializeFromBinary(inputPacket);
+        SerializedData<string> receivedData = serialization2.DeserializeFromBinary<string>(inputPacket);
 
         Debug.Log($"Data received from {fromAddress}");
 
@@ -109,11 +110,11 @@ public class ServerUDP : MonoBehaviour, INetworking
         // TODO
     }
 
-    public void SendPacket(SerializedData outputPacket, EndPoint toAddress)
+    public void SendPacket<T>(SerializedData<T> outputPacket, EndPoint toAddress)
     {
         try
         {
-            byte[] data = SerializationManager.SerializeToBinary(outputPacket);
+            byte[] data = serialization2.SerializeToBinary(outputPacket);
 
             socket.SendTo(data, toAddress);
         }
