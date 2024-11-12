@@ -4,11 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using Newtonsoft.Json;
-using Unity.VisualScripting;
-using System.Reflection;
 using Newtonsoft.Json.Linq;
-using ns_struct;
-using UnityEditor.ShaderGraph.Serialization;
 
 public struct TestStruct
 {
@@ -35,9 +31,9 @@ public class Serialization2 : MonoBehaviour
     {
         actionsDictionary = new Dictionary<ACTION_TYPE, Action<JObject>>()
         {
-            //{ ACTION_TYPE.SPAWN_OBJECT, data => SpawnPrefab((SerializedData<ns_struct.spawnPrefab>)data) },
-            //{ ACTION_TYPE.INPUT_PLAYER, data => SpawnPrefab((SerializedData<ns_struct.spawnPrefab>)data) },
-            { ACTION_TYPE.DESTROY, DeserializeDestroy },
+            { ACTION_TYPE.SPAWN_OBJECT, data => HandleSpawnObject(data) },
+            { ACTION_TYPE.INPUT_PLAYER, data => HandlePlayerInput(data) },
+            { ACTION_TYPE.DESTROY, data => HandleSpawnObject(data) },
         };
     }
 
@@ -129,29 +125,31 @@ public class Serialization2 : MonoBehaviour
     private SerializedData<ns_struct.spawnPrefab> HandleSpawnObject(JObject jsonObject)
     {
         var data = new SerializedData<ns_struct.spawnPrefab>();
-        var structData = new ns_struct.spawnPrefab();
-        structData.Deserialize(jsonObject);
-        data.parameters = structData;
+        data.parameters = new ns_struct.spawnPrefab();
+        data.parameters.Deserialize(jsonObject);
+
+        cs_deserialization.actionsDictionary[ACTION_TYPE.SPAWN_OBJECT].Invoke(data);
         return data;
     }
 
     private SerializedData<ns_struct.playerInput> HandlePlayerInput(JObject jsonObject)
     {
         var data = new SerializedData<ns_struct.playerInput>();
-        var structData = new ns_struct.playerInput();
-        structData.Deserialize(jsonObject);
-        data.parameters = structData;
+        data.parameters = new ns_struct.playerInput();
+        data.parameters.Deserialize(jsonObject);
+
+        cs_deserialization.actionsDictionary[ACTION_TYPE.INPUT_PLAYER].Invoke(data);
         return data;
     }
 
     // Handler for DESTROY action
-    private void DeserializeDestroy(JObject jsonObject)
+    private SerializedData<string> DeserializeDestroy(JObject jsonObject)
     {
-        var data = new SerializedData<ns_struct.spawnPrefab>();
-        data.parameters = new ns_struct.spawnPrefab();
-        data.parameters.Deserialize(jsonObject);
+        var data = new SerializedData<string>();
+        //data.parameters.Deserialize(jsonObject);
 
         cs_deserialization.actionsDictionary[ACTION_TYPE.DESTROY].Invoke(data);
+        return data;
     }
     #endregion // Structs deserialization
 }

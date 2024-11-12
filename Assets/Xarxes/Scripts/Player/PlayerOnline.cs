@@ -13,7 +13,7 @@ public class PlayerOnline : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        DebugCosos();
+        //DebugCosos();
 
         if (online = GameObject.FindGameObjectWithTag("Server"))
         {
@@ -30,17 +30,8 @@ public class PlayerOnline : MonoBehaviour
             Debug.Log("Client");
             Debug.Log("Player: " + playerData.playerNum);
 
-
-            // TODO: TESTING STUFF
-            //SerializedData serializedData = new SerializedData(new Guid(), ACTION_TYPE.SPAWN_OBJECT, playerData);
-
-            //SerializationManager serializationManager = new SerializationManager();
-            //byte[] data = serializationManager.SerializeToBinary(serializedData);
-            //string hexString = BitConverter.ToString(data).Replace("-", " ");
-            //Debug.Log("Datos binarios en hexadecimal: " + hexString);
-
-            //SerializedData serializedDataReply = serializationManager.DeserializeFromBinary(data);
-            //Debug.Log(serializedDataReply.network_id + serializedDataReply.action.ToString());
+            SerializedData<ns_struct.spawnPrefab> player2 = new SerializedData<ns_struct.spawnPrefab>(
+                new Guid(), ACTION_TYPE.SPAWN_OBJECT, new ns_struct.spawnPrefab("Player Online NPC.prefab", new Vector2(0, 0)));
         }
         else
         {

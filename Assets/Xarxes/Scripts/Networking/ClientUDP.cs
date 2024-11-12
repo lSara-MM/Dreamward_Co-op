@@ -94,13 +94,15 @@ public class ClientUDP : MonoBehaviour, INetworking
 
     public void OnPacketReceived(byte[] inputPacket, EndPoint fromAddress)
     {
-        SerializedData<string> receivedData = serialization2.DeserializeFromBinary<string>(inputPacket);
+        var receivedData = serialization2.DeserializeFromBinary2(inputPacket);
+
+        ISerializedData serializedData = receivedData as ISerializedData;
 
         Debug.Log($"Data received from {fromAddress}");
 
-        if (!string.IsNullOrEmpty(receivedData.message))
+        if (!string.IsNullOrEmpty(serializedData.message))
         {
-            Debug.Log($"Message received: {receivedData.message}");
+            Debug.Log($"Message received: {serializedData.message}");
         }
     }
 
