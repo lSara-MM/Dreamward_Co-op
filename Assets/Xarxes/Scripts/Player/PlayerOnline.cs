@@ -32,7 +32,7 @@ public class PlayerOnline : MonoBehaviour
             Debug.Log("Player: " + playerData.playerNum);
 
             cs_Serialization.SerializeData(new Guid(), ACTION_TYPE.SPAWN_OBJECT,
-                new ns_struct.spawnPrefab("Player Online NPC.prefab", new Vector2(0, 0)));
+                new ns_struct.spawnPrefab("Player Online NPC", new Vector2(0, 0)));
         }
         else
         {
