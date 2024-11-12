@@ -13,8 +13,14 @@ public enum KEY_STATE
 
 namespace ns_struct
 {
+    public interface IDataStruct
+    {
+        public void Print();
+        public void Deserialize(JObject jsonObject);
+    }
+
     #region Spawn Object
-    public struct spawnPrefab
+    public struct spawnPrefab : IDataStruct
     {
         public string path { get; set; }
         public Vector2 spawnPosition { get; set; }
@@ -40,7 +46,7 @@ namespace ns_struct
 
     #region Input
 
-    public struct playerInput
+    public struct playerInput : IDataStruct
     {
         public KeyCode key { get; set; }
         public KEY_STATE state { get; set; }
@@ -55,6 +61,7 @@ namespace ns_struct
         {
             Debug.Log($"Key: {key}, State: {state}");
         }
+
         public void Deserialize(JObject jsonObject)
         {
             this.key = (KeyCode)(int)jsonObject["key"];

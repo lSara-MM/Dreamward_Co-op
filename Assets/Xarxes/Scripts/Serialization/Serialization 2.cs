@@ -7,6 +7,8 @@ using Newtonsoft.Json;
 using Unity.VisualScripting;
 using System.Reflection;
 using Newtonsoft.Json.Linq;
+using ns_struct;
+using UnityEditor.ShaderGraph.Serialization;
 
 public struct TestStruct
 {
@@ -22,10 +24,22 @@ public struct TestStruct
     }
 }
 
-public class Serialization2
+public class Serialization2 : MonoBehaviour
 {
     public MemoryStream stream;
     public Deserialization cs_deserialization;
+
+    private Dictionary<ACTION_TYPE, Action<JObject>> actionsDictionary;
+
+    public void Start()
+    {
+        actionsDictionary = new Dictionary<ACTION_TYPE, Action<JObject>>()
+        {
+            //{ ACTION_TYPE.SPAWN_OBJECT, data => SpawnPrefab((SerializedData<ns_struct.spawnPrefab>)data) },
+            //{ ACTION_TYPE.INPUT_PLAYER, data => SpawnPrefab((SerializedData<ns_struct.spawnPrefab>)data) },
+            { ACTION_TYPE.DESTROY, DeserializeDestroy },
+        };
+    }
 
     public void SerializeData<T>(Guid id, ACTION_TYPE action, T parameters = default, string message = default)
     {
@@ -61,7 +75,7 @@ public class Serialization2
         return binaryData;
     }
 
-    public void DeserializeFromBinary2(byte[] binaryData)
+    public object DeserializeFromBinary2(byte[] binaryData)
     {
         string json;
 
@@ -70,56 +84,26 @@ public class Serialization2
             using (BinaryReader reader = new BinaryReader(stream, System.Text.Encoding.UTF8))
             {
                 json = reader.ReadString();
-                ParseData(json);
+                var jsonObject = JObject.Parse(json);
 
-                //cs_deserialization.actionsDictionary[(ACTION_TYPE)(int)jsonObject["action"]].Invoke(jsonObject);
+                ACTION_TYPE actionType = (ACTION_TYPE)(int)jsonObject["action"];
+
+                if (actionsDictionary.ContainsKey(actionType))
+                {
+                    var action = actionsDictionary[actionType];
+
+                    // Here we call the delegate (Func<JObject, SerializedData<T>>) to get the right type T
+                    var result = action.DynamicInvoke(jsonObject);
+
+                    // Return the deserialized data
+                    return result;
+                }
+                else
+                {
+                    Debug.LogWarning($"Unknown action type: {actionType}");
+                    return null;
+                }
             }
-        }
-    }
-
-    private void ParseData(string json)
-    {
-        JObject jsonObject = JObject.Parse(json);
-        ACTION_TYPE action = (ACTION_TYPE)(int)jsonObject["action"];
-
-        // 
-        switch (action)
-        {
-            case ACTION_TYPE.SPAWN_OBJECT:
-                {
-                    SerializedData<ns_struct.spawnPrefab> data = new SerializedData<ns_struct.spawnPrefab>();
-                    ns_struct.spawnPrefab structData = new ns_struct.spawnPrefab();
-                    structData.Deserialize(jsonObject);
-
-                    data.parameters = structData;
-                    cs_deserialization.actionsDictionary[action].Invoke(data);
-                }
-                break;
-            case ACTION_TYPE.INPUT_PLAYER:
-                {
-                    SerializedData<ns_struct.playerInput> data = new SerializedData<ns_struct.playerInput>();
-                    ns_struct.playerInput structData = new ns_struct.playerInput();
-                    structData.Deserialize(jsonObject);
-
-                    data.parameters = structData;
-                    cs_deserialization.actionsDictionary[action].Invoke(data);
-                }
-                break;
-            case ACTION_TYPE.DESTROY:
-                {
-                    SerializedData<ns_struct.spawnPrefab> data = new SerializedData<ns_struct.spawnPrefab>();
-                    ns_struct.spawnPrefab structData = new ns_struct.spawnPrefab();
-                    structData.Deserialize(jsonObject);
-
-                    data.parameters = structData;
-                    cs_deserialization.actionsDictionary[action].Invoke(data);
-                }
-                break;
-            case ACTION_TYPE.MESSAGE:
-                {
-
-                }
-                break;
         }
     }
 
@@ -139,4 +123,35 @@ public class Serialization2
 
         return JsonConvert.DeserializeObject<SerializedData<T>>(json);
     }
+
+    #region Structs deserialization
+    // These methods are the ones the dictionary is storing
+    private SerializedData<ns_struct.spawnPrefab> HandleSpawnObject(JObject jsonObject)
+    {
+        var data = new SerializedData<ns_struct.spawnPrefab>();
+        var structData = new ns_struct.spawnPrefab();
+        structData.Deserialize(jsonObject);
+        data.parameters = structData;
+        return data;
+    }
+
+    private SerializedData<ns_struct.playerInput> HandlePlayerInput(JObject jsonObject)
+    {
+        var data = new SerializedData<ns_struct.playerInput>();
+        var structData = new ns_struct.playerInput();
+        structData.Deserialize(jsonObject);
+        data.parameters = structData;
+        return data;
+    }
+
+    // Handler for DESTROY action
+    private void DeserializeDestroy(JObject jsonObject)
+    {
+        var data = new SerializedData<ns_struct.spawnPrefab>();
+        data.parameters = new ns_struct.spawnPrefab();
+        data.parameters.Deserialize(jsonObject);
+
+        cs_deserialization.actionsDictionary[ACTION_TYPE.DESTROY].Invoke(data);
+    }
+    #endregion // Structs deserialization
 }
