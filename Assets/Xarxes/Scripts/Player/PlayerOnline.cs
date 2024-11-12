@@ -10,33 +10,39 @@ public class PlayerOnline : MonoBehaviour
     GameObject online;
     Serialization2 cs_Serialization;
 
+    public bool isNPC = false;
+
     // Start is called before the first frame update
     void Awake()
     {
         DebugCosos();
+
         cs_Serialization = GameObject.FindGameObjectWithTag("Serialization").GetComponent<Serialization2>();
 
-        if (online = GameObject.FindGameObjectWithTag("Server"))
+        if (!isNPC)
         {
-            playerData = online.GetComponent<ServerUDP>().GetPlayerData();
-            playerData.playerNum = 1;
-            Debug.Log("Server");
-            Debug.Log("Player: " + playerData.playerNum);
-        }
-        else if (online = GameObject.FindGameObjectWithTag("Client"))
-        {
-            playerData = online.GetComponent<ClientUDP>().GetPlayerData();
-            playerData.playerNum = 2;
-            playerData.SetColorArray(new Color(0.5882353f, 1f, 0.1647059f, 1f));
-            Debug.Log("Client");
-            Debug.Log("Player: " + playerData.playerNum);
+            if (online = GameObject.FindGameObjectWithTag("Server"))
+            {
+                playerData = online.GetComponent<ServerUDP>().GetPlayerData();
+                playerData.playerNum = 1;
+                Debug.Log("Server");
+                Debug.Log("Player: " + playerData.playerNum);
+            }
+            else if (online = GameObject.FindGameObjectWithTag("Client"))
+            {
+                playerData = online.GetComponent<ClientUDP>().GetPlayerData();
+                playerData.playerNum = 2;
+                playerData.SetColorArray(new Color(0.5882353f, 1f, 0.1647059f, 1f));
+                Debug.Log("Client");
+                Debug.Log("Player: " + playerData.playerNum);
 
-            cs_Serialization.SerializeData(new Guid(), ACTION_TYPE.SPAWN_OBJECT,
-                new ns_struct.spawnPrefab("Player Online NPC", new Vector2(0, 0)));
-        }
-        else
-        {
-            Debug.Log("Online not found");
+                cs_Serialization.SerializeData(new Guid(), ACTION_TYPE.SPAWN_PLAYER,
+                    new ns_struct.spawnPlayer(playerData, "Player Online NPC", new Vector2(0, 0)));
+            }
+            else
+            {
+                Debug.Log("Online not found");
+            }
         }
     }
 
