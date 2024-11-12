@@ -99,7 +99,7 @@ public class DebuggingStuff : MonoBehaviour
 
         PlayerData playerData = new PlayerData("paco", color: Color.yellow);
         playerData.playerNum = 2;
-        //playerData.color = new Color(0.5882353f, 1f, 0.1647059f, 1f);
+        playerData.SetColorArray(new Color(0.5882353f, 1f, 0.1647059f, 1f));
 
         SerializedData<ns_struct.spawnPlayer> player2 = new SerializedData<ns_struct.spawnPlayer>(new Guid(), ACTION_TYPE.SPAWN_PLAYER,
             new ns_struct.spawnPlayer(playerData, "Player Online NPC", new Vector2(0, 0)));

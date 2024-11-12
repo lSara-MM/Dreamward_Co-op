@@ -21,7 +21,7 @@ public class OnlineVisuals : MonoBehaviour
             nameText.text = cs_PlayerData.name;
             nameText.outlineColor = fontMaterials_list[cs_PlayerData.playerNum - 1];
 
-            //this.gameObject.GetComponent<SpriteRenderer>().material.color = cs_PlayerData.color;
+            this.gameObject.GetComponent<SpriteRenderer>().material.color = cs_PlayerData.GetColorColor();
         }
     }
 
