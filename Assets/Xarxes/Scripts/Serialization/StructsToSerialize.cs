@@ -20,7 +20,7 @@ namespace ns_struct
     }
 
     #region Spawn Object
-    public struct spawnPrefab : IDataStruct
+    public class spawnPrefab : IDataStruct
     {
         public string path { get; set; }
         public Vector2 spawnPosition { get; set; }
@@ -38,15 +38,15 @@ namespace ns_struct
 
         public void Deserialize(JObject jsonObject)
         {
-            this.path = (string)jsonObject["path"];
-            this.spawnPosition.Set((float)jsonObject["spawnPosition"], (float)jsonObject["spawnPosition"]);
+            this.path = (string)jsonObject["parameters"]["path"];
+            this.spawnPosition.Set((float)jsonObject["parameters"]["spawnPosition"]["x"], (float)jsonObject["parameters"]["spawnPosition"]["y"]);
         }
     }
     #endregion //Spawn Object
 
     #region Input
 
-    public struct playerInput : IDataStruct
+    public class playerInput : IDataStruct
     {
         public KeyCode key { get; set; }
         public KEY_STATE state { get; set; }

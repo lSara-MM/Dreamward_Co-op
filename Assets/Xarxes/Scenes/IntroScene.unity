@@ -172,6 +172,7 @@ MonoBehaviour:
   boss2: {fileID: 11400000, guid: 1912c596e0bdf9449a7702dd1c2e2b80, type: 2}
   fadeToBlack: {fileID: 1338386553}
   IsIntroScene: 1
+  dontDestroyTempList: []
 --- !u!4 &22057135
 Transform:
   m_ObjectHideFlags: 0
@@ -586,6 +587,109 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 146331694}
   m_CullTransparentMesh: 1
+--- !u!1 &224689070
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 224689072}
+  - component: {fileID: 224689071}
+  m_Layer: 0
+  m_Name: Debugging Stuff
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &224689071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 224689070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66ef0fa878f80c64fae7165811e20718, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serialization: {fileID: 234336869}
+--- !u!4 &224689072
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 224689070}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &234336866
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 234336868}
+  - component: {fileID: 234336869}
+  - component: {fileID: 234336867}
+  m_Layer: 0
+  m_Name: SerializationManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &234336867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 234336866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0830d9c772bc2ef4cab9839fb7cfc2a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &234336868
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 234336866}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &234336869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 234336866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 735eb8562635b9b4c9631f3dbde188a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cs_deserialization: {fileID: 234336867}
 --- !u!1 &236066396
 GameObject:
   m_ObjectHideFlags: 0
@@ -3429,6 +3533,18 @@ MonoBehaviour:
           m_StringArgument: Hub
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 224689071}
+        m_TargetAssemblyTypeName: DebuggingStuff, Assembly-CSharp
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1148585246
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5662,3 +5778,5 @@ SceneRoots:
   - {fileID: 1583826655}
   - {fileID: 457988775}
   - {fileID: 656517226}
+  - {fileID: 234336868}
+  - {fileID: 224689072}

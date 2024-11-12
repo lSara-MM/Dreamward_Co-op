@@ -26,10 +26,16 @@ public class ChangeScene : MonoBehaviour
     public bool IsIntroScene = false;
     bool IsFading = false;
 
+    public List<GameObject> dontDestroyTempList;
 
     // Start is called before the first frame update
     void Start()
     {
+        foreach (GameObject go in dontDestroyTempList)
+        {
+            Globals.dontDestroyList.Add(go);
+        }
+
         //if (passBlack && fadeToBlack != null) 
         //{
         //    fadeToBlack.fadeToBlackImage.color = new Color(1f, 1f, 1f, 1f);
