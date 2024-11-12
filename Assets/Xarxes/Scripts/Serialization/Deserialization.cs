@@ -41,10 +41,10 @@ public class Deserialization : MonoBehaviour
         GameObject prefab = Resources.Load(param.path) as GameObject;
         if (prefab != null)
         {
-            Instantiate(prefab, param.spawnPosition, Quaternion.identity);
+            GameObject go = Instantiate(prefab, param.spawnPosition, Quaternion.identity);
 
             // Set player data to the received data
-            prefab.GetComponent<PlayerOnline>().SetPlayerData(param.playerData);
+            go.GetComponent<PlayerOnline>().SetPlayerData(param.playerData);
         }
         else
         {
