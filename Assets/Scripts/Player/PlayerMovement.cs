@@ -56,8 +56,6 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-        horizontal = Input.GetAxisRaw("Horizontal");
-
         ManageMovement();
         ManageAnimations();
 
@@ -66,15 +64,27 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-        rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
 
         Flip();
     }
 
-    private void ManageMovement()
+    private void ManageMovement(KeyCode key = KeyCode.None, KEY_STATE key_state = KEY_STATE.NONE)
     {
+        if (isNPC && key == KeyCode.A && key_state == KEY_STATE.KEY_DOWN)
+        {
+            horizontal = -1;
+        }
+        else if (isNPC && key == KeyCode.D && key_state == KEY_STATE.KEY_DOWN)
+        {
+            horizontal = 1;
+        }
+        else
+        {
+            horizontal = Input.GetAxisRaw("Horizontal");
+        }
+
         if (((Input.GetButtonDown("Jump") && !isNPC) ||
-            (/*TODO input --> Input.GetButtonDown("Jump") &&*/ isNPC)) && IsGrounded())
+            (key == KeyCode.Space && key_state == KEY_STATE.KEY_DOWN && isNPC)) && IsGrounded())
         {
             isJumping = true;
             jumpSound.Play();
@@ -84,13 +94,13 @@ public class PlayerMovement : MonoBehaviour
         }
 
         if (((Input.GetButtonUp("Jump") && !isNPC) ||
-            (/*TODO input -->Input.GetButtonUp("Jump") &&*/ isNPC)) && rb.velocity.y > 0f)
+            (key == KeyCode.Space && key_state == KEY_STATE.KEY_UP && isNPC)) && rb.velocity.y > 0f)
         {
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
         }
 
         if ((Input.GetButtonDown("Fire3") && !isNPC) ||
-            (/*TODO input -->Input.GetButtonDown("Fire3") &&*/ isNPC)
+            (key == KeyCode.LeftShift && key_state == KEY_STATE.KEY_DOWN && isNPC)
             && canDash)
         {
             if (stamina.UseEnergy(dashCost))
@@ -98,6 +108,8 @@ public class PlayerMovement : MonoBehaviour
                 StartCoroutine(Dash());
             }
         }
+
+        rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
     }
 
     private void ManageAnimations()

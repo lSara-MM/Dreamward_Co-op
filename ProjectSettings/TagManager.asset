@@ -12,6 +12,7 @@ TagManager:
   - Rain
   - Server
   - Client
+  - Serialization
   layers:
   - Default
   - TransparentFX

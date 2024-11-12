@@ -8,12 +8,13 @@ public class PlayerOnline : MonoBehaviour
     [SerializeField] private PlayerData playerData;
 
     GameObject online;
-    Serialization2 cs_Serialization = new Serialization2();
+    Serialization2 cs_Serialization;
 
     // Start is called before the first frame update
     void Awake()
     {
         DebugCosos();
+        cs_Serialization = GameObject.FindGameObjectWithTag("Serialization").GetComponent<Serialization2>();
 
         if (online = GameObject.FindGameObjectWithTag("Server"))
         {
@@ -26,12 +27,12 @@ public class PlayerOnline : MonoBehaviour
         {
             playerData = online.GetComponent<ClientUDP>().GetPlayerData();
             playerData.playerNum = 2;
-            playerData.color = new Color(0.5882353f, 1f, 0.1647059f, 1f);
+            //playerData.color = new Color(0.5882353f, 1f, 0.1647059f, 1f);
             Debug.Log("Client");
             Debug.Log("Player: " + playerData.playerNum);
 
-            //cs_Serialization.SerializeData(new Guid(), ACTION_TYPE.SPAWN_OBJECT,
-            //    new ns_struct.spawnPrefab("Player Online NPC.prefab", new Vector2(0, 0)));
+            cs_Serialization.SerializeData(new Guid(), ACTION_TYPE.SPAWN_OBJECT,
+                new ns_struct.spawnPrefab("Player Online NPC.prefab", new Vector2(0, 0)));
         }
         else
         {

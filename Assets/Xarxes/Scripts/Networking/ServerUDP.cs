@@ -4,6 +4,7 @@ using System.Text;
 using UnityEngine;
 using System.Threading;
 using TMPro;
+using Unity.VisualScripting;
 
 public class ServerUDP : MonoBehaviour, INetworking
 {
@@ -13,8 +14,13 @@ public class ServerUDP : MonoBehaviour, INetworking
     public ChangeScene cs_ChangeScene;
     public string scene = "Hub";
 
-    Serialization2 serialization2 = new Serialization2();
+    Serialization2 cs_Serialization2;
     Deserialization cs_Deserialization;
+
+    private void Start()
+    {
+        cs_Serialization2 = GameObject.FindGameObjectWithTag("Serialization").GetComponent<Serialization2>();
+    }
 
     public PlayerData GetPlayerData()
     {
@@ -46,7 +52,6 @@ public class ServerUDP : MonoBehaviour, INetworking
             Debug.Log("Server Started");
 
             Globals.AddDontDestroy(gameObject);
-
             cs_ChangeScene.ChangeToScene(scene);
         }
         else
@@ -92,9 +97,9 @@ public class ServerUDP : MonoBehaviour, INetworking
         }
     }
 
-    public void OnPacketReceived(byte[] inputPacket, EndPoint fromAddress) 
+    public void OnPacketReceived(byte[] inputPacket, EndPoint fromAddress)
     {
-        var receivedData = serialization2.DeserializeFromBinary2(inputPacket);
+        var receivedData = cs_Serialization2.DeserializeFromBinary2(inputPacket);
 
         ISerializedData serializedData = receivedData as ISerializedData;
 
@@ -115,7 +120,7 @@ public class ServerUDP : MonoBehaviour, INetworking
     {
         try
         {
-            byte[] data = serialization2.SerializeToBinary(outputPacket);
+            byte[] data = cs_Serialization2.SerializeToBinary(outputPacket);
 
             socket.SendTo(data, toAddress);
         }

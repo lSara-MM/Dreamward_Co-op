@@ -6,6 +6,7 @@ using UnityEngine;
 
 public enum ACTION_TYPE
 {
+    SPAWN_PLAYER,
     SPAWN_OBJECT,
     INPUT_PLAYER,
     DESTROY,

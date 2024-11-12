@@ -8,7 +8,8 @@ public enum KEY_STATE
 {
     KEY_DOWN,
     KEY_UP,
-    KEY_HOLD
+    KEY_HOLD,
+    NONE
 }
 
 namespace ns_struct
@@ -20,6 +21,32 @@ namespace ns_struct
     }
 
     #region Spawn Object
+    public class spawnPlayer : IDataStruct
+    {
+        public PlayerData playerData;
+        public string path { get; set; }
+        public Vector2 spawnPosition { get; set; }
+
+        public spawnPlayer(PlayerData playerData = default, string path = default, Vector2 spawn = default)
+        {
+            this.playerData = playerData;
+            this.path = path;
+            this.spawnPosition = spawn;
+        }
+
+        public void Print()
+        {
+            Debug.Log($"Player: {playerData.name}, Path: {path}, SpawnPosition: {spawnPosition}");
+        }
+
+        public void Deserialize(JObject jsonObject)
+        {
+            //this.playerData = (string)jsonObject["parameters"]["path"];
+            this.path = (string)jsonObject["parameters"]["path"];
+            this.spawnPosition.Set((float)jsonObject["parameters"]["spawnPosition"]["x"], (float)jsonObject["parameters"]["spawnPosition"]["y"]);
+        }
+    }
+
     public class spawnPrefab : IDataStruct
     {
         public string path { get; set; }

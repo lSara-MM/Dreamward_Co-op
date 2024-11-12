@@ -23,7 +23,12 @@ public class ClientUDP : MonoBehaviour, INetworking
     [SerializeField] private PlayerData playerData;
     [SerializeField] private BOOLEAN_STATE bs_changeScene = BOOLEAN_STATE.NONE;
 
-    Serialization2 serialization2 = new Serialization2();
+    Serialization2 cs_Serialization2;
+
+    private void Start()
+    {
+        cs_Serialization2 = GameObject.FindGameObjectWithTag("Serialization").GetComponent<Serialization2>();
+    }
 
     public PlayerData GetPlayerData()
     {
@@ -67,6 +72,9 @@ public class ClientUDP : MonoBehaviour, INetworking
             EndPoint clientEndPoint = new IPEndPoint(IPAddress.Parse(playerData.IP), 9050); // Use Server IP
 
             Globals.StartNewThread(() => SendPacket(messageData, clientEndPoint));
+
+            Globals.AddDontDestroy(gameObject);
+            cs_ChangeScene.ChangeToScene(scene);
         }
     }
 
@@ -94,7 +102,7 @@ public class ClientUDP : MonoBehaviour, INetworking
 
     public void OnPacketReceived(byte[] inputPacket, EndPoint fromAddress)
     {
-        var receivedData = serialization2.DeserializeFromBinary2(inputPacket);
+        var receivedData = cs_Serialization2.DeserializeFromBinary2(inputPacket);
 
         ISerializedData serializedData = receivedData as ISerializedData;
 
@@ -129,7 +137,7 @@ public class ClientUDP : MonoBehaviour, INetworking
     {
         try
         {
-            byte[] data = serialization2.SerializeToBinary(outputPacket);
+            byte[] data = cs_Serialization2.SerializeToBinary(outputPacket);
 
             socket.SendTo(data, toAddress);
 

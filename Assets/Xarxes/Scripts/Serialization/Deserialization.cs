@@ -11,10 +11,17 @@ public class Deserialization : MonoBehaviour
     {
         actionsDictionary = new Dictionary<ACTION_TYPE, Action<ISerializedData>>()
         {
+            { ACTION_TYPE.SPAWN_PLAYER, data => SpawnPlayer((SerializedData<ns_struct.spawnPlayer>)data) },
             { ACTION_TYPE.SPAWN_OBJECT, data => SpawnPrefab((SerializedData<ns_struct.spawnPrefab>)data) },
             { ACTION_TYPE.INPUT_PLAYER, data => ExecuteInput((SerializedData<ns_struct.playerInput>)data) },
             { ACTION_TYPE.DESTROY, data => Destroy((SerializedData<string>)data) }
         };
+    }
+
+    public void SpawnPlayer(SerializedData<ns_struct.spawnPlayer> data)
+    {
+        ns_struct.spawnPlayer param = data.parameters;
+        Instantiate(Resources.Load(param.path), param.spawnPosition, Quaternion.identity);
     }
 
     public void SpawnPrefab(SerializedData<ns_struct.spawnPrefab> data)
