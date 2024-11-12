@@ -70,6 +70,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void ManageMovement(KeyCode key = KeyCode.None, KEY_STATE key_state = KEY_STATE.NONE)
     {
+        if (isNPC)
+        {
+            horizontal = 0;
+        }
+        
         if (isNPC && key == KeyCode.A && key_state == KEY_STATE.KEY_DOWN)
         {
             horizontal = -1;
@@ -78,7 +83,8 @@ public class PlayerMovement : MonoBehaviour
         {
             horizontal = 1;
         }
-        else
+        
+        if (!isNPC)
         {
             horizontal = Input.GetAxisRaw("Horizontal");
         }

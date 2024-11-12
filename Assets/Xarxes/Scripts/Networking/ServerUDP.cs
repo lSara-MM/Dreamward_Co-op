@@ -66,17 +66,17 @@ public class ServerUDP : MonoBehaviour, INetworking
     {
         byte[] data = new byte[1024];
         IPEndPoint sender = new IPEndPoint(IPAddress.Any, 0);
-        EndPoint remote = sender;
+        endPoint = sender;
 
         while (true)
         {
             try
             {
-                int recv = socket.ReceiveFrom(data, ref remote);
+                int recv = socket.ReceiveFrom(data, ref endPoint);
 
                 if (recv > 0)
                 {
-                    OnPacketReceived(data, remote);
+                    OnPacketReceived(data, endPoint);
 
                     // Send Ping after receiving
 
@@ -87,13 +87,13 @@ public class ServerUDP : MonoBehaviour, INetworking
                         message: "UDP Ping"
                     );
 
-                    Globals.StartNewThread(() => SendPacket(messageData, remote));
+                    Globals.StartNewThread(() => SendPacket(messageData, endPoint));
                 }
             }
             catch (SocketException ex)
             {
                 ReportError("Socket error: " + ex.Message);
-                OnConnectionReset(remote);
+                OnConnectionReset(endPoint);
                 break;
             }
         }

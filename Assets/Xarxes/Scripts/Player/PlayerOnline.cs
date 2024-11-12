@@ -37,7 +37,7 @@ public class PlayerOnline : MonoBehaviour
         else
         {
             Debug.Log("Online not found");
-        }        
+        }
     }
 
     // Update is called once per frame
@@ -60,6 +60,12 @@ public class PlayerOnline : MonoBehaviour
     {
         return playerData;
     }
+
+    public void SetPlayerData(PlayerData playerData)
+    {
+        this.playerData = playerData;
+    }
+
     public void DebugCosos()
     {
         #region Old Serialization Debug
