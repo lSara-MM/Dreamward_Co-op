@@ -9,6 +9,8 @@ using Unity.VisualScripting;
 public class ServerUDP : MonoBehaviour, INetworking
 {
     private Socket socket;
+    private EndPoint endPoint;
+
     [SerializeField] private PlayerData playerData;
     public InputErrorHandler cs_InputErrorHandler;
     public ChangeScene cs_ChangeScene;
@@ -123,6 +125,18 @@ public class ServerUDP : MonoBehaviour, INetworking
             byte[] data = cs_Serialization2.SerializeToBinary(outputPacket);
 
             socket.SendTo(data, toAddress);
+        }
+        catch (SocketException ex)
+        {
+            ReportError("Failed to send packet: " + ex.Message);
+        }
+    }
+
+    public void SendDataPacket(byte[] data)
+    {
+        try
+        {
+            socket.SendTo(data, endPoint);
         }
         catch (SocketException ex)
         {

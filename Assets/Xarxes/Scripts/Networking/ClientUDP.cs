@@ -16,6 +16,8 @@ public enum BOOLEAN_STATE
 public class ClientUDP : MonoBehaviour, INetworking
 {
     private Socket socket;
+    private EndPoint endPoint;
+
     public InputErrorHandler cs_InputErrorHandler;
     public ChangeScene cs_ChangeScene;
     public string scene = "Hub";
@@ -69,12 +71,27 @@ public class ClientUDP : MonoBehaviour, INetworking
                 message: "User Connected Handshake"
             );
 
-            EndPoint clientEndPoint = new IPEndPoint(IPAddress.Parse(playerData.IP), 9050); // Use Server IP
+            endPoint = new IPEndPoint(IPAddress.Parse(playerData.IP), 9050); // Use Server IP
 
-            Globals.StartNewThread(() => SendPacket(messageData, clientEndPoint));
+            Globals.StartNewThread(() => SendPacket(messageData, endPoint));
+            
+            
+            // Start client and manage scene
+            if (playerData != null)
+            {
+                if (bs_changeScene == BOOLEAN_STATE.TRUE)
+                {
+                    Debug.Log("Client Start");
+                    bs_changeScene = BOOLEAN_STATE.NONE;
 
-            Globals.AddDontDestroy(gameObject);
-            cs_ChangeScene.ChangeToScene(scene);
+                    Globals.AddDontDestroy(gameObject);
+                    cs_ChangeScene.ChangeToScene(scene);
+                }
+                else if (bs_changeScene == BOOLEAN_STATE.FALSE)
+                {
+                    cs_InputErrorHandler.HostMissing();
+                }
+            }
         }
     }
 
@@ -140,6 +157,21 @@ public class ClientUDP : MonoBehaviour, INetworking
             byte[] data = cs_Serialization2.SerializeToBinary(outputPacket);
 
             socket.SendTo(data, toAddress);
+
+            // Start receive thread to listen for responses
+            Globals.StartNewThread(Receive);
+        }
+        catch (SocketException ex)
+        {
+            ReportError("Failed to send packet: " + ex.Message);
+        }
+    }
+
+    public void SendDataPacket(byte[] data)
+    {
+        try
+        {
+            socket.SendTo(data, endPoint);
 
             // Start receive thread to listen for responses
             Globals.StartNewThread(Receive);

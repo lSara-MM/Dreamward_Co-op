@@ -46,7 +46,20 @@ public class Serialization2 : MonoBehaviour
         data = SerializeToBinary(serializedData);
 
         // TODO: send the data?
+        GameObject online;
 
+        if (online = GameObject.FindGameObjectWithTag("Server"))
+        {
+            online.GetComponent<ServerUDP>().SendDataPacket(data);
+        }
+        else if (online = GameObject.FindGameObjectWithTag("Client"))
+        {
+            online.GetComponent<ClientUDP>().SendDataPacket(data);
+        }
+        else
+        {
+            Debug.Log("Online not found");
+        }
     }
 
     public byte[] SerializeToBinary<T>(T data)
