@@ -23,7 +23,7 @@ public class ClientUDP : MonoBehaviour, INetworking
     public string scene = "Hub";
 
     [SerializeField] private PlayerData playerData;
-    [SerializeField] private BOOLEAN_STATE bs_changeScene = BOOLEAN_STATE.NONE;
+    [SerializeField] private BOOLEAN_STATE bs_hostIsValid = BOOLEAN_STATE.NONE;
 
     Serialization2 cs_Serialization2;
 
@@ -79,15 +79,15 @@ public class ClientUDP : MonoBehaviour, INetworking
             // Start client and manage scene
             if (playerData != null)
             {
-                if (bs_changeScene == BOOLEAN_STATE.TRUE)
+                if (bs_hostIsValid == BOOLEAN_STATE.TRUE)
                 {
                     Debug.Log("Client Start");
-                    bs_changeScene = BOOLEAN_STATE.NONE;
+                    bs_hostIsValid = BOOLEAN_STATE.NONE;
 
                     Globals.AddDontDestroy(gameObject);
                     cs_ChangeScene.ChangeToScene(scene);
                 }
-                else if (bs_changeScene == BOOLEAN_STATE.FALSE)
+                else if (bs_hostIsValid == BOOLEAN_STATE.FALSE)
                 {
                     cs_InputErrorHandler.HostMissing();
                 }
@@ -107,13 +107,13 @@ public class ClientUDP : MonoBehaviour, INetworking
             if (recv > 0)
             {
                 OnPacketReceived(data, remote);
-                bs_changeScene = BOOLEAN_STATE.TRUE;
+                bs_hostIsValid = BOOLEAN_STATE.TRUE;
             }
         }
         catch (SocketException ex)
         {
             ReportError("Failed to receive packet: " + ex.Message);
-            bs_changeScene = BOOLEAN_STATE.FALSE;
+            bs_hostIsValid = BOOLEAN_STATE.FALSE;
         }
     }
 
@@ -133,24 +133,24 @@ public class ClientUDP : MonoBehaviour, INetworking
 
     public void OnUpdate()
     {
-        if (playerData != null)
-        {
-            if (bs_changeScene == BOOLEAN_STATE.TRUE)
-            {
-                Debug.Log("Client Start");
-                bs_changeScene = BOOLEAN_STATE.NONE;
+        //if (playerData != null)
+        //{
+        //    if (bs_hostIsValid == BOOLEAN_STATE.TRUE)
+        //    {
+        //        Debug.Log("Client Start");
+        //        bs_hostIsValid = BOOLEAN_STATE.NONE;
 
-                Globals.AddDontDestroy(gameObject);
-                cs_ChangeScene.ChangeToScene(scene);
-            }
-            else if (bs_changeScene == BOOLEAN_STATE.FALSE)
-            {
-                cs_InputErrorHandler.HostMissing();
-            }
-        }
+        //        Globals.AddDontDestroy(gameObject);
+        //        cs_ChangeScene.ChangeToScene(scene);
+        //    }
+        //    else if (bs_hostIsValid == BOOLEAN_STATE.FALSE)
+        //    {
+        //        cs_InputErrorHandler.HostMissing();
+        //    }
+        //}
     }
 
-    public void SendPacket<T>(SerializedData<T> outputPacket, EndPoint toAddress)
+    public bool SendPacket<T>(SerializedData<T> outputPacket, EndPoint toAddress)
     {
         try
         {
@@ -160,10 +160,12 @@ public class ClientUDP : MonoBehaviour, INetworking
 
             // Start receive thread to listen for responses
             Globals.StartNewThread(Receive);
+            bs_hostIsValid = BOOLEAN_STATE.TRUE;
         }
         catch (SocketException ex)
         {
             ReportError("Failed to send packet: " + ex.Message);
+            bs_hostIsValid = BOOLEAN_STATE.FALSE;
         }
     }
 
