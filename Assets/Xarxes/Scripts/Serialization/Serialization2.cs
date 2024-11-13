@@ -76,7 +76,7 @@ public class Serialization2 : MonoBehaviour
         using (BinaryWriter writer = new BinaryWriter(stream, System.Text.Encoding.UTF8, true))
         {
             writer.Write(json);
-            Debug.Log(json);
+            //Debug.Log(json);
         }
 
         byte[] binaryData = stream.ToArray();
