@@ -150,7 +150,7 @@ public class ClientUDP : MonoBehaviour, INetworking
         //}
     }
 
-    public bool SendPacket<T>(SerializedData<T> outputPacket, EndPoint toAddress)
+    public void SendPacket<T>(SerializedData<T> outputPacket, EndPoint toAddress)
     {
         try
         {
