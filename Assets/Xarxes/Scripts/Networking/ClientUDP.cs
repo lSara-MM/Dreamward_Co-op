@@ -3,8 +3,6 @@ using System.Net.Sockets;
 using System.Text;
 using UnityEngine;
 using System.Threading;
-using System.Runtime.CompilerServices;
-using UnityEngine.tvOS;
 
 public enum BOOLEAN_STATE
 {
