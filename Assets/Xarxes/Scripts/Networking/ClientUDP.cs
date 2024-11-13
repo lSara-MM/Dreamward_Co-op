@@ -74,24 +74,6 @@ public class ClientUDP : MonoBehaviour, INetworking
             endPoint = new IPEndPoint(IPAddress.Parse(playerData.IP), 9050); // Use Server IP
 
             Globals.StartNewThread(() => SendPacket(messageData, endPoint));
-            
-            
-            // Start client and manage scene
-            if (playerData != null)
-            {
-                if (bs_hostIsValid == BOOLEAN_STATE.TRUE)
-                {
-                    Debug.Log("Client Start");
-                    bs_hostIsValid = BOOLEAN_STATE.NONE;
-
-                    Globals.AddDontDestroy(gameObject);
-                    cs_ChangeScene.ChangeToScene(scene);
-                }
-                else if (bs_hostIsValid == BOOLEAN_STATE.FALSE)
-                {
-                    cs_InputErrorHandler.HostMissing();
-                }
-            }
         }
     }
 
@@ -133,21 +115,21 @@ public class ClientUDP : MonoBehaviour, INetworking
 
     public void OnUpdate()
     {
-        //if (playerData != null)
-        //{
-        //    if (bs_hostIsValid == BOOLEAN_STATE.TRUE)
-        //    {
-        //        Debug.Log("Client Start");
-        //        bs_hostIsValid = BOOLEAN_STATE.NONE;
+        if (playerData != null && bs_hostIsValid != BOOLEAN_STATE.NONE)
+        {
+            if (bs_hostIsValid == BOOLEAN_STATE.TRUE)
+            {
+                Debug.Log("Client Start");
+                bs_hostIsValid = BOOLEAN_STATE.NONE;
 
-        //        Globals.AddDontDestroy(gameObject);
-        //        cs_ChangeScene.ChangeToScene(scene);
-        //    }
-        //    else if (bs_hostIsValid == BOOLEAN_STATE.FALSE)
-        //    {
-        //        cs_InputErrorHandler.HostMissing();
-        //    }
-        //}
+                Globals.AddDontDestroy(gameObject);
+                cs_ChangeScene.ChangeToScene(scene);
+            }
+            else if (bs_hostIsValid == BOOLEAN_STATE.FALSE)
+            {
+                cs_InputErrorHandler.HostMissing();
+            }
+        }
     }
 
     public void SendPacket<T>(SerializedData<T> outputPacket, EndPoint toAddress)
