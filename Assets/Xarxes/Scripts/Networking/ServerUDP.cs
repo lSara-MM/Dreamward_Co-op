@@ -82,7 +82,7 @@ public class ServerUDP : MonoBehaviour, INetworking
 
                     SerializedData<object> messageData = new SerializedData<object>
                     (
-                        id: GetPlayerData().network_id,
+                        id: GetPlayerData().netID,
                         action: ACTION_TYPE.MESSAGE,
                         message: "UDP Ping"
                     );

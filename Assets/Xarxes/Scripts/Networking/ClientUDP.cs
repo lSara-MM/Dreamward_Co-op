@@ -58,7 +58,7 @@ public class ClientUDP : MonoBehaviour, INetworking
 
         if (playerData != null)
         {
-            Debug.Log(playerData.network_id.ToString());
+            Debug.Log(playerData.netID.ToString());
 
             InitNetcode();
 
@@ -66,7 +66,7 @@ public class ClientUDP : MonoBehaviour, INetworking
 
             SerializedData<object> messageData = new SerializedData<object>
             (
-                id: GetPlayerData().network_id,
+                id: GetPlayerData().netID,
                 action: ACTION_TYPE.MESSAGE,
                 message: "User Connected Handshake"
             );

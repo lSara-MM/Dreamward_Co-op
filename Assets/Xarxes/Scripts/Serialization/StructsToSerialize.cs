@@ -1,8 +1,9 @@
-using Newtonsoft.Json.Linq;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using Newtonsoft.Json.Linq;
 
 public enum KEY_STATE
 {
@@ -27,9 +28,9 @@ namespace ns_struct
         public string path { get; set; }
         public Vector2 spawnPosition { get; set; }
 
-        public spawnPlayer(PlayerData playerData = default, string path = default, Vector2 spawn = default)
+        public spawnPlayer(PlayerData playerData = null, string path = default, Vector2 spawn = default)
         {
-            this.playerData = playerData;
+            this.playerData = playerData == null ? new PlayerData() : playerData;
             this.path = path;
             this.spawnPosition = spawn;
         }
@@ -41,7 +42,38 @@ namespace ns_struct
 
         public void Deserialize(JObject jsonObject)
         {
-            //this.playerData = (string)jsonObject["parameters"]["path"];
+            // Prevent null reference errors.
+            if (jsonObject["parameters"]?["playerData"] != null)
+            {
+                JObject playerData = (JObject)jsonObject["parameters"]["playerData"];
+
+                // Parse netID it as a GUID
+                if (playerData["netID"] != null)
+                {
+                    this.playerData.netID = new Guid((string)playerData["netID"]);
+                }
+
+                // Deserialize playerData name and IP, if they exist
+                this.playerData.name = (string)playerData["name"] ?? "Player";
+                this.playerData.IP = (string)playerData["IP"] ?? "";
+
+                // Deserialize color array
+                JArray colorArray = (JArray)playerData["color"];
+                if (colorArray != null && this.playerData.color.Length >= colorArray.Count)
+                {
+                    for (int i = 0; i < colorArray.Count; i++)
+                    {
+                        this.playerData.color[i] = (float)colorArray[i];
+                    }
+                }
+            }
+            else
+            {
+                // Log an error if playerData is missing
+               Debug.LogWarning("PlayerData not found in JSON.");
+            }
+
+            // 
             this.path = (string)jsonObject["parameters"]["path"];
             this.spawnPosition.Set((float)jsonObject["parameters"]["spawnPosition"]["x"], (float)jsonObject["parameters"]["spawnPosition"]["y"]);
         }
