@@ -6,12 +6,12 @@ public class FollowUI : MonoBehaviour
 {
     [SerializeField] private Transform lookAt;
     [SerializeField] private Vector3 offset;
-    [SerializeField] Camera cam;
+    private Camera cam;
 
     // Start is called before the first frame update
     void Start()
     {
-        //cam = GameObject.Find("Main Camera").GetComponent<Camera>();
+        cam = GameObject.Find("Main Camera").GetComponent<Camera>();
     }
 
     // Update is called once per frame
