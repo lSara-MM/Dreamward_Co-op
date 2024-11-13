@@ -3,6 +3,7 @@ using System.Net.Sockets;
 using System.Text;
 using UnityEngine;
 using System.Threading;
+using System;
 
 public enum BOOLEAN_STATE
 {
@@ -20,6 +21,7 @@ public class ClientUDP : MonoBehaviour, INetworking
     public ChangeScene cs_ChangeScene;
     public string scene = "Hub";
 
+    [SerializeField] private Guid guid;
     [SerializeField] private PlayerData playerData;
     [SerializeField] private BOOLEAN_STATE bs_hostIsValid = BOOLEAN_STATE.NONE;
 
@@ -27,7 +29,13 @@ public class ClientUDP : MonoBehaviour, INetworking
 
     private void Start()
     {
+        guid = Guid.NewGuid();
         cs_Serialization2 = GameObject.FindGameObjectWithTag("Serialization").GetComponent<Serialization2>();
+    }
+
+    public Guid GetGUID()
+    {
+        return guid;
     }
 
     public PlayerData GetPlayerData()
@@ -56,7 +64,7 @@ public class ClientUDP : MonoBehaviour, INetworking
 
         if (playerData != null)
         {
-            Debug.Log(playerData.netID.ToString());
+            Debug.Log(guid);
 
             InitNetcode();
 
@@ -64,7 +72,7 @@ public class ClientUDP : MonoBehaviour, INetworking
 
             SerializedData<object> messageData = new SerializedData<object>
             (
-                id: GetPlayerData().netID,
+                id: guid,
                 action: ACTION_TYPE.MESSAGE,
                 message: "User Connected Handshake"
             );

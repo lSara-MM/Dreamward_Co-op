@@ -47,12 +47,6 @@ namespace ns_struct
             {
                 JObject playerData = (JObject)jsonObject["parameters"]["playerData"];
 
-                // Parse netID it as a GUID
-                if (playerData["netID"] != null)
-                {
-                    this.playerData.netID = new Guid((string)playerData["netID"]);
-                }
-
                 // Deserialize playerData name and IP, if they exist
                 this.playerData.name = (string)playerData["name"] ?? "Player";
                 this.playerData.IP = (string)playerData["IP"] ?? "";

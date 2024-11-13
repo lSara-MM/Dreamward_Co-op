@@ -68,22 +68,21 @@ public class PlayerMovement : MonoBehaviour
         Flip();
     }
 
-    private void ManageMovement(KeyCode key = KeyCode.None, KEY_STATE key_state = KEY_STATE.NONE)
-    {
-        if (isNPC)
-        {
-            horizontal = 0;
-        }
-        
-        if (isNPC && key == KeyCode.A && key_state == KEY_STATE.KEY_DOWN)
+    public void ManageMovement(KeyCode key = KeyCode.None, KEY_STATE key_state = KEY_STATE.NONE)
+    { 
+        if (isNPC && key == KeyCode.A && key_state == KEY_STATE.KEY_DOWN || key_state == KEY_STATE.KEY_HOLD)
         {
             horizontal = -1;
         }
-        else if (isNPC && key == KeyCode.D && key_state == KEY_STATE.KEY_DOWN)
+        else if (isNPC && key == KeyCode.D && key_state == KEY_STATE.KEY_DOWN || key_state == KEY_STATE.KEY_HOLD)
         {
             horizontal = 1;
         }
-        
+        else if (isNPC)
+        {
+            horizontal = 0;
+        }
+
         if (!isNPC)
         {
             horizontal = Input.GetAxisRaw("Horizontal");

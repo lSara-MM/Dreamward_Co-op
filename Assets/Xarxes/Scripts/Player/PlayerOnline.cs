@@ -1,10 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerOnline : MonoBehaviour
 {
+    [SerializeField] private GUID_Generator cs_guid;
     [SerializeField] private PlayerData playerData;
 
     GameObject online;
@@ -17,6 +19,7 @@ public class PlayerOnline : MonoBehaviour
     {
         DebugCosos();
 
+        cs_guid = gameObject.GetComponent<GUID_Generator>();
         cs_Serialization = GameObject.FindGameObjectWithTag("Serialization").GetComponent<Serialization2>();
 
         if (!isNPC)
@@ -27,6 +30,8 @@ public class PlayerOnline : MonoBehaviour
                 playerData.playerNum = 1;
                 Debug.Log("Server");
                 Debug.Log("Player: " + playerData.playerNum);
+
+                cs_guid.SetGuid(online.GetComponent<ServerUDP>().GetGUID());
             }
             else if (online = GameObject.FindGameObjectWithTag("Client"))
             {
@@ -36,7 +41,9 @@ public class PlayerOnline : MonoBehaviour
                 Debug.Log("Client");
                 Debug.Log("Player: " + playerData.playerNum);
 
-                cs_Serialization.SerializeData(new Guid(), ACTION_TYPE.SPAWN_PLAYER,
+                cs_guid.SetGuid(online.GetComponent<ClientUDP>().GetGUID());
+
+                cs_Serialization.SerializeData(cs_guid.GetGuid(), ACTION_TYPE.SPAWN_PLAYER,
                     new ns_struct.spawnPlayer(playerData, "Player Online NPC", new Vector2(0, 0)));
             }
             else
@@ -55,7 +62,8 @@ public class PlayerOnline : MonoBehaviour
             {
                 if (Input.GetKeyDown(key) || Input.GetKeyUp(key) || Input.GetKey(key))
                 {
-                    cs_Serialization.SerializeData(playerData.netID, ACTION_TYPE.INPUT_PLAYER, key);
+                    //Debug.Log("Send input: " +  key);
+                    cs_Serialization.SerializeData(cs_guid.GetGuid(), ACTION_TYPE.INPUT_PLAYER, key);
                 }
             }
         }
@@ -94,7 +102,7 @@ public class PlayerOnline : MonoBehaviour
         //}
         #endregion
 
-        #region New Serialization Debug with SerializedData spawnPrefab
+        #region New Serialization Debug with SerializedData spawnPlayer
         //// Provisional Testing 2
         //byte[] data = new byte[1024];
 

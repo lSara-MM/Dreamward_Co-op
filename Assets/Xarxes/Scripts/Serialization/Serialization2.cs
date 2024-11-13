@@ -6,20 +6,6 @@ using UnityEngine;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-public struct TestStruct
-{
-    public string name;
-    public Vector2 position;
-    public object jiji;
-
-    public TestStruct(string name, Vector2 position, object jiji)
-    {
-        this.name = name;
-        this.position = position;
-        this.jiji = jiji;
-    }
-}
-
 public class Serialization2 : MonoBehaviour
 {
     public MemoryStream stream;
@@ -104,7 +90,7 @@ public class Serialization2 : MonoBehaviour
                     {
                         var action = actionsDictionary[actionType];
 
-                        // Here we call the delegate (Func<JObject, SerializedData<T>>) to get the right type T
+                        // Call the delegate
                         var result = action.DynamicInvoke(jsonObject);
 
                         // Return the deserialized data
@@ -138,35 +124,6 @@ public class Serialization2 : MonoBehaviour
         }
 
         return JsonConvert.DeserializeObject<SerializedData<T>>(json);
-    }
-
-    private object ParseData(string json)
-    {
-        JObject jsonObject = JObject.Parse(json);
-        ACTION_TYPE action = (ACTION_TYPE)(int)jsonObject["action"];
-
-        // 
-        switch (action)
-        {
-            case ACTION_TYPE.SPAWN_OBJECT:
-                {
-                    return HandleSpawnObject(jsonObject);
-                }
-            case ACTION_TYPE.INPUT_PLAYER:
-                {
-                    return HandlePlayerInput(jsonObject);
-                }
-            case ACTION_TYPE.DESTROY:
-                {
-                    return HandleSpawnObject(jsonObject);
-                }
-            case ACTION_TYPE.MESSAGE:
-                {
-                    return HandleSpawnObject(jsonObject);
-                }
-        }
-
-        return null;
     }
 
     #region Structs deserialization

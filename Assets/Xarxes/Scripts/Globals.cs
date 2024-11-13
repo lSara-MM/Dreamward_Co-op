@@ -7,6 +7,7 @@ using UnityEngine;
 
 public class Globals
 {
+    #region Don't destroy GameObjects
     static public List<GameObject> dontDestroyList = new List<GameObject>();
 
     static public void AddDontDestroy(GameObject item)
@@ -19,4 +20,5 @@ public class Globals
         Thread thread = new Thread(new ThreadStart(action));
         thread.Start();
     }
+    #endregion //Don't destroy GameObjects
 }

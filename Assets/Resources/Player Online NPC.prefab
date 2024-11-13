@@ -13,10 +13,20 @@ PrefabInstance:
       propertyPath: isNPC
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 858215692753399830, guid: ecf0a7b7c583e2a43a5cb043f57f9939,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1699029050719580793, guid: ecf0a7b7c583e2a43a5cb043f57f9939,
         type: 3}
       propertyPath: m_InstanceId
-      value: -16274
+      value: -74438
+      objectReference: {fileID: 0}
+    - target: {fileID: 2028326694311403254, guid: ecf0a7b7c583e2a43a5cb043f57f9939,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5682873986709919179, guid: ecf0a7b7c583e2a43a5cb043f57f9939,
         type: 3}
@@ -102,6 +112,11 @@ PrefabInstance:
         type: 3}
       propertyPath: isNPC
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8888816436792660565, guid: ecf0a7b7c583e2a43a5cb043f57f9939,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6083429751689439616, guid: ecf0a7b7c583e2a43a5cb043f57f9939, type: 3}

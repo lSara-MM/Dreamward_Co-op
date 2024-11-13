@@ -6,7 +6,6 @@ using UnityEngine;
 [Serializable]
 public class PlayerData
 {
-    public Guid netID;
     public string name;
     public string IP;
 
@@ -18,7 +17,6 @@ public class PlayerData
 
     public PlayerData(string name = "Player", string IP = "0.0.0.0", Color color = default)
     {
-        this.netID = Guid.NewGuid();
         this.name = name;
         this.IP = IP;
 

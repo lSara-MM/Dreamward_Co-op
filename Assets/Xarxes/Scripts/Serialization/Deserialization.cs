@@ -9,6 +9,9 @@ public class Deserialization : MonoBehaviour
 
     private Queue<Action> mainThreadActions = new Queue<Action>();
 
+    // Store the GUIDs and their GameObject reference
+    public Dictionary<Guid, GameObject> guidDictionary = new Dictionary<Guid, GameObject>();
+
     private void Start()
     {
         actionsDictionary = new Dictionary<ACTION_TYPE, Action<ISerializedData>>()
@@ -44,6 +47,9 @@ public class Deserialization : MonoBehaviour
             GameObject go = Instantiate(prefab, param.spawnPosition, Quaternion.identity);
 
             // Set player data to the received data
+            go.GetComponent<GUID_Generator>().SetGuid(data.network_id);
+            guidDictionary.Add(data.network_id, go);
+
             go.GetComponent<PlayerOnline>().SetPlayerData(param.playerData);
         }
         else
@@ -59,7 +65,16 @@ public class Deserialization : MonoBehaviour
         GameObject prefab = Resources.Load(param.path) as GameObject;
         if (prefab != null)
         {
-            Instantiate(prefab, param.spawnPosition, Quaternion.identity);
+            GameObject go = Instantiate(prefab, param.spawnPosition, Quaternion.identity);
+
+            GUID_Generator generator = go.GetComponent<GUID_Generator>();
+            
+            // Save the guid to the map if it has
+            if (generator != null)
+            {
+                go.GetComponent<GUID_Generator>().SetGuid(data.network_id);
+                guidDictionary.Add(data.network_id, go);
+            }
         }
         else
         {
@@ -71,7 +86,12 @@ public class Deserialization : MonoBehaviour
     public void ExecuteInput(SerializedData<ns_struct.playerInput> data)
     {
         Debug.Log("ExecuteInput");
+        ns_struct.playerInput param = data.parameters;
+
+        GameObject go = guidDictionary[data.network_id];
+        go.GetComponent<PlayerMovement>().ManageMovement(param.key, param.state);
     }
+
     public void Destroy(SerializedData<string> data)
     {
         GameObject objToDestroy = GameObject.Find(data.parameters);

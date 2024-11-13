@@ -5,23 +5,29 @@ using UnityEngine;
 using System.Threading;
 using TMPro;
 using Unity.VisualScripting;
+using System;
 
 public class ServerUDP : MonoBehaviour, INetworking
 {
     private Socket socket;
     private EndPoint endPoint;
 
+    [SerializeField] private Guid guid;
     [SerializeField] private PlayerData playerData;
     public InputErrorHandler cs_InputErrorHandler;
     public ChangeScene cs_ChangeScene;
     public string scene = "Hub";
 
     Serialization2 cs_Serialization2;
-    Deserialization cs_Deserialization;
 
     private void Start()
     {
+        guid = Guid.NewGuid();
         cs_Serialization2 = GameObject.FindGameObjectWithTag("Serialization").GetComponent<Serialization2>();
+    }
+    public Guid GetGUID()
+    {
+        return guid;
     }
 
     public PlayerData GetPlayerData()
@@ -82,7 +88,7 @@ public class ServerUDP : MonoBehaviour, INetworking
 
                     SerializedData<object> messageData = new SerializedData<object>
                     (
-                        id: GetPlayerData().netID,
+                        id: guid,
                         action: ACTION_TYPE.MESSAGE,
                         message: "UDP Ping"
                     );
