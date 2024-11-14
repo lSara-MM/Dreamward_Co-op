@@ -129,7 +129,11 @@ public class ClientUDP : MonoBehaviour, INetworking
                 bs_hostIsValid = BOOLEAN_STATE.NONE;
 
                 Globals.AddDontDestroy(gameObject);
-                cs_ChangeScene.ChangeToScene(scene);
+
+                if (cs_ChangeScene)
+                {
+                    cs_ChangeScene.ChangeToScene(scene);
+                }
             }
             else if (bs_hostIsValid == BOOLEAN_STATE.FALSE)
             {

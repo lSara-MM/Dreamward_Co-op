@@ -60,10 +60,24 @@ public class PlayerOnline : MonoBehaviour
         {
             foreach (KeyCode key in Enum.GetValues(typeof(KeyCode)))
             {
-                if (Input.GetKeyDown(key) || Input.GetKeyUp(key) || Input.GetKey(key))
+                if (Input.GetKeyDown(key))
                 {
                     //Debug.Log("Send input: " +  key);
-                    cs_Serialization.SerializeData(cs_guid.GetGuid(), ACTION_TYPE.INPUT_PLAYER, key);
+                    ns_struct.playerInput playerInput = new ns_struct.playerInput(key, KEY_STATE.KEY_DOWN);
+                    cs_Serialization.SerializeData(cs_guid.GetGuid(), ACTION_TYPE.INPUT_PLAYER, playerInput);
+                    break;
+                }
+                else if (Input.GetKeyUp(key))
+                {
+                    ns_struct.playerInput playerInput = new ns_struct.playerInput(key, KEY_STATE.KEY_UP);
+                    cs_Serialization.SerializeData(cs_guid.GetGuid(), ACTION_TYPE.INPUT_PLAYER, playerInput);
+                    break;
+                }
+                else if (Input.GetKey(key))
+                {
+                    ns_struct.playerInput playerInput = new ns_struct.playerInput(key, KEY_STATE.KEY_HOLD);
+                    cs_Serialization.SerializeData(cs_guid.GetGuid(), ACTION_TYPE.INPUT_PLAYER, playerInput);
+                    break;
                 }
             }
         }
