@@ -8,6 +8,11 @@ public class GUID_Generator : MonoBehaviour
 {
     [SerializeField] Guid guid = Guid.NewGuid();
 
+    public void Awake()
+    {
+        Debug.Log(guid);
+    }
+
     public Guid GetGuid()
     {
         return guid;

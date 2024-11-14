@@ -69,16 +69,16 @@ public class PlayerMovement : MonoBehaviour
     }
 
     public void ManageMovement(KeyCode key = KeyCode.None, KEY_STATE key_state = KEY_STATE.NONE)
-    { 
-        if (isNPC && key == KeyCode.A && key_state == KEY_STATE.KEY_DOWN || key_state == KEY_STATE.KEY_HOLD)
+    {
+        if (isNPC && key == KeyCode.A && (key_state == KEY_STATE.KEY_DOWN || key_state == KEY_STATE.KEY_HOLD))
         {
             horizontal = -1;
         }
-        else if (isNPC && key == KeyCode.D && key_state == KEY_STATE.KEY_DOWN || key_state == KEY_STATE.KEY_HOLD)
+        else if (isNPC && key == KeyCode.D && (key_state == KEY_STATE.KEY_DOWN || key_state == KEY_STATE.KEY_HOLD))
         {
             horizontal = 1;
         }
-        else if (isNPC)
+        else if (isNPC && (key == KeyCode.A || key == KeyCode.D) && key_state == KEY_STATE.KEY_UP)
         {
             horizontal = 0;
         }

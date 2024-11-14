@@ -117,8 +117,8 @@ namespace ns_struct
 
         public void Deserialize(JObject jsonObject)
         {
-            this.key = (KeyCode)(int)jsonObject["key"];
-            this.state = (KEY_STATE)(int)jsonObject["state"];
+            this.key = (KeyCode)(int)jsonObject["parameters"]?["key"];
+            this.state = (KEY_STATE)(int)jsonObject["parameters"]?["state"];
         }
     }
 

@@ -56,29 +56,23 @@ public class PlayerOnline : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.anyKey)
+        foreach (KeyCode key in Enum.GetValues(typeof(KeyCode)))
         {
-            foreach (KeyCode key in Enum.GetValues(typeof(KeyCode)))
+            if (Input.GetKeyDown(key))
             {
-                if (Input.GetKeyDown(key))
-                {
-                    //Debug.Log("Send input: " +  key);
-                    ns_struct.playerInput playerInput = new ns_struct.playerInput(key, KEY_STATE.KEY_DOWN);
-                    cs_Serialization.SerializeData(cs_guid.GetGuid(), ACTION_TYPE.INPUT_PLAYER, playerInput);
-                    break;
-                }
-                else if (Input.GetKeyUp(key))
-                {
-                    ns_struct.playerInput playerInput = new ns_struct.playerInput(key, KEY_STATE.KEY_UP);
-                    cs_Serialization.SerializeData(cs_guid.GetGuid(), ACTION_TYPE.INPUT_PLAYER, playerInput);
-                    break;
-                }
-                else if (Input.GetKey(key))
-                {
-                    ns_struct.playerInput playerInput = new ns_struct.playerInput(key, KEY_STATE.KEY_HOLD);
-                    cs_Serialization.SerializeData(cs_guid.GetGuid(), ACTION_TYPE.INPUT_PLAYER, playerInput);
-                    break;
-                }
+                //Debug.Log("Send input: " +  key);
+                ns_struct.playerInput playerInput = new ns_struct.playerInput(key, KEY_STATE.KEY_DOWN);
+                cs_Serialization.SerializeData(cs_guid.GetGuid(), ACTION_TYPE.INPUT_PLAYER, playerInput);
+            }
+            else if (Input.GetKeyUp(key))
+            {
+                ns_struct.playerInput playerInput = new ns_struct.playerInput(key, KEY_STATE.KEY_UP);
+                cs_Serialization.SerializeData(cs_guid.GetGuid(), ACTION_TYPE.INPUT_PLAYER, playerInput);
+            }
+            else if (Input.GetKey(key))
+            {
+                ns_struct.playerInput playerInput = new ns_struct.playerInput(key, KEY_STATE.KEY_HOLD);
+                cs_Serialization.SerializeData(cs_guid.GetGuid(), ACTION_TYPE.INPUT_PLAYER, playerInput);
             }
         }
     }
