@@ -172,7 +172,7 @@ public class ServerUDP : MonoBehaviour, INetworking
         Debug.LogError(message);
     }
 
-    private bool ClientConnected()
+    public bool ClientConnected()
     {
         return recv > 0;
     }
