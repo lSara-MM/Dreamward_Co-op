@@ -25,12 +25,12 @@ public class ClientUDP : MonoBehaviour, INetworking
     [SerializeField] private PlayerData playerData;
     [SerializeField] private BOOLEAN_STATE bs_hostIsValid = BOOLEAN_STATE.NONE;
 
-    Serialization2 cs_Serialization2;
+    Serialization cs_Serialization;
 
     private void Start()
     {
         guid = Guid.NewGuid();
-        cs_Serialization2 = GameObject.FindGameObjectWithTag("Serialization").GetComponent<Serialization2>();
+        cs_Serialization = GameObject.FindGameObjectWithTag("Serialization").GetComponent<Serialization>();
     }
 
     public Guid GetGUID()
@@ -107,7 +107,7 @@ public class ClientUDP : MonoBehaviour, INetworking
 
     public void OnPacketReceived(byte[] inputPacket, EndPoint fromAddress)
     {
-        var receivedData = cs_Serialization2.DeserializeFromBinary2(inputPacket);
+        var receivedData = cs_Serialization.DeserializeFromBinary(inputPacket);
 
         ISerializedData serializedData = receivedData as ISerializedData;
 
@@ -147,7 +147,7 @@ public class ClientUDP : MonoBehaviour, INetworking
     {
         try
         {
-            byte[] data = cs_Serialization2.SerializeToBinary(outputPacket);
+            byte[] data = cs_Serialization.SerializeToBinary(outputPacket);
 
             socket.SendTo(data, toAddress);
 
@@ -194,61 +194,5 @@ public class ClientUDP : MonoBehaviour, INetworking
     {
         Debug.LogError(message);
     }
-
-    //void Send(byte[] data)
-    //{
-    //    //TO DO 2
-    //    //Unlike with TCP, we don't "connect" first,
-    //    //we are going to send a message to establish our communication so we need an endpoint
-    //    //We need the server's IP and the port we've binded it to before
-    //    //Again, initialize the socket
-    //    IPEndPoint ipep = new IPEndPoint(IPAddress.Parse(playerData.IP), 9050);
-
-    //    socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
-
-    //    //TO DO 2.1 
-    //    //Send the Handshake to the server's endpoint.
-    //    //This time, our UDP socket doesn't have it, so we have to pass it
-    //    //as a parameter on it's SendTo() method
-
-    //    socket.SendTo(data, ipep);
-
-    //    //TO DO 5
-    //    //We'll wait for a server response,
-    //    //so you can already start the receive thread
-    //    Thread receive = new Thread(Receive);
-    //    receive.Start();
-    //}
-
-    //TO DO 5
-    //Same as in the server, in this case the remote is a bit useless
-    //since we already know it's the server who's communicating with us
-    //void Receive()
-    //{
-    //    //IPEndPoint sender;
-    //    //EndPoint Remote;
-
-    //    IPEndPoint sender = new IPEndPoint(IPAddress.Any, 0);
-    //    EndPoint Remote = (EndPoint)(sender);
-
-    //    byte[] data = new byte[1024];
-
-    //    int recv = 0;
-
-    //    try
-    //    {
-    //        recv = socket.ReceiveFrom(data, ref Remote);
-    //        bs_changeScene = BOOLEAN_STATE.TRUE;
-    //    }
-    //    catch (System.Exception ex)
-    //    {
-    //        Debug.LogWarning(ex, this);
-    //        bs_changeScene = BOOLEAN_STATE.FALSE;
-    //        throw;
-    //    }
-
-    //    //clientText = ("Message received from {0}: " + Remote.ToString());
-    //    //clientText = clientText += "\n" + Encoding.ASCII.GetString(data, 0, recv);
-    //}
 }
 

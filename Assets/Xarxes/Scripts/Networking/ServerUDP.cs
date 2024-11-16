@@ -18,12 +18,12 @@ public class ServerUDP : MonoBehaviour, INetworking
     public ChangeScene cs_ChangeScene;
     public string scene = "Hub";
 
-    Serialization2 cs_Serialization2;
+    Serialization cs_Serialization2;
 
     private void Start()
     {
         guid = Guid.NewGuid();
-        cs_Serialization2 = GameObject.FindGameObjectWithTag("Serialization").GetComponent<Serialization2>();
+        cs_Serialization2 = GameObject.FindGameObjectWithTag("Serialization").GetComponent<Serialization>();
     }
     public Guid GetGUID()
     {
@@ -107,7 +107,7 @@ public class ServerUDP : MonoBehaviour, INetworking
 
     public void OnPacketReceived(byte[] inputPacket, EndPoint fromAddress)
     {
-        var receivedData = cs_Serialization2.DeserializeFromBinary2(inputPacket);
+        var receivedData = cs_Serialization2.DeserializeFromBinary(inputPacket);
 
         ISerializedData serializedData = receivedData as ISerializedData;
 

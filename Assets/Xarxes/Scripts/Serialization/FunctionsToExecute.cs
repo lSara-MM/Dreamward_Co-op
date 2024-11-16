@@ -3,10 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Deserialization : MonoBehaviour
+public class FunctionsToExecute : MonoBehaviour
 {
+    // Link the action types to the funtions to be executed
     public Dictionary<ACTION_TYPE, Action<ISerializedData>> actionsDictionary;
 
+    // Queue all actions to perform so they are made in the main thread
     private Queue<Action> mainThreadActions = new Queue<Action>();
 
     // Store the GUIDs and their GameObject reference
@@ -16,9 +18,9 @@ public class Deserialization : MonoBehaviour
     {
         actionsDictionary = new Dictionary<ACTION_TYPE, Action<ISerializedData>>()
         {
-            { ACTION_TYPE.SPAWN_PLAYER, data => QueueActionOnMainThread(() => SpawnPlayer((SerializedData<ns_struct.spawnPlayer>)data)) },
-            { ACTION_TYPE.SPAWN_OBJECT, data => QueueActionOnMainThread(() => SpawnPrefab((SerializedData<ns_struct.spawnPrefab>)data)) },
-            { ACTION_TYPE.INPUT_PLAYER, data => QueueActionOnMainThread(() => ExecuteInput((SerializedData<ns_struct.playerInput>)data)) },
+            { ACTION_TYPE.SPAWN_PLAYER, data => QueueActionOnMainThread(() => SpawnPlayer((SerializedData<ns_structure.spawnPlayer>)data)) },
+            { ACTION_TYPE.SPAWN_OBJECT, data => QueueActionOnMainThread(() => SpawnPrefab((SerializedData<ns_structure.spawnPrefab>)data)) },
+            { ACTION_TYPE.INPUT_PLAYER, data => QueueActionOnMainThread(() => ExecuteInput((SerializedData<ns_structure.playerInput>)data)) },
             { ACTION_TYPE.DESTROY, data => QueueActionOnMainThread(() => Destroy((SerializedData<string>)data)) }
         };
     }
@@ -37,9 +39,9 @@ public class Deserialization : MonoBehaviour
         mainThreadActions.Enqueue(action);
     }
 
-    public void SpawnPlayer(SerializedData<ns_struct.spawnPlayer> data)
+    public void SpawnPlayer(SerializedData<ns_structure.spawnPlayer> data)
     {
-        ns_struct.spawnPlayer param = data.parameters;
+        ns_structure.spawnPlayer param = data.parameters;
 
         GameObject prefab = Resources.Load(param.path) as GameObject;
         if (prefab != null)
@@ -58,9 +60,9 @@ public class Deserialization : MonoBehaviour
         }
     }
 
-    public void SpawnPrefab(SerializedData<ns_struct.spawnPrefab> data)
+    public void SpawnPrefab(SerializedData<ns_structure.spawnPrefab> data)
     {
-        ns_struct.spawnPrefab param = data.parameters;
+        ns_structure.spawnPrefab param = data.parameters;
 
         GameObject prefab = Resources.Load(param.path) as GameObject;
         if (prefab != null)
@@ -82,10 +84,9 @@ public class Deserialization : MonoBehaviour
         }
     }
 
-
-    public void ExecuteInput(SerializedData<ns_struct.playerInput> data)
+    public void ExecuteInput(SerializedData<ns_structure.playerInput> data)
     {
-        ns_struct.playerInput param = data.parameters;
+        ns_structure.playerInput param = data.parameters;
         Debug.Log($"Execute Input: {param.key}");
 
         GameObject go = guidDictionary[data.network_id];

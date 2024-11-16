@@ -13,6 +13,7 @@ public enum ACTION_TYPE
     MESSAGE,
     NONE
 }
+
 public interface ISerializedData
 {
     Guid network_id { get; }
@@ -25,6 +26,8 @@ public struct SerializedData<T> : ISerializedData
 {
     public Guid network_id { get; set; }
     public ACTION_TYPE action { get; set; }
+
+    // T parameters : where T must be type IDataStructure or basic C# types
     public T parameters { get; set; }
     public string message { get; set; }
 

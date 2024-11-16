@@ -25,6 +25,8 @@ public class PlayerCombat : MonoBehaviour
 
     [Header("Online")]
     [SerializeField] private PlayerOnline cs_playerOnline;
+    
+    // All players have PlayerOnline.cs. If isNPC --> player can't control it
     public bool isNPC = false;
 
     private void Start()

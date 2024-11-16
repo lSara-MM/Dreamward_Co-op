@@ -28,6 +28,8 @@ public class InputErrorHandler : MonoBehaviour
 
     }
 
+    // Check if the host name is not empty before joining a game
+    // Return --> If host is valid: create a player with the info. Else: null
     public PlayerData ValidateHost()
     {
         if (!ValidateName(inputField_HostName.text))
@@ -42,6 +44,8 @@ public class InputErrorHandler : MonoBehaviour
         }
     }
 
+    // Check if all client's fields are correct before joining a game
+    // Return --> If client is valid: create a player with the info. Else: null
     public PlayerData ValidateClient()
     {
         int ret = 0;
@@ -76,13 +80,15 @@ public class InputErrorHandler : MonoBehaviour
         }
     }
 
+    // Check if the game to join exists
     public void HostMissing()
     {
         errorClientGo.SetActive(true);
         errorClientText.text = "Host not found";
     }
 
-    // Validate the IP the user has introduced. Return true if valid IP
+    // Validate the IP the user has introduced.
+    // Return --> If valid IP: true
     public bool ValidateIPv4()
     {
         if (string.IsNullOrEmpty(inputField_IP.text))

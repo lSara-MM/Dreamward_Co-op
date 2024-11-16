@@ -6,11 +6,12 @@ using UnityEngine;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-public class Serialization2 : MonoBehaviour
+public class Serialization : MonoBehaviour
 {
     public MemoryStream stream;
-    public Deserialization cs_deserialization;
+    public FunctionsToExecute cs_functionsToExecute;
 
+    // Link the action types to the funtions to be executed
     [SerializeField] private Dictionary<ACTION_TYPE, Action<JObject>> actionsDictionary;
 
     private void Start()
@@ -24,6 +25,11 @@ public class Serialization2 : MonoBehaviour
         };
     }
 
+    // Create and serialize SerializedData<object> and send packed
+    // in --> GameObject's GUID
+    // in --> Type of action to be performed
+    // in (optional) --> SerializedData<object> : where object is type IDataStructure
+    // in (optional) --> message to log
     public void SerializeData<T>(Guid id, ACTION_TYPE action, T parameters = default, string message = default)
     {
         SerializedData<T> serializedData = new SerializedData<T>(id, action, parameters, message);
@@ -47,6 +53,8 @@ public class Serialization2 : MonoBehaviour
         }
     }
 
+    // Convert from SerializedData<object> to Json to binary
+    // Return --> Data in bytes[]
     public byte[] SerializeToBinary<T>(T data)
     {
         JsonSerializerSettings settings = new JsonSerializerSettings
@@ -69,7 +77,9 @@ public class Serialization2 : MonoBehaviour
         return binaryData;
     }
 
-    public object DeserializeFromBinary2(byte[] binaryData)
+    // Deserialize data and call the functions to update the game's state
+    // Return --> If success: Deserialized data. Else: default empty SerializedData<object>
+    public object DeserializeFromBinary(byte[] binaryData)
     {
         string json;
 
@@ -108,60 +118,42 @@ public class Serialization2 : MonoBehaviour
         }
     }
 
-    public SerializedData<T> DeserializeFromBinary<T>(byte[] binaryData)
-    {
-        string json;
-
-        using (MemoryStream stream = new MemoryStream(binaryData))
-        {
-            using (BinaryReader reader = new BinaryReader(stream, System.Text.Encoding.UTF8))
-            {
-                json = reader.ReadString();
-                var jsonObject = JObject.Parse(json);
-                var name = (string)jsonObject["action"];
-            }
-        }
-
-        return JsonConvert.DeserializeObject<SerializedData<T>>(json);
-    }
-
     #region Structs deserialization
-    private SerializedData<ns_struct.spawnPlayer> HandleSpawnPlayer(JObject jsonObject)
+    private SerializedData<ns_structure.spawnPlayer> HandleSpawnPlayer(JObject jsonObject)
     {
-        var data = new SerializedData<ns_struct.spawnPlayer>();
-        data.parameters = new ns_struct.spawnPlayer();
+        var data = new SerializedData<ns_structure.spawnPlayer>();
+        data.parameters = new ns_structure.spawnPlayer();
         data.parameters.Deserialize(jsonObject);
 
-        cs_deserialization.actionsDictionary[ACTION_TYPE.SPAWN_PLAYER].Invoke(data);
+        cs_functionsToExecute.actionsDictionary[ACTION_TYPE.SPAWN_PLAYER].Invoke(data);
         return data;
     }
 
-    private SerializedData<ns_struct.spawnPrefab> HandleSpawnObject(JObject jsonObject)
+    private SerializedData<ns_structure.spawnPrefab> HandleSpawnObject(JObject jsonObject)
     {
-        var data = new SerializedData<ns_struct.spawnPrefab>();
-        data.parameters = new ns_struct.spawnPrefab();
+        var data = new SerializedData<ns_structure.spawnPrefab>();
+        data.parameters = new ns_structure.spawnPrefab();
         data.parameters.Deserialize(jsonObject);
 
-        cs_deserialization.actionsDictionary[ACTION_TYPE.SPAWN_OBJECT].Invoke(data);
+        cs_functionsToExecute.actionsDictionary[ACTION_TYPE.SPAWN_OBJECT].Invoke(data);
         return data;
     }
 
-    private SerializedData<ns_struct.playerInput> HandlePlayerInput(JObject jsonObject)
+    private SerializedData<ns_structure.playerInput> HandlePlayerInput(JObject jsonObject)
     {
-        var data = new SerializedData<ns_struct.playerInput>();
-        data.parameters = new ns_struct.playerInput();
+        var data = new SerializedData<ns_structure.playerInput>();
+        data.parameters = new ns_structure.playerInput();
         data.parameters.Deserialize(jsonObject);
 
-        cs_deserialization.actionsDictionary[ACTION_TYPE.INPUT_PLAYER].Invoke(data);
+        cs_functionsToExecute.actionsDictionary[ACTION_TYPE.INPUT_PLAYER].Invoke(data);
         return data;
     }
 
     private SerializedData<string> DeserializeDestroy(JObject jsonObject)
     {
         var data = new SerializedData<string>();
-        //data.parameters.Deserialize(jsonObject);
 
-        cs_deserialization.actionsDictionary[ACTION_TYPE.DESTROY].Invoke(data);
+        cs_functionsToExecute.actionsDictionary[ACTION_TYPE.DESTROY].Invoke(data);
         return data;
     }
     #endregion // Structs deserialization

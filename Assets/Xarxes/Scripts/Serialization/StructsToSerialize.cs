@@ -5,27 +5,23 @@ using System.IO;
 using UnityEngine;
 using Newtonsoft.Json.Linq;
 
-public enum KEY_STATE
+namespace ns_structure
 {
-    KEY_DOWN,
-    KEY_UP,
-    KEY_HOLD,
-    NONE
-}
-
-namespace ns_struct
-{
-    public interface IDataStruct
+    // Base data Interface that all data structures inherit from
+    public interface IDataStructure
     {
         public void Print();
         public void Deserialize(JObject jsonObject);
     }
 
-    #region Spawn Object
-    public class spawnPlayer : IDataStruct
+    #region Spawn Objects
+    public class spawnPlayer : IDataStructure
     {
         public PlayerData playerData;
+
+        // Path from the /Resource folder
         public string path { get; set; }
+
         public Vector2 spawnPosition { get; set; }
 
         public spawnPlayer(PlayerData playerData = null, string path = default, Vector2 spawn = default)
@@ -73,8 +69,9 @@ namespace ns_struct
         }
     }
 
-    public class spawnPrefab : IDataStruct
+    public class spawnPrefab : IDataStructure
     {
+        // Path from the /Resource folder
         public string path { get; set; }
         public Vector2 spawnPosition { get; set; }
 
@@ -95,14 +92,16 @@ namespace ns_struct
             this.spawnPosition.Set((float)jsonObject["parameters"]["spawnPosition"]["x"], (float)jsonObject["parameters"]["spawnPosition"]["y"]);
         }
     }
-    #endregion //Spawn Object
+    #endregion //Spawn Objects
 
     #region Input
 
-    public class playerInput : IDataStruct
+    public class playerInput : IDataStructure
     {
+        // Name of the input in the Input manager (old)
         public string key { get; set; }
 
+        // Ranges from -1 to 1. Manage movement axis and key/button states
         public float state { get; set; }
 
         public playerInput(string key = default, float state = default)
