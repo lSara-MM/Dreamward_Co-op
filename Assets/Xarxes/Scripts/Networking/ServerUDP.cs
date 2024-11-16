@@ -113,10 +113,10 @@ public class ServerUDP : MonoBehaviour, INetworking
 
         Debug.Log($"Data received from {fromAddress}");
 
-        if (!string.IsNullOrEmpty(serializedData.message))
-        {
-            Debug.Log($"Message received: {serializedData.message}");
-        }
+        //if (!string.IsNullOrEmpty(serializedData.message))
+        //{
+        //    Debug.Log($"Message received: {serializedData.message}");
+        //}
     }
 
     public void OnUpdate()
