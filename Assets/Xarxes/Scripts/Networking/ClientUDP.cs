@@ -83,25 +83,28 @@ public class ClientUDP : MonoBehaviour, INetworking
         }
     }
 
-    private void Receive()
+    private void ReceiveLoop()
     {
         byte[] data = new byte[1024];
         EndPoint remote = new IPEndPoint(IPAddress.Any, 0);
 
-        try
+        while (true)
         {
-            int recv = socket.ReceiveFrom(data, ref remote);
-
-            if (recv > 0)
+            try
             {
-                OnPacketReceived(data, remote);
-                bs_hostIsValid = BOOLEAN_STATE.TRUE;
+                int recv = socket.ReceiveFrom(data, ref remote);
+
+                if (recv > 0)
+                {
+                    OnPacketReceived(data, remote);
+                    //bs_hostIsValid = BOOLEAN_STATE.TRUE;
+                }
             }
-        }
-        catch (SocketException ex)
-        {
-            ReportError("Failed to receive packet: " + ex.Message);
-            bs_hostIsValid = BOOLEAN_STATE.FALSE;
+            catch (SocketException ex)
+            {
+                ReportError("Failed to receive packet: " + ex.Message);
+                //bs_hostIsValid = BOOLEAN_STATE.FALSE;
+            }
         }
     }
 
@@ -152,7 +155,7 @@ public class ClientUDP : MonoBehaviour, INetworking
             socket.SendTo(data, toAddress);
 
             // Start receive thread to listen for responses
-            Globals.StartNewThread(Receive);
+            Globals.StartNewThread(ReceiveLoop);
             bs_hostIsValid = BOOLEAN_STATE.TRUE;
         }
         catch (SocketException ex)
@@ -169,7 +172,7 @@ public class ClientUDP : MonoBehaviour, INetworking
             socket.SendTo(data, endPoint);
 
             // Start receive thread to listen for responses
-            Globals.StartNewThread(Receive);
+            Globals.StartNewThread(ReceiveLoop);
         }
         catch (SocketException ex)
         {
