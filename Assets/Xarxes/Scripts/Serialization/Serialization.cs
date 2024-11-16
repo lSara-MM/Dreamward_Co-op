@@ -9,7 +9,7 @@ using Newtonsoft.Json.Linq;
 public class Serialization : MonoBehaviour
 {
     public MemoryStream stream;
-    public FunctionsToExecute cs_functionsToExecute;
+    private FunctionsToExecute cs_functionsToExecute;
 
     // Link the action types to the funtions to be executed
     [SerializeField] private Dictionary<ACTION_TYPE, Action<JObject>> actionsDictionary;
@@ -23,6 +23,8 @@ public class Serialization : MonoBehaviour
             { ACTION_TYPE.INPUT_PLAYER, data => HandlePlayerInput(data) },
             { ACTION_TYPE.DESTROY, data => HandleSpawnObject(data) },
         };
+
+        cs_functionsToExecute = gameObject.GetComponent<FunctionsToExecute>();
     }
 
     // Create and serialize SerializedData<object> and send packed

@@ -20,6 +20,8 @@ public class ServerUDP : MonoBehaviour, INetworking
 
     Serialization cs_Serialization2;
 
+    int recv = 0;
+
     private void Start()
     {
         guid = Guid.NewGuid();
@@ -78,9 +80,9 @@ public class ServerUDP : MonoBehaviour, INetworking
         {
             try
             {
-                int recv = socket.ReceiveFrom(data, ref endPoint);
+                recv = socket.ReceiveFrom(data, ref endPoint);
 
-                if (recv > 0)
+                if (ClientConnected())
                 {
                     OnPacketReceived(data, endPoint);
 
@@ -141,13 +143,16 @@ public class ServerUDP : MonoBehaviour, INetworking
 
     public void SendDataPacket(byte[] data)
     {
-        try
+        if (ClientConnected())
         {
-            socket.SendTo(data, endPoint);
-        }
-        catch (SocketException ex)
-        {
-            ReportError("Failed to send packet: " + ex.Message);
+            try
+            {
+                socket.SendTo(data, endPoint);
+            }
+            catch (SocketException ex)
+            {
+                ReportError("Failed to send packet: " + ex.Message);
+            }
         }
     }
 
@@ -165,5 +170,10 @@ public class ServerUDP : MonoBehaviour, INetworking
     public void ReportError(string message)
     {
         Debug.LogError(message);
+    }
+
+    private bool ClientConnected()
+    {
+        return recv > 0;
     }
 }

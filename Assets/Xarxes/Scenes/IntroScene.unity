@@ -690,7 +690,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 735eb8562635b9b4c9631f3dbde188a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cs_deserialization: {fileID: 234336867}
+  cs_functionsToExecute: {fileID: 234336867}
 --- !u!1 &236066396
 GameObject:
   m_ObjectHideFlags: 0
