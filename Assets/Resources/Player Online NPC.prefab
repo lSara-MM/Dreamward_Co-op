@@ -16,12 +16,12 @@ PrefabInstance:
     - target: {fileID: 858215692753399830, guid: ecf0a7b7c583e2a43a5cb043f57f9939,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1699029050719580793, guid: ecf0a7b7c583e2a43a5cb043f57f9939,
         type: 3}
       propertyPath: m_InstanceId
-      value: -74438
+      value: -26168
       objectReference: {fileID: 0}
     - target: {fileID: 2028326694311403254, guid: ecf0a7b7c583e2a43a5cb043f57f9939,
         type: 3}
@@ -109,6 +109,11 @@ PrefabInstance:
       value: Player Online NPC
       objectReference: {fileID: 0}
     - target: {fileID: 7415576133398798251, guid: ecf0a7b7c583e2a43a5cb043f57f9939,
+        type: 3}
+      propertyPath: isNPC
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8733647627395245984, guid: ecf0a7b7c583e2a43a5cb043f57f9939,
         type: 3}
       propertyPath: isNPC
       value: 1

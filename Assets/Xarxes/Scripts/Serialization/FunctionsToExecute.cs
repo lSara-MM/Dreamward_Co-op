@@ -13,6 +13,9 @@ public class FunctionsToExecute : MonoBehaviour
 
     // Store the GUIDs and their GameObject reference
     public Dictionary<Guid, GameObject> guidDictionary = new Dictionary<Guid, GameObject>();
+    
+    Serialization cs_Serialization;
+    [SerializeField] private GUID_Generator cs_guid;
 
     private void Start()
     {
@@ -46,6 +49,11 @@ public class FunctionsToExecute : MonoBehaviour
         GameObject prefab = Resources.Load(param.path) as GameObject;
         if (prefab != null)
         {
+            cs_Serialization = GameObject.FindGameObjectWithTag("Serialization").GetComponent<Serialization>();
+
+            // There's only one player on Start       
+            cs_guid = GameObject.FindGameObjectWithTag("Player").GetComponent<GUID_Generator>();
+
             GameObject go = Instantiate(prefab, param.spawnPosition, Quaternion.identity);
 
             // Set player data to the received data
@@ -53,6 +61,15 @@ public class FunctionsToExecute : MonoBehaviour
             guidDictionary.Add(data.network_id, go);
 
             go.GetComponent<PlayerOnline>().SetPlayerData(param.playerData);
+            
+            GameObject online;
+            if (online = GameObject.FindGameObjectWithTag("Server"))
+            {
+                PlayerData playerData = online.GetComponent<ServerUDP>().GetPlayerData();
+
+                cs_Serialization.SerializeData(cs_guid.GetGuid(), ACTION_TYPE.SPAWN_PLAYER,
+                    new ns_structure.spawnPlayer(playerData, "Player Online NPC", new Vector2(0, 0)));
+            }
         }
         else
         {

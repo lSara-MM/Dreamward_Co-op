@@ -69,7 +69,6 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-
         Flip();
     }
 

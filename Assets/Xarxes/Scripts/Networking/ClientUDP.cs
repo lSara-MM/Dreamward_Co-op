@@ -88,7 +88,7 @@ public class ClientUDP : MonoBehaviour, INetworking
         byte[] data = new byte[1024];
         EndPoint remote = new IPEndPoint(IPAddress.Any, 0);
 
-        while (true)
+        //while (true)
         {
             try
             {

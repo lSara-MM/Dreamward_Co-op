@@ -128,6 +128,7 @@ public class Serialization : MonoBehaviour
         data.parameters.Deserialize(jsonObject);
 
         cs_functionsToExecute.actionsDictionary[ACTION_TYPE.SPAWN_PLAYER].Invoke(data);
+
         return data;
     }
 
