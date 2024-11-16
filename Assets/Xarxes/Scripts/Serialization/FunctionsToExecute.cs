@@ -62,6 +62,7 @@ public class FunctionsToExecute : MonoBehaviour
 
             go.GetComponent<PlayerOnline>().SetPlayerData(param.playerData);
             
+            // Spawn server's player in client
             GameObject online;
             if (online = GameObject.FindGameObjectWithTag("Server"))
             {
