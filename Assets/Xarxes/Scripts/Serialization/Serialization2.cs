@@ -31,7 +31,6 @@ public class Serialization2 : MonoBehaviour
 
         data = SerializeToBinary(serializedData);
 
-        // TODO: send the data?
         GameObject online;
 
         if (online = GameObject.FindGameObjectWithTag("Server"))

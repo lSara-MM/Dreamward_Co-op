@@ -85,11 +85,19 @@ public class Deserialization : MonoBehaviour
 
     public void ExecuteInput(SerializedData<ns_struct.playerInput> data)
     {
-        Debug.Log("ExecuteInput");
         ns_struct.playerInput param = data.parameters;
+        Debug.Log($"Execute Input: {param.key}");
 
         GameObject go = guidDictionary[data.network_id];
-        go.GetComponent<PlayerMovement>().ManageMovement(param.key, param.state);
+
+        if (param.key == "Fire1")
+        {
+            go.GetComponent<PlayerCombat>().CombatMovement(param.key, param.state);
+        }
+        else
+        {
+            go.GetComponent<PlayerMovement>().Movement(param.key, param.state);
+        }
     }
 
     public void Destroy(SerializedData<string> data)

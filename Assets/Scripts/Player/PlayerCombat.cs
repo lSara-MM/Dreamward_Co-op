@@ -24,11 +24,13 @@ public class PlayerCombat : MonoBehaviour
     public AudioSource attackSound;
 
     [Header("Online")]
+    [SerializeField] private PlayerOnline cs_playerOnline;
     public bool isNPC = false;
 
     private void Start()
     {
         stamina = GetComponent<Stamina>();
+        cs_playerOnline = GetComponent<PlayerOnline>();
     }
 
     // Update is called once per frame
@@ -43,16 +45,22 @@ public class PlayerCombat : MonoBehaviour
         }
     }
 
-    private void CombatMovement()
+    public void CombatMovement(string key = default, float key_state = 0)
     {
-        if ((Input.GetButtonDown("Fire1") && !isNPC) || (/*TODO input -->Input.GetButtonDown("Fire1") &&*/ isNPC) && vertical <= 0)
+        if ((Input.GetButtonDown("Fire1") && !isNPC && vertical <= 0) ||
+            (key == "Fire1" && key_state == 0) && isNPC)
         {
+            cs_playerOnline.ManageOnlineMovement("Fire1", 0);
+
             _timer = 0;
             AttackSides();
         }
 
-        else if ((Input.GetButtonDown("Fire1") && !isNPC) || (/*TODO input -->Input.GetButtonDown("Fire1") &&*/ isNPC) && vertical > 0)
+        else if ((Input.GetButtonDown("Fire1") && !isNPC && vertical > 0) ||
+            (key == "Fire1" && key_state == 1) && isNPC)
         {
+            cs_playerOnline.ManageOnlineMovement("Fire1", 1);
+
             _timer = 0;
             AttackUp();
         }
@@ -60,7 +68,8 @@ public class PlayerCombat : MonoBehaviour
 
     void AttackSides()
     {
-        if (stamina.UseEnergy(attackCost))
+        // TODO QG: Re-Do stamina and UI-related scripts
+        //if (stamina.UseEnergy(attackCost))
         {
             attackSound.Play();
             animator.SetTrigger("AttackSides");
@@ -95,7 +104,8 @@ public class PlayerCombat : MonoBehaviour
 
     void AttackUp()
     {
-        if (stamina.UseEnergy(attackCost))
+        // TODO QG: Re-Do stamina and UI-related scripts
+        //if (stamina.UseEnergy(attackCost))
         {
             attackSound.Play();
             animator.SetTrigger("AttackUp");

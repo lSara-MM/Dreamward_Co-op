@@ -113,6 +113,7 @@ public class ClientUDP : MonoBehaviour, INetworking
 
         Debug.Log($"Data received from {fromAddress}");
 
+        // TODO: remove this?
         //if (!string.IsNullOrEmpty(serializedData.message))
         //{
         //    Debug.Log($"Message received: {serializedData.message}");

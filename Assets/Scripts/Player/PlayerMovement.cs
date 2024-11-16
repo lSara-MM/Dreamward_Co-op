@@ -34,6 +34,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Animator animator;
 
     [Header("Online")]
+    [SerializeField] private PlayerOnline cs_playerOnline;
     public bool isNPC = false;
 
     private void Start()
@@ -41,6 +42,8 @@ public class PlayerMovement : MonoBehaviour
         footSteps.SetActive(false);
         animator = GetComponent<Animator>();
         stamina = GetComponent<Stamina>();
+
+        cs_playerOnline = GetComponent<PlayerOnline>();
     }
 
     // Update is called once per frame
@@ -56,7 +59,7 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-        ManageMovement();
+        Movement();
         ManageAnimations();
 
         if (isDashing)
@@ -68,29 +71,26 @@ public class PlayerMovement : MonoBehaviour
         Flip();
     }
 
-    public void ManageMovement(KeyCode key = KeyCode.None, KEY_STATE key_state = KEY_STATE.NONE)
+    public void Movement(string key = default, float key_state = 0)
     {
-        if (isNPC && key == KeyCode.A && (key_state == KEY_STATE.KEY_DOWN || key_state == KEY_STATE.KEY_HOLD))
-        {
-            horizontal = -1;
-        }
-        else if (isNPC && key == KeyCode.D && (key_state == KEY_STATE.KEY_DOWN || key_state == KEY_STATE.KEY_HOLD))
-        {
-            horizontal = 1;
-        }
-        else if (isNPC && (key == KeyCode.A || key == KeyCode.D) && key_state == KEY_STATE.KEY_UP)
-        {
-            horizontal = 0;
-        }
-
         if (!isNPC)
         {
             horizontal = Input.GetAxisRaw("Horizontal");
+            cs_playerOnline.ManageOnlineMovement("Horizontal", horizontal);
+        }
+        else
+        {
+            if (key == "Horizontal")
+            {
+                horizontal = key_state;
+            }
         }
 
         if (((Input.GetButtonDown("Jump") && !isNPC) ||
-            (key == KeyCode.Space && key_state == KEY_STATE.KEY_DOWN && isNPC)) && IsGrounded())
+            (key == "Jump" && key_state == 1 && isNPC)) && IsGrounded())
         {
+            cs_playerOnline.ManageOnlineMovement("Jump", 1);
+
             isJumping = true;
             jumpSound.Play();
             rb.velocity = new Vector2(rb.velocity.x, jumping);
@@ -99,22 +99,25 @@ public class PlayerMovement : MonoBehaviour
         }
 
         if (((Input.GetButtonUp("Jump") && !isNPC) ||
-            (key == KeyCode.Space && key_state == KEY_STATE.KEY_UP && isNPC)) && rb.velocity.y > 0f)
+            (key == "Jump" && key_state == 0) && rb.velocity.y > 0f))
         {
+            cs_playerOnline.ManageOnlineMovement("Jump", 0);
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
         }
 
+        rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+
+        // Dash
         if ((Input.GetButtonDown("Fire3") && !isNPC) ||
-            (key == KeyCode.LeftShift && key_state == KEY_STATE.KEY_DOWN && isNPC)
-            && canDash)
+            ((key == "Fire3" && key_state == 1) && isNPC) && canDash)
         {
-            if (stamina.UseEnergy(dashCost))
+            // TODO QG: Re-Do stamina and UI-related scripts
+            //if (stamina.UseEnergy(dashCost))
             {
+                cs_playerOnline.ManageOnlineMovement("Fire3", 1);
                 StartCoroutine(Dash());
             }
         }
-
-        rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
     }
 
     private void ManageAnimations()

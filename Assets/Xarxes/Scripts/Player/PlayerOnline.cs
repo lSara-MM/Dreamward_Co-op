@@ -14,6 +14,9 @@ public class PlayerOnline : MonoBehaviour
 
     public bool isNPC = false;
 
+    [SerializeField] private string lastInputType = "";
+    [SerializeField] private float lastInputValue = 0f;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -28,8 +31,6 @@ public class PlayerOnline : MonoBehaviour
             {
                 playerData = online.GetComponent<ServerUDP>().GetPlayerData();
                 playerData.playerNum = 1;
-                Debug.Log("Server");
-                Debug.Log("Player: " + playerData.playerNum);
 
                 cs_guid.SetGuid(online.GetComponent<ServerUDP>().GetGUID());
             }
@@ -38,8 +39,6 @@ public class PlayerOnline : MonoBehaviour
                 playerData = online.GetComponent<ClientUDP>().GetPlayerData();
                 playerData.playerNum = 2;
                 playerData.SetColorArray(new Color(0.5882353f, 1f, 0.1647059f, 1f));
-                Debug.Log("Client");
-                Debug.Log("Player: " + playerData.playerNum);
 
                 cs_guid.SetGuid(online.GetComponent<ClientUDP>().GetGUID());
 
@@ -56,25 +55,7 @@ public class PlayerOnline : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        foreach (KeyCode key in Enum.GetValues(typeof(KeyCode)))
-        {
-            if (Input.GetKeyDown(key))
-            {
-                //Debug.Log("Send input: " +  key);
-                ns_struct.playerInput playerInput = new ns_struct.playerInput(key, KEY_STATE.KEY_DOWN);
-                cs_Serialization.SerializeData(cs_guid.GetGuid(), ACTION_TYPE.INPUT_PLAYER, playerInput);
-            }
-            else if (Input.GetKeyUp(key))
-            {
-                ns_struct.playerInput playerInput = new ns_struct.playerInput(key, KEY_STATE.KEY_UP);
-                cs_Serialization.SerializeData(cs_guid.GetGuid(), ACTION_TYPE.INPUT_PLAYER, playerInput);
-            }
-            else if (Input.GetKey(key))
-            {
-                ns_struct.playerInput playerInput = new ns_struct.playerInput(key, KEY_STATE.KEY_HOLD);
-                cs_Serialization.SerializeData(cs_guid.GetGuid(), ACTION_TYPE.INPUT_PLAYER, playerInput);
-            }
-        }
+
     }
 
     public PlayerData GetPlayerData()
@@ -87,6 +68,7 @@ public class PlayerOnline : MonoBehaviour
         this.playerData = playerData;
     }
 
+    // TODO: Remove this
     public void DebugCosos()
     {
         #region New Serialization Debug with SerializedData spawnPrefab
@@ -133,5 +115,17 @@ public class PlayerOnline : MonoBehaviour
         //    emptyStruct.parameters.Print();
         //}
         #endregion
+    }
+
+    public void ManageOnlineMovement(string key = default, float key_state = 0)
+    {
+        // Do if 
+        //// it's not NPC
+        //// current and last key are different / current and last key_state are different / current and last key_state are the same but not 0
+        if (!isNPC && (lastInputType != key || lastInputValue != key_state || (lastInputType == key && lastInputValue == key_state && lastInputValue != 0)))
+        {
+            ns_struct.playerInput playerInput = new ns_struct.playerInput(key, key_state);
+            cs_Serialization.SerializeData(cs_guid.GetGuid(), ACTION_TYPE.INPUT_PLAYER, playerInput);
+        }
     }
 }

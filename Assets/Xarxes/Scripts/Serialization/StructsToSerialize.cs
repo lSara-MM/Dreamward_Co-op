@@ -101,10 +101,11 @@ namespace ns_struct
 
     public class playerInput : IDataStruct
     {
-        public KeyCode key { get; set; }
-        public KEY_STATE state { get; set; }
+        public string key { get; set; }
 
-        public playerInput(KeyCode key = default, KEY_STATE state = default)
+        public float state { get; set; }
+
+        public playerInput(string key = default, float state = default)
         {
             this.key = key;
             this.state = state;
@@ -117,8 +118,8 @@ namespace ns_struct
 
         public void Deserialize(JObject jsonObject)
         {
-            this.key = (KeyCode)(int)jsonObject["parameters"]?["key"];
-            this.state = (KEY_STATE)(int)jsonObject["parameters"]?["state"];
+            this.key = (string)jsonObject["parameters"]?["key"];
+            this.state = (float)jsonObject["parameters"]?["state"];
         }
     }
 

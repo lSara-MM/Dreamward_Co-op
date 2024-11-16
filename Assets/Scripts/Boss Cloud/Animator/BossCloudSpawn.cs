@@ -24,7 +24,7 @@ public class BossCloudSpawn : StateMachineBehaviour
         {
             _timer += Time.deltaTime;
             animator.SetFloat("SpeedAnim", 1);
-            //TODO: play audio
+            //TODO QG: play audio
 
             if (_timer >= _delay)
             {

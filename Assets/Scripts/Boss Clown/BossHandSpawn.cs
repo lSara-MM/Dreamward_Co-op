@@ -23,7 +23,7 @@ public class BossHandSpawn : StateMachineBehaviour
         if (Vector2.Distance(animator.transform.position, target) < 0.0001f)
         {
             _timer += Time.deltaTime;
-            //TODO: play audio
+            //TODO QG: play audio
 
             if (_timer >= _delay)
             {

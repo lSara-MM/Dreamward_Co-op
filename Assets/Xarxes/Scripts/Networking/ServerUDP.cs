@@ -113,6 +113,7 @@ public class ServerUDP : MonoBehaviour, INetworking
 
         Debug.Log($"Data received from {fromAddress}");
 
+        // TODO: remove this?
         //if (!string.IsNullOrEmpty(serializedData.message))
         //{
         //    Debug.Log($"Message received: {serializedData.message}");
@@ -166,53 +167,3 @@ public class ServerUDP : MonoBehaviour, INetworking
         Debug.LogError(message);
     }
 }
-
-//void Receive()
-//{
-//    int recv;
-//    byte[] data = new byte[1024];
-
-//    //TO DO 3
-//    //We don't know who may be comunicating with this server, so we have to create an
-//    //endpoint with any address and an IpEndpoint from it to reply to it later.
-//    IPEndPoint sender = new IPEndPoint(IPAddress.Any, 0);
-//    EndPoint Remote = sender;
-
-//    //Loop the whole process, and start receiveing messages directed to our socket
-//    //(the one we binded to a port before)
-//    //When using socket.ReceiveFrom, be sure send our remote as a reference so we can keep
-//    //this adress (the client) and reply to it on TO DO 4
-
-//    while (true)
-//    {
-//        recv = socket.ReceiveFrom(data, ref Remote);
-
-//        if (recv == 0)
-//            break;
-//        else
-//        {
-//            string serverText = "";
-//            serverText = serverText + "\n" + "Message received from {0}:" + Remote.ToString();
-//            serverText = serverText + "\n" + Encoding.ASCII.GetString(data, 0, recv);
-
-//            Debug.Log(serverText);
-
-//        }
-//        //TO DO 4
-//        //When our UDP server receives a message from a random remote, it has to send a ping,
-//        //Call a send thread
-
-//        Globals.StartNewThread(() => Send(Remote));
-//    }
-//}
-
-//void Send(EndPoint Remote)
-//{
-//    //TO DO 4
-//    //Use socket.SendTo to send a ping using the remote we stored earlier.
-//    byte[] data = new byte[1024];
-//    string welcome = "UDP Ping";
-
-//    data = Encoding.ASCII.GetBytes(welcome);
-//    socket.SendTo(data, Remote);
-//}

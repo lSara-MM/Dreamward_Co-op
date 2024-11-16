@@ -15,7 +15,6 @@ public class StartCouroutine : MonoBehaviour
 
     }
 
-    // TODO: to make generic all
     public void CallLightningCouroutine(GameObject _prefab, BossHealth _boss, float _psDelay, Vector3 _position, float _offset)
     {
         StartCoroutine(SpawnBolt(_prefab, _boss, _psDelay, _position, _offset));
