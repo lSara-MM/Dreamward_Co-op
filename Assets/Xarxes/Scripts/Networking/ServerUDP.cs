@@ -113,7 +113,7 @@ public class ServerUDP : MonoBehaviour, INetworking
 
         ISerializedData serializedData = receivedData as ISerializedData;
 
-        Debug.Log($"Data received from {fromAddress}");
+        //Debug.Log($"Data received from {fromAddress}");
 
         // TODO: remove this?
         //if (!string.IsNullOrEmpty(serializedData.message))
@@ -177,7 +177,7 @@ public class ServerUDP : MonoBehaviour, INetworking
         return recv > 0;
     }
 
-    private void Cleanup()
+    public void CleanUp()
     {
         try
         {
@@ -196,6 +196,6 @@ public class ServerUDP : MonoBehaviour, INetworking
 
     private void OnApplicationQuit()
     {
-        Cleanup();
+        CleanUp();
     }
 }

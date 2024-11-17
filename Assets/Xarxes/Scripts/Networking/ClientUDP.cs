@@ -198,7 +198,7 @@ public class ClientUDP : MonoBehaviour, INetworking
         Debug.LogError(message);
     }
 
-    private void Cleanup()
+    public void CleanUp()
     {
         try
         {
@@ -217,7 +217,7 @@ public class ClientUDP : MonoBehaviour, INetworking
 
     private void OnApplicationQuit()
     {
-        Cleanup();
+        CleanUp();
     }
 }
 
