@@ -197,5 +197,27 @@ public class ClientUDP : MonoBehaviour, INetworking
     {
         Debug.LogError(message);
     }
+
+    private void Cleanup()
+    {
+        try
+        {
+            if (socket != null)
+            {
+                socket.Shutdown(SocketShutdown.Both);
+                socket.Close();
+                socket = null;
+            }
+        }
+        catch (SocketException ex)
+        {
+            Debug.LogError("Error during socket cleanup: " + ex.Message);
+        }
+    }
+
+    private void OnApplicationQuit()
+    {
+        Cleanup();
+    }
 }
 

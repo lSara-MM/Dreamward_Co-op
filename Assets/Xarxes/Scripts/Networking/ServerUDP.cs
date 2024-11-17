@@ -18,14 +18,14 @@ public class ServerUDP : MonoBehaviour, INetworking
     public ChangeScene cs_ChangeScene;
     public string scene = "Hub";
 
-    Serialization cs_Serialization2;
+    Serialization cs_Serialization;
 
     int recv = 0;
 
     private void Start()
     {
         guid = Guid.NewGuid();
-        cs_Serialization2 = GameObject.FindGameObjectWithTag("Serialization").GetComponent<Serialization>();
+        cs_Serialization = GameObject.FindGameObjectWithTag("Serialization").GetComponent<Serialization>();
     }
     public Guid GetGUID()
     {
@@ -109,7 +109,7 @@ public class ServerUDP : MonoBehaviour, INetworking
 
     public void OnPacketReceived(byte[] inputPacket, EndPoint fromAddress)
     {
-        var receivedData = cs_Serialization2.DeserializeFromBinary(inputPacket);
+        var receivedData = cs_Serialization.DeserializeFromBinary(inputPacket);
 
         ISerializedData serializedData = receivedData as ISerializedData;
 
@@ -131,7 +131,7 @@ public class ServerUDP : MonoBehaviour, INetworking
     {
         try
         {
-            byte[] data = cs_Serialization2.SerializeToBinary(outputPacket);
+            byte[] data = cs_Serialization.SerializeToBinary(outputPacket);
 
             socket.SendTo(data, toAddress);
         }
@@ -175,5 +175,27 @@ public class ServerUDP : MonoBehaviour, INetworking
     public bool ClientConnected()
     {
         return recv > 0;
+    }
+
+    private void Cleanup()
+    {
+        try
+        {
+            if (socket != null)
+            {
+                socket.Shutdown(SocketShutdown.Both);
+                socket.Close();
+                socket = null;
+            }
+        }
+        catch (SocketException ex)
+        {
+            Debug.LogError("Error during socket cleanup: " + ex.Message);
+        }
+    }
+
+    private void OnApplicationQuit()
+    {
+        Cleanup();
     }
 }
