@@ -12,16 +12,17 @@ public class Serialization : MonoBehaviour
     private FunctionsToExecute cs_functionsToExecute;
 
     // Link the action types to the funtions to be executed
-    [SerializeField] private Dictionary<ACTION_TYPE, Action<JObject>> actionsDictionary;
+    [SerializeField] private Dictionary<ACTION_TYPE, Func<JObject, object>> actionsDictionary;
 
     private void Start()
     {
-        actionsDictionary = new Dictionary<ACTION_TYPE, Action<JObject>>()
+        // Map actions to functions that return a value (SerializedData<T>)
+        actionsDictionary = new Dictionary<ACTION_TYPE, Func<JObject, object>>()
         {
             { ACTION_TYPE.SPAWN_PLAYER, data => HandleSpawnPlayer(data) },
             { ACTION_TYPE.SPAWN_OBJECT, data => HandleSpawnObject(data) },
             { ACTION_TYPE.INPUT_PLAYER, data => HandlePlayerInput(data) },
-            { ACTION_TYPE.DESTROY, data => HandleSpawnObject(data) },
+            { ACTION_TYPE.DESTROY, data => HandleDestroy(data) },
         };
 
         cs_functionsToExecute = gameObject.GetComponent<FunctionsToExecute>();
@@ -102,7 +103,7 @@ public class Serialization : MonoBehaviour
                         var action = actionsDictionary[actionType];
 
                         // Call the delegate
-                        var result = action.DynamicInvoke(jsonObject);
+                        var result = action.Invoke(jsonObject);
 
                         // Return the deserialized data
                         return result;
@@ -152,7 +153,7 @@ public class Serialization : MonoBehaviour
         return data;
     }
 
-    private SerializedData<string> DeserializeDestroy(JObject jsonObject)
+    private SerializedData<string> HandleDestroy(JObject jsonObject)
     {
         var data = new SerializedData<string>();
 
