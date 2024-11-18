@@ -102,13 +102,13 @@ public class ClientUDP : MonoBehaviour, INetworking
                 if (HostConnected())
                 {
                     OnPacketReceived(data, remote);
-                    //bs_hostIsValid = BOOLEAN_STATE.TRUE;
+                    bs_hostIsValid = BOOLEAN_STATE.TRUE;
                 }
             }
             catch (SocketException ex)
             {
-                ReportError("Failed to receive packet: " + ex.Message);
-                //bs_hostIsValid = BOOLEAN_STATE.FALSE;
+                //ReportError("Failed to receive packet: " + ex.Message);
+                bs_hostIsValid = BOOLEAN_STATE.FALSE;
             }
         }
     }
