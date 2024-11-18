@@ -27,6 +27,8 @@ public class ClientUDP : MonoBehaviour, INetworking
 
     Serialization cs_Serialization;
 
+    int recv = 0;
+
     private void Start()
     {
         guid = Guid.NewGuid();
@@ -79,7 +81,10 @@ public class ClientUDP : MonoBehaviour, INetworking
 
             endPoint = new IPEndPoint(IPAddress.Parse(playerData.IP), 9050); // Use Server IP
 
+            // Optional, send handshake
             Globals.StartNewThread(() => SendPacket(messageData, endPoint));
+
+            Globals.StartNewThread(() => ReceiveLoop());
         }
     }
 
@@ -92,9 +97,9 @@ public class ClientUDP : MonoBehaviour, INetworking
         {
             try
             {
-                int recv = socket.ReceiveFrom(data, ref remote);
+                recv = socket.ReceiveFrom(data, ref remote);
 
-                if (recv > 0)
+                if (HostConnected())
                 {
                     OnPacketReceived(data, remote);
                     //bs_hostIsValid = BOOLEAN_STATE.TRUE;
@@ -153,9 +158,6 @@ public class ClientUDP : MonoBehaviour, INetworking
             byte[] data = cs_Serialization.SerializeToBinary(outputPacket);
 
             socket.SendTo(data, toAddress);
-
-            // Start receive thread to listen for responses
-            Globals.StartNewThread(ReceiveLoop);
             bs_hostIsValid = BOOLEAN_STATE.TRUE;
         }
         catch (SocketException ex)
@@ -170,9 +172,6 @@ public class ClientUDP : MonoBehaviour, INetworking
         try
         {
             socket.SendTo(data, endPoint);
-
-            // Start receive thread to listen for responses
-            Globals.StartNewThread(ReceiveLoop);
         }
         catch (SocketException ex)
         {
@@ -197,7 +196,10 @@ public class ClientUDP : MonoBehaviour, INetworking
     {
         Debug.LogError(message);
     }
-
+    public bool HostConnected()
+    {
+        return recv > 0;
+    }
     public void CleanUp()
     {
         try
