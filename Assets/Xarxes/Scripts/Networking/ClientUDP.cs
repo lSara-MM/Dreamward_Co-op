@@ -138,6 +138,8 @@ public class ClientUDP : MonoBehaviour, INetworking
         {
             if (bs_hostIsValid == BOOLEAN_STATE.TRUE)
             {
+                cs_InputErrorHandler.errorClientGo.SetActive(false);
+
                 Debug.Log("Client Start");
                 bs_hostIsValid = BOOLEAN_STATE.NONE;
 
@@ -152,7 +154,7 @@ public class ClientUDP : MonoBehaviour, INetworking
             }
             else if (bs_hostIsValid == BOOLEAN_STATE.FALSE)
             {
-                cs_InputErrorHandler.HostMissing();
+                StartCoroutine(cs_InputErrorHandler.HostMissing());
             }
         }
     }

@@ -3,6 +3,7 @@ using UnityEngine;
 using TMPro;
 
 using System.Linq;
+using System.Collections;
 
 public class InputErrorHandler : MonoBehaviour
 {
@@ -81,8 +82,9 @@ public class InputErrorHandler : MonoBehaviour
     }
 
     // Check if the game to join exists
-    public void HostMissing()
+    public IEnumerator HostMissing()
     {
+        yield return new WaitForSeconds(1.0f);
         errorClientGo.SetActive(true);
         errorClientText.text = "Host not found";
     }
