@@ -105,7 +105,7 @@ public class FunctionsToExecute : MonoBehaviour
     public void ExecuteInput(SerializedData<ns_structure.playerInput> data)
     {
         ns_structure.playerInput param = data.parameters;
-        Debug.Log($"Execute Input: {data.network_id}");
+        //Debug.Log($"Execute Input: {data.network_id}");
 
         if (guidDictionary.ContainsKey(data.network_id))
         {

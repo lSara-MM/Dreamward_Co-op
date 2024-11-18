@@ -29,6 +29,10 @@ public class ClientUDP : MonoBehaviour, INetworking
 
     int recv = 0;
 
+    // Only check if host is valid on the HUB
+    // TODO: find a better way to do this
+    bool manageHostValid = true;
+
     private void Start()
     {
         guid = Guid.NewGuid();
@@ -130,7 +134,7 @@ public class ClientUDP : MonoBehaviour, INetworking
 
     public void OnUpdate()
     {
-        if (playerData != null && bs_hostIsValid != BOOLEAN_STATE.NONE)
+        if (manageHostValid && playerData != null && bs_hostIsValid != BOOLEAN_STATE.NONE)
         {
             if (bs_hostIsValid == BOOLEAN_STATE.TRUE)
             {
@@ -138,6 +142,8 @@ public class ClientUDP : MonoBehaviour, INetworking
                 bs_hostIsValid = BOOLEAN_STATE.NONE;
 
                 Globals.AddDontDestroy(gameObject);
+
+                manageHostValid = false;
 
                 if (cs_ChangeScene)
                 {
@@ -196,10 +202,12 @@ public class ClientUDP : MonoBehaviour, INetworking
     {
         Debug.LogError(message);
     }
+    
     public bool HostConnected()
     {
         return recv > 0;
     }
+
     public void CleanUp()
     {
         try
