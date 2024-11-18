@@ -125,6 +125,9 @@ public class Serialization : MonoBehaviour
     private SerializedData<ns_structure.spawnPlayer> HandleSpawnPlayer(JObject jsonObject)
     {
         var data = new SerializedData<ns_structure.spawnPlayer>();
+
+        data.network_id = (Guid)jsonObject["network_id"];
+
         data.parameters = new ns_structure.spawnPlayer();
         data.parameters.Deserialize(jsonObject);
 
@@ -136,6 +139,9 @@ public class Serialization : MonoBehaviour
     private SerializedData<ns_structure.spawnPrefab> HandleSpawnObject(JObject jsonObject)
     {
         var data = new SerializedData<ns_structure.spawnPrefab>();
+        
+        data.network_id = (Guid)jsonObject["network_id"];
+        
         data.parameters = new ns_structure.spawnPrefab();
         data.parameters.Deserialize(jsonObject);
 
@@ -146,6 +152,9 @@ public class Serialization : MonoBehaviour
     private SerializedData<ns_structure.playerInput> HandlePlayerInput(JObject jsonObject)
     {
         var data = new SerializedData<ns_structure.playerInput>();
+
+        data.network_id = (Guid)jsonObject["network_id"];
+
         data.parameters = new ns_structure.playerInput();
         data.parameters.Deserialize(jsonObject);
 
@@ -156,6 +165,8 @@ public class Serialization : MonoBehaviour
     private SerializedData<string> HandleDestroy(JObject jsonObject)
     {
         var data = new SerializedData<string>();
+
+        data.network_id = (Guid)jsonObject["network_id"];
 
         cs_functionsToExecute.actionsDictionary[ACTION_TYPE.DESTROY].Invoke(data);
         return data;
