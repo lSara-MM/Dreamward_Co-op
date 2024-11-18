@@ -14,6 +14,22 @@ namespace ns_structure
         public void Deserialize(JObject jsonObject);
     }
 
+    public class DataWrapper<T> : IDataStructure
+    {
+        public T Data { get; set; }
+
+        public void Print()
+        {
+            Debug.Log(Data);
+        }
+
+        public void Deserialize(JObject jsonObject)
+        {
+            Data = jsonObject.ToObject<T>();
+        }
+    }
+
+
     #region Spawn Objects
     public class spawnPlayer : IDataStructure
     {

@@ -11,18 +11,18 @@ public class Serialization : MonoBehaviour
     public MemoryStream stream;
     private FunctionsToExecute cs_functionsToExecute;
 
-    // Link the action types to the funtions to be executed
-    [SerializeField] private Dictionary<ACTION_TYPE, Func<JObject, object>> actionsDictionary;
+    // Link the action types to the functions to be executed
+    [SerializeField] private Dictionary<ACTION_TYPE, Func<object>> actionsDictionary;
 
     private void Start()
     {
-        // Map actions to functions that return a value (SerializedData<T>)
-        actionsDictionary = new Dictionary<ACTION_TYPE, Func<JObject, object>>()
+        // Map actions to functions that return a value (SerializedData<IDataStructure>)
+        actionsDictionary = new Dictionary<ACTION_TYPE, Func<object>>()
         {
-            { ACTION_TYPE.SPAWN_PLAYER, data => HandleSpawnPlayer(data) },
-            { ACTION_TYPE.SPAWN_OBJECT, data => HandleSpawnObject(data) },
-            { ACTION_TYPE.INPUT_PLAYER, data => HandlePlayerInput(data) },
-            { ACTION_TYPE.DESTROY, data => HandleDestroy(data) },
+            { ACTION_TYPE.SPAWN_PLAYER, () => new SerializedData<ns_structure.spawnPlayer>() },
+            { ACTION_TYPE.SPAWN_OBJECT, () => new SerializedData<ns_structure.spawnPrefab>() },
+            { ACTION_TYPE.INPUT_PLAYER, () => new SerializedData<ns_structure.playerInput>() },
+            { ACTION_TYPE.DESTROY, () => new SerializedData<ns_structure.DataWrapper<string>>() }
         };
 
         cs_functionsToExecute = gameObject.GetComponent<FunctionsToExecute>();
@@ -139,9 +139,9 @@ public class Serialization : MonoBehaviour
     private SerializedData<ns_structure.spawnPrefab> HandleSpawnObject(JObject jsonObject)
     {
         var data = new SerializedData<ns_structure.spawnPrefab>();
-        
+
         data.network_id = (Guid)jsonObject["network_id"];
-        
+
         data.parameters = new ns_structure.spawnPrefab();
         data.parameters.Deserialize(jsonObject);
 
