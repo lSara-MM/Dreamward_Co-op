@@ -13,7 +13,7 @@ public class FunctionsToExecute : MonoBehaviour
 
     // Store the GUIDs and their GameObject reference
     public Dictionary<Guid, GameObject> guidDictionary = new Dictionary<Guid, GameObject>();
-    
+
     Serialization cs_Serialization;
     [SerializeField] private GUID_Generator cs_guid;
 
@@ -61,7 +61,7 @@ public class FunctionsToExecute : MonoBehaviour
             guidDictionary.Add(data.network_id, go);
 
             go.GetComponent<PlayerOnline>().SetPlayerData(param.playerData);
-            
+
             // Spawn server's player in client
             GameObject online;
             if (online = GameObject.FindGameObjectWithTag("Server"))
@@ -88,7 +88,7 @@ public class FunctionsToExecute : MonoBehaviour
             GameObject go = Instantiate(prefab, param.spawnPosition, Quaternion.identity);
 
             GUID_Generator generator = go.GetComponent<GUID_Generator>();
-            
+
             // Save the guid to the map if it has
             if (generator != null)
             {
@@ -105,17 +105,24 @@ public class FunctionsToExecute : MonoBehaviour
     public void ExecuteInput(SerializedData<ns_structure.playerInput> data)
     {
         ns_structure.playerInput param = data.parameters;
-        //Debug.Log($"Execute Input: {param.key}");
+        Debug.Log($"Execute Input: {data.network_id}");
 
-        GameObject go = guidDictionary[data.network_id];
-
-        if (param.key == "Fire1")
+        if (guidDictionary.ContainsKey(data.network_id))
         {
-            go.GetComponent<PlayerCombat>().CombatMovement(param.key, param.state);
+            GameObject go = guidDictionary[data.network_id];
+
+            if (param.key == "Fire1")
+            {
+                go.GetComponent<PlayerCombat>().CombatMovement(param.key, param.state);
+            }
+            else
+            {
+                go.GetComponent<PlayerMovement>().Movement(param.key, param.state);
+            }
         }
         else
         {
-            go.GetComponent<PlayerMovement>().Movement(param.key, param.state);
+            Debug.LogWarning("GUID not found");
         }
     }
 
