@@ -111,12 +111,7 @@ public class FunctionsToExecute : MonoBehaviour
         {
             GameObject go = guidDictionary[data.network_id];
 
-            if (param.playerPosition != null)
-            {
-                // Cambiar la pos del npc con la que has recibido
-                Debug.Log("Has recibido la pos:" + param.playerPosition);
-            }
-            else if (param.key == "Fire1")
+            if (param.key == "Fire1")
             {
                 go.GetComponent<PlayerCombat>().CombatMovement(param.key, param.state);
             }

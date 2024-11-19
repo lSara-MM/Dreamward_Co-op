@@ -78,7 +78,7 @@ public class PlayerOnline : MonoBehaviour
         //// current and last key are different / current and last key_state are different / current and last key_state are the same but not 0
         if (!isNPC && (lastInputType != key || lastInputValue != key_state || (lastInputType == key && lastInputValue == key_state && lastInputValue != 0)))
         {
-            ns_structure.playerInput playerInput = new ns_structure.playerInput(key, key_state, new Vector2(this.transform.position.x, this.transform.position.y));
+            ns_structure.playerInput playerInput = new ns_structure.playerInput(key, key_state);
             cs_Serialization.SerializeData(cs_guid.GetGuid(), ACTION_TYPE.INPUT_PLAYER, playerInput);
         }
     }
