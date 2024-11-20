@@ -117,7 +117,7 @@ public class FunctionsToExecute : MonoBehaviour
             }
             else
             {
-                go.GetComponent<PlayerMovement>().Movement(param.key, param.state);
+                go.GetComponent<PlayerMovement>().Movement(param.key, param.state, param.posX, param.posY);
             }
         }
         else

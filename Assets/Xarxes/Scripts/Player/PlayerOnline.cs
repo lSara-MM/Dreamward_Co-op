@@ -71,14 +71,14 @@ public class PlayerOnline : MonoBehaviour
     }
 
     // Send input data when a valid input is detected
-    public void ManageOnlineMovement(string key = default, float key_state = 0)
+    public void ManageOnlineMovement(string key = default, float key_state = 0, float posX = 0, float posY = 0)
     {
         // Do if 
         //// it's not NPC
         //// current and last key are different / current and last key_state are different / current and last key_state are the same but not 0
         if (!isNPC && (lastInputType != key || lastInputValue != key_state || (lastInputType == key && lastInputValue == key_state && lastInputValue != 0)))
         {
-            ns_structure.playerInput playerInput = new ns_structure.playerInput(key, key_state);
+            ns_structure.playerInput playerInput = new ns_structure.playerInput(key, key_state, posX, posY);
             cs_Serialization.SerializeData(cs_guid.GetGuid(), ACTION_TYPE.INPUT_PLAYER, playerInput);
         }
     }

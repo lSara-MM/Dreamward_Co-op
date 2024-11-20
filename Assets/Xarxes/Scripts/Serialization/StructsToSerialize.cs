@@ -104,21 +104,29 @@ namespace ns_structure
         // Ranges from -1 to 1. Manage movement axis and key/button states
         public float state { get; set; }
 
-        public playerInput(string key = default, float state = default)
+        // Player position to fix it if there is latency
+        public float posX { get; set; }
+        public float posY { get; set; }
+
+        public playerInput(string key = default, float state = default, float posX = default, float posY = default)
         {
             this.key = key;
             this.state = state;
+            this.posX = posX;
+            this.posY = posY;
         }
 
         public void Print()
         {
-            Debug.Log($"Key: {key}, State: {state}");
+            Debug.Log($"Key: {key}, State: {state}, PosX: {posX}, PosY: {posY}");
         }
 
         public void Deserialize(JObject jsonObject)
         {
             this.key = (string)jsonObject["parameters"]?["key"];
             this.state = (float)jsonObject["parameters"]?["state"];
+            this.posX = (float)jsonObject["parameters"]?["posX"];
+            this.posY = (float)jsonObject["parameters"]?["posY"];
         }
     }
 

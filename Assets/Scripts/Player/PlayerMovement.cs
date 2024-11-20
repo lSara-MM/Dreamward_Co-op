@@ -72,17 +72,22 @@ public class PlayerMovement : MonoBehaviour
         Flip();
     }
 
-    public void Movement(string key = default, float key_state = 0)
+    public void Movement(string key = default, float key_state = 0, float posX = 0, float posY = 0)
     {
         if (!isNPC)
         {
             horizontal = Input.GetAxisRaw("Horizontal");
-            cs_playerOnline.ManageOnlineMovement("Horizontal", horizontal);
+            cs_playerOnline.ManageOnlineMovement("Horizontal", horizontal, transform.position.x, transform.position.y);
         }
         else
         {
             if (key == "Horizontal")
             {
+                if (posX != 0 || posY != 0)
+                {
+                    transform.position = new Vector3(posX, posY, 0);
+                }
+
                 horizontal = key_state;
             }
         }
