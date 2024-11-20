@@ -95,8 +95,6 @@ public class Serialization : MonoBehaviour
 
                 if (jsonObject.ContainsKey("action"))
                 {
-                    //return ParseData(json);
-
                     ACTION_TYPE actionType = (ACTION_TYPE)(int)jsonObject["action"];
                     if (actionsDictionary.ContainsKey(actionType))
                     {
@@ -111,7 +109,6 @@ public class Serialization : MonoBehaviour
                     else
                     {
                         Debug.LogWarning($"Unknown action type: {actionType}");
-
                         JsonConvert.DeserializeObject<SerializedData<object>>(json);
                     }
                 }
