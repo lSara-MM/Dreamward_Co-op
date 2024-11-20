@@ -49,11 +49,6 @@ public class ClientUDP : MonoBehaviour, INetworking
         return playerData;
     }
 
-    public void StartClient()
-    {
-        OnStart();
-    }
-
     void Update()
     {
         OnUpdate();
@@ -154,6 +149,7 @@ public class ClientUDP : MonoBehaviour, INetworking
             }
             else if (bs_hostIsValid == BOOLEAN_STATE.FALSE)
             {
+                bs_hostIsValid = BOOLEAN_STATE.NONE;
                 StartCoroutine(cs_InputErrorHandler.HostMissing());
             }
         }
