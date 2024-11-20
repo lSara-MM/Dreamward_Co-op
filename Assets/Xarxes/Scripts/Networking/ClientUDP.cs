@@ -120,11 +120,6 @@ public class ClientUDP : MonoBehaviour, INetworking
 
         Debug.Log($"Data received from {fromAddress}");
 
-        // TODO: remove this?
-        //if (!string.IsNullOrEmpty(serializedData.message))
-        //{
-        //    Debug.Log($"Message received: {serializedData.message}");
-        //}
     }
 
     public void OnUpdate()
@@ -185,7 +180,7 @@ public class ClientUDP : MonoBehaviour, INetworking
 
     public void OnConnectionReset(EndPoint fromAddress)
     {
-        // TODO
+
     }
 
     public void OnDisconnect()

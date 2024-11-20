@@ -113,18 +113,11 @@ public class ServerUDP : MonoBehaviour, INetworking
 
         ISerializedData serializedData = receivedData as ISerializedData;
 
-        //Debug.Log($"Data received from {fromAddress}");
-
-        // TODO: remove this?
-        //if (!string.IsNullOrEmpty(serializedData.message))
-        //{
-        //    Debug.Log($"Message received: {serializedData.message}");
-        //}
     }
 
     public void OnUpdate()
     {
-        // TODO
+
     }
 
     public void SendPacket<T>(SerializedData<T> outputPacket, EndPoint toAddress)
@@ -158,7 +151,7 @@ public class ServerUDP : MonoBehaviour, INetworking
 
     public void OnConnectionReset(EndPoint fromAddress)
     {
-        // TODO
+
     }
 
     public void OnDisconnect()

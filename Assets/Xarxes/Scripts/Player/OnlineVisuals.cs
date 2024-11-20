@@ -11,7 +11,6 @@ public class OnlineVisuals : MonoBehaviour
     [SerializeField] private PlayerData cs_PlayerData;
     [SerializeField] private PlayerOnline cs_PlayerOnline;
 
-    // Start is called before the first frame update
     void Start()
     {
         cs_PlayerData = cs_PlayerOnline.GetPlayerData();
@@ -23,11 +22,5 @@ public class OnlineVisuals : MonoBehaviour
 
             this.gameObject.GetComponent<SpriteRenderer>().material.color = cs_PlayerData.GetColorColor();
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 }

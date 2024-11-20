@@ -54,12 +54,6 @@ public class PlayerOnline : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     public PlayerData GetPlayerData()
     {
         return playerData;

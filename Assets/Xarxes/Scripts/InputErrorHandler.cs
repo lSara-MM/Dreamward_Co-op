@@ -17,18 +17,6 @@ public class InputErrorHandler : MonoBehaviour
     public GameObject errorClientGo;
     public TMP_Text errorClientText;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     // Check if the host name is not empty before joining a game
     // Return --> If host is valid: create a player with the info. Else: null
     public PlayerData ValidateHost()
