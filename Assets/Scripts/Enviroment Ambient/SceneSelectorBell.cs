@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Android;
 using UnityEngine.SceneManagement;
 
 public class SceneSelectorBell : MonoBehaviour
@@ -27,13 +28,14 @@ public class SceneSelectorBell : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (PassScene != null && collision.gameObject.tag == "Player")
-        {
-            player.gravityScale = 2f;
-            Dialogue.Value = DialogueSelector;
-            bellSound.Play();
-            SceneManager.scene = PassScene;
-            SceneManager.secondPhase = true;
-        }
+        // TODO: Go to boss scene
+        //if (PassScene != null && collision.gameObject.tag == "Player")
+        //{
+        //    player.gravityScale = 2f;
+        //    Dialogue.Value = DialogueSelector;
+        //    bellSound.Play();
+        //    SceneManager.scene = PassScene;
+        //    SceneManager.secondPhase = true;
+        //}
     }
 }
