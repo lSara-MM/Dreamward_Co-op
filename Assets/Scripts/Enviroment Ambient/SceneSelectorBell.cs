@@ -28,14 +28,13 @@ public class SceneSelectorBell : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // TODO: Go to boss scene
-        //if (PassScene != null && collision.gameObject.tag == "Player")
-        //{
-        //    player.gravityScale = 2f;
-        //    Dialogue.Value = DialogueSelector;
-        //    bellSound.Play();
-        //    SceneManager.scene = PassScene;
-        //    SceneManager.secondPhase = true;
-        //}
+        if (PassScene != null && collision.gameObject.tag == "Player")
+        {
+            //player.gravityScale = 2f;
+            //Dialogue.Value = DialogueSelector;
+            bellSound.Play();
+            //SceneManager.scene = PassScene;
+            //SceneManager.secondPhase = true;
+        }
     }
 }

@@ -663,6 +663,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0830d9c772bc2ef4cab9839fb7cfc2a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cs_guid: {fileID: 0}
 --- !u!4 &234336868
 Transform:
   m_ObjectHideFlags: 0
@@ -1736,7 +1737,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 457988774}
         m_TargetAssemblyTypeName: ClientUDP, Assembly-CSharp
-        m_MethodName: StartClient
+        m_MethodName: OnStart
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1744,18 +1745,6 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 22057134}
-        m_TargetAssemblyTypeName: ChangeScene, Assembly-CSharp
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Hub
           m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &589122533
@@ -4568,7 +4557,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1384938317}
   m_OnClick:
     m_PersistentCalls:
