@@ -170,25 +170,8 @@ public class ServerUDP : MonoBehaviour, INetworking
         return recv > 0;
     }
 
-    public void CleanUp()
-    {
-        try
-        {
-            if (socket != null && ClientConnected())
-            {
-                socket.Shutdown(SocketShutdown.Both);
-                socket.Close();
-                socket = null;
-            }
-        }
-        catch (SocketException ex)
-        {
-            Debug.LogError("Error during socket cleanup: " + ex.Message);
-        }
-    }
-
     private void OnApplicationQuit()
     {
-        CleanUp();
+        OnDisconnect();
     }
 }

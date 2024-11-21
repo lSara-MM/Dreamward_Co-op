@@ -28,7 +28,4 @@ public interface INetworking
 
     // Error handling
     void ReportError(string message);
-
-    // Clean up sockets when closing application
-    void CleanUp();
 }
