@@ -73,8 +73,12 @@ public class InputErrorHandler : MonoBehaviour
     public IEnumerator HostMissing()
     {
         yield return new WaitForSeconds(1.0f);
-        errorClientGo.SetActive(true);
-        errorClientText.text = "Host not found";
+
+        if (errorClientGo != null)
+        {
+            errorClientGo.SetActive(true);
+            errorClientText.text = "Host not found";
+        }
     }
 
     // Validate the IP the user has introduced.

@@ -118,7 +118,7 @@ public class ClientUDP : MonoBehaviour, INetworking
 
         ISerializedData serializedData = receivedData as ISerializedData;
 
-        Debug.Log($"Data received from {fromAddress}");
+        //Debug.Log($"Data received from {fromAddress}");
 
     }
 
@@ -144,7 +144,6 @@ public class ClientUDP : MonoBehaviour, INetworking
             }
             else if (bs_hostIsValid == BOOLEAN_STATE.FALSE)
             {
-                bs_hostIsValid = BOOLEAN_STATE.NONE;
                 StartCoroutine(cs_InputErrorHandler.HostMissing());
             }
         }
