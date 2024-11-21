@@ -205,7 +205,7 @@ public class ClientUDP : MonoBehaviour, INetworking
     {
         try
         {
-            if (socket != null)
+            if (socket != null && HostConnected())
             {
                 socket.Shutdown(SocketShutdown.Both);
                 socket.Close();

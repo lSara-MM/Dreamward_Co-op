@@ -174,7 +174,7 @@ public class ServerUDP : MonoBehaviour, INetworking
     {
         try
         {
-            if (socket != null)
+            if (socket != null && ClientConnected())
             {
                 socket.Shutdown(SocketShutdown.Both);
                 socket.Close();
