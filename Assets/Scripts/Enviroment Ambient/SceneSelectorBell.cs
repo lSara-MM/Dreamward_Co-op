@@ -30,11 +30,11 @@ public class SceneSelectorBell : MonoBehaviour
     {
         if (PassScene != null && collision.gameObject.tag == "Player")
         {
-            //player.gravityScale = 2f;
-            //Dialogue.Value = DialogueSelector;
+            player.gravityScale = 2f;
+            Dialogue.Value = DialogueSelector;
             bellSound.Play();
-            //SceneManager.scene = PassScene;
-            //SceneManager.secondPhase = true;
+            SceneManager.scene = PassScene;
+            SceneManager.secondPhase = true;
         }
     }
 }

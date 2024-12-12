@@ -22,9 +22,22 @@ public class WinLose : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        winCanvas.SetActive(false);
-        loseCanvas.SetActive(false);
-        _bossAnimator = GameObject.Find("Enemy").transform.gameObject.GetComponent<Animator>();
+        if (GameObject.Find("Enemy") != null)
+        {
+            _bossAnimator = GameObject.Find("Enemy").transform.gameObject.GetComponent<Animator>();
+        }
+
+        if (GameObject.Find("YouWin") != null)
+        {
+            winCanvas = GameObject.Find("YouWin");
+            winCanvas.SetActive(false);
+        }
+
+        if (GameObject.Find("YouLose") != null)
+        {
+            loseCanvas = GameObject.Find("YouLose");
+            loseCanvas.SetActive(false);
+        }
     }
 
     // Update is called once per frame

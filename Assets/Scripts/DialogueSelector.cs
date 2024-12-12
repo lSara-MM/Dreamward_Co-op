@@ -45,7 +45,7 @@ public class DialogueSelector : MonoBehaviour
             }
             else 
             {
-                changeScene.ChangeToScene("Boss 1 Clown");
+                changeScene.ChangeToScene("Boss 1 Online");
             }
         }
         
@@ -92,7 +92,7 @@ public class DialogueSelector : MonoBehaviour
 
             if (Dialogue.Value == 1)
             {
-                changeScene.ChangeToScene("Boss 1 Clown");
+                changeScene.ChangeToScene("Boss 1 Online");
             }
 
             if (Dialogue.Value == 2)
