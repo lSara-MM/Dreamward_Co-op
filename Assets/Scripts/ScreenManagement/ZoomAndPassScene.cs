@@ -93,7 +93,7 @@ public class ZoomAndPassScene : MonoBehaviour
                 {
                     if (Intro)
                     {
-                        changeScene.ChangeToScene("LoreMaster");
+                        changeScene.ChangeToScene("Boss 1 Online");
                     }
 
                     if (Hub)
