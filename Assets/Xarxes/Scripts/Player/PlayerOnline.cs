@@ -18,11 +18,15 @@ public class PlayerOnline : MonoBehaviour
     [SerializeField] private string lastInputType = "";
     [SerializeField] private float lastInputValue = 0f;
 
+    [SerializeField] private SpriteRenderer fadeToBlack;
+
     // Start is called before the first frame update
     void Awake()
     {
         cs_guid = gameObject.GetComponent<GUID_Generator>();
         cs_Serialization = GameObject.FindGameObjectWithTag("Serialization").GetComponent<Serialization>();
+
+        Globals.AddDontDestroy(gameObject);
 
         if (!isNPC)
         {
@@ -62,6 +66,17 @@ public class PlayerOnline : MonoBehaviour
     public void SetPlayerData(PlayerData playerData)
     {
         this.playerData = playerData;
+    }
+
+    public void ResetPlayer()
+    {
+        transform.position = new Vector3(0, 6.25f, 0);
+        fadeToBlack.color = new Color(0, 0, 0, 0);
+
+        // TODO: ARREGLAR TRANSPARENCIA PLAYER
+
+        GetComponent<Rigidbody2D>().gravityScale = 4.0f;
+        GetComponent<PlayerHealth>().currentHealth = GetComponent<PlayerHealth>().maxHealth;
     }
 
     // Send input data when a valid input is detected

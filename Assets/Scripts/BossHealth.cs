@@ -27,6 +27,15 @@ public class BossHealth : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Teleport players to (0,0,0)
+        foreach (GameObject item in Globals.dontDestroyList)
+        {
+            if (item.tag == "Player")
+            {
+                item.GetComponent<PlayerOnline>().ResetPlayer();
+            }
+        }
+
         _animator = GetComponent<Animator>();
 
         currentHealth = maxHealth;
