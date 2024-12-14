@@ -22,22 +22,7 @@ public class WinLose : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (GameObject.Find("Enemy") != null)
-        {
-            _bossAnimator = GameObject.Find("Enemy").transform.gameObject.GetComponent<Animator>();
-        }
 
-        if (GameObject.Find("YouWin") != null)
-        {
-            winCanvas = GameObject.Find("YouWin");
-            winCanvas.SetActive(false);
-        }
-
-        if (GameObject.Find("YouLose") != null)
-        {
-            loseCanvas = GameObject.Find("YouLose");
-            loseCanvas.SetActive(false);
-        }
     }
 
     // Update is called once per frame
@@ -65,19 +50,23 @@ public class WinLose : MonoBehaviour
             }
         }
     }
+
     public void OpenWin()
     {
+        DeletePlayers();
+
         for (int i = 0; i < wToDisable.Length; ++i)
         {
             wToDisable[i].SetActive(false);
         }
 
         winCanvas.SetActive(true);
-        lvl.Value = true;
     }
 
     public void OpenLose()
     {
+        DeletePlayers();
+
         for (int i = 0; i < lToDisable.Length; ++i)
         {
             lToDisable[i].SetActive(false);
@@ -85,5 +74,36 @@ public class WinLose : MonoBehaviour
 
         loseCanvas.SetActive(true);
         _lost = false;
+    }
+
+    public void AssignWinLose()
+    {
+        if (GameObject.Find("Enemy") != null)
+        {
+            _bossAnimator = GameObject.Find("Enemy").transform.gameObject.GetComponent<Animator>();
+        }
+
+        if (GameObject.Find("YouWin") != null)
+        {
+            winCanvas = GameObject.Find("YouWin");
+            winCanvas.SetActive(false);
+        }
+
+        if (GameObject.Find("YouLose") != null)
+        {
+            loseCanvas = GameObject.Find("YouLose");
+            loseCanvas.SetActive(false);
+        }
+    }
+
+    public void DeletePlayers()
+    {
+        GameObject[] playerList = GameObject.FindGameObjectsWithTag("Player");
+
+        foreach (GameObject item in playerList)
+        {
+            Globals.dontDestroyList.Remove(item);
+            Destroy(item);
+        }
     }
 }

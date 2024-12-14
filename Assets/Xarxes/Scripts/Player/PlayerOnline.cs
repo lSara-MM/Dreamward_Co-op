@@ -19,6 +19,8 @@ public class PlayerOnline : MonoBehaviour
     [SerializeField] private float lastInputValue = 0f;
 
     [SerializeField] private SpriteRenderer fadeToBlack;
+    [SerializeField] private FollowUI cs_followUI;
+    [SerializeField] private GameObject canvasUI;
 
     // Start is called before the first frame update
     void Awake()
@@ -73,10 +75,13 @@ public class PlayerOnline : MonoBehaviour
         transform.position = new Vector3(0, 6.25f, 0);
         fadeToBlack.color = new Color(0, 0, 0, 0);
 
-        // TODO: ARREGLAR TRANSPARENCIA PLAYER
+        cs_followUI.AssignCam();
+        canvasUI.SetActive(!canvasUI.activeInHierarchy);
 
         GetComponent<Rigidbody2D>().gravityScale = 4.0f;
-        GetComponent<PlayerHealth>().currentHealth = GetComponent<PlayerHealth>().maxHealth;
+        GetComponent<PlayerHealth>().AssignPlayerHealth();
+        GetComponent<WinLose>().AssignWinLose();
+        GetComponent<FadeToBlack>().AssignFadeToBlack();
     }
 
     // Send input data when a valid input is detected

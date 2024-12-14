@@ -11,7 +11,7 @@ public class FollowUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        cam = GameObject.Find("Main Camera").GetComponent<Camera>();
+        AssignCam();
     }
 
     // Update is called once per frame
@@ -23,5 +23,10 @@ public class FollowUI : MonoBehaviour
         { 
             transform.position = pos;
         }
+    }
+
+    public void AssignCam() 
+    {
+        cam = GameObject.Find("Main Camera").GetComponent<Camera>();
     }
 }

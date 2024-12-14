@@ -66,8 +66,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.0934999, y: -1.3798001, z: 0}
-    m_Extent: {x: 5.1502, y: 2.4283, z: 0}
+    m_Center: {x: 0.09264994, y: -1.3793, z: 0}
+    m_Extent: {x: 5.14955, y: 2.4274, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -168,6 +168,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3215748448389096510, guid: 212a175918279ab4a8beb5e011342627,
+        type: 3}
+      propertyPath: m_TagString
+      value: Boss
       objectReference: {fileID: 0}
     - target: {fileID: 4538425055271914732, guid: 212a175918279ab4a8beb5e011342627,
         type: 3}
@@ -298,6 +303,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 6885376474295835646}
+    - targetCorrespondingSourceObject: {fileID: 3215748448389096510, guid: 212a175918279ab4a8beb5e011342627,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2368134488470709165}
   m_SourcePrefab: {fileID: 100100000, guid: 212a175918279ab4a8beb5e011342627, type: 3}
 --- !u!1 &347447479915292770 stripped
 GameObject:
@@ -351,7 +360,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.010529876, y: 0.19960546}
+  m_Offset: {x: -0.010529995, y: 0.12152207}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -362,7 +371,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 6.550213, y: 5.2915688}
+  m_Size: {x: 6.550213, y: 5.447736}
   m_EdgeRadius: 0
 --- !u!114 &4260133211604267587
 MonoBehaviour:
@@ -398,8 +407,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.07378203, y: 1.475769, z: 0}
-    m_Extent: {x: 1.5836179, y: 2.891231, z: 0}
+    m_Center: {x: 0.073532104, y: 1.4756689, z: 0}
+    m_Extent: {x: 1.5833681, y: 2.891131, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -532,6 +541,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2368134488470709165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 347447479915292770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ca8c30c72fccd542b6287194425264b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _winLaugh: {fileID: 8300000, guid: 3bb76d813776d4f41846db753ced90b4, type: 3}
+  _bulletLaugh: {fileID: 8300000, guid: 9c4a7386085c4524c829cb4bdc8ad25a, type: 3}
 --- !u!4 &6497059362769171864 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8239602253882800580, guid: 212a175918279ab4a8beb5e011342627,

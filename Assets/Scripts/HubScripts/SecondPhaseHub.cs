@@ -161,10 +161,10 @@ public class SecondPhaseHub : MonoBehaviour
                 text3.color = new Color(text3.color.r, text3.color.g, text3.color.b, text3.color.a - 0.005f * timing);
             }
             
-            if(player.color.a > 0) 
-            {
-                player.color = new Color(player.color.r, player.color.g, player.color.b, player.color.a - 0.005f * timing);
-            }
+            //if(player.color.a > 0) 
+            //{
+            //    player.color = new Color(player.color.r, player.color.g, player.color.b, player.color.a - 0.005f * timing);
+            //}
             
             //if(scissors.color.a > 0) 
             //{

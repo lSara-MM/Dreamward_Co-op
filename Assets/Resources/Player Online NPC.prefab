@@ -21,7 +21,7 @@ PrefabInstance:
     - target: {fileID: 1699029050719580793, guid: ecf0a7b7c583e2a43a5cb043f57f9939,
         type: 3}
       propertyPath: m_InstanceId
-      value: -26168
+      value: -314546
       objectReference: {fileID: 0}
     - target: {fileID: 2028326694311403254, guid: ecf0a7b7c583e2a43a5cb043f57f9939,
         type: 3}
@@ -118,14 +118,50 @@ PrefabInstance:
       propertyPath: isNPC
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8733647627395245984, guid: ecf0a7b7c583e2a43a5cb043f57f9939,
+        type: 3}
+      propertyPath: canvasUI
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8888816436792660565, guid: ecf0a7b7c583e2a43a5cb043f57f9939,
+        type: 3}
+      propertyPath: healthUI
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8888816436792660565, guid: ecf0a7b7c583e2a43a5cb043f57f9939,
         type: 3}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8888816436792660565, guid: ecf0a7b7c583e2a43a5cb043f57f9939,
+        type: 3}
+      propertyPath: hearts.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8888816436792660565, guid: ecf0a7b7c583e2a43a5cb043f57f9939,
+        type: 3}
+      propertyPath: hearts.Array.data[1]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8888816436792660565, guid: ecf0a7b7c583e2a43a5cb043f57f9939,
+        type: 3}
+      propertyPath: hearts.Array.data[2]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8888816436792660565, guid: ecf0a7b7c583e2a43a5cb043f57f9939,
+        type: 3}
+      propertyPath: hearts.Array.data[3]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8888816436792660565, guid: ecf0a7b7c583e2a43a5cb043f57f9939,
+        type: 3}
+      propertyPath: hearts.Array.data[4]
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6083429751689439616, guid: ecf0a7b7c583e2a43a5cb043f57f9939, type: 3}
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 6732847970189385052, guid: ecf0a7b7c583e2a43a5cb043f57f9939, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ecf0a7b7c583e2a43a5cb043f57f9939, type: 3}

@@ -32,4 +32,9 @@ public class FadeToBlack : MonoBehaviour
             return true;
         }
     }
+
+    public void AssignFadeToBlack()
+    {
+        fadeToBlack = GameObject.Find("Fade").GetComponent<SpriteRenderer>();
+    }
 }

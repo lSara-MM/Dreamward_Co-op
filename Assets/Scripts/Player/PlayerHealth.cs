@@ -37,8 +37,7 @@ public class PlayerHealth : MonoBehaviour
 
     private PlayerMovement _move;
 
-    private Animator _bossAnimator;
-    public GameObject _boss;
+    public Animator bossAnimator;
 
     [SerializeField] private float _shakeIntensity = 5;
     [SerializeField] private float _shakeFrequency = 5;
@@ -46,38 +45,16 @@ public class PlayerHealth : MonoBehaviour
 
     private Animator _animator;
 
+    [SerializeField] private GameObject healthUI;
+
     // Start is called before the first frame update
     void Start()
     {
-        currentHealth = maxHealth;
-
         _blink = GetComponent<Blink>();
         _winLose = GetComponent<WinLose>();
         _move = GetComponent<PlayerMovement>();
         aud = GetComponent<AudioSource>();
         _animator = GetComponent<Animator>();
-
-        // Dificulty Selector
-        dificultySelector = GameObject.Find("DifultySelector");
-
-        if (dificultySelector != null)
-        {
-            dificultySelectorScript = dificultySelector.GetComponent<DificultySelector>();
-
-            if (dificultySelectorScript.hardMode)
-            {
-                currentHealth = 1;
-                maxHealth = 1;
-                maxInitHealth = 1;
-            }
-        }
-
-        //_boss = GameObject.Find("Enemy").gameObject; // Andreu ni lo toques
-
-        if (_boss != null)
-        {
-            _bossAnimator = _boss.GetComponent<Animator>(); // Andreu ni lo toques
-        }
     }
 
     // Update is called once per frame
@@ -148,7 +125,7 @@ public class PlayerHealth : MonoBehaviour
                 this.gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
                 _animator.SetTrigger("Death");
                 _winLose._lost = true;
-                _bossAnimator.SetTrigger("BossWins");
+                bossAnimator.SetTrigger("BossWins");
             }
         }
     }
@@ -217,6 +194,23 @@ public class PlayerHealth : MonoBehaviour
                 Debug.Log("Take Damage"); //Función para recibir daño 
                 TakeDmg(1);
             }
+        }
+    }
+
+    public void AssignPlayerHealth()
+    {
+        currentHealth = maxHealth;
+
+        GameObject boss = GameObject.FindWithTag("Boss").gameObject; 
+
+        if (boss != null)
+        {
+            bossAnimator = boss.GetComponent<Animator>(); 
+        }
+
+        for (int i = 0; i < healthUI.transform.childCount; i++)
+        {
+            hearts[i] = healthUI.transform.GetChild(i).gameObject.GetComponent<Image>();
         }
     }
 }

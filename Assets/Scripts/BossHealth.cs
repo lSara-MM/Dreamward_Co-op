@@ -36,6 +36,9 @@ public class BossHealth : MonoBehaviour
             }
         }
 
+        GameObject player = GameObject.Find("Player Online Version");
+        _winLose = player.GetComponent<WinLose>();
+
         _animator = GetComponent<Animator>();
 
         currentHealth = maxHealth;

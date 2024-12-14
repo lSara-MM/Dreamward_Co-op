@@ -38,7 +38,7 @@ public class BossChaseHand : StateMachineBehaviour
         _boss = animator.gameObject.GetComponent<BossHealth>();
         _clownAudio = animator.gameObject.GetComponent<AudioSource>();
 
-        _player = GameObject.Find("Player").transform;
+        _player = GameObject.Find("Player Online Version").transform; // Change name so that it chases new Player online
         _speed = 10;
         _landingPos = new Vector2(999,999);
         _timer = 0;
