@@ -68,10 +68,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8215374752680485007, guid: ee9c8bd8f8719fc4bb077ec697850e10,
+        type: 3}
+      propertyPath: slider
+      value: 
+      objectReference: {fileID: 1999660851532575298}
+    - target: {fileID: 8215374752680485007, guid: ee9c8bd8f8719fc4bb077ec697850e10,
+        type: 3}
+      propertyPath: staminaBar
+      value: 
+      objectReference: {fileID: 3456408792715589434}
     - target: {fileID: 8768761659453967360, guid: ee9c8bd8f8719fc4bb077ec697850e10,
         type: 3}
       propertyPath: m_InstanceId
-      value: -204888
+      value: -350178
       objectReference: {fileID: 0}
     - target: {fileID: 8845313310577347804, guid: ee9c8bd8f8719fc4bb077ec697850e10,
         type: 3}
@@ -85,6 +95,30 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ee9c8bd8f8719fc4bb077ec697850e10, type: 3}
+--- !u!114 &1999660851532575298 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8495186777646992443, guid: ee9c8bd8f8719fc4bb077ec697850e10,
+    type: 3}
+  m_PrefabInstance: {fileID: 7936696790653615737}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3456408792715589434 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4743256696623548739, guid: ee9c8bd8f8719fc4bb077ec697850e10,
+    type: 3}
+  m_PrefabInstance: {fileID: 7936696790653615737}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6732847971406889745 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3696098636553190760, guid: ee9c8bd8f8719fc4bb077ec697850e10,

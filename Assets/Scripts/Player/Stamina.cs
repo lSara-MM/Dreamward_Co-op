@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class Stamina : MonoBehaviour
 {
     [SerializeField] private Slider slider;
+    [SerializeField] private Image staminaBar;
     [SerializeField] private float rechargeSpeed = 1;
 
     public float maxEnergy = 100;
@@ -61,5 +62,10 @@ public class Stamina : MonoBehaviour
         }
 
         return false;
+    }
+
+    public void AssignStamina()
+    {
+        staminaBar.color = GetComponent<PlayerOnline>().GetPlayerData().GetColorColor();
     }
 }

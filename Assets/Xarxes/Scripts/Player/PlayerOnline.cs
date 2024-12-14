@@ -76,12 +76,17 @@ public class PlayerOnline : MonoBehaviour
         fadeToBlack.color = new Color(0, 0, 0, 0);
 
         cs_followUI.AssignCam();
-        canvasUI.SetActive(!canvasUI.activeInHierarchy);
+
+        if (canvasUI != null)
+        {
+            canvasUI.SetActive(!canvasUI.activeInHierarchy);
+        }
 
         GetComponent<Rigidbody2D>().gravityScale = 4.0f;
         GetComponent<PlayerHealth>().AssignPlayerHealth();
         GetComponent<WinLose>().AssignWinLose();
         GetComponent<FadeToBlack>().AssignFadeToBlack();
+        GetComponent<Stamina>().AssignStamina();
     }
 
     // Send input data when a valid input is detected

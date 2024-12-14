@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
@@ -211,6 +210,8 @@ public class PlayerHealth : MonoBehaviour
         for (int i = 0; i < healthUI.transform.childCount; i++)
         {
             hearts[i] = healthUI.transform.GetChild(i).gameObject.GetComponent<Image>();
+
+            hearts[i].color = GetComponent<PlayerOnline>().GetPlayerData().GetColorColor();
         }
     }
 }
