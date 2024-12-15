@@ -97,34 +97,37 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDmg(int dmg_)
     {
-        if (!_godMode && !_isInvuln && !_move.isDashing)
+        if (!GetComponent<PlayerOnline>().isNPC)
         {
-            currentHealth = Mathf.Clamp(currentHealth - dmg_, 0, maxHealth);
-
-            CameraShake.Instance.ShakeCamera(_shakeIntensity, _shakeFrequency, _shakeTime);
-
-            if (currentHealth > 0)
+            if (!_godMode && !_isInvuln && !_move.isDashing)
             {
-                // player hurt
-                _blink.Flash();
-                _isInvuln = true;
+                currentHealth = Mathf.Clamp(currentHealth - dmg_, 0, maxHealth);
 
-                if (currentHealth <= maxInitHealth)
+                CameraShake.Instance.ShakeCamera(_shakeIntensity, _shakeFrequency, _shakeTime);
+
+                if (currentHealth > 0)
                 {
-                    maxHealth = maxInitHealth;
+                    // player hurt
+                    _blink.Flash();
+                    _isInvuln = true;
 
-                    //AudioPlay(Clip[0]);
+                    if (currentHealth <= maxInitHealth)
+                    {
+                        maxHealth = maxInitHealth;
+
+                        //AudioPlay(Clip[0]);
+                    }
                 }
-            }
-            else
-            {
-                // player dead
-                this.gameObject.GetComponent<SpriteRenderer>().enabled = false; // Nose si desactivo player entero se rompe
-                this.gameObject.GetComponent<Collider2D>().enabled = false; // Avoid collisions after death
-                this.gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
-                _animator.SetTrigger("Death");
-                _winLose._lost = true;
-                bossAnimator.SetTrigger("BossWins");
+                else
+                {
+                    // player dead
+                    this.gameObject.GetComponent<SpriteRenderer>().enabled = false; // Nose si desactivo player entero se rompe
+                    this.gameObject.GetComponent<Collider2D>().enabled = false; // Avoid collisions after death
+                    this.gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
+                    _animator.SetTrigger("Death");
+                    _winLose._lost = true;
+                    bossAnimator.SetTrigger("BossWins");
+                }
             }
         }
     }
@@ -200,18 +203,21 @@ public class PlayerHealth : MonoBehaviour
     {
         currentHealth = maxHealth;
 
-        GameObject boss = GameObject.FindWithTag("Boss").gameObject; 
+        GameObject boss = GameObject.FindWithTag("Boss").gameObject;
 
         if (boss != null)
         {
-            bossAnimator = boss.GetComponent<Animator>(); 
+            bossAnimator = boss.GetComponent<Animator>();
         }
 
-        for (int i = 0; i < healthUI.transform.childCount; i++)
+        if (healthUI != null)
         {
-            hearts[i] = healthUI.transform.GetChild(i).gameObject.GetComponent<Image>();
+            for (int i = 0; i < healthUI.transform.childCount; i++)
+            {
+                hearts[i] = healthUI.transform.GetChild(i).gameObject.GetComponent<Image>();
 
-            hearts[i].color = GetComponent<PlayerOnline>().GetPlayerData().GetColorColor();
+                hearts[i].color = GetComponent<PlayerOnline>().GetPlayerData().GetColorColor();
+            }
         }
     }
 }

@@ -66,6 +66,9 @@ public class Stamina : MonoBehaviour
 
     public void AssignStamina()
     {
-        staminaBar.color = GetComponent<PlayerOnline>().GetPlayerData().GetColorColor();
+        if (staminaBar != null)
+        {
+            staminaBar.color = GetComponent<PlayerOnline>().GetPlayerData().GetColorColor();
+        }
     }
 }
