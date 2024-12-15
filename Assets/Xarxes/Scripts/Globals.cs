@@ -5,7 +5,7 @@ using System.Diagnostics;
 using System.Threading;
 using UnityEngine;
 
-public class Globals
+public static class Globals
 {
     #region Don't destroy GameObjects
     static public List<GameObject> dontDestroyList = new List<GameObject>();
@@ -21,4 +21,18 @@ public class Globals
         thread.Start();
     }
     #endregion //Don't destroy GameObjects
+
+    static public T FindKeyByValue<T, W>(this Dictionary<T, W> dict, W val)
+    {
+        T key = default;
+        foreach (KeyValuePair<T, W> pair in dict)
+        {
+            if (EqualityComparer<W>.Default.Equals(pair.Value, val))
+            {
+                key = pair.Key;
+                break;
+            }
+        }
+        return key;
+    }
 }
