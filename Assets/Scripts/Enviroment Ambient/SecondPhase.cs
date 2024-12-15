@@ -23,6 +23,15 @@ public class SecondPhase : MonoBehaviour
     [SerializeField] private BossHealth bossHealth;
 
     float timing = 0f;
+
+    void Start()
+    {
+        bossHealth = GameObject.Find("Enemy").GetComponent<BossHealth>();
+        bossEye1 = GameObject.Find("Light 2D Boss1").GetComponent<Light2D>();
+        bossEye2 = GameObject.Find("Light 2D Boss2").GetComponent<Light2D>();
+        bossEye3 = GameObject.Find("Light 2D Boss3").GetComponent<Light2D>();
+    }
+
     // Update is called once per frame
     void Update()
     {

@@ -43,6 +43,8 @@ public class BossHealth : MonoBehaviour
 
         currentHealth = maxHealth;
 
+        slider = GameObject.Find("BossHealth").GetComponent<Slider>();
+
         slider.maxValue = maxHealth;
         slider.minValue = 0;
         slider.value = currentHealth;
@@ -93,6 +95,19 @@ public class BossHealth : MonoBehaviour
                 _hitBoss = false;
             }
         }
+
+        // Debug TODO: DELETE 
+        if (Input.GetKeyDown(KeyCode.F10))
+        {
+            int aux = Random.Range(0, 6);
+            ChooseAttack(aux);
+        }
+
+        if (Input.GetKeyDown(KeyCode.F11))
+        {
+            int aux = Random.Range(0, 5);
+            ChooseTarget(aux);
+        }
     }
 
     public void TakeDmg(int dmg_)
@@ -125,5 +140,18 @@ public class BossHealth : MonoBehaviour
     {
         //game.SetActive(false);
         //winCanvas.SetActive(true);
+    }
+
+    // Function to call when packet of the attack chosen is sent
+    public void ChooseAttack(int attack = 0)
+    {
+        _animator.SetInteger("ChooseAttack", attack);
+    }
+
+    // Function to call when packet of the target position is sent
+    public void ChooseTarget(int target = 0)
+    {
+        _animator.GetBehaviours<BossMoveNPC>()[0].target = target;
+        _animator.GetBehaviours<BossMoveNPC>()[0].targetSelected = true;
     }
 }
