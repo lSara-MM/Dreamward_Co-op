@@ -25,7 +25,7 @@ public class SecondPhase2 : MonoBehaviour
     [SerializeField] private BossHealth bossHealth;
     void Start()
     {
-        _animator = GameObject.Find("Enemy").GetComponent<Animator>();
+        _animator = GameObject.FindWithTag("Boss").GetComponent<Animator>();
     }
     // Update is called once per frame
     void Update()

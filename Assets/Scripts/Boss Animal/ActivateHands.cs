@@ -21,7 +21,7 @@ public class ActivateHands : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _animator = GameObject.Find("Enemy").GetComponent<Animator>();
+        _animator = GameObject.FindWithTag("Boss").GetComponent<Animator>();
     }
 
 

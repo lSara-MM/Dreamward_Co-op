@@ -103,11 +103,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 88307245541797488, guid: 212a175918279ab4a8beb5e011342627,
-        type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: b149bc64d5d40034b9109483c02c0966, type: 2}
     - target: {fileID: 1164537868422503466, guid: 212a175918279ab4a8beb5e011342627,
         type: 3}
       propertyPath: m_Size.x
@@ -167,7 +162,7 @@ PrefabInstance:
     - target: {fileID: 3215748448389096510, guid: 212a175918279ab4a8beb5e011342627,
         type: 3}
       propertyPath: m_Name
-      value: Enemy NPC
+      value: Enemy Variant
       objectReference: {fileID: 0}
     - target: {fileID: 3215748448389096510, guid: 212a175918279ab4a8beb5e011342627,
         type: 3}
