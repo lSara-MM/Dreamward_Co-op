@@ -78,9 +78,9 @@ public class WinLose : MonoBehaviour
 
     public void AssignWinLose()
     {
-        if (GameObject.Find("Enemy") != null)
+        if (GameObject.FindWithTag("Boss") != null)
         {
-            _bossAnimator = GameObject.Find("Enemy").transform.gameObject.GetComponent<Animator>();
+            _bossAnimator = GameObject.FindWithTag("Boss").transform.gameObject.GetComponent<Animator>();
         }
 
         if (GameObject.Find("YouWin") != null)
