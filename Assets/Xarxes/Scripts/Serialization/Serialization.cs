@@ -165,6 +165,7 @@ public class Serialization : MonoBehaviour
         var data = new SerializedData<string>();
 
         data.network_id = (Guid)jsonObject["network_id"];
+        data.parameters = (string)jsonObject["parameters"];
 
         cs_functionsToExecute.actionsDictionary[ACTION_TYPE.DESTROY].Invoke(data);
         return data;
@@ -175,6 +176,7 @@ public class Serialization : MonoBehaviour
         var data = new SerializedData<string>();
 
         data.network_id = (Guid)jsonObject["network_id"];
+        data.parameters = (string)jsonObject["parameters"];
 
         cs_functionsToExecute.actionsDictionary[ACTION_TYPE.CHANGE_SCENE].Invoke(data);
         return data;
