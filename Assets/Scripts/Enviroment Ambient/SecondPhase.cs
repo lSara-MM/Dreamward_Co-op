@@ -26,10 +26,7 @@ public class SecondPhase : MonoBehaviour
 
     void Start()
     {
-        bossHealth = GameObject.FindWithTag("Boss").GetComponent<BossHealth>();
-        bossEye1 = GameObject.Find("Light 2D Boss1").GetComponent<Light2D>();
-        bossEye2 = GameObject.Find("Light 2D Boss2").GetComponent<Light2D>();
-        bossEye3 = GameObject.Find("Light 2D Boss3").GetComponent<Light2D>();
+      
     }
 
     // Update is called once per frame
@@ -40,7 +37,7 @@ public class SecondPhase : MonoBehaviour
             bossHealth.bossSP = true;
         }
 
-        if (!bossHealth.bossSP) 
+        if (bossHealth != null && !bossHealth.bossSP)
         {
             globalLight.intensity = 1.32f;
             globalLight.color = new Color(0.580f, 0.654f, 0.764f, 1f);
@@ -62,11 +59,11 @@ public class SecondPhase : MonoBehaviour
             moon.intensity = 0.59f;
             timing = 0f;
         }
-        else 
+        else
         {
             timing += Time.deltaTime;
 
-            if(globalLight.intensity > 0f) 
+            if (globalLight.intensity > 0f)
             {
                 globalLight.intensity -= 0.005f * timing;
             }
@@ -74,7 +71,7 @@ public class SecondPhase : MonoBehaviour
             if (timing > 2.8f)
             {
                 globalLight.intensity = 1f;
-                globalLight.color = new Color(0, 0, 0, 1); 
+                globalLight.color = new Color(0, 0, 0, 1);
                 timing = 0f;
 
                 ChangeLigth();
@@ -82,7 +79,7 @@ public class SecondPhase : MonoBehaviour
         }
     }
 
-    void ChangeLigth() 
+    void ChangeLigth()
     {
         lamp.SetActive(true);
         AllEyes.SetActive(true);
@@ -99,5 +96,13 @@ public class SecondPhase : MonoBehaviour
         plattform2.intensity = 1.15f;
 
         moon.intensity = 2.48f;
+    }
+
+    public void AssignSecondPhase()
+    {
+        bossHealth = GameObject.FindWithTag("Boss").GetComponent<BossHealth>();
+        bossEye1 = GameObject.Find("Light 2D Boss1").GetComponent<Light2D>();
+        bossEye2 = GameObject.Find("Light 2D Boss2").GetComponent<Light2D>();
+        bossEye3 = GameObject.Find("Light 2D Boss3").GetComponent<Light2D>();
     }
 }
