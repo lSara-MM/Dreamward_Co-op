@@ -15,8 +15,7 @@ public class SpawnObject : MonoBehaviour
     GameObject online;
     Serialization cs_Serialization;
 
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         // Check if server or client
         if (online = GameObject.FindGameObjectWithTag("Server"))
