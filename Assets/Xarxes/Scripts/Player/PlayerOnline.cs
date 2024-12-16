@@ -84,24 +84,6 @@ public class PlayerOnline : MonoBehaviour
 
         GetComponent<Rigidbody2D>().gravityScale = 4.0f;
         GetComponent<PlayerHealth>().AssignPlayerHealth();
-        GetComponent<WinLose>().AssignWinLose();
-        GetComponent<FadeToBlack>().AssignFadeToBlack();
-        GetComponent<Stamina>().AssignStamina();
-    }
-    public void ResetPlayer()
-    {
-        transform.position = new Vector3(0, 6.25f, 0);
-        fadeToBlack.color = new Color(0, 0, 0, 0);
-
-        cs_followUI.AssignCam();
-
-        if (canvasUI != null)
-        {
-            canvasUI.SetActive(!canvasUI.activeInHierarchy);
-        }
-
-        GetComponent<Rigidbody2D>().gravityScale = 4.0f;
-        GetComponent<PlayerHealth>().AssignPlayerHealth();
 
         if (!isNPC)
         {
