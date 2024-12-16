@@ -88,6 +88,29 @@ public class PlayerOnline : MonoBehaviour
         GetComponent<FadeToBlack>().AssignFadeToBlack();
         GetComponent<Stamina>().AssignStamina();
     }
+    public void ResetPlayer()
+    {
+        transform.position = new Vector3(0, 6.25f, 0);
+        fadeToBlack.color = new Color(0, 0, 0, 0);
+
+        cs_followUI.AssignCam();
+
+        if (canvasUI != null)
+        {
+            canvasUI.SetActive(!canvasUI.activeInHierarchy);
+        }
+
+        GetComponent<Rigidbody2D>().gravityScale = 4.0f;
+        GetComponent<PlayerHealth>().AssignPlayerHealth();
+
+        if (!isNPC)
+        {
+            GetComponent<WinLose>().AssignWinLose(online.tag);
+        }
+
+        GetComponent<FadeToBlack>().AssignFadeToBlack();
+        GetComponent<Stamina>().AssignStamina();
+    }
 
     // Send input data when a valid input is detected
     public void ManageOnlineMovement(string key = default, float key_state = 0, float posX = 0, float posY = 0)

@@ -22,7 +22,8 @@ public class Serialization : MonoBehaviour
             { ACTION_TYPE.SPAWN_PLAYER, data => HandleSpawnPlayer(data) },
             { ACTION_TYPE.SPAWN_OBJECT, data => HandleSpawnObject(data) },
             { ACTION_TYPE.INPUT_PLAYER, data => HandlePlayerInput(data) },
-            { ACTION_TYPE.DESTROY, data => HandleDestroy(data) },
+            { ACTION_TYPE.DESTROY, data => HandleDestroy(data) },            
+            { ACTION_TYPE.CHANGE_SCENE, data => HandleChangeScene(data) },
         };
 
         cs_functionsToExecute = gameObject.GetComponent<FunctionsToExecute>();
@@ -166,6 +167,16 @@ public class Serialization : MonoBehaviour
         data.network_id = (Guid)jsonObject["network_id"];
 
         cs_functionsToExecute.actionsDictionary[ACTION_TYPE.DESTROY].Invoke(data);
+        return data;
+    }
+
+    private SerializedData<string> HandleChangeScene(JObject jsonObject)
+    {
+        var data = new SerializedData<string>();
+
+        data.network_id = (Guid)jsonObject["network_id"];
+
+        cs_functionsToExecute.actionsDictionary[ACTION_TYPE.CHANGE_SCENE].Invoke(data);
         return data;
     }
     #endregion // Structs deserialization

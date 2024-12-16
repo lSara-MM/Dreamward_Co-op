@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class FunctionsToExecute : MonoBehaviour
 {
@@ -24,7 +25,8 @@ public class FunctionsToExecute : MonoBehaviour
             { ACTION_TYPE.SPAWN_PLAYER, data => QueueActionOnMainThread(() => SpawnPlayer((SerializedData<ns_structure.spawnPlayer>)data)) },
             { ACTION_TYPE.SPAWN_OBJECT, data => QueueActionOnMainThread(() => SpawnPrefab((SerializedData<ns_structure.spawnPrefab>)data)) },
             { ACTION_TYPE.INPUT_PLAYER, data => QueueActionOnMainThread(() => ExecuteInput((SerializedData<ns_structure.playerInput>)data)) },
-            { ACTION_TYPE.DESTROY, data => QueueActionOnMainThread(() => Destroy((SerializedData<string>)data)) }
+            { ACTION_TYPE.DESTROY, data => QueueActionOnMainThread(() => Destroy((SerializedData<string>)data)) },
+            { ACTION_TYPE.CHANGE_SCENE, data => QueueActionOnMainThread(() => ChangeToScene((SerializedData<string>)data)) }
         };
     }
 
@@ -137,5 +139,16 @@ public class FunctionsToExecute : MonoBehaviour
         {
             Debug.LogError($"Object {data.parameters} not found for destruction.");
         }
+    }
+    public void ChangeToScene(SerializedData<string> data)
+    {
+        Debug.Log("Change Scene " + data.parameters);
+
+        foreach (GameObject item in Globals.dontDestroyList)
+        {
+            DontDestroyOnLoad(item);
+        }
+
+        SceneManager.LoadScene(data.parameters);
     }
 }

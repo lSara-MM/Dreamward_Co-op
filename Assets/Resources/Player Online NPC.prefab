@@ -21,12 +21,22 @@ PrefabInstance:
     - target: {fileID: 1699029050719580793, guid: ecf0a7b7c583e2a43a5cb043f57f9939,
         type: 3}
       propertyPath: m_InstanceId
-      value: -314546
+      value: -7422
+      objectReference: {fileID: 0}
+    - target: {fileID: 2028326694311403254, guid: ecf0a7b7c583e2a43a5cb043f57f9939,
+        type: 3}
+      propertyPath: slider
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2028326694311403254, guid: ecf0a7b7c583e2a43a5cb043f57f9939,
         type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2028326694311403254, guid: ecf0a7b7c583e2a43a5cb043f57f9939,
+        type: 3}
+      propertyPath: staminaBar
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5682873986709919179, guid: ecf0a7b7c583e2a43a5cb043f57f9939,
         type: 3}
@@ -112,6 +122,11 @@ PrefabInstance:
         type: 3}
       propertyPath: isNPC
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7613734150725055144, guid: ecf0a7b7c583e2a43a5cb043f57f9939,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8733647627395245984, guid: ecf0a7b7c583e2a43a5cb043f57f9939,
         type: 3}
