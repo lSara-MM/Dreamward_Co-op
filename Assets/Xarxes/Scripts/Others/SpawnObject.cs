@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,6 +18,8 @@ public class SpawnObject : MonoBehaviour
 
     void Awake()
     {
+        cs_Serialization = GameObject.FindGameObjectWithTag("Serialization").GetComponent<Serialization>();
+
         // Check if server or client
         if (online = GameObject.FindGameObjectWithTag("Server"))
         {
@@ -28,6 +31,12 @@ public class SpawnObject : MonoBehaviour
             cs_Serialization.SerializeData((cs_guid != null ? cs_guid.GetGuid() : default), ACTION_TYPE.SPAWN_OBJECT,
                 new ns_structure.spawnPrefab(clientPrefabPath, clientServerPosition));
 
+            //ns_structure.spawnPrefab coso = new ns_structure.spawnPrefab(clientPrefabPath, clientServerPosition);
+
+            //Guid guid = (cs_guid != null ? cs_guid.GetGuid() : default);
+
+            //cs_Serialization.SerializeData(guid, ACTION_TYPE.SPAWN_OBJECT,
+            //    coso);
         }
         else if (online = GameObject.FindGameObjectWithTag("Client"))
         {
