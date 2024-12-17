@@ -76,7 +76,7 @@ public class WinLose : MonoBehaviour
         _lost = false;
     }
 
-    public void AssignWinLose()
+    public void AssignWinLose(string tag)
     {
         if (GameObject.FindWithTag("Boss") != null)
         {
@@ -87,12 +87,22 @@ public class WinLose : MonoBehaviour
         {
             winCanvas = GameObject.Find("YouWin");
             winCanvas.SetActive(false);
+
+            if (tag == "Server")
+            {
+                winCanvas.GetComponent<ChangeScene>().enabled = true;
+            }
         }
 
         if (GameObject.Find("YouLose") != null)
         {
             loseCanvas = GameObject.Find("YouLose");
             loseCanvas.SetActive(false);
+
+            if (tag == "Server")
+            {
+                loseCanvas.GetComponent<ChangeScene>().enabled = true;
+            }
         }
     }
 

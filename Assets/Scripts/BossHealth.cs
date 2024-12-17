@@ -49,6 +49,8 @@ public class BossHealth : MonoBehaviour
         slider.minValue = 0;
         slider.value = currentHealth;
         _hitBoss = false;
+
+        GameObject.Find("SceneManager").GetComponent<SecondPhase>().AssignSecondPhase();
     }
 
     // Update is called once per frame

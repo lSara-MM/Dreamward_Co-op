@@ -114,6 +114,9 @@ public class ChangeScene : MonoBehaviour
             DontDestroyOnLoad(item);
         }
 
+        Serialization cs_Serialization = GameObject.FindGameObjectWithTag("Serialization").GetComponent<Serialization>();
+        cs_Serialization.SerializeData(default, ACTION_TYPE.CHANGE_SCENE, passToScene);
+
         SceneManager.LoadScene(passToScene);
     }
 }

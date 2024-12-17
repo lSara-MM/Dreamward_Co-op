@@ -84,7 +84,12 @@ public class PlayerOnline : MonoBehaviour
 
         GetComponent<Rigidbody2D>().gravityScale = 4.0f;
         GetComponent<PlayerHealth>().AssignPlayerHealth();
-        GetComponent<WinLose>().AssignWinLose();
+
+        if (!isNPC)
+        {
+            GetComponent<WinLose>().AssignWinLose(online.tag);
+        }
+
         GetComponent<FadeToBlack>().AssignFadeToBlack();
         GetComponent<Stamina>().AssignStamina();
     }

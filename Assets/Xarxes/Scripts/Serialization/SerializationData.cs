@@ -10,6 +10,7 @@ public enum ACTION_TYPE
     SPAWN_OBJECT,
     INPUT_PLAYER,
     DESTROY,
+    CHANGE_SCENE,
     MESSAGE,
     NONE
 }
