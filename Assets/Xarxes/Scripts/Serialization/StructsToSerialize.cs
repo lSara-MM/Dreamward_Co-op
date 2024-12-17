@@ -66,6 +66,8 @@ namespace ns_structure
             // 
             this.path = (string)jsonObject["parameters"]["path"];
             this.spawnPosition.Set((float)jsonObject["parameters"]["spawnPosition"]["x"], (float)jsonObject["parameters"]["spawnPosition"]["y"]);
+           
+            Print();
         }
     }
 
@@ -73,6 +75,7 @@ namespace ns_structure
     {
         // Path from the /Resource folder
         public string path { get; set; }
+
         public Vector2 spawnPosition { get; set; }
 
         public spawnPrefab(string path = default, Vector2 spawn = default)
@@ -90,6 +93,8 @@ namespace ns_structure
         {
             this.path = (string)jsonObject["parameters"]["path"];
             this.spawnPosition.Set((float)jsonObject["parameters"]["spawnPosition"]["x"], (float)jsonObject["parameters"]["spawnPosition"]["y"]);
+
+            Print();
         }
     }
     #endregion //Spawn Objects

@@ -32,6 +32,7 @@ public struct SerializedData<T> : ISerializedData
 
     // T parameters : where T must be type IDataStructure or basic C# types
     public T parameters { get; set; }
+
     public string message { get; set; }
 
     public SerializedData(Guid id, ACTION_TYPE action, T parameters = default, string message = null)

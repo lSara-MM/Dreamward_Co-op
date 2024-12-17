@@ -30,13 +30,6 @@ public class SpawnObject : MonoBehaviour
 
             cs_Serialization.SerializeData((cs_guid != null ? cs_guid.GetGuid() : default), ACTION_TYPE.SPAWN_OBJECT,
                 new ns_structure.spawnPrefab(clientPrefabPath, clientServerPosition));
-
-            //ns_structure.spawnPrefab coso = new ns_structure.spawnPrefab(clientPrefabPath, clientServerPosition);
-
-            //Guid guid = (cs_guid != null ? cs_guid.GetGuid() : default);
-
-            //cs_Serialization.SerializeData(guid, ACTION_TYPE.SPAWN_OBJECT,
-            //    coso);
         }
         else if (online = GameObject.FindGameObjectWithTag("Client"))
         {

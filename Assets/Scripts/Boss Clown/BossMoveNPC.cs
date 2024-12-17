@@ -23,8 +23,6 @@ public class BossMoveNPC : StateMachineBehaviour
     {
         _boss = animator.gameObject.GetComponent<BossHealth>();
         speed = 7;
-
-        targetSelected = false;
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -49,10 +47,10 @@ public class BossMoveNPC : StateMachineBehaviour
 
             if (Vector2.Distance(animator.transform.position, _points[target]) < 0.1f)
             {
+                targetSelected = false;
                 animator.SetTrigger("Exit");
             }
         }
-
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
@@ -83,6 +84,14 @@ public class PlayerHealth : MonoBehaviour
             Debug.Log("Kill player");
             TakeDmg(maxHealth);
         }
+        // Return to hub
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            Debug.Log("Return to hub");
+
+
+            ChangeToScene("Hub");
+        }
 
         if (_isInvuln)
         {
@@ -93,6 +102,37 @@ public class PlayerHealth : MonoBehaviour
                 _timer = 0;
             }
         }
+    }
+
+    // TODO: Remove this function
+    public void ChangeToScene(string passToScene)
+    {
+        Debug.Log("Change Scene " + passToScene);
+
+        GameObject[] playerList = GameObject.FindGameObjectsWithTag("Player");
+
+        FunctionsToExecute cs_functionsToExecute = GameObject.FindGameObjectWithTag("Serialization").GetComponent<FunctionsToExecute>();
+
+        foreach (GameObject item in playerList)
+        {
+            // Remove the guid from the dictionary
+            cs_functionsToExecute.guidDictionary.Remove(
+                Globals.FindKeyByValue(cs_functionsToExecute.guidDictionary, item));
+
+            // Remove from don't destroy list so it gets recreated
+            Globals.dontDestroyList.Remove(item);
+            Destroy(item);
+        }
+
+        foreach (GameObject item in Globals.dontDestroyList)
+        {
+            DontDestroyOnLoad(item);
+        }
+
+        Serialization cs_Serialization = GameObject.FindGameObjectWithTag("Serialization").GetComponent<Serialization>();
+        cs_Serialization.SerializeData(default, ACTION_TYPE.CHANGE_SCENE, passToScene);
+
+        SceneManager.LoadScene(passToScene);
     }
 
     public void TakeDmg(int dmg_)
@@ -176,7 +216,7 @@ public class PlayerHealth : MonoBehaviour
     {
         if (collision.gameObject.layer == 7) //Layer Damage = 7
         {
-            Debug.Log("Take Damage"); //Función para recibir daño 
+            //Debug.Log("Take Damage"); //Función para recibir daño 
             TakeDmg(1);
         }
 

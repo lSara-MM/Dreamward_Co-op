@@ -47,6 +47,8 @@ public class BossHealth : MonoBehaviour
             }
         }
 
+        transform.position = new Vector3(-4.743f, -10.727f, 0);
+
         GameObject player = GameObject.Find("Player Online Version");
         _winLose = player.GetComponent<WinLose>();
 

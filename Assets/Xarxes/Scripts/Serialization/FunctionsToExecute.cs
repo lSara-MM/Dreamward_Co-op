@@ -166,6 +166,8 @@ public class FunctionsToExecute : MonoBehaviour
 
     public void SetTargetBoss(SerializedData<int> data)
     {
+        Debug.Log("Boss movement " + data.parameters);
+
         BossHealth cs_bossHealth = GameObject.FindGameObjectWithTag("Boss").GetComponent<BossHealth>();
 
         cs_bossHealth.animator.GetBehaviours<BossMoveNPC>()[0].target = data.parameters;

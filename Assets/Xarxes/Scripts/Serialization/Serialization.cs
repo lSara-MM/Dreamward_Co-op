@@ -22,7 +22,7 @@ public class Serialization : MonoBehaviour
             { ACTION_TYPE.SPAWN_PLAYER, data => HandleSpawnPlayer(data) },
             { ACTION_TYPE.SPAWN_OBJECT, data => HandleSpawnObject(data) },
             { ACTION_TYPE.INPUT_PLAYER, data => HandlePlayerInput(data) },
-            { ACTION_TYPE.DESTROY, data => HandleDestroy(data) },          
+            { ACTION_TYPE.DESTROY, data => HandleDestroy(data) },
             { ACTION_TYPE.CHANGE_SCENE, data => HandleChangeScene(data) },
             { ACTION_TYPE.BOSS_ATTACK, data => HandleInt(data) },
             { ACTION_TYPE.BOSS_MOVEMENT, data => HandleInt(data) },
@@ -94,29 +94,40 @@ public class Serialization : MonoBehaviour
             using (BinaryReader reader = new BinaryReader(stream, System.Text.Encoding.UTF8))
             {
                 json = reader.ReadString();
-                var jsonObject = JObject.Parse(json);
 
-                if (jsonObject.ContainsKey("action"))
+                try
                 {
-                    ACTION_TYPE actionType = (ACTION_TYPE)(int)jsonObject["action"];
-                    if (actionsDictionary.ContainsKey(actionType))
-                    {
-                        var action = actionsDictionary[actionType];
+                    var jsonObject = JObject.Parse(json);
 
-                        // Call the delegate
-                        var result = action.Invoke(jsonObject);
-
-                        // Return the deserialized data
-                        return result;
-                    }
-                    else
+                    if (jsonObject.ContainsKey("action"))
                     {
-                        Debug.LogWarning($"Unknown action type: {actionType}");
-                        JsonConvert.DeserializeObject<SerializedData<object>>(json);
+                        ACTION_TYPE actionType = (ACTION_TYPE)(int)jsonObject["action"];
+                        if (actionsDictionary.ContainsKey(actionType))
+                        {
+                            var action = actionsDictionary[actionType];
+
+                            // Call the delegate
+                            var result = action.Invoke(jsonObject);
+
+                            // Return the deserialized data
+                            return result;
+                        }
+                        else
+                        {
+                            Debug.LogWarning($"Unknown action type: {actionType}");
+                            JsonConvert.DeserializeObject<SerializedData<object>>(json);
+                        }
                     }
+
+                    return JsonConvert.DeserializeObject<SerializedData<object>>(json);
+
                 }
-
-                return JsonConvert.DeserializeObject<SerializedData<object>>(json);
+                catch (Exception ex)
+                {
+                    Debug.LogError($"Exception occurred during JSON parsing: {ex.Message}");
+                    Debug.LogError($"Raw JSON: {json}"); // Log the raw JSON content
+                    throw;
+                }
             }
         }
     }
@@ -139,9 +150,9 @@ public class Serialization : MonoBehaviour
     private SerializedData<ns_structure.spawnPrefab> HandleSpawnObject(JObject jsonObject)
     {
         var data = new SerializedData<ns_structure.spawnPrefab>();
-        
+
         data.network_id = (Guid)jsonObject["network_id"];
-        
+
         data.parameters = new ns_structure.spawnPrefab();
         data.parameters.Deserialize(jsonObject);
 
