@@ -13,6 +13,7 @@ public enum ACTION_TYPE
     CHANGE_SCENE,    // needs string
     BOSS_ATTACK,    // needs int
     BOSS_MOVEMENT,    // needs int
+    PLAYER_DEATH,    // needs int
     MESSAGE,
     NONE
 }

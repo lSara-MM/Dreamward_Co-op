@@ -26,6 +26,7 @@ public class Serialization : MonoBehaviour
             { ACTION_TYPE.CHANGE_SCENE, data => HandlePrimitive<string>(data) },
             { ACTION_TYPE.BOSS_ATTACK, data => HandlePrimitive<int>(data) },
             { ACTION_TYPE.BOSS_MOVEMENT, data => HandlePrimitive<int>(data) },
+            { ACTION_TYPE.PLAYER_DEATH, data => HandlePrimitive<int>(data) },
         };
 
         cs_functionsToExecute = gameObject.GetComponent<FunctionsToExecute>();
@@ -133,45 +134,76 @@ public class Serialization : MonoBehaviour
     }
 
     #region Structs deserialization
-    private SerializedData<ns_structure.spawnPlayer> HandleSpawnPlayer(JObject jsonObject)
+
+    // Generic deserialization helper
+    private SerializedData<T> HandleAction<T>(JObject jsonObject) where T : ns_structure.IDataStructure, new()
     {
-        var data = new SerializedData<ns_structure.spawnPlayer>();
+        var data = new SerializedData<T>();
 
         data.network_id = (Guid)jsonObject["network_id"];
+        data.action = (ACTION_TYPE)(int)jsonObject["action"];
+        data.parameters = new T(); // Create a new instance of the expected parameter type
+        data.parameters.Deserialize(jsonObject); // Call the parameter-specific deserialization
 
-        data.parameters = new ns_structure.spawnPlayer();
-        data.parameters.Deserialize(jsonObject);
-
-        cs_functionsToExecute.actionsDictionary[ACTION_TYPE.SPAWN_PLAYER].Invoke(data);
-
+        cs_functionsToExecute.actionsDictionary[data.action].Invoke(data); // Invoke the mapped action
         return data;
+    }
+
+    // Action handlers
+    private SerializedData<ns_structure.spawnPlayer> HandleSpawnPlayer(JObject jsonObject)
+    {
+        return HandleAction<ns_structure.spawnPlayer>(jsonObject);
     }
 
     private SerializedData<ns_structure.spawnPrefab> HandleSpawnObject(JObject jsonObject)
     {
-        var data = new SerializedData<ns_structure.spawnPrefab>();
-
-        data.network_id = (Guid)jsonObject["network_id"];
-
-        data.parameters = new ns_structure.spawnPrefab();
-        data.parameters.Deserialize(jsonObject);
-
-        cs_functionsToExecute.actionsDictionary[ACTION_TYPE.SPAWN_OBJECT].Invoke(data);
-        return data;
+        return HandleAction<ns_structure.spawnPrefab>(jsonObject);
     }
 
     private SerializedData<ns_structure.playerInput> HandlePlayerInput(JObject jsonObject)
     {
-        var data = new SerializedData<ns_structure.playerInput>();
-
-        data.network_id = (Guid)jsonObject["network_id"];
-
-        data.parameters = new ns_structure.playerInput();
-        data.parameters.Deserialize(jsonObject);
-
-        cs_functionsToExecute.actionsDictionary[ACTION_TYPE.INPUT_PLAYER].Invoke(data);
-        return data;
+        return HandleAction<ns_structure.playerInput>(jsonObject);
     }
+
+    //private SerializedData<ns_structure.spawnPlayer> HandleSpawnPlayer(JObject jsonObject)
+    //{
+    //    var data = new SerializedData<ns_structure.spawnPlayer>();
+
+    //    data.network_id = (Guid)jsonObject["network_id"];
+
+    //    data.parameters = new ns_structure.spawnPlayer();
+    //    data.parameters.Deserialize(jsonObject);
+
+    //    cs_functionsToExecute.actionsDictionary[ACTION_TYPE.SPAWN_PLAYER].Invoke(data);
+
+    //    return data;
+    //}
+
+    //private SerializedData<ns_structure.spawnPrefab> HandleSpawnObject(JObject jsonObject)
+    //{
+    //    var data = new SerializedData<ns_structure.spawnPrefab>();
+
+    //    data.network_id = (Guid)jsonObject["network_id"];
+
+    //    data.parameters = new ns_structure.spawnPrefab();
+    //    data.parameters.Deserialize(jsonObject);
+
+    //    cs_functionsToExecute.actionsDictionary[ACTION_TYPE.SPAWN_OBJECT].Invoke(data);
+    //    return data;
+    //}
+
+    //private SerializedData<ns_structure.playerInput> HandlePlayerInput(JObject jsonObject)
+    //{
+    //    var data = new SerializedData<ns_structure.playerInput>();
+
+    //    data.network_id = (Guid)jsonObject["network_id"];
+
+    //    data.parameters = new ns_structure.playerInput();
+    //    data.parameters.Deserialize(jsonObject);
+
+    //    cs_functionsToExecute.actionsDictionary[ACTION_TYPE.INPUT_PLAYER].Invoke(data);
+    //    return data;
+    //}
 
     private SerializedData<T> HandlePrimitive<T>(JObject jsonObject)
     {

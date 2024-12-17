@@ -14,6 +14,35 @@ namespace ns_structure
         public void Deserialize(JObject jsonObject);
     }
 
+    public class vector2D : IDataStructure
+    {
+        public float x;
+        public float y;
+
+        public vector2D()
+        {
+            x = 0;
+            y = 0;
+        }
+
+        public vector2D(float x, float y)
+        {
+            this.x = 0;
+            this.y = 0;
+        }
+
+        public void Print()
+        {
+            Debug.Log($"X: {x}, Y: {y}");
+        }
+
+        public void Deserialize(JObject jsonObject)
+        {
+            x = (float)jsonObject["parameters"]?["x"];
+            y = (float)jsonObject["parameters"]?["y"];
+        }
+    }
+
     #region Spawn Objects
     public class spawnPlayer : IDataStructure
     {
@@ -23,6 +52,13 @@ namespace ns_structure
         public string path { get; set; }
 
         public Vector2 spawnPosition { get; set; }
+
+        public spawnPlayer()
+        {
+            playerData = new PlayerData();
+            path = "";
+            spawnPosition = default;
+        }
 
         public spawnPlayer(PlayerData playerData = null, string path = default, Vector2 spawn = default)
         {
@@ -77,6 +113,11 @@ namespace ns_structure
         public string path { get; set; }
 
         public Vector2 spawnPosition { get; set; }
+        public spawnPrefab()
+        {
+            path = "";
+            spawnPosition = default;
+        }
 
         public spawnPrefab(string path = default, Vector2 spawn = default)
         {
@@ -91,8 +132,8 @@ namespace ns_structure
 
         public void Deserialize(JObject jsonObject)
         {
-            this.path = (string)jsonObject["parameters"]["path"];
-            this.spawnPosition.Set((float)jsonObject["parameters"]["spawnPosition"]["x"], (float)jsonObject["parameters"]["spawnPosition"]["y"]);
+            path = (string)jsonObject["parameters"]["path"];
+            spawnPosition.Set((float)jsonObject["parameters"]["spawnPosition"]["x"], (float)jsonObject["parameters"]["spawnPosition"]["y"]);
 
             Print();
         }
@@ -111,7 +152,15 @@ namespace ns_structure
 
         // Player position to fix it if there is latency
         public float posX { get; set; }
+
         public float posY { get; set; }
+        public playerInput()
+        {
+            key = "";
+            state = default;
+            posX = default;
+            posY = default;
+        }
 
         public playerInput(string key = default, float state = default, float posX = default, float posY = default)
         {
@@ -128,10 +177,10 @@ namespace ns_structure
 
         public void Deserialize(JObject jsonObject)
         {
-            this.key = (string)jsonObject["parameters"]?["key"];
-            this.state = (float)jsonObject["parameters"]?["state"];
-            this.posX = (float)jsonObject["parameters"]?["posX"];
-            this.posY = (float)jsonObject["parameters"]?["posY"];
+            key = (string)jsonObject["parameters"]?["key"];
+            state = (float)jsonObject["parameters"]?["state"];
+            posX = (float)jsonObject["parameters"]?["posX"];
+            posY = (float)jsonObject["parameters"]?["posY"];
         }
     }
 
