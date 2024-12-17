@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using ns_structure;
 
 public class BossMove : StateMachineBehaviour
 {
@@ -30,7 +31,6 @@ public class BossMove : StateMachineBehaviour
         speed = 7;
 
         _target = aux;
-        _boss.SendBossNPC(ACTION_TYPE.BOSS_MOVEMENT, _target);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -50,6 +50,8 @@ public class BossMove : StateMachineBehaviour
         {
             animator.transform.position = Vector2.MoveTowards(animator.transform.position, _points[_target], speed * Time.deltaTime);
         }
+
+        _boss.SendBossMovement(new vector2D(animator.transform.position.x, animator.transform.position.y));
 
         if (Vector2.Distance(animator.transform.position, _points[_target]) < 0.1f)
         {

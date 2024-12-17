@@ -1,3 +1,4 @@
+using ns_structure;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -151,10 +152,16 @@ public class BossHealth : MonoBehaviour
         animator.SetTrigger("Death");
     }
 
-    public void SendBossNPC(ACTION_TYPE type, int num)
+    public void SendBossAttack(int num)
     {
         Serialization cs_Serialization = GameObject.FindGameObjectWithTag("Serialization").GetComponent<Serialization>();
-        cs_Serialization.SerializeData(GetComponent<GUID_Generator>().GetGuid(), type, num);
+        cs_Serialization.SerializeData(GetComponent<GUID_Generator>().GetGuid(), ACTION_TYPE.BOSS_ATTACK, num);
+    }
+
+    public void SendBossMovement(vector2D position)
+    {
+        Serialization cs_Serialization = GameObject.FindGameObjectWithTag("Serialization").GetComponent<Serialization>();
+        cs_Serialization.SerializeData(GetComponent<GUID_Generator>().GetGuid(), ACTION_TYPE.BOSS_MOVEMENT, position);
     }
 
     #region Boss NPC debug

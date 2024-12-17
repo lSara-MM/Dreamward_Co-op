@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 
 public class FunctionsToExecute : MonoBehaviour
 {
@@ -162,6 +163,12 @@ public class FunctionsToExecute : MonoBehaviour
         Debug.Log("Boss attack " + data.parameters);
 
         BossHealth cs_bossHealth = GameObject.FindGameObjectWithTag("Boss").GetComponent<BossHealth>();
+
+        //if (cs_bossHealth.animator.GetCurrentAnimatorStateInfo(0).IsName("spawn"))
+        //{
+        //    cs_bossHealth.animator.SetTrigger("Exit");
+        //}
+
         cs_bossHealth.animator.SetInteger("ChooseAttack", data.parameters);
     }
 
@@ -170,9 +177,7 @@ public class FunctionsToExecute : MonoBehaviour
         Debug.Log("Boss movement " + data.parameters);
 
         BossHealth cs_bossHealth = GameObject.FindGameObjectWithTag("Boss").GetComponent<BossHealth>();
-
-        cs_bossHealth.animator.GetBehaviours<BossMoveNPC>()[0].target = data.parameters;
-        cs_bossHealth.animator.GetBehaviours<BossMoveNPC>()[0].targetSelected = true;
+        cs_bossHealth.gameObject.transform.position = new Vector3(data.parameters.x, data.parameters.y, 0);
     }
     #endregion // Boss NPC
 }

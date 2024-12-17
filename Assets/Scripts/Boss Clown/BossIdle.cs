@@ -10,15 +10,15 @@ public class BossClownIdle : StateMachineBehaviour
     {
         _boss = animator.gameObject.GetComponent<BossHealth>();
 
-        int moves = 6;
+        int moves = 4;
         if (_boss.bossSP)
         {
-            moves = 7;
+            moves = 5;
         }
 
         int num = Random.Range(0, moves);
 
-        _boss.SendBossNPC(ACTION_TYPE.BOSS_ATTACK, num);
+        _boss.SendBossAttack(num);
         animator.SetInteger("ChooseAttack", num);
     }
 
