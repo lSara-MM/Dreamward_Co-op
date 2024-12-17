@@ -130,6 +130,8 @@ public class BossHealth : MonoBehaviour
     {
         currentHealth = Mathf.Clamp(currentHealth - dmg_, 0, maxHealth);
 
+        SendBossHealth(currentHealth);
+
         Time.timeScale = _bulletTime;
         _hitBoss = true;
 
@@ -162,6 +164,12 @@ public class BossHealth : MonoBehaviour
     {
         Serialization cs_Serialization = GameObject.FindGameObjectWithTag("Serialization").GetComponent<Serialization>();
         cs_Serialization.SerializeData(GetComponent<GUID_Generator>().GetGuid(), ACTION_TYPE.BOSS_MOVEMENT, position);
+    }
+
+    public void SendBossHealth(int num)
+    {
+        Serialization cs_Serialization = GameObject.FindGameObjectWithTag("Serialization").GetComponent<Serialization>();
+        cs_Serialization.SerializeData(GetComponent<GUID_Generator>().GetGuid(), ACTION_TYPE.BOSS_HEALTH, currentHealth);
     }
 
     #region Boss NPC debug

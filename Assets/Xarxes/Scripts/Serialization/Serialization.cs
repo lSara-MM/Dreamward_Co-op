@@ -25,7 +25,8 @@ public class Serialization : MonoBehaviour
             { ACTION_TYPE.DESTROY, data => HandlePrimitive<string>(data) },
             { ACTION_TYPE.CHANGE_SCENE, data => HandlePrimitive<string>(data) },
             { ACTION_TYPE.BOSS_ATTACK, data => HandlePrimitive<int>(data) },
-            { ACTION_TYPE.BOSS_MOVEMENT, data => HandleAction<ns_structure.vector2D>(data) },
+            { ACTION_TYPE.BOSS_MOVEMENT, data => HandleAction<ns_structure.vector2D>(data) }, 
+            { ACTION_TYPE.BOSS_HEALTH, data => HandlePrimitive<int>(data) },
             { ACTION_TYPE.PLAYER_DEATH, data => HandlePrimitive<bool>(data) },
             { ACTION_TYPE.WIN_LOSE, data => HandlePrimitive<bool>(data) },
         };

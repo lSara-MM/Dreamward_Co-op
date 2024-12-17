@@ -31,6 +31,7 @@ public class FunctionsToExecute : MonoBehaviour
             { ACTION_TYPE.CHANGE_SCENE, data => QueueActionOnMainThread(() => ChangeToScene((SerializedData<string>)data)) },
             { ACTION_TYPE.BOSS_ATTACK, data => QueueActionOnMainThread(() => SetAttackBoss((SerializedData<int>)data)) },
             { ACTION_TYPE.BOSS_MOVEMENT, data => QueueActionOnMainThread(() => SetTargetBoss((SerializedData<vector2D>)data)) },
+            { ACTION_TYPE.BOSS_HEALTH, data => QueueActionOnMainThread(() => SetBossHealth((SerializedData<int>)data)) },
             { ACTION_TYPE.PLAYER_DEATH, data => QueueActionOnMainThread(() => EntityDeath((SerializedData<bool>)data)) },
             { ACTION_TYPE.WIN_LOSE, data => QueueActionOnMainThread(() => SetLevelState((SerializedData<bool>) data)) },
         };
@@ -189,7 +190,18 @@ public class FunctionsToExecute : MonoBehaviour
         BossHealth cs_bossHealth = GameObject.FindGameObjectWithTag("Boss").GetComponent<BossHealth>();
         cs_bossHealth.gameObject.transform.position = new Vector3(data.parameters.x, data.parameters.y, 0);
     }
-    #endregion // Boss NPC
+    #endregion // Boss NPCs
+
+    public void SetBossHealth(SerializedData<int> data)
+    {
+        BossHealth cs_bossHealth = GameObject.FindGameObjectWithTag("Boss").GetComponent<BossHealth>();
+        cs_bossHealth.currentHealth = data.parameters;
+
+        if (cs_bossHealth.currentHealth <= 0)
+        {
+            cs_bossHealth.Death();
+        }
+    }
 
     #region Win/Lose
     public void EntityDeath(SerializedData<bool> data)

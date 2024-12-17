@@ -88,7 +88,7 @@ public class WinLose : MonoBehaviour
 
     public void OpenWin()
     {
-        //DeletePlayers();
+        DeletePlayers();
 
         for (int i = 0; i < wToDisable.Length; ++i)
         {
