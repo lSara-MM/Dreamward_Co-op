@@ -105,5 +105,8 @@ public class PlayerOnline : MonoBehaviour
             ns_structure.playerInput playerInput = new ns_structure.playerInput(key, key_state, posX, posY);
             cs_Serialization.SerializeData(cs_guid.GetGuid(), ACTION_TYPE.INPUT_PLAYER, playerInput);
         }
+
+        lastInputType = key;
+        lastInputValue = key_state;
     }
 }
