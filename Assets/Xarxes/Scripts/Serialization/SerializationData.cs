@@ -9,8 +9,10 @@ public enum ACTION_TYPE
     SPAWN_PLAYER,
     SPAWN_OBJECT,
     INPUT_PLAYER,
-    DESTROY,
-    CHANGE_SCENE,
+    DESTROY,    // needs string
+    CHANGE_SCENE,    // needs string
+    BOSS_ATTACK,    // needs int
+    BOSS_MOVEMENT,    // needs int
     MESSAGE,
     NONE
 }

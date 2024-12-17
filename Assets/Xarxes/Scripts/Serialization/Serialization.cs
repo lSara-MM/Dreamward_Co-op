@@ -22,8 +22,10 @@ public class Serialization : MonoBehaviour
             { ACTION_TYPE.SPAWN_PLAYER, data => HandleSpawnPlayer(data) },
             { ACTION_TYPE.SPAWN_OBJECT, data => HandleSpawnObject(data) },
             { ACTION_TYPE.INPUT_PLAYER, data => HandlePlayerInput(data) },
-            { ACTION_TYPE.DESTROY, data => HandleDestroy(data) },            
+            { ACTION_TYPE.DESTROY, data => HandleDestroy(data) },          
             { ACTION_TYPE.CHANGE_SCENE, data => HandleChangeScene(data) },
+            { ACTION_TYPE.BOSS_ATTACK, data => HandleInt(data) },
+            { ACTION_TYPE.BOSS_MOVEMENT, data => HandleInt(data) },
         };
 
         cs_functionsToExecute = gameObject.GetComponent<FunctionsToExecute>();
@@ -157,6 +159,30 @@ public class Serialization : MonoBehaviour
         data.parameters.Deserialize(jsonObject);
 
         cs_functionsToExecute.actionsDictionary[ACTION_TYPE.INPUT_PLAYER].Invoke(data);
+        return data;
+    }
+
+    private SerializedData<int> HandleInt(JObject jsonObject)
+    {
+        var data = new SerializedData<int>();
+
+        data.network_id = (Guid)jsonObject["network_id"];
+        data.action = (ACTION_TYPE)(int)jsonObject["action"];
+        data.parameters = (int)jsonObject["parameters"];
+
+        cs_functionsToExecute.actionsDictionary[data.action].Invoke(data);
+        return data;
+    }
+
+    private SerializedData<string> HandleString(JObject jsonObject)
+    {
+        var data = new SerializedData<string>();
+
+        data.network_id = (Guid)jsonObject["network_id"];
+        data.action = (ACTION_TYPE)(int)jsonObject["action"];
+        data.parameters = (string)jsonObject["parameters"];
+
+        cs_functionsToExecute.actionsDictionary[data.action].Invoke(data);
         return data;
     }
 

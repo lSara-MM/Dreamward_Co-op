@@ -26,7 +26,9 @@ public class FunctionsToExecute : MonoBehaviour
             { ACTION_TYPE.SPAWN_OBJECT, data => QueueActionOnMainThread(() => SpawnPrefab((SerializedData<ns_structure.spawnPrefab>)data)) },
             { ACTION_TYPE.INPUT_PLAYER, data => QueueActionOnMainThread(() => ExecuteInput((SerializedData<ns_structure.playerInput>)data)) },
             { ACTION_TYPE.DESTROY, data => QueueActionOnMainThread(() => Destroy((SerializedData<string>)data)) },
-            { ACTION_TYPE.CHANGE_SCENE, data => QueueActionOnMainThread(() => ChangeToScene((SerializedData<string>)data)) }
+            { ACTION_TYPE.CHANGE_SCENE, data => QueueActionOnMainThread(() => ChangeToScene((SerializedData<string>)data)) },
+            { ACTION_TYPE.BOSS_ATTACK, data => QueueActionOnMainThread(() => SetAttackBoss((SerializedData<int>)data)) },
+            { ACTION_TYPE.BOSS_MOVEMENT, data => QueueActionOnMainThread(() => SetTargetBoss((SerializedData<int>)data)) },
         };
     }
 
@@ -140,9 +142,10 @@ public class FunctionsToExecute : MonoBehaviour
             Debug.LogError($"Object {data.parameters} not found for destruction.");
         }
     }
+
     public void ChangeToScene(SerializedData<string> data)
     {
-        Debug.Log("Change Scene " + data.parameters);
+        //Debug.Log("Change Scene " + data.parameters);
 
         foreach (GameObject item in Globals.dontDestroyList)
         {
@@ -151,4 +154,22 @@ public class FunctionsToExecute : MonoBehaviour
 
         SceneManager.LoadScene(data.parameters);
     }
+
+    #region Boss NPC
+    public void SetAttackBoss(SerializedData<int> data)
+    {
+        Debug.Log("Boss attack " + data.parameters);
+
+        BossHealth cs_bossHealth = GameObject.FindGameObjectWithTag("Boss").GetComponent<BossHealth>();
+        cs_bossHealth.animator.SetInteger("ChooseAttack", data.parameters);
+    }
+
+    public void SetTargetBoss(SerializedData<int> data)
+    {
+        BossHealth cs_bossHealth = GameObject.FindGameObjectWithTag("Boss").GetComponent<BossHealth>();
+
+        cs_bossHealth.animator.GetBehaviours<BossMoveNPC>()[0].target = data.parameters;
+        cs_bossHealth.animator.GetBehaviours<BossMoveNPC>()[0].targetSelected = true;
+    }
+    #endregion // Boss NPC
 }

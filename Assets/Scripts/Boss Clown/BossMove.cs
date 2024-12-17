@@ -30,6 +30,7 @@ public class BossMove : StateMachineBehaviour
         speed = 7;
 
         _target = aux;
+        _boss.SendBossNPC(ACTION_TYPE.BOSS_MOVEMENT, _target);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

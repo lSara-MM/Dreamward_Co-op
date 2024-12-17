@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class BossHealth : MonoBehaviour
 {
-    private Animator _animator;
+    public Animator animator;
     public bool bossSP = false; // Boss second phase
 
     [SerializeField] private Slider slider;
@@ -21,9 +21,22 @@ public class BossHealth : MonoBehaviour
     private float _timer = 0f;
     [SerializeField] float _delayBullet = 0.5f;
     [SerializeField] float _bulletTime = 0.7f;
-    public bool _hitBoss = false; //Necesito que sea publico para que blinkee la nube
+    public bool _hitBoss = false;
 
     private void Awake()
+    {
+        //// Teleport players to (0,0,0)
+        //foreach (GameObject item in Globals.dontDestroyList)
+        //{
+        //    if (item.tag == "Player")
+        //    {
+        //        item.GetComponent<PlayerOnline>().ResetPlayer();
+        //    }
+        //}
+    }
+
+    // Start is called before the first frame update
+    void Start()
     {
         // Teleport players to (0,0,0)
         foreach (GameObject item in Globals.dontDestroyList)
@@ -33,15 +46,11 @@ public class BossHealth : MonoBehaviour
                 item.GetComponent<PlayerOnline>().ResetPlayer();
             }
         }
-    }
 
-    // Start is called before the first frame update
-    void Start()
-    {
         GameObject player = GameObject.Find("Player Online Version");
         _winLose = player.GetComponent<WinLose>();
 
-        _animator = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
 
         currentHealth = maxHealth;
 
@@ -100,7 +109,7 @@ public class BossHealth : MonoBehaviour
             }
         }
 
-        // Debug TODO: DELETE 
+        // Debug
         if (Input.GetKeyDown(KeyCode.F10))
         {
             int aux = Random.Range(0, 6);
@@ -137,25 +146,27 @@ public class BossHealth : MonoBehaviour
     public void Death()
     {
         // boss dead
-        _animator.SetTrigger("Death");
+        animator.SetTrigger("Death");
     }
 
-    public void OpenWin()
+    public void SendBossNPC(ACTION_TYPE type, int num)
     {
-        //game.SetActive(false);
-        //winCanvas.SetActive(true);
+        Serialization cs_Serialization = GameObject.FindGameObjectWithTag("Serialization").GetComponent<Serialization>();
+        cs_Serialization.SerializeData(GetComponent<GUID_Generator>().GetGuid(), type, num);
     }
 
+    #region Boss NPC debug
     // Function to call when packet of the attack chosen is sent
     public void ChooseAttack(int attack = 0)
     {
-        _animator.SetInteger("ChooseAttack", attack);
+        animator.SetInteger("ChooseAttack", attack);
     }
 
     // Function to call when packet of the target position is sent
     public void ChooseTarget(int target = 0)
     {
-        _animator.GetBehaviours<BossMoveNPC>()[0].target = target;
-        _animator.GetBehaviours<BossMoveNPC>()[0].targetSelected = true;
+        animator.GetBehaviours<BossMoveNPC>()[0].target = target;
+        animator.GetBehaviours<BossMoveNPC>()[0].targetSelected = true;
     }
+    #endregion // Boss NPC
 }

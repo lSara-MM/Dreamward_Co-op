@@ -4,19 +4,22 @@ using UnityEngine;
 
 public class BossClownIdle : StateMachineBehaviour
 {
-    private BossHealth _Boss;
+    private BossHealth _boss;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        _Boss = animator.gameObject.GetComponent<BossHealth>();
+        _boss = animator.gameObject.GetComponent<BossHealth>();
 
         int moves = 6;
-        if (_Boss.bossSP)
+        if (_boss.bossSP)
         {
             moves = 7;
         }
 
-        animator.SetInteger("ChooseAttack", Random.Range(0, moves));
+        int num = Random.Range(0, moves);
+
+        _boss.SendBossNPC(ACTION_TYPE.BOSS_ATTACK, num);
+        animator.SetInteger("ChooseAttack", num);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
