@@ -5,7 +5,6 @@ using System.IO;
 using UnityEngine;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using ns_structure;
 
 public class Serialization : MonoBehaviour
 {
@@ -26,8 +25,9 @@ public class Serialization : MonoBehaviour
             { ACTION_TYPE.DESTROY, data => HandlePrimitive<string>(data) },
             { ACTION_TYPE.CHANGE_SCENE, data => HandlePrimitive<string>(data) },
             { ACTION_TYPE.BOSS_ATTACK, data => HandlePrimitive<int>(data) },
-            { ACTION_TYPE.BOSS_MOVEMENT, data => HandleAction<vector2D>(data) },
-            { ACTION_TYPE.PLAYER_DEATH, data => HandlePrimitive<int>(data) },
+            { ACTION_TYPE.BOSS_MOVEMENT, data => HandleAction<ns_structure.vector2D>(data) },
+            { ACTION_TYPE.PLAYER_DEATH, data => HandlePrimitive<bool>(data) },
+            { ACTION_TYPE.WIN_LOSE, data => HandlePrimitive<bool>(data) },
         };
 
         cs_functionsToExecute = gameObject.GetComponent<FunctionsToExecute>();
@@ -165,46 +165,6 @@ public class Serialization : MonoBehaviour
     {
         return HandleAction<ns_structure.playerInput>(jsonObject);
     }
-
-    //private SerializedData<ns_structure.spawnPlayer> HandleSpawnPlayer(JObject jsonObject)
-    //{
-    //    var data = new SerializedData<ns_structure.spawnPlayer>();
-
-    //    data.network_id = (Guid)jsonObject["network_id"];
-
-    //    data.parameters = new ns_structure.spawnPlayer();
-    //    data.parameters.Deserialize(jsonObject);
-
-    //    cs_functionsToExecute.actionsDictionary[ACTION_TYPE.SPAWN_PLAYER].Invoke(data);
-
-    //    return data;
-    //}
-
-    //private SerializedData<ns_structure.spawnPrefab> HandleSpawnObject(JObject jsonObject)
-    //{
-    //    var data = new SerializedData<ns_structure.spawnPrefab>();
-
-    //    data.network_id = (Guid)jsonObject["network_id"];
-
-    //    data.parameters = new ns_structure.spawnPrefab();
-    //    data.parameters.Deserialize(jsonObject);
-
-    //    cs_functionsToExecute.actionsDictionary[ACTION_TYPE.SPAWN_OBJECT].Invoke(data);
-    //    return data;
-    //}
-
-    //private SerializedData<ns_structure.playerInput> HandlePlayerInput(JObject jsonObject)
-    //{
-    //    var data = new SerializedData<ns_structure.playerInput>();
-
-    //    data.network_id = (Guid)jsonObject["network_id"];
-
-    //    data.parameters = new ns_structure.playerInput();
-    //    data.parameters.Deserialize(jsonObject);
-
-    //    cs_functionsToExecute.actionsDictionary[ACTION_TYPE.INPUT_PLAYER].Invoke(data);
-    //    return data;
-    //}
 
     private SerializedData<T> HandlePrimitive<T>(JObject jsonObject)
     {

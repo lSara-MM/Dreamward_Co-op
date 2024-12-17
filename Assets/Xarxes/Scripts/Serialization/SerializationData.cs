@@ -13,7 +13,8 @@ public enum ACTION_TYPE
     CHANGE_SCENE,    // needs string
     BOSS_ATTACK,    // needs int
     BOSS_MOVEMENT,    // needs vector2D
-    PLAYER_DEATH,    // needs bool
+    PLAYER_DEATH,
+    WIN_LOSE,    // needs bool
     MESSAGE,
     NONE
 }

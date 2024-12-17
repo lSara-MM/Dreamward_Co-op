@@ -22,7 +22,32 @@ public class WinLose : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (GameObject.FindWithTag("Boss") != null)
+        {
+            _bossAnimator = GameObject.FindWithTag("Boss").transform.gameObject.GetComponent<Animator>();
+        }
 
+        if (GameObject.Find("YouWin") != null)
+        {
+            winCanvas = GameObject.Find("YouWin");
+            winCanvas.SetActive(false);
+
+            if (tag == "Server")
+            {
+                winCanvas.GetComponent<ChangeScene>().enabled = true;
+            }
+        }
+
+        if (GameObject.Find("YouLose") != null)
+        {
+            loseCanvas = GameObject.Find("YouLose");
+            loseCanvas.SetActive(false);
+
+            if (tag == "Server")
+            {
+                loseCanvas.GetComponent<ChangeScene>().enabled = true;
+            }
+        }
     }
 
     // Update is called once per frame
@@ -78,32 +103,38 @@ public class WinLose : MonoBehaviour
 
     public void AssignWinLose(string tag)
     {
-        if (GameObject.FindWithTag("Boss") != null)
+        GameObject go;
+        if ((go = GameObject.FindWithTag(tag)) != null)
         {
-            _bossAnimator = GameObject.FindWithTag("Boss").transform.gameObject.GetComponent<Animator>();
+            fade = go.GetComponent<FadeToBlack>();
         }
 
-        if (GameObject.Find("YouWin") != null)
+        //if (GameObject.FindWithTag("Boss") != null)
+        //{
+        //    _bossAnimator = GameObject.FindWithTag("Boss").transform.gameObject.GetComponent<Animator>();
+        //}
+
+        //if (GameObject.Find("YouWin") != null)
+        //{
+        //    winCanvas = GameObject.Find("YouWin");
+        //    winCanvas.SetActive(false);
+
+        if (tag == "Server")
         {
-            winCanvas = GameObject.Find("YouWin");
-            winCanvas.SetActive(false);
-
-            if (tag == "Server")
-            {
-                winCanvas.GetComponent<ChangeScene>().enabled = true;
-            }
+            winCanvas.GetComponent<ChangeScene>().enabled = true;
         }
+        //}
 
-        if (GameObject.Find("YouLose") != null)
+        //if (GameObject.Find("YouLose") != null)
+        //{
+        //    loseCanvas = GameObject.Find("YouLose");
+        //    loseCanvas.SetActive(false);
+
+        if (tag == "Server")
         {
-            loseCanvas = GameObject.Find("YouLose");
-            loseCanvas.SetActive(false);
-
-            if (tag == "Server")
-            {
-                loseCanvas.GetComponent<ChangeScene>().enabled = true;
-            }
+            loseCanvas.GetComponent<ChangeScene>().enabled = true;
         }
+        //}
     }
 
     public void DeletePlayers()

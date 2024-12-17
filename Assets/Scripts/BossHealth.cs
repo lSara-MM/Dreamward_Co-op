@@ -50,8 +50,8 @@ public class BossHealth : MonoBehaviour
 
         transform.position = new Vector3(-4.743f, -10.727f, 0);
 
-        GameObject player = GameObject.Find("Player Online Version");
-        _winLose = player.GetComponent<WinLose>();
+        GameObject go = GameObject.Find("Game");
+        _winLose = go.GetComponent<WinLose>();
 
         animator = GetComponent<Animator>();
 
@@ -140,16 +140,16 @@ public class BossHealth : MonoBehaviour
         else
         {
             // boss dead
-            currentHealth = 0;
             Death();
-            _winLose._won = true;
         }
     }
 
     public void Death()
     {
         // boss dead
+        currentHealth = 0;
         animator.SetTrigger("Death");
+        _winLose._won = true;
     }
 
     public void SendBossAttack(int num)

@@ -51,7 +51,6 @@ public class PlayerHealth : MonoBehaviour
     void Start()
     {
         _blink = GetComponent<Blink>();
-        _winLose = GetComponent<WinLose>();
         _move = GetComponent<PlayerMovement>();
         aud = GetComponent<AudioSource>();
         _animator = GetComponent<Animator>();
@@ -160,13 +159,13 @@ public class PlayerHealth : MonoBehaviour
                 }
                 else
                 {
+                    Serialization cs_Serialization = GameObject.FindGameObjectWithTag("Serialization").GetComponent<Serialization>();
+                    GUID_Generator cs_guid = gameObject.GetComponent<GUID_Generator>();
+
+                    cs_Serialization.SerializeData(cs_guid.GetGuid(), ACTION_TYPE.PLAYER_DEATH, true);
+
                     // player dead
-                    this.gameObject.GetComponent<SpriteRenderer>().enabled = false; // Nose si desactivo player entero se rompe
-                    this.gameObject.GetComponent<Collider2D>().enabled = false; // Avoid collisions after death
-                    this.gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
-                    _animator.SetTrigger("Death");
-                    _winLose._lost = true;
-                    bossAnimator.SetTrigger("BossWins");
+                    GetComponent<PlayerDeath>().Death();
                 }
             }
         }
@@ -242,6 +241,7 @@ public class PlayerHealth : MonoBehaviour
     public void AssignPlayerHealth()
     {
         currentHealth = maxHealth;
+        _winLose = GameObject.Find("Game").GetComponent<WinLose>();
 
         GameObject boss = GameObject.FindWithTag("Boss").gameObject;
 

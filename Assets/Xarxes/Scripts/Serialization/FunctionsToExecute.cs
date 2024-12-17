@@ -27,10 +27,12 @@ public class FunctionsToExecute : MonoBehaviour
             { ACTION_TYPE.SPAWN_PLAYER, data => QueueActionOnMainThread(() => SpawnPlayer((SerializedData<ns_structure.spawnPlayer>)data)) },
             { ACTION_TYPE.SPAWN_OBJECT, data => QueueActionOnMainThread(() => SpawnPrefab((SerializedData<ns_structure.spawnPrefab>)data)) },
             { ACTION_TYPE.INPUT_PLAYER, data => QueueActionOnMainThread(() => ExecuteInput((SerializedData<ns_structure.playerInput>)data)) },
-            { ACTION_TYPE.DESTROY, data => QueueActionOnMainThread(() => Destroy((SerializedData<string>)data)) },
+            { ACTION_TYPE.DESTROY, data => QueueActionOnMainThread(() => DestroyByName((SerializedData<string>)data)) },
             { ACTION_TYPE.CHANGE_SCENE, data => QueueActionOnMainThread(() => ChangeToScene((SerializedData<string>)data)) },
             { ACTION_TYPE.BOSS_ATTACK, data => QueueActionOnMainThread(() => SetAttackBoss((SerializedData<int>)data)) },
             { ACTION_TYPE.BOSS_MOVEMENT, data => QueueActionOnMainThread(() => SetTargetBoss((SerializedData<vector2D>)data)) },
+            { ACTION_TYPE.PLAYER_DEATH, data => QueueActionOnMainThread(() => EntityDeath((SerializedData<bool>)data)) },
+            { ACTION_TYPE.WIN_LOSE, data => QueueActionOnMainThread(() => SetLevelState((SerializedData<bool>) data)) },
         };
     }
 
@@ -132,7 +134,7 @@ public class FunctionsToExecute : MonoBehaviour
         }
     }
 
-    public void Destroy(SerializedData<string> data)
+    public void DestroyByName(SerializedData<string> data)
     {
         GameObject objToDestroy = GameObject.Find(data.parameters);
         if (objToDestroy != null)
@@ -142,6 +144,14 @@ public class FunctionsToExecute : MonoBehaviour
         else
         {
             Debug.LogError($"Object {data.parameters} not found for destruction.");
+        }
+    }
+
+    public void DestroyByGUID(SerializedData<bool> data)
+    {
+        if (guidDictionary.ContainsKey(data.network_id))
+        {
+            Destroy(guidDictionary[data.network_id]);
         }
     }
 
@@ -174,10 +184,52 @@ public class FunctionsToExecute : MonoBehaviour
 
     public void SetTargetBoss(SerializedData<vector2D> data)
     {
-        Debug.Log("Boss movement " + data.parameters);
+        //Debug.Log("Boss movement " + data.parameters);
 
         BossHealth cs_bossHealth = GameObject.FindGameObjectWithTag("Boss").GetComponent<BossHealth>();
         cs_bossHealth.gameObject.transform.position = new Vector3(data.parameters.x, data.parameters.y, 0);
     }
     #endregion // Boss NPC
+
+    #region Win/Lose
+    public void EntityDeath(SerializedData<bool> data)
+    {
+        GameObject go;
+        if ((go = guidDictionary[data.network_id]) != null)
+        {
+            switch (go.tag)
+            {
+                case "Player":
+                    {
+                        go.GetComponent<PlayerDeath>().Death();
+                    }
+                    break;
+                case "Boss":
+                    {
+                        go.GetComponent<BossHealth>().Death();
+                    }
+                    break;
+                default:
+                    break;
+            }
+
+            guidDictionary.Remove(data.network_id);
+        }
+    }
+
+    // data.parameters == true --> win : false --> lost
+    public void SetLevelState(SerializedData<bool> data)
+    {
+        WinLose cs_player = GameObject.Find("Game").GetComponent<WinLose>();
+
+        if (data.parameters)
+        {
+            cs_player._won = true;
+        }
+        else
+        {
+            cs_player._lost = true;
+        }
+    }
+    #endregion // Win/Lose
 }
