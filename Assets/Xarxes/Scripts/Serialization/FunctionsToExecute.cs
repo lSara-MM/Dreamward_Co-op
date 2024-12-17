@@ -1,3 +1,4 @@
+using ns_structure;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -28,7 +29,7 @@ public class FunctionsToExecute : MonoBehaviour
             { ACTION_TYPE.DESTROY, data => QueueActionOnMainThread(() => Destroy((SerializedData<string>)data)) },
             { ACTION_TYPE.CHANGE_SCENE, data => QueueActionOnMainThread(() => ChangeToScene((SerializedData<string>)data)) },
             { ACTION_TYPE.BOSS_ATTACK, data => QueueActionOnMainThread(() => SetAttackBoss((SerializedData<int>)data)) },
-            { ACTION_TYPE.BOSS_MOVEMENT, data => QueueActionOnMainThread(() => SetTargetBoss((SerializedData<int>)data)) },
+            { ACTION_TYPE.BOSS_MOVEMENT, data => QueueActionOnMainThread(() => SetTargetBoss((SerializedData<vector2D>)data)) },
         };
     }
 
@@ -164,7 +165,7 @@ public class FunctionsToExecute : MonoBehaviour
         cs_bossHealth.animator.SetInteger("ChooseAttack", data.parameters);
     }
 
-    public void SetTargetBoss(SerializedData<int> data)
+    public void SetTargetBoss(SerializedData<vector2D> data)
     {
         Debug.Log("Boss movement " + data.parameters);
 

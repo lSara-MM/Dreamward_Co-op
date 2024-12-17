@@ -5,6 +5,7 @@ using System.IO;
 using UnityEngine;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using ns_structure;
 
 public class Serialization : MonoBehaviour
 {
@@ -25,7 +26,7 @@ public class Serialization : MonoBehaviour
             { ACTION_TYPE.DESTROY, data => HandlePrimitive<string>(data) },
             { ACTION_TYPE.CHANGE_SCENE, data => HandlePrimitive<string>(data) },
             { ACTION_TYPE.BOSS_ATTACK, data => HandlePrimitive<int>(data) },
-            { ACTION_TYPE.BOSS_MOVEMENT, data => HandlePrimitive<int>(data) },
+            { ACTION_TYPE.BOSS_MOVEMENT, data => HandleAction<vector2D>(data) },
             { ACTION_TYPE.PLAYER_DEATH, data => HandlePrimitive<int>(data) },
         };
 

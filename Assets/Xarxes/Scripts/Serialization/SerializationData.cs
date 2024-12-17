@@ -12,8 +12,8 @@ public enum ACTION_TYPE
     DESTROY,    // needs string
     CHANGE_SCENE,    // needs string
     BOSS_ATTACK,    // needs int
-    BOSS_MOVEMENT,    // needs int
-    PLAYER_DEATH,    // needs int
+    BOSS_MOVEMENT,    // needs vector2D
+    PLAYER_DEATH,    // needs bool
     MESSAGE,
     NONE
 }
