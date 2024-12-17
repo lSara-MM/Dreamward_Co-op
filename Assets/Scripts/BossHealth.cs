@@ -24,17 +24,8 @@ public class BossHealth : MonoBehaviour
     [SerializeField] float _bulletTime = 0.7f;
     public bool _hitBoss = false;
 
-    private void Awake()
-    {
-        //// Teleport players to (0,0,0)
-        //foreach (GameObject item in Globals.dontDestroyList)
-        //{
-        //    if (item.tag == "Player")
-        //    {
-        //        item.GetComponent<PlayerOnline>().ResetPlayer();
-        //    }
-        //}
-    }
+    // Time to send current boss health packet
+    public float timerHealth = 1.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -65,6 +56,11 @@ public class BossHealth : MonoBehaviour
         _hitBoss = false;
 
         GameObject.Find("SceneManager").GetComponent<SecondPhase>().AssignSecondPhase();
+
+        if (GameObject.FindGameObjectWithTag("Server") != null)
+        {
+            StartCoroutine(UpdateHealth());
+        }
     }
 
     // Update is called once per frame
@@ -170,6 +166,15 @@ public class BossHealth : MonoBehaviour
     {
         Serialization cs_Serialization = GameObject.FindGameObjectWithTag("Serialization").GetComponent<Serialization>();
         cs_Serialization.SerializeData(GetComponent<GUID_Generator>().GetGuid(), ACTION_TYPE.BOSS_HEALTH, currentHealth);
+    }
+
+    private IEnumerator UpdateHealth()
+    {
+        while (currentHealth > 0)
+        {
+            SendBossHealth(currentHealth);
+            yield return new WaitForSeconds(timerHealth);
+        }
     }
 
     #region Boss NPC debug
