@@ -22,10 +22,10 @@ public class Serialization : MonoBehaviour
             { ACTION_TYPE.SPAWN_PLAYER, data => HandleSpawnPlayer(data) },
             { ACTION_TYPE.SPAWN_OBJECT, data => HandleSpawnObject(data) },
             { ACTION_TYPE.INPUT_PLAYER, data => HandlePlayerInput(data) },
-            { ACTION_TYPE.DESTROY, data => HandleDestroy(data) },
-            { ACTION_TYPE.CHANGE_SCENE, data => HandleChangeScene(data) },
-            { ACTION_TYPE.BOSS_ATTACK, data => HandleInt(data) },
-            { ACTION_TYPE.BOSS_MOVEMENT, data => HandleInt(data) },
+            { ACTION_TYPE.DESTROY, data => HandlePrimitive<string>(data) },
+            { ACTION_TYPE.CHANGE_SCENE, data => HandlePrimitive<string>(data) },
+            { ACTION_TYPE.BOSS_ATTACK, data => HandlePrimitive<int>(data) },
+            { ACTION_TYPE.BOSS_MOVEMENT, data => HandlePrimitive<int>(data) },
         };
 
         cs_functionsToExecute = gameObject.GetComponent<FunctionsToExecute>();
@@ -173,49 +173,19 @@ public class Serialization : MonoBehaviour
         return data;
     }
 
-    private SerializedData<int> HandleInt(JObject jsonObject)
+    private SerializedData<T> HandlePrimitive<T>(JObject jsonObject)
     {
-        var data = new SerializedData<int>();
+        var data = new SerializedData<T>();
 
         data.network_id = (Guid)jsonObject["network_id"];
         data.action = (ACTION_TYPE)(int)jsonObject["action"];
-        data.parameters = (int)jsonObject["parameters"];
 
+        // Directly assign the parameter since it's a primitive type
+        data.parameters = jsonObject["parameters"].ToObject<T>();
+
+        // Execute the action
         cs_functionsToExecute.actionsDictionary[data.action].Invoke(data);
-        return data;
-    }
 
-    private SerializedData<string> HandleString(JObject jsonObject)
-    {
-        var data = new SerializedData<string>();
-
-        data.network_id = (Guid)jsonObject["network_id"];
-        data.action = (ACTION_TYPE)(int)jsonObject["action"];
-        data.parameters = (string)jsonObject["parameters"];
-
-        cs_functionsToExecute.actionsDictionary[data.action].Invoke(data);
-        return data;
-    }
-
-    private SerializedData<string> HandleDestroy(JObject jsonObject)
-    {
-        var data = new SerializedData<string>();
-
-        data.network_id = (Guid)jsonObject["network_id"];
-        data.parameters = (string)jsonObject["parameters"];
-
-        cs_functionsToExecute.actionsDictionary[ACTION_TYPE.DESTROY].Invoke(data);
-        return data;
-    }
-
-    private SerializedData<string> HandleChangeScene(JObject jsonObject)
-    {
-        var data = new SerializedData<string>();
-
-        data.network_id = (Guid)jsonObject["network_id"];
-        data.parameters = (string)jsonObject["parameters"];
-
-        cs_functionsToExecute.actionsDictionary[ACTION_TYPE.CHANGE_SCENE].Invoke(data);
         return data;
     }
     #endregion // Structs deserialization

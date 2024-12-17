@@ -28,6 +28,7 @@ public interface ISerializedData
 public struct SerializedData<T> : ISerializedData
 {
     public Guid network_id { get; set; }
+
     public ACTION_TYPE action { get; set; }
 
     // T parameters : where T must be type IDataStructure or basic C# types
