@@ -6,7 +6,7 @@ public class PlayerDeath : MonoBehaviour
 {
     public void Death()
     {
-        Animator _animator = GetComponent<Animator>();
+        //Animator _animator = GetComponent<Animator>();
         WinLose _winLose = GameObject.Find("Game").GetComponent<WinLose>();
 
         // player dead
@@ -14,7 +14,8 @@ public class PlayerDeath : MonoBehaviour
         this.gameObject.GetComponent<Collider2D>().enabled = false; // Avoid collisions after death
         this.gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
 
-        _animator.SetTrigger("Death");
+        //gameObject.SetActive(false);
+        //_animator.SetTrigger("Death");
 
         _winLose._lost = true;
         foreach (GameObject item in Globals.dontDestroyList)
@@ -34,7 +35,12 @@ public class PlayerDeath : MonoBehaviour
             {
                 Animator bossAnimator = boss.GetComponent<Animator>();
                 bossAnimator.SetTrigger("BossWins");
+
+                Serialization cs_Serialization = GameObject.FindGameObjectWithTag("Serialization").GetComponent<Serialization>();
+                cs_Serialization.SerializeData(default, ACTION_TYPE.WIN_LOSE, false);
             }
         }
+
+        Destroy(gameObject);
     }
 }

@@ -164,6 +164,9 @@ public class PlayerHealth : MonoBehaviour
 
                     cs_Serialization.SerializeData(cs_guid.GetGuid(), ACTION_TYPE.PLAYER_DEATH, true);
 
+                    // Technically not correct
+                    Globals.dontDestroyList.Remove(gameObject);
+
                     // player dead
                     GetComponent<PlayerDeath>().Death();
                 }

@@ -197,6 +197,11 @@ public class FunctionsToExecute : MonoBehaviour
         GameObject go;
         if ((go = guidDictionary[data.network_id]) != null)
         {
+            guidDictionary.Remove(data.network_id);
+
+            // Technically not correct
+            Globals.dontDestroyList.Remove(go);
+
             switch (go.tag)
             {
                 case "Player":
@@ -212,8 +217,6 @@ public class FunctionsToExecute : MonoBehaviour
                 default:
                     break;
             }
-
-            guidDictionary.Remove(data.network_id);
         }
     }
 
