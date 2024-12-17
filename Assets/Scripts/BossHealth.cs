@@ -23,9 +23,7 @@ public class BossHealth : MonoBehaviour
     [SerializeField] float _bulletTime = 0.7f;
     public bool _hitBoss = false; //Necesito que sea publico para que blinkee la nube
 
-
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         // Teleport players to (0,0,0)
         foreach (GameObject item in Globals.dontDestroyList)
@@ -35,7 +33,11 @@ public class BossHealth : MonoBehaviour
                 item.GetComponent<PlayerOnline>().ResetPlayer();
             }
         }
+    }
 
+    // Start is called before the first frame update
+    void Start()
+    {
         GameObject player = GameObject.Find("Player Online Version");
         _winLose = player.GetComponent<WinLose>();
 
