@@ -33,8 +33,7 @@ public class SpawnObject : MonoBehaviour
         }
         else if (online = GameObject.FindGameObjectWithTag("Client"))
         {
-            //cs_Serialization.SerializeData((cs_guid != null ? cs_guid.GetGuid() : default), ACTION_TYPE.SPAWN_OBJECT,
-            //    new ns_structure.spawnPrefab(clientPrefabPath, clientServerPosition));
+            // TODO: Add client functionalities at start of the boss
         }
         else
         {

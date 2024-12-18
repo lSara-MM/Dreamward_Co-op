@@ -257,7 +257,7 @@ public class PlayerHealth : MonoBehaviour
         currentHealth = maxHealth;
         _winLose = GameObject.Find("Game").GetComponent<WinLose>();
 
-        GameObject boss = GameObject.FindWithTag("Boss").gameObject;
+        GameObject boss = GameObject.FindWithTag("Boss")?.gameObject;
 
         if (boss != null)
         {

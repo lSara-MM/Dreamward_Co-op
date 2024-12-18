@@ -13,8 +13,8 @@ public class WaterParticles : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       Vector3 pos = new Vector3(player.transform.position.x, water.transform.position.y, water.transform.position.z);
-       water.transform.position = pos;
+       //Vector3 pos = new Vector3(player.transform.position.x, water.transform.position.y, water.transform.position.z);
+       //water.transform.position = pos;
 
         if (!splash)
         {

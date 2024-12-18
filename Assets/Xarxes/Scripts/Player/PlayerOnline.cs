@@ -82,7 +82,7 @@ public class PlayerOnline : MonoBehaviour
         if (!isNPC)
         {
             GetComponent<PlayerHealth>().AssignPlayerHealth();
-            GameObject.Find("Game").GetComponent<WinLose>().AssignWinLose(online.tag);
+            GameObject.Find("Game")?.GetComponent<WinLose>()?.AssignWinLose(online.tag);
 
             canvasUI.SetActive(!canvasUI.activeInHierarchy);
         }
