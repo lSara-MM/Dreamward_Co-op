@@ -189,21 +189,32 @@ public class PlayerHealth : MonoBehaviour
         {
             if (i < currentHealth)
             {
-                hearts[i].sprite = fullHeart;
+                if (hearts[i] != null)
+                {
+                    hearts[i].sprite = fullHeart;
+                }
             }
             else
             {
-                hearts[i].sprite = emptyHeart;
+                if (hearts[i] != null)
+                {
+                    hearts[i].sprite = emptyHeart;
+                }
             }
-
 
             if (i < maxHealth)
             {
-                hearts[i].enabled = true;
+                if (hearts[i] != null)
+                {
+                    hearts[i].enabled = true;
+                }
             }
             else
             {
-                hearts[i].enabled = false;
+                if (hearts[i] != null)
+                {
+                    hearts[i].enabled = false;
+                }
             }
         }
     }

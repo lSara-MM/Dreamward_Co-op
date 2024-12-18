@@ -7,6 +7,7 @@ public class FollowUI : MonoBehaviour
     [SerializeField] private Transform lookAt;
     [SerializeField] private Vector3 offset;
     private Camera cam;
+    private Vector3 pos;
 
     // Start is called before the first frame update
     void Start()
@@ -17,7 +18,10 @@ public class FollowUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 pos = cam.WorldToScreenPoint(lookAt.position + offset);
+        if (cam != null)
+        {
+            pos = cam.WorldToScreenPoint(lookAt.position + offset);
+        }
 
         if (transform.position != pos) 
         { 
