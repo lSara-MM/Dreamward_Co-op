@@ -70,7 +70,6 @@ public class PlayerCombat : MonoBehaviour
 
     void AttackSides()
     {
-        // TODO QG: Re-Do stamina and UI-related scripts
         if (stamina.UseEnergy(attackCost))
         {
             attackSound.Play();
@@ -86,7 +85,7 @@ public class PlayerCombat : MonoBehaviour
 
                 if (hit != null)
                 {
-                    Debug.Log("Blanqueado" + enemy.name);
+                    //Debug.Log("Blanqueado" + enemy.name);
                     hit.Flash();
                 }
 
@@ -97,7 +96,7 @@ public class PlayerCombat : MonoBehaviour
 
                 if (bossHit != null)
                 {
-                    Debug.Log("Golpiado " + enemy.name);
+                    //Debug.Log("Golpiado " + enemy.name);
                     bossHit.TakeDmg(attackDamage);
                 }
             }
@@ -106,7 +105,6 @@ public class PlayerCombat : MonoBehaviour
 
     void AttackUp()
     {
-        // TODO QG: Re-Do stamina and UI-related scripts
         if (stamina.UseEnergy(attackCost))
         {
             attackSound.Play();

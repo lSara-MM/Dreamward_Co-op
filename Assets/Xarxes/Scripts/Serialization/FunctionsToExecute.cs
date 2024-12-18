@@ -98,6 +98,8 @@ public class FunctionsToExecute : MonoBehaviour
 
             GUID_Generator generator = go.GetComponent<GUID_Generator>();
 
+            Debug.Log("SPAWN PREFAB " + go.name);
+
             // Save the guid to the map if it has
             if (generator != null)
             {
@@ -171,15 +173,7 @@ public class FunctionsToExecute : MonoBehaviour
     #region Boss NPC
     public void SetAttackBoss(SerializedData<int> data)
     {
-        Debug.Log("Boss attack " + data.parameters);
-
         BossHealth cs_bossHealth = GameObject.FindGameObjectWithTag("Boss").GetComponent<BossHealth>();
-
-        //if (cs_bossHealth.animator.GetCurrentAnimatorStateInfo(0).IsName("spawn"))
-        //{
-        //    cs_bossHealth.animator.SetTrigger("Exit");
-        //}
-
         cs_bossHealth.animator.SetInteger("ChooseAttack", data.parameters);
     }
 
@@ -207,27 +201,31 @@ public class FunctionsToExecute : MonoBehaviour
     public void EntityDeath(SerializedData<bool> data)
     {
         GameObject go;
-        if ((go = guidDictionary[data.network_id]) != null)
+
+        if (guidDictionary.Count != 0)
         {
-            guidDictionary.Remove(data.network_id);
-
-            // Technically not correct
-            Globals.dontDestroyList.Remove(go);
-
-            switch (go.tag)
+            if ((go = guidDictionary[data.network_id]) != null)
             {
-                case "Player":
-                    {
-                        go.GetComponent<PlayerDeath>().Death();
-                    }
-                    break;
-                case "Boss":
-                    {
-                        go.GetComponent<BossHealth>().Death();
-                    }
-                    break;
-                default:
-                    break;
+                guidDictionary.Remove(data.network_id);
+
+                // Technically not correct
+                Globals.dontDestroyList.Remove(go);
+
+                switch (go.tag)
+                {
+                    case "Player":
+                        {
+                            go.GetComponent<PlayerDeath>().Death();
+                        }
+                        break;
+                    case "Boss":
+                        {
+                            go.GetComponent<BossHealth>().Death();
+                        }
+                        break;
+                    default:
+                        break;
+                }
             }
         }
     }

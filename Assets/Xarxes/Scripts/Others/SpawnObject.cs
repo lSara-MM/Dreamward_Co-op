@@ -40,6 +40,8 @@ public class SpawnObject : MonoBehaviour
         {
             Debug.Log("Online not found");
         }
+
+        enabled = false;
     }
 
     // Update is called once per frame

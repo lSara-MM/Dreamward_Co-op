@@ -117,7 +117,6 @@ public class PlayerMovement : MonoBehaviour
         if ((Input.GetButtonDown("Fire3") && !isNPC) ||
             ((key == "Fire3" && key_state == 1) && isNPC) && canDash)
         {
-            // TODO QG: Re-Do stamina and UI-related scripts
             if (stamina.UseEnergy(dashCost))
             {
                 cs_playerOnline.ManageOnlineMovement("Fire3", 1);
