@@ -52,7 +52,7 @@ public class Stamina : MonoBehaviour
 
     public bool UseEnergy(float energy)
     {
-        if (_godMode) { return true; }
+        //if (_godMode) { return true; }
         if (currentEnergy >= energy)
         {
             currentEnergy -= energy;
@@ -66,6 +66,8 @@ public class Stamina : MonoBehaviour
 
     public void AssignStamina()
     {
+        slider = transform.Find("UI").Find("Stamina").gameObject.GetComponent<Slider>();
+
         if (staminaBar != null)
         {
             staminaBar.color = GetComponent<PlayerOnline>().GetPlayerData().GetColorColor();

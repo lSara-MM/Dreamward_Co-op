@@ -118,7 +118,7 @@ public class PlayerMovement : MonoBehaviour
             ((key == "Fire3" && key_state == 1) && isNPC) && canDash)
         {
             // TODO QG: Re-Do stamina and UI-related scripts
-            //if (stamina.UseEnergy(dashCost))
+            if (stamina.UseEnergy(dashCost))
             {
                 cs_playerOnline.ManageOnlineMovement("Fire3", 1);
                 StartCoroutine(Dash());

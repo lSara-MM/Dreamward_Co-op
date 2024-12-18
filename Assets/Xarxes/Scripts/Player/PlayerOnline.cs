@@ -77,17 +77,14 @@ public class PlayerOnline : MonoBehaviour
 
         cs_followUI.AssignCam();
 
-        if (canvasUI != null)
-        {
-            canvasUI.SetActive(!canvasUI.activeInHierarchy);
-        }
-
         GetComponent<Rigidbody2D>().gravityScale = 4.0f;
 
         if (!isNPC)
         {
             GetComponent<PlayerHealth>().AssignPlayerHealth();
             GameObject.Find("Game").GetComponent<WinLose>().AssignWinLose(online.tag);
+
+            canvasUI.SetActive(!canvasUI.activeInHierarchy);
         }
 
         GetComponent<FadeToBlack>().AssignFadeToBlack();

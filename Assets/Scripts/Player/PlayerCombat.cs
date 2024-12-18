@@ -71,7 +71,7 @@ public class PlayerCombat : MonoBehaviour
     void AttackSides()
     {
         // TODO QG: Re-Do stamina and UI-related scripts
-        //if (stamina.UseEnergy(attackCost))
+        if (stamina.UseEnergy(attackCost))
         {
             attackSound.Play();
             animator.SetTrigger("AttackSides");
@@ -107,7 +107,7 @@ public class PlayerCombat : MonoBehaviour
     void AttackUp()
     {
         // TODO QG: Re-Do stamina and UI-related scripts
-        //if (stamina.UseEnergy(attackCost))
+        if (stamina.UseEnergy(attackCost))
         {
             attackSound.Play();
             animator.SetTrigger("AttackUp");
