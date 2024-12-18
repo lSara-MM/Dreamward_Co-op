@@ -105,6 +105,16 @@ public class FunctionsToExecute : MonoBehaviour
                 go.GetComponent<GUID_Generator>().SetGuid(data.network_id);
                 guidDictionary.Add(data.network_id, go);
             }
+
+            // Fix double boss bug
+            List<GameObject> bosses = new List<GameObject>();
+            bosses.AddRange(GameObject.FindGameObjectsWithTag("Boss"));
+            bosses.RemoveAt(0);
+
+            foreach (GameObject item in bosses)
+            {
+                Destroy(item);
+            }
         }
         else
         {
