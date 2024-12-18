@@ -1,4 +1,5 @@
 using Cinemachine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -31,7 +32,7 @@ public class PassTutorial : MonoBehaviour
             secondPhase = true;
         }
 
-        if (!secondPhase) 
+        if (!secondPhase)
         {
             //fadeToBlack.color = new Color(0f, 0f, 0f, 0f);
             canvas.SetActive(true);
@@ -39,13 +40,13 @@ public class PassTutorial : MonoBehaviour
 
             timing = 0f;
         }
-        else 
+        else
         {
             timing += Time.deltaTime;
             canvas.SetActive(false);
             coll.isTrigger = true;
 
-            if (fadeToBlack.color.a < 1f) 
+            if (fadeToBlack.color.a < 1f)
             {
                 fadeToBlack.color = new Color(0f, 0f, 0f, fadeToBlack.color.a + 0.5f * Time.deltaTime);
             }

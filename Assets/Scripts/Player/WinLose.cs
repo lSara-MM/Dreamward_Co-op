@@ -122,10 +122,6 @@ public class WinLose : MonoBehaviour
         if (tag == "Server")
         {
             winCanvas.GetComponent<ChangeScene>().enabled = true;
-        }
-
-        if (tag == "Server")
-        {
             loseCanvas.GetComponent<ChangeScene>().enabled = true;
         }
     }

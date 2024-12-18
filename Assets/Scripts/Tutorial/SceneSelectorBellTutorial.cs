@@ -28,6 +28,26 @@ public class SceneSelectorBellTutorial : MonoBehaviour
             bellSound.Play();
             passTutorial.scene = PassScene;
             passTutorial.secondPhase = true;
+
+            DeletePlayers();
+        }
+    }
+
+    public void DeletePlayers()
+    {
+        GameObject[] playerList = GameObject.FindGameObjectsWithTag("Player");
+
+        FunctionsToExecute cs_functionsToExecute = GameObject.FindGameObjectWithTag("Serialization").GetComponent<FunctionsToExecute>();
+
+        foreach (GameObject item in playerList)
+        {
+            // Remove the guid from the dictionary
+            cs_functionsToExecute.guidDictionary.Remove(
+                Globals.FindKeyByValue(cs_functionsToExecute.guidDictionary, item));
+
+            // Remove from don't destroy list so it gets recreated
+            Globals.dontDestroyList.Remove(item);
+            Destroy(item);
         }
     }
 }
