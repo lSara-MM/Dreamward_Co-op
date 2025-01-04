@@ -47,23 +47,30 @@ public class PassText : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void ResetFade(bool enter)
     {
-        if (collision.tag == "Player")
-        {
-            fadeFromBlack.timing = 0f;
-            fadeToBlack.timing = 0f;
-            isVisible = true;
-        }
+        fadeFromBlack.timing = 0f;
+        fadeToBlack.timing = 0f;
+        isVisible = enter;
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.tag == "Player")
-        {
-            fadeFromBlack.timing = 0f;
-            fadeToBlack.timing = 0f;
-            isVisible = false;
-        }
-    }
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    if (collision.tag == "Player")
+    //    {
+    //        fadeFromBlack.timing = 0f;
+    //        fadeToBlack.timing = 0f;
+    //        isVisible = true;
+    //    }
+    //}
+
+    //private void OnTriggerExit2D(Collider2D collision)
+    //{
+    //    if (collision.tag == "Player")
+    //    {
+    //        fadeFromBlack.timing = 0f;
+    //        fadeToBlack.timing = 0f;
+    //        isVisible = false;
+    //    }
+    //}
 }

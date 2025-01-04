@@ -20,7 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Xarxes/Scenes/Boss 1 Online.unity
     guid: a1643fe2a4648c1468e43c8b7e5e82a0
-  - enabled: 0
+  - enabled: 1
     path: Assets/Xarxes/Scenes/Tutorial Online.unity
     guid: 84c3e4095e9566649bd4621c0dbdd047
   - enabled: 0
