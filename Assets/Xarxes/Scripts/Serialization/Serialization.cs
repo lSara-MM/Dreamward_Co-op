@@ -58,7 +58,7 @@ public class Serialization : MonoBehaviour
         {
             if (NetDebugKeys.applyNetConfig)
             {
-                _ = online.GetComponent<ClientUDP>().SendDataPacketHarshEnvironment(data, NetConfig.ApplyDefault());
+                _ = online.GetComponent<ClientUDP>().SendDataPacketHarshEnvironment(id, data, NetConfig.ApplyDefault());
             }
             else
             {

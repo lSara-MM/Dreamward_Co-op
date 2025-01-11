@@ -185,16 +185,16 @@ public class ClientUDP : MonoBehaviour, INetworking
         }
     }
 
-    private List<byte[]> messageBuffer = new List<byte[]>();
+    private List<(Guid uid, byte[] data)> messageBuffer = new List<(Guid uid, byte[] data)>();
     private readonly object mutex = new object();
 
-    public async Task SendDataPacketHarshEnvironment(byte[] data, NetConfig config)
+    public async Task SendDataPacketHarshEnvironment(Guid uid, byte[] data, NetConfig config)
     {
         // Add the packet to the message buffer
-        messageBuffer.Add(data);
+        messageBuffer.Add((uid, data));
 
         // Copy the message buffer to avoid modifying the original during iteration
-        List<byte[]> auxBuffer = new List<byte[]>(messageBuffer);
+        List<(Guid uid, byte[] data)> auxBuffer = new List<(Guid uid, byte[] data)>(messageBuffer);
 
         System.Random r = new System.Random();
 
@@ -223,22 +223,26 @@ public class ClientUDP : MonoBehaviour, INetworking
                 try
                 {
                     // Attempt to send the packet
-                    socket.SendTo(auxBuffer[i], endPoint);
+                    socket.SendTo(auxBuffer[i].data, endPoint);
                 }
                 catch (SocketException ex)
                 {
                     ReportError("Failed to send packet: " + ex.Message);
                 }
 
-                // Remove the packet from the buffer after sending
-                messageBuffer.RemoveAt(i);
-                i--; // Adjust index after removal to avoid skipping packets
+                // Remove the packet with the matching uid from the buffer after sending
+                lock (mutex)  // Ensure thread safety when removing from the shared list
+                {
+                    messageBuffer.RemoveAll(packet => packet.uid == uid);
+                }
             }
             else
             {
-                // If the packet is lost, remove it from the buffer without sending
-                messageBuffer.RemoveAt(i);
-                i--; // Adjust index after removal
+                // Remove the packet with the matching uid from the buffer after sending
+                lock (mutex)  // Ensure thread safety when removing from the shared list
+                {
+                    messageBuffer.RemoveAll(packet => packet.uid == uid);
+                }
             }
         }
     }
