@@ -29,6 +29,7 @@ public class Serialization : MonoBehaviour
             { ACTION_TYPE.BOSS_HEALTH, data => HandlePrimitive<int>(data) },
             { ACTION_TYPE.PLAYER_DEATH, data => HandlePrimitive<bool>(data) },
             { ACTION_TYPE.WIN_LOSE, data => HandlePrimitive<bool>(data) },
+            { ACTION_TYPE.MESSAGE, data => true } // TO DO
         };
 
         cs_functionsToExecute = gameObject.GetComponent<FunctionsToExecute>();
@@ -39,6 +40,7 @@ public class Serialization : MonoBehaviour
     // in --> Type of action to be performed
     // in (optional) --> SerializedData<object> : where object is type IDataStructure
     // in (optional) --> message to log
+
     public void SerializeData<T>(Guid id, ACTION_TYPE action, T parameters = default, string message = default)
     {
         SerializedData<T> serializedData = new SerializedData<T>(id, action, parameters, message);
@@ -54,9 +56,9 @@ public class Serialization : MonoBehaviour
         }
         else if (online = GameObject.FindGameObjectWithTag("Client"))
         {
-            if (SendMetothTogle.sendWithJitter)
+            if (NetDebugKeys.applyNetConfig)
             {
-                online.GetComponent<ClientUDP>().SendDataPacketHarshEnvironment(data, NetConfig.ApplyDefault());
+                _ = online.GetComponent<ClientUDP>().SendDataPacketHarshEnvironment(data, NetConfig.ApplyDefault());
             }
             else
             {
@@ -125,7 +127,6 @@ public class Serialization : MonoBehaviour
                         else
                         {
                             Debug.LogWarning($"Unknown action type: {actionType}");
-                            JsonConvert.DeserializeObject<SerializedData<object>>(json);
                         }
                     }
 

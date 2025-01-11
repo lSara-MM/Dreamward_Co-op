@@ -10,6 +10,7 @@ using System.Net.WebSockets;
 using System.Collections.Generic;
 using Unity.Mathematics;
 using System.Data;
+using System.Threading.Tasks;
 
 public enum BOOLEAN_STATE
 {
@@ -187,47 +188,57 @@ public class ClientUDP : MonoBehaviour, INetworking
     private List<byte[]> messageBuffer = new List<byte[]>();
     private readonly object mutex = new object();
 
-    public void SendDataPacketHarshEnvironment(byte[] data, NetConfig config)
+    public async Task SendDataPacketHarshEnvironment(byte[] data, NetConfig config)
     {
-        lock (mutex)
+        // Add the packet to the message buffer
+        messageBuffer.Add(data);
+
+        // Copy the message buffer to avoid modifying the original during iteration
+        List<byte[]> auxBuffer = new List<byte[]>(messageBuffer);
+
+        System.Random r = new System.Random();
+
+        for (int i = 0; i < auxBuffer.Count; i++)
         {
-            // Add the packet to the message buffer with the current time
-            messageBuffer.Add(data);
+            DateTime sendTime = DateTime.Now;
 
-            List<byte[]> auxBuffer = new List<byte[]>(messageBuffer);
+            // Determine if packet loss should occur
+            bool shouldSendPacket = !config.packetLoss || (r.Next(0, 100) > config.lossThreshold);
 
-            System.Random r = new System.Random();
-
-            for (int i = 0; i < auxBuffer.Count; i++)
+            if (shouldSendPacket)
             {
-                DateTime sendTime = DateTime.Now;
-
-                if (((r.Next(0, 100) > config.lossThreshold) && config.packetLoss) || !config.packetLoss) // Don't schedule the message with certain probability
+                // Simulate jitter by adding a random delay to the sendTime
+                if (config.jitter)
                 {
-                    if (config.jitter)
-                    {
-                        sendTime = DateTime.Now.AddMilliseconds(r.Next(config.minJitt, config.maxJitt));
-                    }
-
-                    //// Waiting loop to pause until sendTime is reached
-                    //while (DateTime.Now <= sendTime)
-                    //{
-                    //    Thread.Sleep(1); // Sleep for 1 millisecond to avoid a tight loop
-                    //}
-
-                    try
-                    {
-                        socket.SendTo(auxBuffer[i], endPoint);
-                    }
-                    catch (SocketException ex)
-                    {
-                        ReportError("Failed to send packet: " + ex.Message);
-                    }
-
-                    // Remove the packet from the buffer after sending
-                    messageBuffer.RemoveAt(i);
-                    i--; // Adjust index after removal
+                    sendTime = DateTime.Now.AddMilliseconds(r.Next(config.minJitt, config.maxJitt));
                 }
+
+                // Check if jitter is needed and wait asynchronously
+                if (DateTime.Now < sendTime)
+                {
+                    var delayTime = sendTime - DateTime.Now;
+                    await Task.Delay(delayTime); // Async delay allows other tasks to run in the meantime
+                }
+
+                try
+                {
+                    // Attempt to send the packet
+                    socket.SendTo(auxBuffer[i], endPoint);
+                }
+                catch (SocketException ex)
+                {
+                    ReportError("Failed to send packet: " + ex.Message);
+                }
+
+                // Remove the packet from the buffer after sending
+                messageBuffer.RemoveAt(i);
+                i--; // Adjust index after removal to avoid skipping packets
+            }
+            else
+            {
+                // If the packet is lost, remove it from the buffer without sending
+                messageBuffer.RemoveAt(i);
+                i--; // Adjust index after removal
             }
         }
     }
