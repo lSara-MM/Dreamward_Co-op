@@ -8,12 +8,6 @@ using System.Threading;
 
 public class UDPJitter : MonoBehaviour
 {
-    public bool jitter = true;
-    public bool packetLoss = true;
-    public int minJitt = 0;
-    public int maxJitt = 800;
-    public int lossThreshold = 90;
-
     private Socket newSocket; // Added declaration for the socket
     private readonly object myLock = new object(); // Added declaration for the lock object
     private volatile bool exit = false; // Added declaration for the exit flag
@@ -46,16 +40,16 @@ public class UDPJitter : MonoBehaviour
         newSocket?.Close();
     }
 
-    void SendMessage(byte[] text, IPEndPoint ip)
+    public void SendMessageWithJitter(byte[] text, IPEndPoint ip, NetConfig config)
     {
         System.Random r = new System.Random();
-        if (((r.Next(0, 100) > lossThreshold) && packetLoss) || !packetLoss) // Don't schedule the message with certain probability
+        if (((r.Next(0, 100) > config.lossThreshold) && config.packetLoss) || !config.packetLoss) // Don't schedule the message with certain probability
         {
             Message m = new Message();
             m.message = text;
-            if (jitter)
+            if (config.jitter)
             {
-                m.time = DateTime.Now.AddMilliseconds(r.Next(minJitt, maxJitt)); // Delay the message sending according to parameters
+                m.time = DateTime.Now.AddMilliseconds(r.Next(config.minJitt, config.maxJitt)); // Delay the message sending according to parameters
             }
             else
             {

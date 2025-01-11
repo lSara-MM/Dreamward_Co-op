@@ -54,6 +54,7 @@ public class Serialization : MonoBehaviour
         }
         else if (online = GameObject.FindGameObjectWithTag("Client"))
         {
+            //online.GetComponent<ClientUDP>().SendDataPacketHarshEnvironment(data, NetConfig.ApplyDefault());
             online.GetComponent<ClientUDP>().SendDataPacket(data);
         }
         else

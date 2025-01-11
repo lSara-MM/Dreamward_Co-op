@@ -112,7 +112,6 @@ public class ServerUDP : MonoBehaviour, INetworking
         var receivedData = cs_Serialization.DeserializeFromBinary(inputPacket);
 
         ISerializedData serializedData = receivedData as ISerializedData;
-
     }
 
     public void OnUpdate()

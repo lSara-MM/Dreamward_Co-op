@@ -4,6 +4,12 @@ using System.Text;
 using UnityEngine;
 using System.Threading;
 using System;
+using static Unity.Collections.AllocatorManager;
+using static UnityEngine.Rendering.DebugUI.Table;
+using System.Net.WebSockets;
+using System.Collections.Generic;
+using Unity.Mathematics;
+using System.Data;
 
 public enum BOOLEAN_STATE
 {
@@ -156,6 +162,7 @@ public class ClientUDP : MonoBehaviour, INetworking
             byte[] data = cs_Serialization.SerializeToBinary(outputPacket);
 
             socket.SendTo(data, toAddress);
+
             bs_hostIsValid = BOOLEAN_STATE.TRUE;
         }
         catch (SocketException ex)
@@ -174,6 +181,54 @@ public class ClientUDP : MonoBehaviour, INetworking
         catch (SocketException ex)
         {
             ReportError("Failed to send packet: " + ex.Message);
+        }
+    }
+
+    private List<byte[]> messageBuffer = new List<byte[]>();
+    private readonly object mutex = new object();
+
+    public void SendDataPacketHarshEnvironment(byte[] data, NetConfig config)
+    {
+        lock (mutex)
+        {
+            // Add the packet to the message buffer with the current time
+            messageBuffer.Add(data);
+
+            List<byte[]> auxBuffer = new List<byte[]>(messageBuffer);
+
+            System.Random r = new System.Random();
+
+            for (int i = 0; i < auxBuffer.Count; i++)
+            {
+                DateTime sendTime = DateTime.Now;
+
+                if (((r.Next(0, 100) > config.lossThreshold) && config.packetLoss) || !config.packetLoss) // Don't schedule the message with certain probability
+                {
+                    if (config.jitter)
+                    {
+                        sendTime = DateTime.Now.AddMilliseconds(r.Next(config.minJitt, config.maxJitt));
+                    }
+
+                    //// Waiting loop to pause until sendTime is reached
+                    //while (DateTime.Now <= sendTime)
+                    //{
+                    //    Thread.Sleep(1); // Sleep for 1 millisecond to avoid a tight loop
+                    //}
+
+                    try
+                    {
+                        socket.SendTo(auxBuffer[i], endPoint);
+                    }
+                    catch (SocketException ex)
+                    {
+                        ReportError("Failed to send packet: " + ex.Message);
+                    }
+
+                    // Remove the packet from the buffer after sending
+                    messageBuffer.RemoveAt(i);
+                    i--; // Adjust index after removal
+                }
+            }
         }
     }
 
