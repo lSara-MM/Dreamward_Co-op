@@ -17,6 +17,7 @@ public enum ACTION_TYPE
     PLAYER_DEATH,
     WIN_LOSE,    // needs bool
     MESSAGE,
+    ACKNOWLEDGE,
     NONE
 }
 

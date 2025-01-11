@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using Unity.Mathematics;
 using System.Data;
 using System.Threading.Tasks;
+using TMPro;
 
 public enum BOOLEAN_STATE
 {
@@ -39,6 +40,9 @@ public class ClientUDP : MonoBehaviour, INetworking
     // Only check if host is valid on the HUB
     // TODO: find a better way to do this
     bool manageHostValid = true;
+
+    private List<(Guid uid, byte[] data)> messageBuffer = new List<(Guid uid, byte[] data)>();
+    private readonly object mutex = new object();
 
     private void Start()
     {
@@ -122,11 +126,15 @@ public class ClientUDP : MonoBehaviour, INetworking
     public void OnPacketReceived(byte[] inputPacket, EndPoint fromAddress)
     {
         var receivedData = cs_Serialization.DeserializeFromBinary(inputPacket);
-
         ISerializedData serializedData = receivedData as ISerializedData;
 
-        //Debug.Log($"Data received from {fromAddress}");
-
+        //if (serializedData.action == ACTION_TYPE.ACKNOWLEDGE)
+        //{
+        //    lock (mutex)  // Ensure thread safety when removing from the shared list
+        //    {
+        //        messageBuffer.RemoveAll(packet => packet.uid == Guid.Parse(serializedData.message));
+        //    }
+        //}
     }
 
     public void OnUpdate()
@@ -184,9 +192,6 @@ public class ClientUDP : MonoBehaviour, INetworking
             ReportError("Failed to send packet: " + ex.Message);
         }
     }
-
-    private List<(Guid uid, byte[] data)> messageBuffer = new List<(Guid uid, byte[] data)>();
-    private readonly object mutex = new object();
 
     public async Task SendDataPacketHarshEnvironment(Guid uid, byte[] data, NetConfig config)
     {

@@ -110,8 +110,18 @@ public class ServerUDP : MonoBehaviour, INetworking
     public void OnPacketReceived(byte[] inputPacket, EndPoint fromAddress)
     {
         var receivedData = cs_Serialization.DeserializeFromBinary(inputPacket);
-
         ISerializedData serializedData = receivedData as ISerializedData;
+
+        // Send Acknowledge after receiving
+
+        //SerializedData<object> messageData = new SerializedData<object>
+        //(
+        //    id: guid,
+        //    action: ACTION_TYPE.ACKNOWLEDGE,
+        //    message: serializedData.network_id.ToString()
+        //);
+
+        //Globals.StartNewThread(() => SendPacket(messageData, endPoint));
     }
 
     public void OnUpdate()
