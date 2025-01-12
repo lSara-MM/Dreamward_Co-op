@@ -6,6 +6,9 @@ using System.Threading;
 using TMPro;
 using Unity.VisualScripting;
 using System;
+using Newtonsoft.Json.Linq;
+using System.IO;
+using Newtonsoft.Json;
 
 public class ServerUDP : MonoBehaviour, INetworking
 {
@@ -109,19 +112,30 @@ public class ServerUDP : MonoBehaviour, INetworking
 
     public void OnPacketReceived(byte[] inputPacket, EndPoint fromAddress)
     {
-        var receivedData = cs_Serialization.DeserializeFromBinary(inputPacket);
-        ISerializedData serializedData = receivedData as ISerializedData;
+        cs_Serialization.DeserializeFromBinary(inputPacket);
 
-        // Send Acknowledge after receiving
+        // Create Acknowledge
+        string json;
+        MemoryStream stream = new MemoryStream(inputPacket);
+        BinaryReader reader = new BinaryReader(stream, System.Text.Encoding.UTF8);
 
-        //SerializedData<object> messageData = new SerializedData<object>
-        //(
-        //    id: guid,
-        //    action: ACTION_TYPE.ACKNOWLEDGE,
-        //    message: serializedData.network_id.ToString()
-        //);
+        json = reader.ReadString();
 
-        //Globals.StartNewThread(() => SendPacket(messageData, endPoint));
+        var jsonObject = JObject.Parse(json);
+
+        Guid packet_id = (Guid)jsonObject["packet_id"];
+
+        Debug.Log(packet_id);
+
+        SerializedData<object> messageData = new SerializedData<object>
+        (
+            id: guid,
+            action: ACTION_TYPE.ACKNOWLEDGE,
+            message: "Packet Received Successfully!",
+            packet_id: packet_id
+        );
+
+        Globals.StartNewThread(() => SendPacket(messageData, endPoint));
     }
 
     public void OnUpdate()

@@ -29,7 +29,8 @@ public class Serialization : MonoBehaviour
             { ACTION_TYPE.BOSS_HEALTH, data => HandlePrimitive<int>(data) },
             { ACTION_TYPE.PLAYER_DEATH, data => HandlePrimitive<bool>(data) },
             { ACTION_TYPE.WIN_LOSE, data => HandlePrimitive<bool>(data) },
-            { ACTION_TYPE.MESSAGE, data => true } // TO DO
+            { ACTION_TYPE.MESSAGE, data => true }, // TO DO
+            { ACTION_TYPE.ACKNOWLEDGE, data => true } // TO DO
         };
 
         cs_functionsToExecute = gameObject.GetComponent<FunctionsToExecute>();
@@ -58,7 +59,7 @@ public class Serialization : MonoBehaviour
         {
             if (NetDebugKeys.applyNetConfig)
             {
-                _ = online.GetComponent<ClientUDP>().SendDataPacketHarshEnvironment(id, data, NetConfig.ApplyDefault());
+                _ = online.GetComponent<ClientUDP>().SendDataPacketHarshEnvironment(serializedData.packet_id, data, NetConfig.ApplyDefault());
             }
             else
             {

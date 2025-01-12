@@ -14,8 +14,8 @@ public struct NetConfig
         config.jitter = true;
         config.packetLoss = true;
         config.minJitt = 0;
-        config.maxJitt = 800;
-        config.lossThreshold = 90;
+        config.maxJitt = 0;
+        config.lossThreshold = 0;
 
         return config;
     }

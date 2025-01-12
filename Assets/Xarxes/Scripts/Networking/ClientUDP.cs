@@ -12,6 +12,8 @@ using Unity.Mathematics;
 using System.Data;
 using System.Threading.Tasks;
 using TMPro;
+using Newtonsoft.Json.Linq;
+using System.IO;
 
 public enum BOOLEAN_STATE
 {
@@ -125,16 +127,27 @@ public class ClientUDP : MonoBehaviour, INetworking
 
     public void OnPacketReceived(byte[] inputPacket, EndPoint fromAddress)
     {
-        var receivedData = cs_Serialization.DeserializeFromBinary(inputPacket);
-        ISerializedData serializedData = receivedData as ISerializedData;
+        cs_Serialization.DeserializeFromBinary(inputPacket);
 
-        //if (serializedData.action == ACTION_TYPE.ACKNOWLEDGE)
-        //{
-        //    lock (mutex)  // Ensure thread safety when removing from the shared list
-        //    {
-        //        messageBuffer.RemoveAll(packet => packet.uid == Guid.Parse(serializedData.message));
-        //    }
-        //}
+        // Receive Acknowledge
+        string json;
+        MemoryStream stream = new MemoryStream(inputPacket);
+        BinaryReader reader = new BinaryReader(stream, System.Text.Encoding.UTF8);
+
+        json = reader.ReadString();
+
+        var jsonObject = JObject.Parse(json);
+
+        ACTION_TYPE actionType = (ACTION_TYPE)(int)jsonObject["action"];
+        string packet_id = (string)jsonObject["packet_id"];
+
+        if (actionType == ACTION_TYPE.ACKNOWLEDGE)
+        {
+            lock(mutex)
+            {
+                messageBuffer.RemoveAll(packet => packet.uid.ToString().Equals(packet_id));
+            }
+        }
     }
 
     public void OnUpdate()
@@ -235,19 +248,19 @@ public class ClientUDP : MonoBehaviour, INetworking
                     ReportError("Failed to send packet: " + ex.Message);
                 }
 
-                // Remove the packet with the matching uid from the buffer after sending
-                lock (mutex)  // Ensure thread safety when removing from the shared list
-                {
-                    messageBuffer.RemoveAll(packet => packet.uid == uid);
-                }
+                //// Remove the packet with the matching uid from the buffer after sending
+                //lock (mutex)  // Ensure thread safety when removing from the shared list
+                //{
+                //    messageBuffer.RemoveAll(packet => packet.uid == uid);
+                //}
             }
             else
             {
                 // Remove the packet with the matching uid from the buffer after sending
-                lock (mutex)  // Ensure thread safety when removing from the shared list
-                {
-                    messageBuffer.RemoveAll(packet => packet.uid == uid);
-                }
+                //lock (mutex)  // Ensure thread safety when removing from the shared list
+                //{
+                //    messageBuffer.RemoveAll(packet => packet.uid == uid);
+                //}
             }
         }
     }
