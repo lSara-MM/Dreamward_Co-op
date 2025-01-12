@@ -115,27 +115,43 @@ public class ServerUDP : MonoBehaviour, INetworking
         cs_Serialization.DeserializeFromBinary(inputPacket);
 
         // Create Acknowledge
-        string json;
-        MemoryStream stream = new MemoryStream(inputPacket);
-        BinaryReader reader = new BinaryReader(stream, System.Text.Encoding.UTF8);
+        try
+        {
+            // Trim trailing null bytes
+            int validLength = inputPacket.Length;
+            while (validLength > 0 && inputPacket[validLength - 1] == 0)
+            {
+                validLength--;
+            }
 
-        json = reader.ReadString();
+            byte[] trimmedPacket = new byte[validLength];
+            Array.Copy(inputPacket, trimmedPacket, validLength);
 
-        var jsonObject = JObject.Parse(json);
+            // Decode the packet as a string
+            string json = System.Text.Encoding.UTF8.GetString(trimmedPacket);
 
-        Guid packet_id = (Guid)jsonObject["packet_id"];
+            // Parse the JSON
+            var jsonObject = JObject.Parse(json);
 
-        Debug.Log(packet_id);
+            // Extract packet_id
+            Guid packet_id = Guid.Parse((string)jsonObject["packet_id"]);
+            Debug.Log($"Packet received with ID: {packet_id}");
 
-        SerializedData<object> messageData = new SerializedData<object>
-        (
-            id: guid,
-            action: ACTION_TYPE.ACKNOWLEDGE,
-            message: "Packet Received Successfully!",
-            packet_id: packet_id
-        );
+            // Prepare the acknowledge message
+            SerializedData<object> messageData = new SerializedData<object>(
+                id: Guid.NewGuid(), // Unique ID for this message
+                action: ACTION_TYPE.ACKNOWLEDGE,
+                message: "Packet Received Successfully!",
+                packet_id: packet_id
+            );
 
-        Globals.StartNewThread(() => SendPacket(messageData, endPoint));
+            // Send acknowledge message
+            Globals.StartNewThread(() => SendPacket(messageData, fromAddress));
+        }
+        catch (Exception ex)
+        {
+            //Debug.LogError($"Failed to process incoming packet: {ex.Message}");
+        }
     }
 
     public void OnUpdate()

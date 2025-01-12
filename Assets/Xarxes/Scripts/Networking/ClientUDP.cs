@@ -130,23 +130,43 @@ public class ClientUDP : MonoBehaviour, INetworking
         cs_Serialization.DeserializeFromBinary(inputPacket);
 
         // Receive Acknowledge
-        string json;
-        MemoryStream stream = new MemoryStream(inputPacket);
-        BinaryReader reader = new BinaryReader(stream, System.Text.Encoding.UTF8);
-
-        json = reader.ReadString();
-
-        var jsonObject = JObject.Parse(json);
-
-        ACTION_TYPE actionType = (ACTION_TYPE)(int)jsonObject["action"];
-        string packet_id = (string)jsonObject["packet_id"];
-
-        if (actionType == ACTION_TYPE.ACKNOWLEDGE)
+        try
         {
-            lock(mutex)
+            // Trim trailing null bytes
+            int validLength = inputPacket.Length;
+            while (validLength > 0 && inputPacket[validLength - 1] == 0)
             {
-                messageBuffer.RemoveAll(packet => packet.uid.ToString().Equals(packet_id));
+                validLength--;
             }
+
+            byte[] trimmedPacket = new byte[validLength];
+            Array.Copy(inputPacket, trimmedPacket, validLength);
+
+            // Decode the packet as a string
+            string json = System.Text.Encoding.UTF8.GetString(trimmedPacket);
+
+            // Parse the JSON
+            var jsonObject = JObject.Parse(json);
+
+            // Extract action and packet_id
+            ACTION_TYPE actionType = (ACTION_TYPE)(int)jsonObject["action"];
+            string packet_id = (string)jsonObject["packet_id"];
+
+            Debug.Log($"Action Type: {actionType}, Packet ID: {packet_id}");
+
+            // Handle acknowledge
+            if (actionType == ACTION_TYPE.ACKNOWLEDGE)
+            {
+                lock (mutex)
+                {
+                    messageBuffer.RemoveAll(packet => packet.uid.ToString().Equals(packet_id));
+                }
+                Debug.Log($"Acknowledged packet with ID: {packet_id}");
+            }
+        }
+        catch (Exception ex)
+        {
+            //Debug.LogError($"Failed to process incoming packet: {ex.Message}");
         }
     }
 
