@@ -38,10 +38,13 @@ public class FunctionsToExecute : MonoBehaviour
 
     private void Update()
     {
-        // Execute all actions queued for the main thread
-        while (mainThreadActions.Count > 0)
+        lock (mainThreadActions)
         {
-            mainThreadActions.Dequeue().Invoke();
+            // Execute all actions queued for the main thread
+            while (mainThreadActions.Count > 0)
+            {
+                mainThreadActions.Dequeue().Invoke();
+            }
         }
     }
 
@@ -63,6 +66,7 @@ public class FunctionsToExecute : MonoBehaviour
             cs_guid = GameObject.FindGameObjectWithTag("Player").GetComponent<GUID_Generator>();
 
             GameObject go = Instantiate(prefab, param.spawnPosition, Quaternion.identity);
+            Debug.Log("SPAWN Player " + prefab.name);
 
             // Set player data to the received data
             go.GetComponent<GUID_Generator>().SetGuid(data.network_id);
@@ -125,7 +129,7 @@ public class FunctionsToExecute : MonoBehaviour
     public void ExecuteInput(SerializedData<ns_structure.playerInput> data)
     {
         ns_structure.playerInput param = data.parameters;
-        //Debug.Log($"Execute Input: {data.network_id}");
+        Debug.Log($"Execute Input: {data.network_id}");
 
         if (guidDictionary.ContainsKey(data.network_id))
         {

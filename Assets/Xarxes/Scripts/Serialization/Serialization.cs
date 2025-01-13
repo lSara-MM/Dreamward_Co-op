@@ -29,8 +29,8 @@ public class Serialization : MonoBehaviour
             { ACTION_TYPE.BOSS_HEALTH, data => HandlePrimitive<int>(data) },
             { ACTION_TYPE.PLAYER_DEATH, data => HandlePrimitive<bool>(data) },
             { ACTION_TYPE.WIN_LOSE, data => HandlePrimitive<bool>(data) },
-            { ACTION_TYPE.MESSAGE, data => true }, // TO DO
-            { ACTION_TYPE.ACKNOWLEDGE, data => true } // TO DO
+            //{ ACTION_TYPE.MESSAGE, data => true }, // TO DO
+            //{ ACTION_TYPE.ACKNOWLEDGE, data => true } // TO DO
         };
 
         cs_functionsToExecute = gameObject.GetComponent<FunctionsToExecute>();
@@ -102,7 +102,17 @@ public class Serialization : MonoBehaviour
     {
         string json;
 
-        using (MemoryStream stream = new MemoryStream(binaryData))
+        // Trim trailing null bytes
+        int validLength = binaryData.Length;
+        while (validLength > 0 && binaryData[validLength - 1] == 0)
+        {
+            validLength--;
+        }
+
+        byte[] trimmedPacket = new byte[validLength];
+        Array.Copy(binaryData, trimmedPacket, validLength);
+
+        using (MemoryStream stream = new MemoryStream(trimmedPacket))
         {
             using (BinaryReader reader = new BinaryReader(stream, System.Text.Encoding.UTF8))
             {
