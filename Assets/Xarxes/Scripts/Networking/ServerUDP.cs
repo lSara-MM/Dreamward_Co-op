@@ -10,6 +10,7 @@ using Newtonsoft.Json.Linq;
 using System.IO;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.Linq;
 
 public class ServerUDP : MonoBehaviour, INetworking
 {
@@ -26,7 +27,11 @@ public class ServerUDP : MonoBehaviour, INetworking
 
     int recv = 0;
 
-    private List<byte[]> packets = new List<byte[]>();
+    private List<(Guid uid, byte[] data)> packets = new List<(Guid uid, byte[] data)>();
+    private float timer = 0f;
+    private float timerProcess = 0f;
+
+    private List<Guid> processedPackets = new List<Guid>();
 
     private void Start()
     {
@@ -115,8 +120,12 @@ public class ServerUDP : MonoBehaviour, INetworking
 
     public void OnPacketReceived(byte[] inputPacket, EndPoint fromAddress)
     {
-        cs_Serialization.DeserializeFromBinary(inputPacket);
-        //packets.Add(inputPacket);
+        //if (counter < 2)
+        //{
+        //    cs_Serialization.DeserializeFromBinary(inputPacket);
+        //    counter++;
+        //}
+
 
         string json = "";
 
@@ -135,6 +144,8 @@ public class ServerUDP : MonoBehaviour, INetworking
                 var jsonObject = JObject.Parse(json);
 
                 Guid packet_id = (Guid)jsonObject["packet_id"];
+
+                packets.Add((packet_id, (byte[])inputPacket.Clone()));
 
                 //Debug.Log(packet_id);
 
@@ -179,6 +190,43 @@ public class ServerUDP : MonoBehaviour, INetworking
 
         // If no valid JSON is found, return an empty string
         return string.Empty;
+    }
+
+    private void Update()
+    {
+        timer += Time.deltaTime;
+        timerProcess += Time.deltaTime;
+
+        if (timer >= 0.1f)
+        {
+            lock (packets)
+            {
+                for (int i = 0; i < packets.Count; i++)
+                {
+                    if (!processedPackets.Contains(packets[i].uid))
+                    {
+                        cs_Serialization.DeserializeFromBinary(packets[i].data);
+                        processedPackets.Add(packets[i].uid);
+
+                    }
+                }
+
+                packets.Clear();
+            }
+
+            timer = 0;
+        }
+
+        if (timerProcess >= 5f)
+        {
+            for (int i = 0; i < processedPackets.Count; i++)
+            {
+                Debug.Log("ID PROCESSED " + i + " " + processedPackets[i]);
+            }
+
+            processedPackets.Clear();
+            timerProcess = 0;
+        }
     }
 
     public void OnUpdate()

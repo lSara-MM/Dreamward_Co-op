@@ -43,8 +43,11 @@ public class ClientUDP : MonoBehaviour, INetworking
     // TODO: find a better way to do this
     bool manageHostValid = true;
 
-    private List<(Guid uid, byte[] data)> messageBuffer = new List<(Guid uid, byte[] data)>();
+    private List<(Guid uid, byte[] data, int times)> messageBuffer = new List<(Guid uid, byte[] data, int times)>();
     private readonly object mutex = new object();
+
+    private Dictionary<Guid, DateTime> lastSendTime = new Dictionary<Guid, DateTime>();
+    private const int RESEND_INTERVAL = 100; // Milliseconds
 
     private void Start()
     {
@@ -65,6 +68,8 @@ public class ClientUDP : MonoBehaviour, INetworking
     void Update()
     {
         OnUpdate();
+
+        ResendUnacknowledgedPackets();
     }
 
     public void InitNetcode()
@@ -151,23 +156,8 @@ public class ClientUDP : MonoBehaviour, INetworking
                 {
                     lock (messageBuffer)
                     {
-                        //Debug.Log("BEFORE " + messageBuffer.Count);
-                        //for (int i = 0; i < messageBuffer.Count; i++)
-                        //{
-                        //    Debug.Log("UID " + i + " " + messageBuffer[i].uid);
-                        //}
-                        //Debug.Log("PACKET GUID " + packet_id);
                         messageBuffer.RemoveAll(packet => packet.uid == packet_id);
-                        //Debug.Log("AFTER " + messageBuffer.Count);
-                        //for (int i = 0; i < messageBuffer.Count; i++)
-                        //{
-                        //    Debug.Log("UID " + i + " " + messageBuffer[i].uid);
-                        //}    
-
-                        for (int i = 0; i < messageBuffer.Count; i++)
-                        {
-                            SendDataPacket(messageBuffer[i].data);
-                        }
+                        lastSendTime.Remove(packet_id);
                     }
                 }
             }
@@ -178,6 +168,54 @@ public class ClientUDP : MonoBehaviour, INetworking
             Debug.LogError($"Raw JSON: {json}"); // Log the raw JSON content
         }
     }
+
+    private void ResendUnacknowledgedPackets()
+    {
+        lock (mutex)
+        {
+            DateTime now = DateTime.UtcNow;
+
+            foreach (var (uid, data, times) in messageBuffer)
+            {
+                // Check if the resend interval has passed
+                if (lastSendTime.ContainsKey(uid))
+                {
+                    if (times <= 3 && (now - lastSendTime[uid]).TotalMilliseconds > RESEND_INTERVAL)
+                    {
+                        Debug.Log($"Resending packet {uid}");
+                        SendDataPacket(data);
+                        lastSendTime[uid] = now; // Update the last send time
+                    }
+                    else if (times > 3)
+                    {
+                        messageBuffer.RemoveAll(packet => packet.uid == uid);
+                        lastSendTime.Remove(uid);
+                    }
+                }
+            }
+            for (int i = 0; i < messageBuffer.Count; i++)
+            {
+                // Check if the resend interval has passed
+                if (lastSendTime.ContainsKey(messageBuffer[i].uid))
+                {
+                    if (messageBuffer[i].times <= 3 && (now - lastSendTime[messageBuffer[i].uid]).TotalMilliseconds > RESEND_INTERVAL)
+                    {
+                        Debug.Log($"Resending packet {messageBuffer[i].uid}");
+                        SendDataPacket(messageBuffer[i].data);
+                        lastSendTime[messageBuffer[i].uid] = now; // Update the last send time
+                        int time =  messageBuffer[i].times + 1;
+                        messageBuffer[i] = (messageBuffer[i].uid, messageBuffer[i].data, messageBuffer[i].times + 1);
+                    }
+                    else if (messageBuffer[i].times > 3)
+                    {
+                        messageBuffer.RemoveAll(packet => packet.uid == messageBuffer[i].uid);
+                        lastSendTime.Remove(messageBuffer[i].uid);
+                    }
+                }
+            }
+        }
+    }
+
     public static string CleanJson(string json)
     {
         // Iterate from the end to find the point where valid JSON ends
@@ -262,10 +300,11 @@ public class ClientUDP : MonoBehaviour, INetworking
     public async Task SendDataPacketHarshEnvironment(Guid uid, byte[] data, NetConfig config)
     {
         // Add the packet to the message buffer
-        messageBuffer.Add((uid, data));
+        messageBuffer.Add((uid, data, 1));
+        lastSendTime[uid] = DateTime.UtcNow; // Track the initial send time
 
         // Copy the message buffer to avoid modifying the original during iteration
-        List<(Guid uid, byte[] data)> auxBuffer = new List<(Guid uid, byte[] data)>(messageBuffer);
+        List<(Guid uid, byte[] data, int times)> auxBuffer = new List<(Guid uid, byte[] data, int times)>(messageBuffer);
 
         System.Random r = new System.Random();
 
