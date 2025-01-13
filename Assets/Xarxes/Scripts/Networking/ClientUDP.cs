@@ -182,7 +182,6 @@ public class ClientUDP : MonoBehaviour, INetworking
                 {
                     if (times <= 3 && (now - lastSendTime[uid]).TotalMilliseconds > RESEND_INTERVAL)
                     {
-                        Debug.Log($"Resending packet {uid}");
                         SendDataPacket(data);
                         lastSendTime[uid] = now; // Update the last send time
                     }
@@ -200,7 +199,6 @@ public class ClientUDP : MonoBehaviour, INetworking
                 {
                     if (messageBuffer[i].times <= 3 && (now - lastSendTime[messageBuffer[i].uid]).TotalMilliseconds > RESEND_INTERVAL)
                     {
-                        Debug.Log($"Resending packet {messageBuffer[i].uid}");
                         SendDataPacket(messageBuffer[i].data);
                         lastSendTime[messageBuffer[i].uid] = now; // Update the last send time
                         int time =  messageBuffer[i].times + 1;

@@ -140,10 +140,6 @@ public class FunctionsToExecute : MonoBehaviour
                 go.GetComponent<PlayerMovement>().Movement(param.key, param.state, param.posX, param.posY);
             }
         }
-        else
-        {
-            Debug.LogWarning("GUID not found");
-        }
     }
 
     public void DestroyByName(SerializedData<string> data)

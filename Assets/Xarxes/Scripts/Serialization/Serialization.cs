@@ -95,7 +95,6 @@ public class Serialization : MonoBehaviour
     }
 
     // Deserialize data and call the functions to update the game's state
-    // Return --> If success: Deserialized data. Else: default empty SerializedData<object>
     public void DeserializeFromBinary(byte[] binaryData)
     {
         string json;
@@ -123,17 +122,8 @@ public class Serialization : MonoBehaviour
 
                                 // Call the delegate
                                 var result = action.Invoke(jsonObject);
-
-                                // Return the deserialized data
-                                //return result;
-                            }
-                            else
-                            {
-                                Debug.LogWarning($"Unknown action type: {actionType}");
                             }
                         }
-
-                        //return JsonConvert.DeserializeObject<SerializedData<object>>(json);
                     }
                 }
                 catch (Exception ex)
