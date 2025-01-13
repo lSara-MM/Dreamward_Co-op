@@ -123,23 +123,26 @@ public class ServerUDP : MonoBehaviour, INetworking
 
             json = reader.ReadString();
 
-            json = CleanJson(json);
+            json = CleanJson(json); // Remove incomplete JSON data
 
-            var jsonObject = JObject.Parse(json);
+            if (json != string.Empty) // If no data is recevied don't parse
+            {
+                var jsonObject = JObject.Parse(json);
 
-            Guid packet_id = (Guid)jsonObject["packet_id"];
+                Guid packet_id = (Guid)jsonObject["packet_id"];
 
-            //Debug.Log(packet_id);
+                //Debug.Log(packet_id);
 
-            SerializedData<object> messageData = new SerializedData<object>
-            (
-                id: guid,
-                action: ACTION_TYPE.ACKNOWLEDGE,
-                message: "Packet Received Successfully!",
-                packet_id: packet_id
-            );
+                SerializedData<object> messageData = new SerializedData<object>
+                (
+                    id: guid,
+                    action: ACTION_TYPE.ACKNOWLEDGE,
+                    message: "Packet Received Successfully!",
+                    packet_id: packet_id
+                );
 
-            Globals.StartNewThread(() => SendPacket(messageData, endPoint));
+                Globals.StartNewThread(() => SendPacket(messageData, endPoint));
+            }
         }
         catch (Exception ex)
         {

@@ -120,9 +120,9 @@ public class Serialization : MonoBehaviour
 
                 try
                 {
-                    json = CleanJson(json);
+                    json = CleanJson(json); // Remove incomplete JSON data
 
-                    if (json != string.Empty)
+                    if (json != string.Empty) // If no data is recevied don't parse
                     {
                         var jsonObject = JObject.Parse(json);
 

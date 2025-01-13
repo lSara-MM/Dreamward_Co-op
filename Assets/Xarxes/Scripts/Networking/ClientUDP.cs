@@ -138,18 +138,21 @@ public class ClientUDP : MonoBehaviour, INetworking
 
             json = reader.ReadString();
 
-            json = CleanJson(json);
+            json = CleanJson(json); // Remove incomplete JSON data
 
-            var jsonObject = JObject.Parse(json);
-
-            ACTION_TYPE actionType = (ACTION_TYPE)(int)jsonObject["action"];
-            string packet_id = (string)jsonObject["packet_id"];
-
-            if (actionType == ACTION_TYPE.ACKNOWLEDGE)
+            if (json != string.Empty) // If no data is recevied don't parse
             {
-                lock (mutex)
+                var jsonObject = JObject.Parse(json);
+
+                ACTION_TYPE actionType = (ACTION_TYPE)(int)jsonObject["action"];
+                string packet_id = (string)jsonObject["packet_id"];
+
+                if (actionType == ACTION_TYPE.ACKNOWLEDGE)
                 {
-                    messageBuffer.RemoveAll(packet => packet.uid.ToString().Equals(packet_id));
+                    lock (mutex)
+                    {
+                        messageBuffer.RemoveAll(packet => packet.uid.ToString().Equals(packet_id));
+                    }
                 }
             }
         }
