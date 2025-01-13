@@ -223,11 +223,6 @@ public class ServerUDP : MonoBehaviour, INetworking
 
         if (timerProcess >= 5f)
         {
-            for (int i = 0; i < processedPackets.Count; i++)
-            {
-                Debug.Log("ID PROCESSED " + i + " " + processedPackets[i]);
-            }
-
             processedPackets.Clear();
             timerProcess = 0;
         }
