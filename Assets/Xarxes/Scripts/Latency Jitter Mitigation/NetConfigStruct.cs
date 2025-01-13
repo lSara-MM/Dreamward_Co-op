@@ -21,6 +21,8 @@ public struct NetConfig
     public static int _currentJitterStepIndex = 0; // Index for jitter values
     public static int _currentLossStepIndex = 0;  // Index for loss threshold values
 
+    static public string networkDebugText;
+
     // Method to configure the default values
     public static void ConfigureDefault(bool jitter, bool packetLoss, int minJitt, int maxJitt, int lossThreshold)
     {
@@ -46,7 +48,7 @@ public struct NetConfig
     }
 
     // Debug method to handle runtime configuration
-    public static void DebugUpdate(string action)
+    public static string DebugUpdate(string action)
     {
         switch (action)
         {
@@ -70,6 +72,8 @@ public struct NetConfig
                 Debug.Log($"Jitter value updated to {_jitterSteps[_currentJitterStepIndex]}");
                 break;
         }
+
+        return "";
     }
 
 }

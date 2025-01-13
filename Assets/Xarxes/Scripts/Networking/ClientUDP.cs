@@ -256,6 +256,8 @@ public class ClientUDP : MonoBehaviour, INetworking
 
                 if (cs_ChangeScene)
                 {
+                    NetDebugKeys.isclient = true;
+
                     cs_ChangeScene.ChangeToScene(scene);
                 }
             }
