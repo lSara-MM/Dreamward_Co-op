@@ -27,9 +27,11 @@ public class ServerUDP : MonoBehaviour, INetworking
 
     int recv = 0;
 
-    private List<(Guid uid, byte[] data)> packets = new List<(Guid uid, byte[] data)>();
+    private List<(Guid uid, byte[] data, int order)> packets = new List<(Guid uid, byte[] data, int order)>();
     private float timer = 0f;
     private float timerProcess = 0f;
+
+    private int max = 0;
 
     private List<Guid> processedPackets = new List<Guid>();
 
@@ -120,13 +122,6 @@ public class ServerUDP : MonoBehaviour, INetworking
 
     public void OnPacketReceived(byte[] inputPacket, EndPoint fromAddress)
     {
-        //if (counter < 2)
-        //{
-        //    cs_Serialization.DeserializeFromBinary(inputPacket);
-        //    counter++;
-        //}
-
-
         string json = "";
 
         // Create Acknowledge
@@ -145,7 +140,10 @@ public class ServerUDP : MonoBehaviour, INetworking
 
                 Guid packet_id = (Guid)jsonObject["packet_id"];
 
-                packets.Add((packet_id, (byte[])inputPacket.Clone()));
+                if ((int)jsonObject["packet_num"] > max)
+                {
+                    packets.Add((packet_id, (byte[])inputPacket.Clone(), (int)jsonObject["packet_num"]));
+                }
 
                 //Debug.Log(packet_id);
 
@@ -201,6 +199,12 @@ public class ServerUDP : MonoBehaviour, INetworking
         {
             lock (packets)
             {
+                if (packets.Count != 0)
+                {
+                    packets.Sort((x, y) => x.order.CompareTo(y.order));
+                    max = packets.ElementAt(packets.Count - 1).order;
+                }
+               
                 for (int i = 0; i < packets.Count; i++)
                 {
                     if (!processedPackets.Contains(packets[i].uid))
