@@ -102,17 +102,7 @@ public class Serialization : MonoBehaviour
     {
         string json;
 
-        // Trim trailing null bytes
-        int validLength = binaryData.Length;
-        while (validLength > 0 && binaryData[validLength - 1] == 0)
-        {
-            validLength--;
-        }
-
-        byte[] trimmedPacket = new byte[validLength];
-        Array.Copy(binaryData, trimmedPacket, validLength);
-
-        using (MemoryStream stream = new MemoryStream(trimmedPacket))
+        using (MemoryStream stream = new MemoryStream(binaryData))
         {
             using (BinaryReader reader = new BinaryReader(stream, System.Text.Encoding.UTF8))
             {
