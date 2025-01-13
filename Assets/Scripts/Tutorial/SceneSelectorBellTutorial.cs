@@ -48,8 +48,6 @@ public class SceneSelectorBellTutorial : MonoBehaviour
             // Remove from don't destroy list so it gets recreated
             Globals.dontDestroyList.Remove(item);
             Destroy(item);
-
-            Debug.Log("ITEM DESTROYED " + item.gameObject.name);
         }
     }
 }

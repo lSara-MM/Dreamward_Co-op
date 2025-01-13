@@ -145,8 +145,6 @@ public class ServerUDP : MonoBehaviour, INetworking
                     packets.Add((packet_id, (byte[])inputPacket.Clone(), (int)jsonObject["packet_num"]));
                 }
 
-                //Debug.Log(packet_id);
-
                 SerializedData<object> messageData = new SerializedData<object>
                 (
                     id: guid,

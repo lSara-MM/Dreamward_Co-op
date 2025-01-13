@@ -339,20 +339,6 @@ public class ClientUDP : MonoBehaviour, INetworking
                 {
                     ReportError("Failed to send packet: " + ex.Message);
                 }
-
-                //// Remove the packet with the matching uid from the buffer after sending
-                //lock (mutex)  // Ensure thread safety when removing from the shared list
-                //{
-                //    messageBuffer.RemoveAll(packet => packet.uid == uid);
-                //}
-            }
-            else
-            {
-                // Remove the packet with the matching uid from the buffer after sending
-                //lock (mutex)  // Ensure thread safety when removing from the shared list
-                //{
-                //    messageBuffer.RemoveAll(packet => packet.uid == uid);
-                //}
             }
         }
     }

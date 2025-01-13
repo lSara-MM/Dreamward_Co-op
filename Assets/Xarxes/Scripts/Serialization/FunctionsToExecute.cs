@@ -66,7 +66,6 @@ public class FunctionsToExecute : MonoBehaviour
             cs_guid = GameObject.FindGameObjectWithTag("Player").GetComponent<GUID_Generator>();
 
             GameObject go = Instantiate(prefab, param.spawnPosition, Quaternion.identity);
-            //Debug.Log("SPAWN Player " + prefab.name);
 
             // Set player data to the received data
             go.GetComponent<GUID_Generator>().SetGuid(data.network_id);
@@ -101,8 +100,6 @@ public class FunctionsToExecute : MonoBehaviour
 
             GUID_Generator generator = go.GetComponent<GUID_Generator>();
 
-            //Debug.Log("SPAWN PREFAB " + go.name);
-
             // Save the guid to the map if it has
             if (generator != null)
             {
@@ -129,7 +126,6 @@ public class FunctionsToExecute : MonoBehaviour
     public void ExecuteInput(SerializedData<ns_structure.playerInput> data)
     {
         ns_structure.playerInput param = data.parameters;
-        //Debug.Log($"Execute Input: {data.network_id}");
 
         if (guidDictionary.ContainsKey(data.network_id))
         {
@@ -173,8 +169,6 @@ public class FunctionsToExecute : MonoBehaviour
 
     public void ChangeToScene(SerializedData<string> data)
     {
-        //Debug.Log("Change Scene " + data.parameters);
-
         foreach (GameObject item in Globals.dontDestroyList)
         {
             DontDestroyOnLoad(item);
@@ -192,8 +186,6 @@ public class FunctionsToExecute : MonoBehaviour
 
     public void SetTargetBoss(SerializedData<ns_structure.vector2D> data)
     {
-        //Debug.Log("Boss movement " + data.parameters);
-
         BossHealth cs_bossHealth = GameObject.FindGameObjectWithTag("Boss").GetComponent<BossHealth>();
         cs_bossHealth.gameObject.transform.position = new Vector3(data.parameters.x, data.parameters.y, 0);
     }
