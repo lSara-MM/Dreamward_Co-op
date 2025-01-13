@@ -16,6 +16,7 @@ public class NetDebugKeys : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.K))
         {
             applyNetConfig = !applyNetConfig;
+            Debug.Log("Lag and jitter: " + applyNetConfig);
         }
     }
 }

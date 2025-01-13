@@ -98,7 +98,7 @@ public class Serialization : MonoBehaviour
 
     // Deserialize data and call the functions to update the game's state
     // Return --> If success: Deserialized data. Else: default empty SerializedData<object>
-    public object DeserializeFromBinary(byte[] binaryData)
+    public void DeserializeFromBinary(byte[] binaryData)
     {
         string json;
 
@@ -110,29 +110,33 @@ public class Serialization : MonoBehaviour
 
                 try
                 {
-                    var jsonObject = JObject.Parse(json);
+                    json = CleanJson(json);
 
-                    if (jsonObject.ContainsKey("action"))
+                    if (json != string.Empty)
                     {
-                        ACTION_TYPE actionType = (ACTION_TYPE)(int)jsonObject["action"];
-                        if (actionsDictionary.ContainsKey(actionType))
-                        {
-                            var action = actionsDictionary[actionType];
+                        var jsonObject = JObject.Parse(json);
 
-                            // Call the delegate
-                            var result = action.Invoke(jsonObject);
-
-                            // Return the deserialized data
-                            return result;
-                        }
-                        else
+                        if (jsonObject.ContainsKey("action"))
                         {
-                            Debug.LogWarning($"Unknown action type: {actionType}");
+                            ACTION_TYPE actionType = (ACTION_TYPE)(int)jsonObject["action"];
+                            if (actionsDictionary.ContainsKey(actionType))
+                            {
+                                var action = actionsDictionary[actionType];
+
+                                // Call the delegate
+                                var result = action.Invoke(jsonObject);
+
+                                // Return the deserialized data
+                                //return result;
+                            }
+                            else
+                            {
+                                Debug.LogWarning($"Unknown action type: {actionType}");
+                            }
                         }
+
+                        //return JsonConvert.DeserializeObject<SerializedData<object>>(json);
                     }
-
-                    return JsonConvert.DeserializeObject<SerializedData<object>>(json);
-
                 }
                 catch (Exception ex)
                 {
@@ -142,6 +146,31 @@ public class Serialization : MonoBehaviour
                 }
             }
         }
+    }
+
+    public static string CleanJson(string json)
+    {
+        // Iterate from the end to find the point where valid JSON ends
+        for (int i = json.Length; i > 0; i--)
+        {
+            string substring = json.Substring(0, i);
+
+            try
+            {
+                // Try parsing the substring as JSON
+                JObject.Parse(substring);
+                // If successful, return this substring as sanitized JSON
+                return substring;
+            }
+            catch
+            {
+                // Ignore parsing errors, continue truncating
+                continue;
+            }
+        }
+
+        // If no valid JSON is found, return an empty string
+        return string.Empty;
     }
 
     #region Structs deserialization

@@ -113,45 +113,64 @@ public class ServerUDP : MonoBehaviour, INetworking
     public void OnPacketReceived(byte[] inputPacket, EndPoint fromAddress)
     {
         cs_Serialization.DeserializeFromBinary(inputPacket);
+        string json = "";
 
         // Create Acknowledge
         try
         {
-            // Trim trailing null bytes
-            int validLength = inputPacket.Length;
-            while (validLength > 0 && inputPacket[validLength - 1] == 0)
-            {
-                validLength--;
-            }
+            MemoryStream stream = new MemoryStream(inputPacket);
+            BinaryReader reader = new BinaryReader(stream, System.Text.Encoding.UTF8);
 
-            byte[] trimmedPacket = new byte[validLength];
-            Array.Copy(inputPacket, trimmedPacket, validLength);
+            json = reader.ReadString();
 
-            // Decode the packet as a string
-            string json = System.Text.Encoding.UTF8.GetString(trimmedPacket);
+            json = CleanJson(json);
 
-            // Parse the JSON
             var jsonObject = JObject.Parse(json);
 
-            // Extract packet_id
-            Guid packet_id = Guid.Parse((string)jsonObject["packet_id"]);
-            Debug.Log($"Packet received with ID: {packet_id}");
+            Guid packet_id = (Guid)jsonObject["packet_id"];
 
-            // Prepare the acknowledge message
-            SerializedData<object> messageData = new SerializedData<object>(
-                id: Guid.NewGuid(), // Unique ID for this message
+            //Debug.Log(packet_id);
+
+            SerializedData<object> messageData = new SerializedData<object>
+            (
+                id: guid,
                 action: ACTION_TYPE.ACKNOWLEDGE,
                 message: "Packet Received Successfully!",
                 packet_id: packet_id
             );
 
-            // Send acknowledge message
-            Globals.StartNewThread(() => SendPacket(messageData, fromAddress));
+            Globals.StartNewThread(() => SendPacket(messageData, endPoint));
         }
         catch (Exception ex)
         {
-            //Debug.LogError($"Failed to process incoming packet: {ex.Message}");
+            Debug.LogError($"Failed to process incoming packet: {ex.Message}");
+            Debug.LogError($"Raw JSON: {json}"); // Log the raw JSON content
         }
+    }
+
+    public static string CleanJson(string json)
+    {
+        // Iterate from the end to find the point where valid JSON ends
+        for (int i = json.Length; i > 0; i--)
+        {
+            string substring = json.Substring(0, i);
+
+            try
+            {
+                // Try parsing the substring as JSON
+                JObject.Parse(substring);
+                // If successful, return this substring as sanitized JSON
+                return substring;
+            }
+            catch
+            {
+                // Ignore parsing errors, continue truncating
+                continue;
+            }
+        }
+
+        // If no valid JSON is found, return an empty string
+        return string.Empty;
     }
 
     public void OnUpdate()

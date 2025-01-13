@@ -128,46 +128,60 @@ public class ClientUDP : MonoBehaviour, INetworking
     public void OnPacketReceived(byte[] inputPacket, EndPoint fromAddress)
     {
         cs_Serialization.DeserializeFromBinary(inputPacket);
+        string json = "";
 
         // Receive Acknowledge
         try
         {
-            // Trim trailing null bytes
-            int validLength = inputPacket.Length;
-            while (validLength > 0 && inputPacket[validLength - 1] == 0)
-            {
-                validLength--;
-            }
+            MemoryStream stream = new MemoryStream(inputPacket);
+            BinaryReader reader = new BinaryReader(stream, System.Text.Encoding.UTF8);
 
-            byte[] trimmedPacket = new byte[validLength];
-            Array.Copy(inputPacket, trimmedPacket, validLength);
+            json = reader.ReadString();
 
-            // Decode the packet as a string
-            string json = System.Text.Encoding.UTF8.GetString(trimmedPacket);
+            json = CleanJson(json);
 
-            // Parse the JSON
             var jsonObject = JObject.Parse(json);
 
-            // Extract action and packet_id
             ACTION_TYPE actionType = (ACTION_TYPE)(int)jsonObject["action"];
             string packet_id = (string)jsonObject["packet_id"];
 
-            Debug.Log($"Action Type: {actionType}, Packet ID: {packet_id}");
-
-            // Handle acknowledge
             if (actionType == ACTION_TYPE.ACKNOWLEDGE)
             {
                 lock (mutex)
                 {
                     messageBuffer.RemoveAll(packet => packet.uid.ToString().Equals(packet_id));
                 }
-                Debug.Log($"Acknowledged packet with ID: {packet_id}");
             }
         }
         catch (Exception ex)
         {
-            //Debug.LogError($"Failed to process incoming packet: {ex.Message}");
+            Debug.LogError($"Failed to process incoming packet: {ex.Message}");
+            Debug.LogError($"Raw JSON: {json}"); // Log the raw JSON content
         }
+    }
+    public static string CleanJson(string json)
+    {
+        // Iterate from the end to find the point where valid JSON ends
+        for (int i = json.Length; i > 0; i--)
+        {
+            string substring = json.Substring(0, i);
+
+            try
+            {
+                // Try parsing the substring as JSON
+                JObject.Parse(substring);
+                // If successful, return this substring as sanitized JSON
+                return substring;
+            }
+            catch
+            {
+                // Ignore parsing errors, continue truncating
+                continue;
+            }
+        }
+
+        // If no valid JSON is found, return an empty string
+        return string.Empty;
     }
 
     public void OnUpdate()
@@ -302,7 +316,7 @@ public class ClientUDP : MonoBehaviour, INetworking
     {
         Debug.LogError(message);
     }
-    
+
     public bool HostConnected()
     {
         return recv > 0;
