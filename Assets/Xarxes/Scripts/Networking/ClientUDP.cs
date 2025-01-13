@@ -145,13 +145,29 @@ public class ClientUDP : MonoBehaviour, INetworking
                 var jsonObject = JObject.Parse(json);
 
                 ACTION_TYPE actionType = (ACTION_TYPE)(int)jsonObject["action"];
-                string packet_id = (string)jsonObject["packet_id"];
+                Guid packet_id = (Guid)jsonObject["packet_id"];
 
                 if (actionType == ACTION_TYPE.ACKNOWLEDGE)
                 {
-                    lock (mutex)
+                    lock (messageBuffer)
                     {
-                        messageBuffer.RemoveAll(packet => packet.uid.ToString().Equals(packet_id));
+                        //Debug.Log("BEFORE " + messageBuffer.Count);
+                        //for (int i = 0; i < messageBuffer.Count; i++)
+                        //{
+                        //    Debug.Log("UID " + i + " " + messageBuffer[i].uid);
+                        //}
+                        //Debug.Log("PACKET GUID " + packet_id);
+                        messageBuffer.RemoveAll(packet => packet.uid == packet_id);
+                        //Debug.Log("AFTER " + messageBuffer.Count);
+                        //for (int i = 0; i < messageBuffer.Count; i++)
+                        //{
+                        //    Debug.Log("UID " + i + " " + messageBuffer[i].uid);
+                        //}    
+
+                        for (int i = 0; i < messageBuffer.Count; i++)
+                        {
+                            SendDataPacket(messageBuffer[i].data);
+                        }
                     }
                 }
             }

@@ -43,6 +43,8 @@ public struct SerializedData<T> : ISerializedData
 
     public Guid packet_id { get; set; }
 
+    public int packet_num { get; set; }
+
     public SerializedData(Guid id, ACTION_TYPE action, T parameters = default, string message = null, Guid packet_id = default)
     {
         network_id = id;
@@ -50,5 +52,7 @@ public struct SerializedData<T> : ISerializedData
         this.parameters = parameters;
         this.message = message;
         this.packet_id = packet_id == Guid.Empty ? Guid.NewGuid() : packet_id;
+        packet_num = Globals.packetCount;
+        Globals.packetCount++;
     }
 }

@@ -9,6 +9,7 @@ using System;
 using Newtonsoft.Json.Linq;
 using System.IO;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 public class ServerUDP : MonoBehaviour, INetworking
 {
@@ -24,6 +25,8 @@ public class ServerUDP : MonoBehaviour, INetworking
     Serialization cs_Serialization;
 
     int recv = 0;
+
+    private List<byte[]> packets = new List<byte[]>();
 
     private void Start()
     {
@@ -113,6 +116,8 @@ public class ServerUDP : MonoBehaviour, INetworking
     public void OnPacketReceived(byte[] inputPacket, EndPoint fromAddress)
     {
         cs_Serialization.DeserializeFromBinary(inputPacket);
+        //packets.Add(inputPacket);
+
         string json = "";
 
         // Create Acknowledge

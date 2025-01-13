@@ -9,6 +9,7 @@ public static class Globals
 {
     #region Don't destroy GameObjects
     static public List<GameObject> dontDestroyList = new List<GameObject>();
+    static public int packetCount = 0;
 
     static public void AddDontDestroy(GameObject item)
     {
