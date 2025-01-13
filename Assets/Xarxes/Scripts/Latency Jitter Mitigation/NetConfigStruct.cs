@@ -10,16 +10,16 @@ public struct NetConfig
     public int lossThreshold;
 
     // Static fields for default configuration
-    private static bool _defaultJitter = false;
-    private static bool _defaultPacketLoss = false;
-    private static int _defaultMinJitt = 0;
-    private static int _defaultMaxJitt = 0;
+    public static bool _defaultJitter = false;
+    public static bool _defaultPacketLoss = false;
+    public static int _defaultMinJitt = 0;
+    public static int _defaultMaxJitt = 0;
 
-    private static readonly int[] _jitterSteps = { 0, 200, 400, 600, 800 };
-    private static readonly int[] _lossThresholdSteps = { 0, 20, 40, 60, 80 };
+    public static readonly int[] _jitterSteps = { 0, 200, 400, 600, 800 };
+    public static readonly int[] _lossThresholdSteps = { 0, 20, 40, 60, 80 };
 
-    private static int _currentJitterStepIndex = 0; // Index for jitter values
-    private static int _currentLossStepIndex = 0;  // Index for loss threshold values
+    public static int _currentJitterStepIndex = 0; // Index for jitter values
+    public static int _currentLossStepIndex = 0;  // Index for loss threshold values
 
     // Method to configure the default values
     public static void ConfigureDefault(bool jitter, bool packetLoss, int minJitt, int maxJitt, int lossThreshold)
