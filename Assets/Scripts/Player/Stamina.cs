@@ -45,8 +45,8 @@ public class Stamina : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.F7))
         {
-            Debug.Log("Use Debug Stamina");
-            UseEnergy(debugStamina);
+            //Debug.Log("Use Debug Stamina");
+            //UseEnergy(debugStamina);
         }
     }
 

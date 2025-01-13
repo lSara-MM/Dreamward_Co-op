@@ -107,19 +107,6 @@ public class BossHealth : MonoBehaviour
                 _hitBoss = false;
             }
         }
-
-        // Debug
-        if (Input.GetKeyDown(KeyCode.F10))
-        {
-            int aux = Random.Range(0, 6);
-            ChooseAttack(aux);
-        }
-
-        if (Input.GetKeyDown(KeyCode.F11))
-        {
-            int aux = Random.Range(0, 5);
-            ChooseTarget(aux);
-        }
     }
 
     public void TakeDmg(int dmg_)
